@@ -51,7 +51,7 @@ class User extends Authenticatable
 
     public function adminlte_image(){
 
-        return './uploads/avatars/{{ auth()->user()->avatar }}';
+        return 'https://picsum.photos/300/300';
     }
 
     public function adminlte_desc(){
@@ -61,6 +61,6 @@ class User extends Authenticatable
 
     public function adminlte_profile_url(){
 
-        return 'perfil/edit';
+        return 'perfil';
     }
 }

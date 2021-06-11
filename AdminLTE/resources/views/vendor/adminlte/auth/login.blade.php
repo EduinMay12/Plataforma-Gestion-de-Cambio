@@ -21,8 +21,6 @@
 @section('auth_header', __('Acceder a Gestion de Cambio'))
 
 @section('auth_body')
-
-
     <form action="{{ $login_url }}" method="post">
         {{ csrf_field() }}
 

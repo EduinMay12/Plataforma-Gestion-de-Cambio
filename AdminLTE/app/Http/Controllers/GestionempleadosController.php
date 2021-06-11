@@ -10,9 +10,4 @@ class GestionempleadosController extends Controller
     {
         return view('gestionempleado.index');
     }
-
-    public function create()
-    {
-        return view('gestionempleado.create');
-    }
 }
