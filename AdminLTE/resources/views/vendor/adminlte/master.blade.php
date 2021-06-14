@@ -72,9 +72,7 @@
     @endif
 
 </head>
-
 <body class="@yield('classes_body')" @yield('body_data')>
-
     {{-- Body Content --}}
     @yield('body')
 
