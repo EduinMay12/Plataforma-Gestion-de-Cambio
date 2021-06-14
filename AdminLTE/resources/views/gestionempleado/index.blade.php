@@ -3,13 +3,22 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Gestinar Personal</h1>
+
+<div class="card">
+    <div class="card-header">
+      <h3 class="card-title"><a href="{{ url('/home') }}" class="btn btn" title="Regrasar"><i class="fa fa-angle-double-left"></i></a> Gestionar Personal</h3>
+      <div class="card-tools">
+        <span class="badge badge-primary"><i class="fa fa-home"></i> Inicio <i class="fa fa-angle-right"></i> Administracion <i class="fa fa-angle-right"></i> Gestionar Personal</span>
+      </div>
+    </div>
+</div>
+
 @stop
 
 @section('content')
 <style>
 .th-color{
-    background-color: blue;
+    background-color: #1989ff;
     color: white;
 }
 </style>
@@ -39,15 +48,15 @@
                             </div>
                     </div>
                     <div class="text-center">
-                        <a href="#" class="btn btn-primary" title="Agregar nuevo Puesto">Crear Persona <i class="fa fa-plus"></i></a>
+                        <a href="{{ url('/gestionempleado/create') }}" class="btn btn-primary" title="Agregar nuevo Puesto">Crear Persona <i class="fa fa-plus"></i></a>
                     </div>
 
-                    <form method="GET" action="{{ url('/puestos') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
+                    <form method="GET" action="{{ url('/gestionempleado') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
 
                         <div class="input-group">
                             <input type="text" class="form-control" name="search" placeholder="Buscar..." value="{{ request('search') }}">
                             <span class="input-group-append">
-                                <button class="btn btn-secondary" type="submit">
+                                <button class="btn btn-primary" type="submit">
                                     <i class="fa fa-search"></i>
                                 </button>
                             </span>
@@ -61,6 +70,7 @@
                             <thead>
                                 <tr class="th-color">
                                     <th>No.</th>
+                                    <th>Foto</th>
                                     <th>Nombre</th>
                                     <th>Apellido</th>
                                     <th>Empresa/Sucursal</th>
@@ -78,15 +88,16 @@
                             <tbody>
 
                                 <tr>
+                                    <td>1</td>
+                                    <td><img src="https://picsum.photos/300/300" width="30" height="30" class="rounded-circle"></td>
+                                    <td>Juan Pablo</td>
+                                    <td>Castro Lora</td>
+                                    <td>Corporativo</td>
                                     <td></td>
                                     <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>Por iniciar</td>
+                                    <td>Por iniciar</td>
+                                    <td>Pendiente</td>
                                     <td>
                                         <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                     </td>

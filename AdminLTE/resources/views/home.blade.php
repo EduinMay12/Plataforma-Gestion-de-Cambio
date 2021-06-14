@@ -3,13 +3,22 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Inicio</h1>
+
+<div class="card">
+    <div class="card-header">
+      <h3 class="card-title"><a href="{{ url('/home') }}" class="btn btn" title="Regrasar"><i class="fa fa-home"></i></a> Administración</h3>
+      <div class="card-tools">
+        <span class="badge badge-primary"><i class="fa fa-home"></i>  Inicio <i class="fa fa-angle-right"></i> Administración </span>
+      </div>
+    </div>
+</div>
+
 @stop
 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">{{ __('Dashboard') }}</div>
 

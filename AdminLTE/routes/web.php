@@ -20,12 +20,12 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 |--------------------------------------------------------------------------
 */
 Route::resource('gestionempleado', 'App\Http\Controllers\GestionempleadosController');
-Route::resource('profile', 'App\Http\Controllers\ProfileController');
-Route::resource('user', 'App\Http\Controllers\UserController');
-Route::post('profile/edit', ['as' => 'perfil.edit', 'uses' => 'App\Http\Controllers\ProfileController@update_avatar']);
-Route::get('profile/edit', ['as' => 'perfil.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
-Route::put('profile/edit', ['as' => 'perfil.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
-Route::put('profile/password', ['as' => 'perfil.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
+Route::resource('gestionsucursal', 'App\Http\Controllers\GestionsucursalController');
+Route::resource('gestionempresa', 'App\Http\Controllers\GestionempresaController');
+Route::post('perfil/edit', ['as' => 'perfil.edit', 'uses' => 'App\Http\Controllers\PerfilController@update_avatar']);
+Route::get('perfil/edit', ['as' => 'perfil.edit', 'uses' => 'App\Http\Controllers\PerfilController@edit']);
+Route::put('perfil/edit', ['as' => 'perfil.update', 'uses' => 'App\Http\Controllers\PerfilController@update']);
+Route::put('perfil/password', ['as' => 'perfil.password', 'uses' => 'App\Http\Controllers\PerfilController@password']);
 /*
 |--------------------------------------------------------------------------
 | Modulo de Comunicación
