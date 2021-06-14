@@ -103,6 +103,7 @@ return [
     */
 
     'classes_auth_card' => '',
+    'classes_body' => 'bg-gradient-primary',
     'classes_auth_header' => 'bg-gradient-primary',
     'classes_auth_body' => '',
     'classes_auth_footer' => 'text-center',
@@ -267,12 +268,12 @@ return [
         [
             'text'       => 'Gestionar Sucursales',
             'icon' => 'fas fa-fw fa-project-diagram',
-            'url'        => '#',
+            'url'        => 'gestionsucursal',
         ],
         [
             'text'       => 'Gestion de Empresas',
             'icon' => 'fas fa-fw fa-building',
-            'url'        => '#',
+            'url'        => 'gestionempresa',
         ],
     ],
 
