@@ -1,18 +1,25 @@
-@extends('adminlte::page')
+@extends('layouts.app')
 
-@section('title', 'Dashboard')
+@section('header-gestion')
+    <div class="container-fluid">
+        <div class="topnav">
+            <nav class="navbar navbar-light navbar-expand-lg topnav-menu">
+                <div class="collapse navbar-collapse" id="topnav-menu-content">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/home">
+                            <i class="uil-home-alt me-2"></i> Inicio </a>
+                        </li>
 
-@section('content_header')
-
-<div class="card">
-    <div class="card-header">
-      <h3 class="card-title"><a href="{{ url('/home') }}" class="btn btn" title="Regrasar"><i class="fa fa-angle-double-left"></i></a>Perfil</h3>
-      <div class="card-tools">
-        <span class="badge badge-primary"><i class="fa fa-home"></i> Inicio <i class="fa fa-angle-right"></i> Administracion <i class="fa fa-angle-right"></i> Perfil Personal</span>
-      </div>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/perfil/edit">
+                            <i class="uil uil-user-circle me-2"></i> Perfil </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
     </div>
-</div>
-
 @stop
 
 @section('content')
