@@ -10,6 +10,13 @@
     <link href="{{ url('css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- App Css-->
     <link href="{{ url('css/app.rtl.css') }}" rel="stylesheet" type="text/css" />
+
+    <link href="http://minible-h-rtl.laravel.themesbrand.com/assets/libs/select2/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="http://minible-h-rtl.laravel.themesbrand.com/assets/libs/spectrum-colorpicker/spectrum-colorpicker.min.css" rel="stylesheet">
+    <link href="http://minible-h-rtl.laravel.themesbrand.com/assets/libs/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet">
+    <link href="http://minible-h-rtl.laravel.themesbrand.com/assets/libs/bootstrap-touchspin/bootstrap-touchspin.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="http://minible-h-rtl.laravel.themesbrand.com/assets/libs/datepicker/datepicker.min.css">
+
 </head>
 
 <body data-layout="horizontal" data-topbar="colored">
@@ -102,6 +109,13 @@
     <script src="{{ asset('js/jquery-counterup.min.js') }}"></script>
     <script src="{{ asset('js/app.min.js') }}"></script>
 
+    <script src="http://minible-h-rtl.laravel.themesbrand.com/assets/libs/select2/select2.min.js"></script>
+    <script src="http://minible-h-rtl.laravel.themesbrand.com/assets/libs/spectrum-colorpicker/spectrum-colorpicker.min.js"></script>
+    <script src="http://minible-h-rtl.laravel.themesbrand.com/assets/libs/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+    <script src="http://minible-h-rtl.laravel.themesbrand.com/assets/libs/bootstrap-touchspin/bootstrap-touchspin.min.js"></script>
+    <script src="http://minible-h-rtl.laravel.themesbrand.com/assets/libs/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
+    <script src="http://minible-h-rtl.laravel.themesbrand.com/assets/libs/datepicker/datepicker.min.js"></script>
+    <script src="http://minible-h-rtl.laravel.themesbrand.com/assets/js/pages/form-advanced.init.js"></script>
 </body>
 
 </html>
