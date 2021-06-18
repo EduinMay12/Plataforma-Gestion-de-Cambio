@@ -36,9 +36,9 @@
                         <a class="dropdown-item" href="/home"><span class="align-middle">{{ __('Inicio') }}</span> <i class="uil-home-alt font-size-18 align-middle text-muted me-1"></i></a>
 
                         <a class="dropdown-item" href="/perfil/edit"><span class="align-middle">{{ __('Perfil') }}</span> <i class="uil uil-user-circle font-size-18 align-middle text-muted me-1"></i></a>
-
+                        @can('vista-administrador')
                         <a class="dropdown-item d-block" href="/administrador"><span class="align-middle">{{ __('Administrador') }}</span> <i class="uil uil-cog font-size-18 align-middle me-1 text-muted"></i></a>
-
+                        @endcan
                         <a class="dropdown-item" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                                       document.getElementById('logout-form').submit();">
