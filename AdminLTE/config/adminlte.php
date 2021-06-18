@@ -69,7 +69,7 @@ return [
     'usermenu_header_class' => 'bg-blue',
     'usermenu_image' => true,
     'usermenu_desc' => true,
-    'usermenu_profile_url' => true,
+    'usermenu_profile_url' => null,
 
     /*
     |--------------------------------------------------------------------------
@@ -189,7 +189,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'home',
+    'dashboard_url' => 'administrador',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -235,29 +235,28 @@ return [
 
         // Sidebar items:
 
-        ['header' => 'CONFIGURACION DE PERMISOS'],
+        ['header' => 'PUBLICO'],
         [
-            'text' => 'Listado de Usuarios',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
+            'text' => 'Inicio',
+            'url'  => '/home',
+            'icon' => 'fas fa-fw fa-home',
         ],
         [
-            'text'    => 'Roles & Permisos',
-            'icon'    => 'fas fa-fw fa-share',
-            'submenu' => [
-                [
-                    'text' => 'Roles',
-                    'url'  => '#',
-                ],
-                [
-                    'text' => 'Lista de Permisos',
-                    'url'  => '#',
-                ],
-                [
-                    'text' => 'Categoria',
-                    'url'  => '#',
-                ],
-            ],
+            'text' => 'Perfil',
+            'url'  => 'perfil/edit',
+            'icon' => 'fas fa-fw fa-user-circle',
+        ],
+
+        ['header' => 'CONFIGURACION DE PERMISOS'],
+        [
+            'text' => 'Asignaciónes de Etiqueta',
+            'url'  => 'users',
+            'icon' => 'fas fa-fw fa-users',
+        ],
+        [
+            'text' => 'Etiquetas',
+            'url'  => 'roles',
+            'icon' => 'fas fa-fw fa-lock',
         ],
         ['header' => 'PANEL DE ADMINISTRADOR'],
         [
@@ -267,7 +266,7 @@ return [
         ],
         [
             'text'       => 'Gestionar Sucursales',
-            'icon' => 'fas fa-fw fa-project-diagram',
+            'icon' => 'fas fa-fw fa-sitemap',
             'url'        => 'gestionsucursal',
         ],
         [

@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Estados;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+use DB;
 
 class HomeController extends Controller
 {
@@ -14,6 +19,8 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('permission:vista-administrador', ['only' => ['administrador']]);
+        $this->middleware('permission:vista-home', ['only' => ['home']]);
     }
 
     /**
@@ -28,6 +35,8 @@ class HomeController extends Controller
 
     public function administrador()
     {
-        return view('administrador');
+        $users_count = User::count();
+        $estados_count = Estados::count();
+        return view('administrador',compact('estados_count', 'users_count'));
     }
 }

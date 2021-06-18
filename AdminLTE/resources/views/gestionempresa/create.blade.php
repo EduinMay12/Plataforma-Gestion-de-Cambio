@@ -107,13 +107,16 @@
         </div>
     </div>
 </div>
+<footer class="footer">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6">
+                <script>document.write(new Date().getFullYear())</script> © EDUMATICS
+            </div>
 
+        </div>
+    </div>
+</footer>
 @stop
 
-@section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
-@stop
 
-@section('js')
-    <script> console.log('Hi!'); </script>
-@stop
