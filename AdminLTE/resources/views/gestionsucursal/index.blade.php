@@ -6,7 +6,7 @@
 
 <div class="card">
     <div class="card-header">
-      <h3 class="card-title"><a href="{{ url('/home') }}" class="btn btn" title="Regrasar"><i class="fa fa-angle-double-left"></i></a> Gestionar Sucursal</h3>
+      <h3 class="card-title"><a href="{{ url('/administrador') }}" class="btn btn" title="Regrasar"><i class="fa fa-angle-double-left"></i></a> Gestionar Sucursal</h3>
       <div class="card-tools">
         <span class="badge badge-primary"><i class="fa fa-home"></i> Inicio <i class="fa fa-angle-right"></i> Administracion <i class="fa fa-angle-right"></i> Gestionar Sucursal</span>
       </div>
@@ -110,9 +110,16 @@
         </div>
     </div>
 </div>
+<footer class="footer">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6">
+                <script>document.write(new Date().getFullYear())</script> © EDUMATICS
+            </div>
+
+        </div>
+    </div>
+</footer>
 @stop
 
-@section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
-@stop
 
