@@ -24,7 +24,7 @@ class EstadoController extends Controller
     {
         $estados = $request->get('buscarpor');
 
-        $estados = estados::where('d_mnpio','like',"%$estados%")->paginate(10000);
+        $estados = estados::where('d_mnpio','like',"%$estados%")->paginate(5);
         return view('modulo-administrador.estados.index',compact('estados'));
 
     }

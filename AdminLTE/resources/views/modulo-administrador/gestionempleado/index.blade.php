@@ -6,9 +6,9 @@
 
 <div class="card">
     <div class="card-header">
-      <h3 class="card-title"><a href="{{ url('/administrador') }}" class="btn btn" title="Regrasar"><i class="fa fa-angle-double-left"></i></a> Gestionar Sucursal</h3>
+      <h3 class="card-title"><a href="{{ url('/administrador') }}" class="btn btn" title="Regrasar"><i class="fa fa-angle-double-left"></i></a> Gestionar Personal</h3>
       <div class="card-tools">
-        <span class="badge badge-primary"><i class="fa fa-home"></i> Inicio <i class="fa fa-angle-right"></i> Administracion <i class="fa fa-angle-right"></i> Gestionar Sucursal</span>
+        <span class="badge badge-primary"><i class="fa fa-home"></i> Inicio <i class="fa fa-angle-right"></i> Administracion <i class="fa fa-angle-right"></i> Gestionar Personal</span>
       </div>
     </div>
 </div>
@@ -37,10 +37,20 @@
                                     <option>Berel</option>
                                 </select><br>
                             </div>
+                            <div class="col">
+                                <label>Seleccionar Sucursal </label>
+                                <select name="reporta_a" class="form-control">
+                                    <option value="">Pacabtun</option>
+                                    <option>Merida</option>
+                                    <option>Maxcanu</option>
+                                    <option>kopoma</option>
+                                </select><br>
+                            </div>
                     </div>
                     <div class="text-center">
-                        <a href="{{ url('/gestionsucursal/create') }}" class="btn btn-primary" title="Agregar nuevo Puesto">Crear Sucursal <i class="fa fa-plus"></i></a>
+                        <a href="{{ url('/gestionempleado/create') }}" class="btn btn-primary" title="Agregar nuevo Puesto">Crear Persona <i class="fa fa-plus"></i></a>
                     </div>
+
                     <form method="GET" action="{{ url('/gestionempleado') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
 
                         <div class="input-group">
@@ -60,13 +70,14 @@
                             <thead>
                                 <tr class="th-color">
                                     <th>No.</th>
-                                    <th>Nombre</th>
                                     <th>Foto</th>
-                                    <th>Resposable</th>
-                                    <th>No. Empleados</th>
-                                    <th>Tamaño</th>
-                                    <th>Ciudad</th>
-                                    <th>Estado</th>
+                                    <th>Nombre</th>
+                                    <th>Apellido</th>
+                                    <th>Empresa/Sucursal</th>
+                                    <th>Tipo</th>
+                                    <th>Puesto</th>
+                                    <th>Guia. 1</th>
+                                    <th>Guia. 2</th>
                                     <th>Estado</th>
                                     <th>Ver</th>
                                     <th>Editar</th>
@@ -78,14 +89,15 @@
 
                                 <tr>
                                     <td>1</td>
-                                    <td>Pacabtun</td>
                                     <td><img src="https://picsum.photos/300/300" width="30" height="30" class="rounded-circle"></td>
-                                    <td>Melissa Rocha</td>
-                                    <td>2</td>
-                                    <td>Mediana</td>
+                                    <td>Juan Pablo</td>
+                                    <td>Castro Lora</td>
+                                    <td>Corporativo</td>
                                     <td></td>
                                     <td></td>
-                                    <td>Activo</td>
+                                    <td>Por iniciar</td>
+                                    <td>Por iniciar</td>
+                                    <td>Pendiente</td>
                                     <td>
                                         <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                     </td>
@@ -110,16 +122,6 @@
         </div>
     </div>
 </div>
-<footer class="footer">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-6">
-                <script>document.write(new Date().getFullYear())</script> © EDUMATICS
-            </div>
-
-        </div>
-    </div>
-</footer>
 @stop
 
-
+@extends('layouts.footer')

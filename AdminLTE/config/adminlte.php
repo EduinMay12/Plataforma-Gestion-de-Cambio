@@ -189,7 +189,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'administrador',
+    'dashboard_url' => 'modulo-administrador/administrador',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -243,36 +243,36 @@ return [
         ],
         [
             'text' => 'Perfil',
-            'url'  => 'perfil/edit',
+            'url'  => 'modulo-administrador/perfil/edit',
             'icon' => 'fas fa-fw fa-user-circle',
         ],
 
         ['header' => 'CONFIGURACION DE PERMISOS'],
         [
             'text' => 'Asignaciónes de Etiqueta',
-            'url'  => 'users',
+            'url'  => 'modulo-administrador/users',
             'icon' => 'fas fa-fw fa-users',
         ],
         [
             'text' => 'Etiquetas',
-            'url'  => 'roles',
+            'url'  => 'modulo-administrador/roles',
             'icon' => 'fas fa-fw fa-lock',
         ],
         ['header' => 'PANEL DE ADMINISTRADOR'],
         [
             'text'       => 'Gestionar Empleados',
             'icon' => 'fas fa-fw fa-portrait',
-            'url'        => 'gestionempleado',
+            'url'        => 'modulo-administrador/gestionempleado',
         ],
         [
             'text'       => 'Gestionar Sucursales',
             'icon' => 'fas fa-fw fa-sitemap',
-            'url'        => 'gestionsucursal',
+            'url'        => 'modulo-administrador/gestionsucursal',
         ],
         [
             'text'       => 'Gestion de Empresas',
             'icon' => 'fas fa-fw fa-building',
-            'url'        => 'gestionempresa',
+            'url'        => 'modulo-administrador/gestionempresa',
         ],
     ],
 

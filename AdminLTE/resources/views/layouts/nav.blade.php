@@ -4,7 +4,7 @@
         <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="uil-angle-down d-none d-xl-inline-block font-size-15"></i>
-            <span class="d-none d-xl-inline-block ms-1 fw-medium font-size-15"> {{ Auth::user()->name }} {{ Auth::user()->apellido }}</span>
+            <span class="d-none d-xl-inline-block ms-1 fw-medium font-size-15"> {{ Auth::user()->name }}</span>
             <img class="rounded-circle header-profile-user" src="/uploads/avatars/{{ auth()->user()->avatar }}"
                 alt="Header Avatar">
         </button>
@@ -12,7 +12,7 @@
             <!-- item-->
             <a class="dropdown-item" href="/home"><span class="align-middle">{{ __('Inicio') }}</span> <i class="uil-home-alt font-size-18 align-middle text-muted me-1"></i></a>
 
-            <a class="dropdown-item" href="/perfil/edit"><span class="align-middle">{{ __('Perfil') }}</span> <i class="uil uil-user-circle font-size-18 align-middle text-muted me-1"></i></a>
+            <a class="dropdown-item" href="modulo-administrador/perfil/edit"><span class="align-middle">{{ __('Perfil') }}</span> <i class="uil uil-user-circle font-size-18 align-middle text-muted me-1"></i></a>
             @can('vista-administrador')
             <a class="dropdown-item d-block" href="/modulo-administrador/administrador"><span class="align-middle">{{ __('Administrador') }}</span> <i class="uil uil-cog font-size-18 align-middle me-1 text-muted"></i></a>
             @endcan
