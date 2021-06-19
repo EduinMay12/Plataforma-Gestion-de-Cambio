@@ -37,6 +37,6 @@ class HomeController extends Controller
     {
         $users_count = User::count();
         $estados_count = Estados::count();
-        return view('administrador',compact('estados_count', 'users_count'));
+        return view('modulo-administrador.administrador.administrador',compact('estados_count', 'users_count'));
     }
 }
