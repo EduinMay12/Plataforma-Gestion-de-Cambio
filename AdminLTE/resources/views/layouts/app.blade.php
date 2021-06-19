@@ -33,6 +33,7 @@
     <div class="main-content">
         <div class="page-content">
             @yield('menu')
+            @yield('content')
             @yield('footer')
         </div>
     </div>
