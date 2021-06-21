@@ -69,7 +69,7 @@ return [
     'usermenu_header_class' => 'bg-blue',
     'usermenu_image' => true,
     'usermenu_desc' => true,
-    'usermenu_profile_url' => true,
+    'usermenu_profile_url' => null,
 
     /*
     |--------------------------------------------------------------------------
@@ -103,6 +103,7 @@ return [
     */
 
     'classes_auth_card' => '',
+    'classes_body' => 'bg-gradient-primary',
     'classes_auth_header' => 'bg-gradient-primary',
     'classes_auth_body' => '',
     'classes_auth_footer' => 'text-center',
@@ -188,7 +189,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'home',
+    'dashboard_url' => 'modulo-administrador/administrador',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -234,45 +235,44 @@ return [
 
         // Sidebar items:
 
-        ['header' => 'CONFIGURACION DE PERMISOS'],
+        ['header' => 'PUBLICO'],
         [
-            'text' => 'Listado de Usuarios',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
+            'text' => 'Inicio',
+            'url'  => '/home',
+            'icon' => 'fas fa-fw fa-home',
         ],
         [
-            'text'    => 'Roles & Permisos',
-            'icon'    => 'fas fa-fw fa-share',
-            'submenu' => [
-                [
-                    'text' => 'Roles',
-                    'url'  => '#',
-                ],
-                [
-                    'text' => 'Lista de Permisos',
-                    'url'  => '#',
-                ],
-                [
-                    'text' => 'Categoria',
-                    'url'  => '#',
-                ],
-            ],
+            'text' => 'Perfil',
+            'url'  => 'modulo-administrador/perfil/edit',
+            'icon' => 'fas fa-fw fa-user-circle',
+        ],
+
+        ['header' => 'CONFIGURACION DE PERMISOS'],
+        [
+            'text' => 'Asignaciónes de Etiqueta',
+            'url'  => 'modulo-administrador/users',
+            'icon' => 'fas fa-fw fa-users',
+        ],
+        [
+            'text' => 'Etiquetas',
+            'url'  => 'modulo-administrador/roles',
+            'icon' => 'fas fa-fw fa-lock',
         ],
         ['header' => 'PANEL DE ADMINISTRADOR'],
         [
             'text'       => 'Gestionar Empleados',
             'icon' => 'fas fa-fw fa-portrait',
-            'url'        => 'gestionempleado',
+            'url'        => 'modulo-administrador/gestionempleado',
         ],
         [
             'text'       => 'Gestionar Sucursales',
-            'icon' => 'fas fa-fw fa-project-diagram',
-            'url'        => '#',
+            'icon' => 'fas fa-fw fa-sitemap',
+            'url'        => 'modulo-administrador/gestionsucursal',
         ],
         [
             'text'       => 'Gestion de Empresas',
             'icon' => 'fas fa-fw fa-building',
-            'url'        => '#',
+            'url'        => 'modulo-administrador/gestionempresa',
         ],
         //Rutas del módulo capacitaciones
         ['header' => 'MÓDULO CAPACITACIONES'],
