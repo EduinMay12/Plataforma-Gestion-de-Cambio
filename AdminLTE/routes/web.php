@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,6 +32,23 @@ Route::put('profile/password', ['as' => 'perfil.password', 'uses' => 'App\Http\C
 | Modulo de Comunicación
 |--------------------------------------------------------------------------
 */
+
+/*
+|--------------------------------------------------------------------------
+| Modulo de Capacitaciones
+|--------------------------------------------------------------------------
+*/
+Route::get('categorias', function () {
+    return view('modulo-capacitaciones.categorias.index');
+});
+
+Route::get('categorias/create', function () {
+    return view('modulo-capacitaciones.categorias.create');
+});
+
+Route::get('cursos', function () {
+    return view('modulo-capacitaciones.cursos.index');
+});
 
 Route::get('/home', function() {
     return view('home');
