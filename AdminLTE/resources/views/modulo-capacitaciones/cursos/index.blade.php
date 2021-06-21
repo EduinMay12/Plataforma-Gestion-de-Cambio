@@ -1,19 +1,13 @@
 @extends('adminlte::page')
 
-@section('title', 'Cursos')
+@section('title', 'cursos')
 
 @section('content_header')
-    <div class="container">
-        <div class="card">
-            <div class="card-header d-flex justify-content-center">
-                <div class="card-title">Gestionar Cursos</div>
-            </div>
-        </div>
-    </div>
+    <h1>Gestionar Cursos</h1>
 @stop
 
 @section('content')
 
-    @livewire('modulo-capacitaciones.cursos.index')
+
 
 @endsection

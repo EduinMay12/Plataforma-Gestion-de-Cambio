@@ -274,6 +274,65 @@ return [
             'icon' => 'fas fa-fw fa-building',
             'url'        => 'modulo-administrador/gestionempresa',
         ],
+        //Rutas del módulo capacitaciones
+        ['header' => 'MÓDULO CAPACITACIONES'],
+        [
+            'text' => 'Módulo Capacitaciones',
+            'icon' => 'fas fa-fw fa-chalkboard-teacher',
+            'submenu' => [
+                [
+                    'text' => 'Gestionar Categorias',
+                    'icon' => 'fas fa-fw fa-layer-group',
+                    'url' => 'categorias'
+                ],
+                [
+                    'text' => 'Gestionar Cursos',
+                    'icon' => 'fas fa-fw fa-laptop',
+                    'url' => '#'
+                ],
+                [
+                    'text' => 'Gestionar Instructores',
+                    'icon' => 'fas fa-fw fa-user-tie',
+                    'url' => '#'
+                ],
+                [
+                    'text' => 'Gestionar Grupos',
+                    'icon' => 'fas fa-fw fa-users',
+                    'url' => '#'
+                ],
+                [
+                    'text' => 'Gestionar matriculaciones',
+                    'icon' => 'fas fa-fw fa-address-card',
+                    'url' => '#'
+                ],
+                [
+                    'text' => 'Gestionar Lecciones',
+                    'icon' => 'fas fa-fw fa-book',
+                    'url' => '#'
+                ],
+                [
+                    'text' => 'Gestionar Recursos',
+                    'icon' => 'fas fa-fw fa-photo-video',
+                    'url' => '#'
+                ],
+                [
+                    'text' => 'Gestionar Actividades',
+                    'icon' => 'fas fa-fw fa-file-alt',
+                    'url' => '#'
+                ],
+                [
+                    'text' => 'Gestionar Cuestionarios',
+                    'icon' => 'fas fa-fw fa-file-alt',
+                    'url' => '#'
+                ],
+                [
+                    'text' => 'Gestionar Preguntas',
+                    'icon' => 'fas fa-fw fa-question-circle',
+                    'url' => '#'
+                ]
+            ]
+        ],
+        
     ],
 
     /*
