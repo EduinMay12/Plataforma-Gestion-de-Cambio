@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ModuloCapacitaciones\CategoriaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,13 +41,7 @@ use Illuminate\Support\Facades\Route;
 | Modulo de Capacitaciones
 |--------------------------------------------------------------------------
 */
-Route::get('categorias', function () {
-    return view('modulo-capacitaciones.categorias.index');
-});
-
-Route::get('categorias/create', function () {
-    return view('modulo-capacitaciones.categorias.create');
-});
+Route::resource('categorias', CategoriaController::class);
 
 Route::get('cursos', function () {
     return view('modulo-capacitaciones.cursos.index');
@@ -55,3 +50,4 @@ Route::get('cursos', function () {
 Route::get('/home', function() {
     return view('home');
 })->name('home')->middleware('auth');
+
