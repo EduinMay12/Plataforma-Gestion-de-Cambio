@@ -3,7 +3,13 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Gestionar Categorias</h1>
+
+    <div class="card">
+        <div class="card-header d-flex justify-content-center">
+            <div class="card-title">Gestionar Categorias</div>
+        </div>
+    </div>
+
 @stop
 
 @section('content')
