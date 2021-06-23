@@ -243,7 +243,7 @@ return [
         ],
         [
             'text' => 'Perfil',
-            'url'  => 'modulo-administrador/perfil/edit',
+            'url'  => './perfil/edit',
             'icon' => 'fas fa-fw fa-user-circle',
         ],
 
