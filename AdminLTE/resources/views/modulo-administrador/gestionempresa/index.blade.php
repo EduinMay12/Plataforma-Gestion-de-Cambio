@@ -28,7 +28,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="text-center">
-                        <a href="{{ url('/gestionempresa/create') }}" class="btn btn-primary" title="Agregar nuevo Puesto">Crear Empresa <i class="fa fa-plus"></i></a>
+                        <a href="{{ route('gestionempresa.create') }}" class="btn btn-primary" title="Agregar nuevo Puesto">Crear Empresa <i class="fa fa-plus"></i></a>
                     </div>
                     <form method="GET" action="{{ url('/gestionempleado') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
 
@@ -50,7 +50,6 @@
                                 <tr class="th-color">
                                     <th>No.</th>
                                     <th>Nombre</th>
-                                    <th>Foto</th>
                                     <th>Resposable</th>
                                     <th>No. Empleados</th>
                                     <th>Estado</th>
@@ -65,7 +64,6 @@
                                 <tr>
                                     <td>1</td>
                                     <td>Bebidas Yucatán</td>
-                                    <td><img src="https://picsum.photos/300/300" width="30" height="30" class="rounded-circle"></td>
                                     <td>Juan Peréz</td>
                                     <td>25</td>
                                     <td>Activo</td>

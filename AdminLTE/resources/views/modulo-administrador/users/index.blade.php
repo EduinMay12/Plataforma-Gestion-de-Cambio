@@ -16,47 +16,25 @@
 @stop
 
 @section('content')
-<style>
-    .header-color{
-        background-color: #1989ff;
-        color: white;
-    }
-</style>
+
 @if ($message = Session::get('success'))
 <div class="alert alert-success">
   <p>{{ $message }}</p>
 </div>
 @endif
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="header-color card-header">Listado de Usuarios con Etiqueta</div>
-                <div class="card-body">
-                    <div class="text-center">
-                        @can('crear-usuarios')
-                        <a href="{{ route('users.create') }}" class="btn btn-primary" title="Asignar una etiquetas a un usuario">Asignar una etiquetas a un usuario <i class="fa fa-plus"></i></a>
-                        @endcan
-                    </div>
-                    <form method="GET" action="{{ url('/gestionempleado') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
-
-                        <div class="input-group">
-                            <input type="text" class="form-control" name="search" placeholder="Buscar..." value="{{ request('search') }}">
-                            <span class="input-group-append">
-                                <button class="btn btn-primary" type="submit">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                        </div>
-                    </form>
-
-                    <br/>
-                    <br/>
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
+<div class="card">
+        <div class="card-body">
+            <div class="text-center">
+                @can('crear-etiqueta')
+                <a href="{{ route('users.create') }}" class="btn btn-primary" title="Agregar nuevo Usuario"><i class="fa fa-plus"></i> Crear un nuevo Usuario</a>
+                @endcan
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="table-responsive mb-4">
+                        <table class="table table-centered datatable dt-responsive nowrap table-card-list" style="border-collapse: collapse; border-spacing: 0 12px; width: 100%;">
                             <thead>
-                                <tr class="th-color">
+                                <tr class="bg-transparent">
                                     <th>No.</th>
                                     <th>Foto</th>
                                     <th>Nombre</th>
@@ -103,15 +81,12 @@
                                 </tr>
                                 @endforeach
                             </tbody>
-                        </table>
-                        <div class="pagination-wrapper"> </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-{!! $data->render() !!}
 @endsection
 
-@extends('layouts.footer')
