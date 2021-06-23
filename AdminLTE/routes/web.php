@@ -24,10 +24,10 @@ use Illuminate\Support\Facades\Route;
         Route::resource('modulo-administrador/gestionempleado', App\Http\Controllers\Admin\GestionempleadosController::class);
         Route::resource('modulo-administrador/gestionsucursal', App\Http\Controllers\Admin\GestionsucursalController::class);
         Route::resource('modulo-administrador/gestionempresa', App\Http\Controllers\Admin\GestionempresaController::class);
-        Route::post('modulo-administrador/perfil/edit', ['as' => 'perfil.edit', 'uses' => 'App\Http\Controllers\Admin\PerfilController@update_avatar']);
-        Route::get('modulo-administrador/perfil/edit', ['as' => 'perfil.edit', 'uses' => 'App\Http\Controllers\Admin\PerfilController@edit']);
-        Route::put('modulo-administrador/perfil/edit', ['as' => 'perfil.update', 'uses' => 'App\Http\Controllers\Admin\PerfilController@update']);
-        Route::put('modulo-administrador/perfil/password', ['as' => 'perfil.password', 'uses' => 'App\Http\Controllers\Admin\PerfilController@password']);
+        Route::post('perfil/edit', ['as' => 'perfil.edit', 'uses' => 'App\Http\Controllers\PerfilController@update_avatar']);
+        Route::get('perfil/edit', ['as' => 'perfil.edit', 'uses' => 'App\Http\Controllers\PerfilController@edit']);
+        Route::put('perfil/edit', ['as' => 'perfil.update', 'uses' => 'App\Http\Controllers\PerfilController@update']);
+        Route::put('perfil/password', ['as' => 'perfil.password', 'uses' => 'App\Http\Controllers\PerfilController@password']);
     });
 /*
 |--------------------------------------------------------------------------
@@ -51,7 +51,3 @@ Route::get('categorias/create', function () {
 Route::get('cursos', function () {
     return view('modulo-capacitaciones.cursos.index');
 });
-
-Route::get('/home', function() {
-    return view('home');
-})->name('home')->middleware('auth');

@@ -48,7 +48,7 @@
                             </div>
                     </div>
                     <div class="text-center">
-                        <a href="{{ url('/gestionempleado/create') }}" class="btn btn-primary" title="Agregar nuevo Puesto">Crear Persona <i class="fa fa-plus"></i></a>
+                        <a href="{{ route('gestionempleado.create') }}" class="btn btn-primary" title="Agregar nuevo Puesto">Crear Persona <i class="fa fa-plus"></i></a>
                     </div>
 
                     <form method="GET" action="{{ url('/gestionempleado') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
@@ -89,7 +89,7 @@
 
                                 <tr>
                                     <td>1</td>
-                                    <td><img src="https://picsum.photos/300/300" width="30" height="30" class="rounded-circle"></td>
+                                    <td><img src="#" width="30" height="30" class="rounded-circle"></td>
                                     <td>Juan Pablo</td>
                                     <td>Castro Lora</td>
                                     <td>Corporativo</td>

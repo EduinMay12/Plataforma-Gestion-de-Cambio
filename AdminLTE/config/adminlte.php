@@ -247,34 +247,51 @@ return [
             'icon' => 'fas fa-fw fa-user-circle',
         ],
 
-        ['header' => 'CONFIGURACION DE PERMISOS'],
+        //Rustas del Modulo de administrador
+
+        ['header' => 'MÓDULO DE ADMINISTRADOR'],
         [
-            'text' => 'Asignaciónes de Etiqueta',
-            'url'  => 'modulo-administrador/users',
-            'icon' => 'fas fa-fw fa-users',
+
+            'text' => 'Panel del administrador',
+            'icon' => 'fas fa-fw fa-user-cog',
+            'submenu' => [
+                [
+                    'text' => 'Asignaciónes de Etiqueta',
+                    'url'  => 'modulo-administrador/users',
+                    'icon' => 'fas fa-fw fa-boxes',
+                ],
+                [
+                    'text' => 'Etiquetas',
+                    'url'  => 'modulo-administrador/roles',
+                    'icon' => 'fas fa-fw fa-bookmark',
+                ],
+            ]
         ],
         [
-            'text' => 'Etiquetas',
-            'url'  => 'modulo-administrador/roles',
-            'icon' => 'fas fa-fw fa-lock',
+
+            'text' => 'Administrar Empresas',
+            'icon' => 'fas fa-fw fa-chalkboard',
+            'submenu' => [
+                [
+                    'text'       => 'Gestionar Empleados',
+                    'icon' => 'fas fa-fw fa-portrait',
+                    'url'        => 'modulo-administrador/gestionempleado',
+                ],
+                [
+                    'text'       => 'Gestionar Sucursales',
+                    'icon' => 'fas fa-fw fa-sitemap',
+                    'url'        => 'modulo-administrador/gestionsucursal',
+                ],
+                [
+                    'text'       => 'Gestion de Empresas',
+                    'icon' => 'fas fa-fw fa-building',
+                    'url'        => 'modulo-administrador/gestionempresa',
+                ],
+            ]
         ],
-        ['header' => 'PANEL DE ADMINISTRADOR'],
-        [
-            'text'       => 'Gestionar Empleados',
-            'icon' => 'fas fa-fw fa-portrait',
-            'url'        => 'modulo-administrador/gestionempleado',
-        ],
-        [
-            'text'       => 'Gestionar Sucursales',
-            'icon' => 'fas fa-fw fa-sitemap',
-            'url'        => 'modulo-administrador/gestionsucursal',
-        ],
-        [
-            'text'       => 'Gestion de Empresas',
-            'icon' => 'fas fa-fw fa-building',
-            'url'        => 'modulo-administrador/gestionempresa',
-        ],
+
         //Rutas del módulo capacitaciones
+
         ['header' => 'MÓDULO CAPACITACIONES'],
         [
             'text' => 'Módulo Capacitaciones',
@@ -332,7 +349,7 @@ return [
                 ]
             ]
         ],
-        
+
     ],
 
     /*

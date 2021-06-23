@@ -33,54 +33,6 @@
             @endif
         </div>
 
-        {{-- Apellido Paterno --}}
-        <div class="input-group mb-3">
-            <input type="text" name="apellido_paterno" class="form-control {{ $errors->has('apellido_paterno') ? 'is-invalid' : '' }}"
-                   value="{{ old('apellido_paterno') }}" placeholder="{{ __('Apellido Paterno') }}" autofocus>
-            <div class="input-group-append">
-                <div class="input-group-text">
-
-                </div>
-            </div>
-            @if($errors->has('apellido_paterno'))
-                <div class="invalid-feedback">
-                    <strong>{{ $errors->first('apellido_paterno') }}</strong>
-                </div>
-            @endif
-        </div>
-
-        {{-- Apellido Materno --}}
-        <div class="input-group mb-3">
-            <input type="text" name="apellido_materno" class="form-control {{ $errors->has('apellido_materno') ? 'is-invalid' : '' }}"
-                   value="{{ old('apellido_materno') }}" placeholder="{{ __('Apellido Materno') }}" autofocus>
-            <div class="input-group-append">
-                <div class="input-group-text">
-
-                </div>
-            </div>
-            @if($errors->has('apellido_materno'))
-                <div class="invalid-feedback">
-                    <strong>{{ $errors->first('apellido_materno') }}</strong>
-                </div>
-            @endif
-        </div>
-
-        {{-- Fecha de Nacimiento --}}
-        <div class="input-group mb-3">
-            <input type="input-group date" name="fecha_nacimiento" class="form-control {{ $errors->has('fecha_nacimiento') ? 'is-invalid' : '' }}"
-                   value="{{ old('fecha_nacimiento') }}" placeholder="{{ __('Fecha de Nacimiento') }}" autofocus>
-            <div class="input-group-append">
-                <div class="input-group-text">
-                    <span class="fas fa-calendar {{ config('adminlte.classes_auth_icon', '') }}"></span>
-                </div>
-            </div>
-            @if($errors->has('fecha_nacimiento'))
-                <div class="invalid-feedback">
-                    <strong>{{ $errors->first('fecha_nacimiento') }}</strong>
-                </div>
-            @endif
-        </div>
-
         {{-- Email field --}}
         <div class="input-group mb-3">
             <input type="email" name="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}"

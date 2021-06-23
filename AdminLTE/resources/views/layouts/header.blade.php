@@ -20,7 +20,7 @@
                                 <div class="row">
                                     <div class="col-lg-4">
                                         <div class="text-left">
-                                            <a href="/modulo-administrador/perfil/edit" class="dropdown-item">Perfil</a>
+                                            <a href="/perfil/edit" class="dropdown-item">Perfil</a>
                                             <a href="/modulo-administrador/administrador" class="dropdown-item">Panel del Administrador</a>
                                             <a href="/roles" class="dropdown-item">Etiquetas</a>
                                             <a href="/users" class="dropdown-item">Usuarios</a>
