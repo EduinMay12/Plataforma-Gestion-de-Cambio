@@ -60,4 +60,15 @@ class User extends Authenticatable
         return 'Hola Bienvenido a Gestion de Cambio';
     }
 
+    //Relacion muchos a muchos con grupo
+    public function grupos()
+    {
+        return $this->belongsToMany('App\Models\ModuloCapacitaciones\Grupo');
+    }
+
+    //Relacion uno a uno con instructores
+    public function instructor()
+    {
+        return $this->hasOne('App\Models\ModuloCapacitaciones\Instructore');
+    }
 }

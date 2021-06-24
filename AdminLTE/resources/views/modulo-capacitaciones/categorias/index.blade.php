@@ -4,9 +4,11 @@
 
 @section('content_header')
 
-    <div class="card">
-        <div class="card-header d-flex justify-content-center">
-            <div class="card-title">Gestionar Categorias</div>
+    <div class="container">
+        <div class="card">
+            <div class="card-header d-flex justify-content-center">
+                <div class="card-title">Gestionar Categorias</div>
+            </div>
         </div>
     </div>
 
