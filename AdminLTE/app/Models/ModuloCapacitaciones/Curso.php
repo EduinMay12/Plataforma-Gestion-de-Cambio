@@ -9,15 +9,13 @@ class Curso extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
-
     //Relacion uno a muchos inversa
     public function categoria()
     {
         return $this->belongsTo('App\Models\ModuloCapacitaciones\Categoria');
     }
 
-    public function instructore()
+    public function instructor()
     {
         return $this->belongsTo('App\Models\ModuloCapacitaciones\Instructore');
     }

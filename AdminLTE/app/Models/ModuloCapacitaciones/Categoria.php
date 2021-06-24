@@ -10,4 +10,10 @@ class Categoria extends Model
     use HasFactory;
     
     protected $guarded = [];
+
+    //Relacion uno a muchos
+    public function cursos()
+    {
+        return $this->hasMany('App\Models\ModuloCapacitaciones\Curso');
+    }
 }
