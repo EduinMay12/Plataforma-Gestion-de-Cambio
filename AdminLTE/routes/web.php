@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ModuloCapacitaciones\CategoriaController;
+use App\Http\Controllers\ModuloCapacitaciones\CursoController;
+use App\Http\Controllers\ModuloCapacitaciones\InstructoreController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,9 +38,7 @@ use App\Http\Controllers\ModuloCapacitaciones\CategoriaController;
 | Modulo de Capacitaciones
 |--------------------------------------------------------------------------
 */
-Route::resource('categorias', CategoriaController::class);
-
-Route::get('cursos', function () {
-    return view('modulo-capacitaciones.cursos.index');
-});
+Route::resource('categorias', CategoriaController::class)->parameters(['categorias' => 'categoria']);
+Route::resource('instructores', InstructoreController::class)->parameters(['instructores' => 'instructore']);
+Route::resource('cursos', CursoController::class);
 

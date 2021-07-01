@@ -1,13 +1,13 @@
 @extends('adminlte::page')
 
-@section('title', 'crear categoria')
+@section('title', 'Agregar instructor')
 
 @section('content_header')
 
     <div class="container">
         <div class="card">
             <div class="card-header d-flex justify-content-center">
-                <div class="card-title">Crear Categoria</div>
+                <div class="card-title">Agregar Instructor</div>
             </div>
         </div>
     </div>
@@ -19,33 +19,33 @@
         <div class="card">
             <div class="card-body">
                 <div class="col-6">
-                    <form action="{{ route('categorias.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('instructores.store') }}" method="POST">
                         @csrf
                         <div class="form-group">
-                            <label for="">Nombre:*</label>
-                            <input type="text" name="nombre" class="form-control">
+                            <label for="">Seleccionar Instructor</label>
+                            <select class="form-control" name="user_id">
+                                <option value="">Seleccione...</option>
+                                @foreach ($users as $user)
+                                    <option value="{{ $user->id }}">
+                                        {{ $user->name }}
+                                    </option>
+                                @endforeach
+                            </select>
 
-                            @error('nombre')
+                            @error('user_id')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>
+
                         <div class="form-group">
-                            <label for="">Descripcion:*</label>
-                            <input type="text" name="descripcion" class="form-control">
+                            <label for="">Reseña:*</label>
+                            <textarea class="form-control" name="resena" rows="10"></textarea>
 
-                            @error('descripcion')
+                            @error('resena')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>
 
-                        <div class="form-group">
-                            <label for="">Agregar imagen:*</label>
-                            <input type="file" class="form-control" accept="image/*" name="imagen">
-
-                            @error('imagen')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
                         <div class="form-group">
                             <label for="">Estatus:*</label><br>
                             <div class="btn-group btn-group-toggle" data-toggle="buttons">
@@ -61,9 +61,10 @@
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>
+
                         <div class="mt-4">
                             <button class="btn btn-success">Guardar</button>
-                            <a href="{{ route('categorias.index') }}" class="btn btn-danger">Volver</a>
+                            <a href="{{ route('instructores.index') }}" class="btn btn-danger">Volver</a>
                         </div>
                     </form>
                 </div>

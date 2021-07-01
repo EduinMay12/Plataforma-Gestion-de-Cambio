@@ -2,15 +2,6 @@
     <div class="container">
         <div class="card">
             <div class="card-body">
-                <div class="col-4 mb-4">
-                    <label for="">Seleccionar categoria</label>
-                    <select wire:model="categoria_id" class="form-select form-control">
-                        <option value="">Seleccione...</option>
-                        @foreach ($categorias as $categoria)
-                            <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
-                        @endforeach
-                    </select>
-                </div>
                 <div class="row mt-2">
                     <div class="col-4">
                         <span>Mostrar</span>
@@ -23,14 +14,17 @@
                         <span>Entradas</span>
                     </div>
                     <div class="col-4">
-                        <a href="#" class="btn btn-primary">Agregar Curso <i class="fas fa-plus"></i></a>
+                        <a href="{{ route('instructores.create') }}" class="btn btn-primary">
+                            Agregar Instructor
+                            <i class="fas fa-plus"></i>
+                        </a>
                     </div>
                     <div class="col-4">
                         <input class="form-control me-2" type="search" placeholder="Buscar" type="text"
                             aria-label="Search" wire:model="search">
                     </div>
                 </div>
-                @if ($cursos->count())
+                @if ($instructores->count())
 
                     <table class="table table-bordered mt-4">
                         <thead>
@@ -64,8 +58,8 @@
                                         <i class="fas fa-sort float-right mt-1"></i>
                                     @endif
                                 </th>
-                                <th wire:click="order('descripcion')">
-                                    Descripcion
+                                <th wire:click="order('resena')">
+                                    Reseña
                                     {{-- Sort --}}
                                     @if ($sort == 'descripcion')
                                         @if ($direction == 'asc')
@@ -78,8 +72,6 @@
                                         <i class="fas fa-sort float-right mt-1"></i>
                                     @endif
                                 </th>
-                                <th class="col-2">Imagen</th>
-
                                 <th wire:click="order('status')" class="col-1">
                                     Estado
                                     {{-- Sort --}}
@@ -101,27 +93,31 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($cursos as $curso)
+                            @foreach ($instructores as $instructore)
 
                                 <tr>
-                                    <td>{{ $curso->id }}</td>
-                                    <td>{{ $curso->nombre }}</td>
-                                    <td>{{ $curso->descripcion }}</td>
-                                    <td>Imagen</td>
-                                    @if ($curso->status == 0)
+                                    <td>{{ $instructore->id }}</td>
+                                    <td>{{ $instructore->user->name }}</td>
+                                    <td>{{ $instructore->resena }}</td>
+                                    @if ($instructore->status == 0)
                                         <td>Inactivo</td>
-                                    @elseif($curso->status == 1)
+                                    @elseif($instructore->status == 1)
                                         <td>Activo</td>
                                     @endif
 
                                     <td>
-                                        <a href="#" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
+                                        <a href="{{ route('instructores.show', $instructore) }}"
+                                            class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
                                     </td>
                                     <td>
-                                        <a href="#" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
+                                        <a href="{{ route('instructores.edit', $instructore) }}"
+                                            class="btn btn-primary btn-sm">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
                                     </td>
                                     <td>
-                                        <button class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
+                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                            data-target="#exampleModal"><i class="fas fa-trash-alt"></i></button>
                                     </td>
                                 </tr>
 
@@ -129,9 +125,36 @@
                         </tbody>
                     </table>
 
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header d-block">
+                                    <button type="button" class="btn-close float-right" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                    <h5 class="modal-title text-center" id="exampleModalLabel">¿Esta seguro de eliminar
+                                        este
+                                        instructor?</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="{{ route('instructores.destroy', $instructore) }}" method="POST">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-success btn-sm ">Aceptar</button>
+                                        <button type="button" class="btn btn-danger btn-sm "
+                                            data-bs-dismiss="modal">Cancelar</button>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 @else
                     <div class="card-body">
-                        <strong>No existe ningún registro</strong>
+                        <strong>No existe ningún registro coincidente</strong>
                     </div>
                 @endif
 
