@@ -1,11 +1,14 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\ModuloAdministrador;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class persona_has_estados extends Model
+class Empresa extends Model
 {
     use HasFactory;
+
+    protected $guarded = [];
+
 }

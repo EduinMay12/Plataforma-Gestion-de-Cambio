@@ -6,7 +6,7 @@
 
 <div class="card">
     <div class="card-header">
-      <h3 class="card-title"><a href="{{ url('/roles') }}" class="btn btn" title="Regresar"><i class="fa fa-angle-double-left"></i></a> Detalle de Etiqueta y los Permisos</h3>
+      <h3 class="card-title"><a href="{{ url('/modulo-administrador/roles') }}" class="btn btn" title="Regresar"><i class="fa fa-angle-double-left"></i></a> Detalle de Etiqueta y los Permisos</h3>
       <div class="card-tools">
         <span class="badge badge-primary"><i class="fa fa-home"></i>  Inicio <i class="fa fa-angle-right"></i> Administración <i class="fa fa-angle-right"></i> Panel de Etiquetas <i class="fa fa-angle-right"></i> Detalle de Etiqueta y los Permisos </span>
       </div>

@@ -6,7 +6,7 @@
 
 <div class="card">
     <div class="card-header">
-      <h3 class="card-title"><a href="{{ url('/gestionsucursal') }}" class="btn btn" title="Regrasar"><i class="fa fa-angle-double-left"></i></a> Crear Sucursal</h3>
+      <h3 class="card-title"><a href="{{ url('/modulo-administrador/gestionsucursal') }}" class="btn btn" title="Regrasar"><i class="fa fa-angle-double-left"></i></a> Crear Sucursal</h3>
       <div class="card-tools">
         <span class="badge badge-primary"><i class="fa fa-home"></i> Inicio <i class="fa fa-angle-right"></i> Administracion <i class="fa fa-angle-right"></i> Gestionar Sucursal <i class="fa fa-angle-right"></i> Crear Su</span>
       </div>

@@ -270,7 +270,7 @@ return [
         [
 
             'text' => 'Administrar Empresas',
-            'icon' => 'fas fa-fw fa-chalkboard',
+            'icon' => 'fas fa-fw fa-chart-line',
             'submenu' => [
                 [
                     'text'       => 'Gestionar Empleados',

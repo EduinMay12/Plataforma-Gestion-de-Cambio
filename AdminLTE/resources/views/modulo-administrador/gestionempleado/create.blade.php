@@ -6,7 +6,7 @@
 
 <div class="card">
     <div class="card-header">
-      <h3 class="card-title"><a href="{{ url('modulo-administrador/gestionempleado') }}" class="btn btn" title="Regrasar"><i class="fa fa-angle-double-left"></i></a> Crear Personal</h3>
+      <h3 class="card-title"><a href="{{ url('/modulo-administrador/gestionempleado') }}" class="btn btn" title="Regrasar"><i class="fa fa-angle-double-left"></i></a> Crear Personal</h3>
       <div class="card-tools">
         <span class="badge badge-primary"><i class="fa fa-home"></i> Inicio <i class="fa fa-angle-right"></i> Administracion <i class="fa fa-angle-right"></i> Gestionar Personal <i class="fa fa-angle-right"></i> Crear Personal</span>
       </div>

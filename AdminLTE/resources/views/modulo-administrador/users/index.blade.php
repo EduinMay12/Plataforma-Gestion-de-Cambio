@@ -22,16 +22,14 @@
   <p>{{ $message }}</p>
 </div>
 @endif
-<div class="card">
+
+    @livewire('modulo-administrador.user.index-user')
+
+    <div class="card">
         <div class="card-body">
-            <div class="text-center">
-                @can('crear-etiqueta')
-                <a href="{{ route('users.create') }}" class="btn btn-primary" title="Agregar nuevo Usuario"><i class="fa fa-plus"></i> Crear un nuevo Usuario</a>
-                @endcan
-            </div>
             <div class="row">
-                <div class="col-lg-12">
-                    <div class="table-responsive mb-4">
+                <div class="col-md-12">
+                    <div class="table-responsive mb-4"><br>
                         <table class="table table-centered datatable dt-responsive nowrap table-card-list" style="border-collapse: collapse; border-spacing: 0 12px; width: 100%;">
                             <thead>
                                 <tr class="bg-transparent">
@@ -54,7 +52,7 @@
                                 @foreach ($data as $key => $user)
                                 <tr>
                                     <td width="50">{{ ++$i }}</td>
-                                    <td width="50"><img src="../uploads/avatars/{{ $user->avatar }}" width="40" height="40" class="rounded-circle"></td>
+                                    <td width="50"><img src="../uploads/avatars/{{ $user->avatar }}" width="30" height="30" class="rounded-circle"></td>
                                     <td>{{ $user->name }} {{ $user->apellido_paterno }} {{ $user->apellido_materno }}
                                     @if(!empty($user->getRoleNames()))
                                         @foreach($user->getRoleNames() as $v)
@@ -81,7 +79,7 @@
                                 </tr>
                                 @endforeach
                             </tbody>
-                        </div>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -90,3 +88,4 @@
 </div>
 @endsection
 
+@extends('layouts.footer')

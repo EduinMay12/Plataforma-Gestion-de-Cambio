@@ -30,11 +30,6 @@ use App\Http\Controllers\ModuloCapacitaciones\CategoriaController;
         Route::put('perfil/edit', ['as' => 'perfil.update', 'uses' => 'App\Http\Controllers\PerfilController@update']);
         Route::put('perfil/password', ['as' => 'perfil.password', 'uses' => 'App\Http\Controllers\PerfilController@password']);
     });
-/*
-|--------------------------------------------------------------------------
-| Modulo de Comunicación
-|--------------------------------------------------------------------------
-*/
 
 /*
 |--------------------------------------------------------------------------
@@ -46,8 +41,4 @@ Route::resource('categorias', CategoriaController::class);
 Route::get('cursos', function () {
     return view('modulo-capacitaciones.cursos.index');
 });
-
-Route::get('/home', function() {
-    return view('home');
-})->name('home')->middleware('auth');
 
