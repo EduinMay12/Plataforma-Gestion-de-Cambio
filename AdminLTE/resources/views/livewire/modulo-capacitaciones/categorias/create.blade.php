@@ -1,45 +1,58 @@
 <div>
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-        Agregar Categoria <i class="fas fa-plus"></i>
-    </button>
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <div class="col-6">
+                    <form action="{{ route('categorias.store') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group">
+                            <label for="">Nombre:*</label>
+                            <input type="text" name="nombre" class="form-control">
 
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Agregar Categoria</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <label for="">Nombre:*</label>
-                    <input type="text" class="form-control" wire:model="nombre">
-                    {{ $nombre }}
-                    <label for="">Descripcion:*</label>
-                    <input type="text" class="form-control" wire:model="descripcion">
+                            @error('nombre')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="">Descripcion:*</label>
+                            <input type="text" name="descripcion" class="form-control">
 
-                    <label for="">Agregar imagen:*</label>
-                    <input type="file" class="form-control" >
-                    
-                    <label for="">Estatus:*</label><br>
-                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                        <label class="btn btn-primary active">
-                          <input type="radio" name="options" checked > Activo
-                        </label>
-                        <label class="btn btn-primary">
-                          <input type="radio" name="options"> Inactivo
-                        </label>
-                      </div>
+                            @error('descripcion')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-success">Guardar</button>
+                        <div class="form-group">
+                            <label for="">Agregar imagen:*</label>
+                            <input type="file" class="form-control" accept="image/*" name="imagen">
+
+                            @error('imagen')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="">Estatus:*</label><br>
+                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                <label class="btn btn-primary active">
+                                    <input type="radio" name="status" value="1" checked> Activo
+                                </label>
+                                <label class="btn btn-primary">
+                                    <input type="radio" name="status" value="0"> Inactivo
+                                </label>
+                            </div>
+
+                            @error('status')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="mt-4">
+                            <button class="btn btn-success">Guardar</button>
+                            <a href="{{ route('categorias.index') }}" class="btn btn-danger">Volver</a>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+
 </div>
