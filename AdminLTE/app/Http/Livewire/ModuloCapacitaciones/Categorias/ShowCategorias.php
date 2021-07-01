@@ -11,10 +11,18 @@ class ShowCategorias extends Component
 
     use WithPagination;
 
-    public $search;
+    public $search = '';
     public $sort = 'id';
     public $direction = 'desc';
+    public $cant = '10';
     protected $paginationTheme = "bootstrap";
+
+    protected $queryString = [
+        'cant' => ['except' => '10'], 
+        'sort' => ['except' => 'id'], 
+        'direction' => ['except' => 'desc'], 
+        'search' => ['except' => '']
+    ];
 
     //resetea la pagina, al realizar una nueva busqueda
     public function updatingSearch()
@@ -27,7 +35,7 @@ class ShowCategorias extends Component
         $categorias = Categoria::where('nombre', 'like' , '%' . $this->search . '%')
                     ->orWhere('descripcion', 'like' , '%' . $this->search . '%')
                     ->orderBy($this->sort, $this->direction)
-                    ->paginate();
+                    ->paginate($this->cant);
 
         return view('livewire.modulo-capacitaciones.categorias.show-categorias', compact('categorias'));
     }

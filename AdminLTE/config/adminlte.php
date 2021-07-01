@@ -305,12 +305,12 @@ return [
                 [
                     'text' => 'Gestionar Cursos',
                     'icon' => 'fas fa-fw fa-laptop',
-                    'url' => '#'
+                    'route' => 'cursos.index'
                 ],
                 [
                     'text' => 'Gestionar Instructores',
                     'icon' => 'fas fa-fw fa-user-tie',
-                    'url' => '#'
+                    'route' => 'instructores.index'
                 ],
                 [
                     'text' => 'Gestionar Grupos',

@@ -7,7 +7,7 @@
     <div class="container">
         <div class="card">
             <div class="card-header d-flex justify-content-center">
-                <div class="card-title">Crear Categoria</div>
+                <div class="card-title">Editars Categoria</div>
             </div>
         </div>
     </div>
@@ -21,9 +21,10 @@
                 <div class="col-6">
                     <form action="{{ route('categorias.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
                         <div class="form-group">
                             <label for="">Nombre:*</label>
-                            <input type="text" name="nombre" class="form-control">
+                            <input type="text" name="nombre" class="form-control" value="{{ $categoria->nombre }}">
 
                             @error('nombre')
                                 <small class="text-danger">{{ $message }}</small>
@@ -31,13 +32,15 @@
                         </div>
                         <div class="form-group">
                             <label for="">Descripcion:*</label>
-                            <input type="text" name="descripcion" class="form-control">
+                            <input type="text" name="descripcion" class="form-control" value="{{ $categoria->descripcion }}">
 
                             @error('descripcion')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
                         </div>
-
+                        @if ($categoria->imagen)
+                            <img src="{{ Storage::url($categoria->imagen) }}">
+                        @endif
                         <div class="form-group">
                             <label for="">Agregar imagen:*</label>
                             <input type="file" class="form-control" accept="image/*" name="imagen">
