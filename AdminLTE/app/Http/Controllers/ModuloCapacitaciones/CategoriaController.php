@@ -29,15 +29,15 @@ class CategoriaController extends Controller
             'status' => 'required'
         ]);
 
-        $imagen = $request->file('imagen')->store('public/categorias');
-        $url = Storage::url($imagen);
+        $imagen = $request->file('imagen')->store('categorias');
+        //$url = Storage::url($imagen);
 
         $contador = 0;
 
         Categoria::create([
             'nombre' => $request->nombre,
             'descripcion' => $request->descripcion,
-            'imagen' => $url,
+            'imagen' => $imagen,
             'contador' => $contador,
             'status' => $request->status
         ]);
@@ -50,18 +50,20 @@ class CategoriaController extends Controller
         //
     }
 
-    public function edit($id)
+    public function edit(Categoria $categoria)
     {
-        //
+        return view('modulo-capacitaciones.categorias.edit', compact('categoria'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Categoria $categoria)
     {
-        //
+        
     }
 
-    public function destroy($id)
+    public function destroy(Categoria $categoria)
     {
-        //
+        $categoria->delete();
+        
+        return redirect()->route('categorias.index');
     }
 }

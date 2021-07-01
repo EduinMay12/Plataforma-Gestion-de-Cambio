@@ -4,11 +4,11 @@
             <div class="row mt-2">
                 <div class="col-4">
                     <span>Mostrar</span>
-                    <select class="form-select" aria-label="Default select example">
-                        <option value="1">10</option>
-                        <option value="2">15</option>
-                        <option value="3">20</option>
-                        <option value="">100</option>
+                    <select wire:model="cant" class="form-select" aria-label="Default select example">
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
                     </select>
                     <span>Entradas</span>
                 </div>
@@ -98,7 +98,9 @@
                                 <td>{{ $categoria->id }}</td>
                                 <td>{{ $categoria->nombre }}</td>
                                 <td>{{ $categoria->descripcion }}</td>
-                                <td>Imagen</td>
+                                <td>
+                                    <img width="50" height="50" src="{{ Storage::url($categoria->imagen) }}">
+                                </td>
                                 @if ($categoria->status == 0)
                                     <td>Inactivo</td>
                                 @elseif($categoria->status == 1)
@@ -109,7 +111,7 @@
                                     <a href="#" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
                                 </td>
                                 <td>
-                                    <a href="#" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
+                                    <a href="{{ route('categorias.edit', $categoria) }}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
                                 </td>
                                 <td>
                                     <button class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button>

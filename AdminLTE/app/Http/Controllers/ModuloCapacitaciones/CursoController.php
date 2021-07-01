@@ -14,7 +14,7 @@ class CursoController extends Controller
      */
     public function index()
     {
-        //
+        return view('modulo-capacitaciones.cursos.index');
     }
 
     /**

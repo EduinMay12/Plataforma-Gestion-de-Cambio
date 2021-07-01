@@ -9,6 +9,8 @@ class Instructore extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     //Relacion uno a muchos
     public function cursos()
     {
