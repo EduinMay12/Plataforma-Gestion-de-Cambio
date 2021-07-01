@@ -23,7 +23,7 @@
 
                     <label for="">Agregar imagen:*</label>
                     <input type="file" class="form-control" >
-                    
+
                     <label for="">Estatus:*</label><br>
                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
                         <label class="btn btn-primary active">
