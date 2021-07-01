@@ -5,35 +5,19 @@
 @extends('layouts.header')
 
 @section('content')
-<style>
-    .th-color{
-        background-color: #1989ff;
-        color: white;
-    }
-</style>
-    @if ($message = Session::get('success'))
-        <div class="alert alert-success">
-            <p>{{ $message }}</p>
-        </div>
-    @endif
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-body">
-                        <nav class="navbar navbar-light float-right">
-                            <form class="form-inline">
-                              <input id="txtbusca" class="form-control mr-sm-2" type="search" placeholder="Buscar por nombre" aria-label="Search">
-                                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
-                            </form>
-                          </nav>
-                        <div class="table-responsive">
-                            <table class="table table-bordered">
-                                <tr class="th-color">
-                                    <th>Código Postal Asentamiento</th>
-                                    <th>Nombre Asentamiento</th>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="table-responsive mb-4">
+                        <table class="table table-centered datatable dt-responsive nowrap table-card-list"
+                            style="border-collapse: collapse; border-spacing: 0 12px; width: 100%;">
+                            <thead>
+                                <tr class="bg-transparent">
+                                    <th>Código Postal</th>
+                                    <th>Asentamiento</th>
                                     <th>Tipo de Asentamiento (Catálogo SEPOMEX)</th>
-                                    <th>Nombre Municipio (INEGI, Marzo 2013)</th>
+                                    <th>Nombre Municipio</th>
                                     <th>Nombre Entidad (INEGI, Marzo 2013)</th>
                                     <th>Código Postal de la Administración Postal que Repaste al Asentamiento</th>
                                     <th>Clave Entidad (INEGI, Marzo 2013)</th>
@@ -43,6 +27,8 @@
                                     <th>Identificador Único del Asentamiento (Nivel Municipal)</th>
                                     <th>Zona en la que se Ubica el Asentamiento (Urbano/Rural)</th>
                                 </tr>
+                            </thead>
+                            <tbody>
                                 @foreach ($estados as $estados)
                                 <tr>
                                     <td>{{ $estados->d_codigo }}</td>
@@ -59,13 +45,15 @@
                                     <td>{{ $estados->d_zona }}</td>
                                 </tr>
                                 @endforeach
-                            </table>
-                        </div>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+
+
+
 @endsection
 
 @extends('layouts.footer')
