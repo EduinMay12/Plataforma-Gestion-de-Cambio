@@ -22,32 +22,12 @@ class CategoriaController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'nombre' => 'required',
-            'descripcion' => 'required',
-            'imagen' => 'required',
-            'status' => 'required'
-        ]);
-
-        $imagen = $request->file('imagen')->store('categorias');
-        //$url = Storage::url($imagen);
-
-        $contador = 0;
-
-        Categoria::create([
-            'nombre' => $request->nombre,
-            'descripcion' => $request->descripcion,
-            'imagen' => $imagen,
-            'contador' => $contador,
-            'status' => $request->status
-        ]);
-
-        return redirect()->route('categorias.index');
+ 
     }
 
-    public function show($id)
+    public function show(Categoria $categoria)
     {
-        //
+        return view('modulo-capacitaciones.categorias.show', compact('categoria'));
     }
 
     public function edit(Categoria $categoria)
@@ -62,8 +42,6 @@ class CategoriaController extends Controller
 
     public function destroy(Categoria $categoria)
     {
-        $categoria->delete();
-        
-        return redirect()->route('categorias.index');
+ 
     }
 }

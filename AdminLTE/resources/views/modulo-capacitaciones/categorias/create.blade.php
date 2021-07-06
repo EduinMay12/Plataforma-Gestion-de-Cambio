@@ -72,4 +72,17 @@
     </div>
 
 
+    <!-- Scripts ---->
+    @livewireScripts
+
+    <script>
+        livewire.on('alert', function(message) {
+            Swal.fire(
+                'Good job!',
+                message,
+                'success'
+            )
+        });
+    </script>
+
 @endsection

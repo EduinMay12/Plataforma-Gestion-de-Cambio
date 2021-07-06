@@ -17,25 +17,12 @@ class InstructoreController extends Controller
 
     public function create()
     {
-        $users = User::all();
-        return view('modulo-capacitaciones.instructores.create', compact('users'));
+        return view('modulo-capacitaciones.instructores.create');
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'user_id' => 'required|unique:instructores',
-            'resena' => 'required',
-            'status' => 'required'
-        ]);
-
-        Instructore::create([
-            'user_id' => $request->user_id,
-            'resena' => $request->resena,
-            'status' => $request->status
-        ]);
-
-        return redirect()->route('instructores.index')->with('message', '¡Instructor agregado con exito!');
+        
     }
 
     public function show(Instructore $instructore)
@@ -45,30 +32,16 @@ class InstructoreController extends Controller
 
     public function edit(Instructore $instructore)
     {
-        $users = User::all();
-        return view('modulo-capacitaciones.instructores.edit', compact('instructore', 'users'));
+        return view('modulo-capacitaciones.instructores.edit', compact('instructore'));
     }
 
     public function update(Request $request, Instructore $instructore)
     {
-        $request->validate([
-            'user_id' => 'required',
-            'resena' => 'required',
-            'status' => 'required'
-        ]);
-
-        $instructore->user_id = $request->user_id;
-        $instructore->resena = $request->resena;
-        $instructore->status = $request->status;
-        $instructore->save();
-
-        return redirect()->route('instructores.edit', $instructore)->with('message','¡Intructor modificado con exito!');
+        
     }
 
     public function destroy(Instructore $instructore)
     {
-        $instructore->delete();
-
-        return redirect()->route('instructores.index')->with('message', '¡Instructor eliminado con exito!');
+        
     }
 }
