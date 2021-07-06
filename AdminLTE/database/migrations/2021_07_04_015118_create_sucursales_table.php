@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEmpresasTable extends Migration
+class CreateSucursalesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,24 @@ class CreateEmpresasTable extends Migration
      */
     public function up()
     {
-        Schema::create('empresas', function (Blueprint $table) {
+        Schema::create('sucursales', function (Blueprint $table) {
             $table->id();
-            $table->string('empresa');
-            $table->string('direccion');
-            $table->string('empleados');
+            $table->unsignedBigInteger('empresa')->unique();
+            $table->foreign('empresa')
+                  ->references('id')
+                  ->on('empresas')
+                  ->onDelete('cascade');
+
+            $table->string('sucursal');
 
             $table->unsignedBigInteger('user_id')->unique();
             $table->foreign('user_id')
                   ->references('id')
                   ->on('users')
                   ->onDelete('cascade');
-            $table->boolean('estatus');
 
+            $table->string('direccion');
+            $table->string('empleados');
             $table->string('d_asenta');
             $table->string('d_ciudad');
 
@@ -34,6 +39,10 @@ class CreateEmpresasTable extends Migration
                   ->references('d_codigo')
                   ->on('estados')
                   ->onDelete('cascade');
+
+            $table->boolean('estatus');
+            $table->boolean('tamaño');
+
             $table->timestamps();
         });
     }
@@ -45,6 +54,6 @@ class CreateEmpresasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('empresas');
+        Schema::dropIfExists('sucursales');
     }
 }

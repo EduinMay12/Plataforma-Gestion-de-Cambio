@@ -1,14 +1,13 @@
 @extends('adminlte::page')
 
-@section('title', 'Gestion de Cambio | Listado de Usuarios')
+@section('title', 'Gestion de Cambio | Editar Etiqueta')
 
 @section('content_header')
 
 <div class="card">
-    <div class="card-header">
-      <h3 class="card-title"><a href="{{ url('/modulo-administrador/roles') }}" class="btn btn" title="Regresar"><i class="fa fa-angle-double-left""></i></a> Editado de Etiqueta</h3>
-      <div class="card-tools">
-        <span class="badge badge-primary"><i class="fa fa-home"></i>  Inicio <i class="fa fa-angle-right"></i> Administración <i class="fa fa-angle-right"></i> Panel de Etiquetas <i class="fa fa-angle-right"></i> Editado de Etiquetas </span>
+    <div class="card-header d-flex justify-content-center">
+      <div class="card-title">
+        <h4>Editado de Etiqueta</h4>
       </div>
     </div>
 </div>
@@ -16,12 +15,6 @@
 @stop
 
 @section('content')
-<style>
-    .header-color{
-        background-color: #1989ff;
-        color: white;
-    }
-</style>
 @if (count($errors) > 0)
     <div class="alert alert-danger">
         <strong>Whoops!</strong><br><br>
@@ -37,31 +30,36 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <div class="header-color card-header">Editado de la Etiqueta</div>
                 <div class="card-body">
-                    {!! Form::model($role, ['method' => 'PATCH','route' => ['roles.update', $role->id]]) !!}
+                    {!! Form::model($role, ['class'=> 'needs-validation', 'novalidate', 'method' => 'PATCH','route' => ['roles.update', $role->id]]) !!}
                     <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <div class="form-group">
-                                <strong>Nombre :</strong>
-                                {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
+                        <div class="col-md-12">
+                            <div class="mb-3 position-relative">
+                                <label class="form-label" for="validationEtiqueta">Nombre de la Etiqueta</label>
+                                {!! Form::text('name', null, array('placeholder' => 'Nombres (s)','class' => 'form-control', 'id'=> 'validationEtiqueta', 'required')) !!}
+                                <div class="invalid-tooltip">
+                                    Ingrese el Campo de Nombre.
+                                </div>
+                                <div class="valid-tooltip">
+                                    Listo!
+                                </div>
                             </div>
                         </div>
+
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <strong>Permisos de la Etiqueta :</strong>
                                 <br/>
                                 @foreach($permission as $value)
-                                    <label>{{ Form::checkbox('permission[]', $value->id, in_array($value->id, $rolePermissions) ? true : false, array('class' => 'name')) }}
-                                    {{ $value->name }}</label>
+                                    <label>{{ Form::checkbox('permission[]', $value->id, in_array($value->id, $rolePermissions) ? true : false, array('class' => 'name', 'data-off-label'=> 'No', 'data-on-label' => 'Si', 'id' => 'switch3')) }}</label>
+                                    {{ $value->name }}
                                 <br/>
                                 @endforeach
                             </div>
                         </div>
-                        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                            <button type="submit" class="btn btn-primary">Guardar Cambio</button>
-                        </div>
                     </div>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <a href="{{ route('roles.index') }}"class="btn btn-danger">Volver</a>
                     {!! Form::close() !!}
                 </div>
             </div>
@@ -69,5 +67,3 @@
     </div>
 </div>
 @endsection
-
-@extends('layouts.footer')

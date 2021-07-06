@@ -5,10 +5,9 @@
 @section('content_header')
 
 <div class="card">
-    <div class="card-header">
-      <h3 class="card-title"><a href="{{ url('/modulo-administrador/administrador') }}" class="btn btn" title="Regrasar"><i class="fa fa-angle-double-left"></i></a> Gestionar Personal</h3>
-      <div class="card-tools">
-        <span class="badge badge-primary"><i class="fa fa-home"></i> Inicio <i class="fa fa-angle-right"></i> Administracion <i class="fa fa-angle-right"></i> Gestionar Personal</span>
+    <div class="card-header d-flex justify-content-center">
+      <div class="card-title">
+        <h4>Gestionar Personal</h4>
       </div>
     </div>
 </div>

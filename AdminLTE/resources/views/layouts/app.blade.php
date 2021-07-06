@@ -10,7 +10,6 @@
     <link href="{{ asset('css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- App Css-->
     <link href="{{ asset('css/app.rtl.css') }}" rel="stylesheet" type="text/css" />
-
     <link href="{{ asset('./css/select2.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('./css/spectrum-colorpicker.min.css') }}" rel="stylesheet">
     <link href="{{ asset('./css/bootstrap-datepicker.min.css') }}" rel="stylesheet">

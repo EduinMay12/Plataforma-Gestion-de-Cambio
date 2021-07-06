@@ -2,17 +2,18 @@
     <div class="row mt-2">
         <div class="col-4">
             <span>Mostrar</span>
-            <select class="form-select" aria-label="Default select example">
-                <option value="1">10</option>
-                <option value="2">15</option>
-                <option value="3">20</option>
-                <option value="">100</option>
+            <select wire:model="cant" class="form" aria-label="Default select example">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
             </select>
             <span>Entradas</span>
         </div>
         <div class="col-4">
             @can('crear-etiqueta')
-                <a href="{{ route('roles.create') }}" class="btn btn-primary btn-rounded" title="Agregar nuevo Puesto"><i class="fa fa-plus"></i> Crear una Nueva Etiqueta</a>
+                <a href="{{ route('roles.create') }}" class="btn btn-primary btn-rounded" title="Agregar nuevo Puesto">Nueva Etiqueta <i class="fa fa-plus"></i> </a>
             @endcan
         </div>
         <div class="col-4">
@@ -66,16 +67,16 @@
                             <tbody>
                             @foreach ($roles as $role)
                                 <tr>
-                                <td width="50">{{ $role->id }}</td>
-                                <td width="50">{{ $role->name }}</td>
+                                <td>{{ $role->id }}</td>
+                                <td>{{ $role->name }}</td>
                                 @can('ver-etiqueta')
-                                <td width="80"><a class="btn btn-primary btn-sm" href="{{ route('roles.show',$role->id) }}"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
+                                <td width="50"><a class="btn btn-primary btn-sm" href="{{ route('roles.show',$role->id) }}"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
                                 @endcan
                                 @can('editar-etiqueta')
-                                <td width="80"><a class="btn btn-primary btn-sm" href="{{ route('roles.edit',$role->id) }}"><i class="fa fa-edit" aria-hidden="true"></i></a></td>
+                                <td width="50"><a class="btn btn-primary btn-sm" href="{{ route('roles.edit',$role->id) }}"><i class="fa fa-edit" aria-hidden="true"></i></a></td>
                                 @endcan
                                 @can('eliminar-etiqueta')
-                                <td width="80"><form method="POST" action="{{ route('roles.destroy', $role) }}" accept-charset="UTF-8" style="display:inline">
+                                <td width="50"><form method="POST" action="{{ route('roles.destroy', $role) }}" accept-charset="UTF-8" style="display:inline">
                                     {{ method_field('DELETE') }}
                                     {{ csrf_field() }}
                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm(&quot;Confirmar Para Eliminar &quot;)"><i class="fa fa-trash" aria-hidden="true"></i></button>
@@ -92,15 +93,15 @@
                             </div>
                         @endif
                     </div>
+                    <nav aria-label="Page navigation example" class="float-right">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                {{ $roles->links() }}
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>
     </div>
-    <nav aria-label="Page navigation example" class="float-right">
-        <ul class="pagination">
-            <li class="page-item">
-                {{ $roles->links() }}
-            </li>
-        </ul>
-    </nav>
 </div>

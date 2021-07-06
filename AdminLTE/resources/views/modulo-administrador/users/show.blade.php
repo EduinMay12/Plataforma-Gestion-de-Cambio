@@ -1,14 +1,13 @@
 @extends('adminlte::page')
 
-@section('title', 'Gestion de Cambio | Administracion')
+@section('title', 'Gestion de Cambio | Detallles del Entiquetado')
 
 @section('content_header')
 
 <div class="card">
-    <div class="card-header">
-      <h3 class="card-title"><a href="{{ url('/modulo-administrador/users') }}" class="btn btn" title="Regresar"><i class="fa fa-angle-double-left"></i></a> Etiqueta é Información del Usuario</h3>
-      <div class="card-tools">
-        <span class="badge badge-primary"><i class="fa fa-home"></i>  Inicio <i class="fa fa-angle-right"></i> Administración <i class="fa fa-angle-right"></i> Asignaciónes de Etiquetas <i class="fa fa-angle-right"></i> Etiqueta é Información del Usuario </span>
+    <div class="card-header d-flex justify-content-center">
+      <div class="card-title">
+        <h4>Etiqueta é Información del Usuario</h4>
       </div>
     </div>
 </div>
@@ -16,17 +15,9 @@
 @stop
 
 @section('content')
-<style>
-    .header-color{
-        background-color: #1989ff;
-        color: white;
-        width: 20rem;
-    }
-</style>
 <center>
     <div class="container">
         <div class="card-body">
-            <div class="header-color card-header">Usuario No. {{ $user->id }}</div>
             <div class="row">
                 <div class="col">
                     <div class="card text-center" style="width: 20rem;">
@@ -51,4 +42,3 @@
 </center>
 @endsection
 
-@extends('layouts.footer')
