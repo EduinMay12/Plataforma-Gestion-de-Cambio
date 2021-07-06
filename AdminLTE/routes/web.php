@@ -26,7 +26,7 @@ use App\Http\Controllers\ModuloCapacitaciones\InstructoreController;
         Route::resource('modulo-administrador/estados', App\Http\Controllers\Admin\EstadoController::class);
         Route::resource('modulo-administrador/gestionempleado', App\Http\Controllers\Admin\GestionempleadosController::class);
         Route::resource('modulo-administrador/gestionsucursal', App\Http\Controllers\Admin\GestionsucursalController::class);
-        Route::resource('modulo-administrador/gestionempresa', App\Http\Controllers\Admin\GestionempresaController::class);
+        Route::resource('modulo-administrador/gestionempresa', App\Http\Controllers\Admin\GestionempresaController::class)->parameters(['gestionempresa' => 'empresa']);
         Route::post('perfil/edit', ['as' => 'perfil.edit', 'uses' => 'App\Http\Controllers\PerfilController@update_avatar']);
         Route::get('perfil/edit', ['as' => 'perfil.edit', 'uses' => 'App\Http\Controllers\PerfilController@edit']);
         Route::put('perfil/edit', ['as' => 'perfil.update', 'uses' => 'App\Http\Controllers\PerfilController@update']);

@@ -150,7 +150,7 @@ return [
     'sidebar_collapse' => false,
     'sidebar_collapse_auto_size' => false,
     'sidebar_collapse_remember' => false,
-    'sidebar_collapse_remember_no_transition' => true,
+    'sidebar_collapse_remember_no_transition' => false,
     'sidebar_scrollbar_theme' => 'os-theme-light',
     'sidebar_scrollbar_auto_hide' => 'l',
     'sidebar_nav_accordion' => true,
@@ -248,15 +248,14 @@ return [
         ],
 
         //Rustas del Modulo de administrador
-
         ['header' => 'MÓDULO DE ADMINISTRADOR'],
         [
 
-            'text' => 'Panel del administrador',
+            'text' => 'Panel de Roles',
             'icon' => 'fas fa-fw fa-user-cog',
             'submenu' => [
                 [
-                    'text' => 'Asignaciónes de Etiqueta',
+                    'text' => 'Asignación',
                     'url'  => 'modulo-administrador/users',
                     'icon' => 'fas fa-fw fa-boxes',
                 ],
@@ -267,10 +266,10 @@ return [
                 ],
             ]
         ],
+        //Rustas del Modulo de Empresa
         [
-
-            'text' => 'Administrar Empresas',
-            'icon' => 'fas fa-fw fa-chart-line',
+            'text' => 'Administrativo',
+            'icon' => 'fas fa-fw fa-list-alt',
             'submenu' => [
                 [
                     'text'       => 'Gestionar Empleados',
@@ -289,12 +288,10 @@ return [
                 ],
             ]
         ],
-
         //Rutas del módulo capacitaciones
-
         ['header' => 'MÓDULO CAPACITACIONES'],
         [
-            'text' => 'Módulo Capacitaciones',
+            'text' => 'Capacitaciones',
             'icon' => 'fas fa-fw fa-chalkboard-teacher',
             'submenu' => [
                 [
@@ -349,7 +346,34 @@ return [
                 ]
             ]
         ],
-
+        //Rutas del módulo Comunicaciones
+        ['header' => 'MÓDULO COMUNICACIONES'],
+        [
+            'text' => 'Comunicaciones',
+            'icon' => 'fas fa-fw fa-icons',
+            'submenu' => [
+                [
+                    'text' => 'Gestionar Comunicación',
+                    'icon' => 'fas fa-fw fa-indent',
+                    'url' => '#'
+                ],
+                [
+                    'text' => 'Gestionar Elementos',
+                    'icon' => 'fas fa-fw fa-folder-open',
+                    'url' => '#'
+                ],
+                [
+                    'text' => 'Gestionar Campaña',
+                    'icon' => 'fas fa-fw fa-grip-horizontal',
+                    'url' => '#'
+                ],
+                [
+                    'text' => 'Vista Usuario Campaña',
+                    'icon' => 'fas fa-fw fa-digital-tachograph',
+                    'url' => '#'
+                ]
+            ]
+        ],
     ],
 
     /*

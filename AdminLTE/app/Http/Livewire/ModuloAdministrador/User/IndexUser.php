@@ -16,10 +16,18 @@ class IndexUser extends Component
 {
     use WithPagination;
 
-    public $search;
+    public $search = '';
     public $sort = 'id';
     public $direction = 'desc';
+    public $cant = '8';
     protected $paginationTheme = "bootstrap";
+
+    protected $queryString = [
+        'cant' => ['except' => '8'],
+        'sort' => ['except' => 'id'],
+        'direction' => ['except' => 'desc'],
+        'search' => ['except' => '']
+    ];
 
     public function updatingSearch()
     {
@@ -31,9 +39,9 @@ class IndexUser extends Component
         $users = User::where('name', 'like' , '%' . $this->search . '%')
                     ->orWhere('email', 'like' , '%' . $this->search . '%')
                     ->orderBy($this->sort, $this->direction)
-                    ->paginate();
+                    ->paginate($this->cant);
 
-        return view('livewire.modulo-administrador.user.index-user');
+        return view('livewire.modulo-administrador.user.index-user', compact('users'));
     }
 
     public function order($sort)

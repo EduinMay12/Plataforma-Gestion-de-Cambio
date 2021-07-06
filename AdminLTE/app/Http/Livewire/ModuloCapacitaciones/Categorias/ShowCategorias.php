@@ -18,9 +18,9 @@ class ShowCategorias extends Component
     protected $paginationTheme = "bootstrap";
 
     protected $queryString = [
-        'cant' => ['except' => '10'], 
-        'sort' => ['except' => 'id'], 
-        'direction' => ['except' => 'desc'], 
+        'cant' => ['except' => '10'],
+        'sort' => ['except' => 'id'],
+        'direction' => ['except' => 'desc'],
         'search' => ['except' => '']
     ];
 
@@ -48,7 +48,7 @@ class ShowCategorias extends Component
             } else {
                 $this->direction = 'desc';
             }
-            
+
         } else {
             $this->sort = $sort;
             $this->direction = 'asc';

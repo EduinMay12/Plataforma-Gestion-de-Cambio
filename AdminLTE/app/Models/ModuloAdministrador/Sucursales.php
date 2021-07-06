@@ -5,7 +5,7 @@ namespace App\Models\ModuloAdministrador;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Empresa extends Model
+class Sucursales extends Model
 {
     use HasFactory;
 
@@ -20,6 +20,6 @@ class Empresa extends Model
 
     public function estados()
     {
-        return $this->hasMany('App\Models\Estados');
+        return $this->belongsTo('App\Models\Estados');
     }
 }

@@ -16,43 +16,32 @@
 @section('classes_body'){{ ($auth_type ?? 'login') . '-page' }}@stop
 
 @section('body')
-    <div class="{{ $auth_type ?? 'login' }}-box">
 
-        {{-- Logo --}}
-        <div class="{{ $auth_type ?? 'login' }}-logo">
-            <a href="{{ $dashboard_url }}">
-                <img src="{{ asset(config('adminlte.logo_img')) }}" height="50">
-                {!! config('adminlte.logo', '<b>Admin</b>LTE') !!}
-            </a>
-        </div>
-
-        {{-- Card Box --}}
-        <div class="card {{ config('adminlte.classes_auth_card', 'card-outline card-primary') }}">
-
-            {{-- Card Header --}}
-            @hasSection('auth_header')
-                <div class="card-header {{ config('adminlte.classes_auth_header', '') }}">
-                    <h3 class="card-title float-none text-center">
-                        @yield('auth_header')
-                    </h3>
+<body style="background: linear-gradient(to right, #c7c8f0, #a6a7ff);">
+    <div class="{{ $auth_type ?? 'login' }}">
+        <div class="account-pages my-5 pt-sm-5 {{ config('adminlte.classes_auth_card') }}">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="text-center">
+                            <a href="#" class="mb-5 d-block auth-logo">
+                                <img src="vendor/adminlte/dist/img/edumatics.png" alt="" height="62"
+                                    class="logo logo-dark">
+                                <img src="vendor/adminlte/dist/img/edumatics.png" alt="" height="62"
+                                    class="logo logo-light">
+                            </a>
+                        </div>
+                    </div>
                 </div>
-            @endif
-
-            {{-- Card Body --}}
-            <div class="card-body {{ $auth_type ?? 'login' }}-card-body {{ config('adminlte.classes_auth_body', '') }}">
-                @yield('auth_body')
+                <div class="row align-items-center {{ $auth_type ?? 'login' }} justify-content-center {{ config('adminlte.classes_auth_body', '') }}">
+                    <div class="col-md-8 col-lg-6 col-xl-5">
+                        @yield('auth_body')
+                    </div>
+                </div>
             </div>
-
-            {{-- Card Footer --}}
-            @hasSection('auth_footer')
-                <div class="card-footer {{ config('adminlte.classes_auth_footer', '') }}">
-                    @yield('auth_footer')
-                </div>
-            @endif
-
         </div>
-
     </div>
+</body>
 @stop
 
 @section('adminlte_js')

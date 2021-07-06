@@ -1,86 +1,105 @@
 @extends('adminlte::page')
 
-@section('title', 'Gestion de Cambio | Administracion')
+@section('title', 'Gestion de Cambio | Crear y Asignar una Etiqueta')
 
 @section('content_header')
-
 <div class="card">
-    <div class="card-header">
-      <h3 class="card-title"><a href="{{ url('/modulo-administrador/users') }}" class="btn btn" title="Regresar"><i class="fa fa-angle-double-left"></i></a> Crear y Asignar una Etiqueta</h3>
-      <div class="card-tools">
-        <span class="badge badge-primary"><i class="fa fa-home"></i>  Inicio <i class="fa fa-angle-right"></i> Administración <i class="fa fa-angle-right"></i> Asignaciónes de Etiquetas <i class="fa fa-angle-right"></i> Crear Asignaciones de Etiquetas </span>
+    <div class="card-header d-flex justify-content-center">
+      <div class="card-title">
+        <h4>Crear y Asignar una Etiqueta</h4>
       </div>
     </div>
 </div>
-
 @stop
 
 @section('content')
-<style>
-    .header-color{
-        background-color: #1989ff;
-        color: white;
-    }
-</style>
-@if (count($errors) > 0)
-  <div class="alert alert-danger">
-    <strong>Whoops!</strong><br><br>
-    <ul>
-       @foreach ($errors->all() as $error)
-         <li>{{ $error }}</li>
-       @endforeach
-    </ul>
-  </div>
-@endif
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="header-color card-header">Crear un Usuario con Etiqueta</div>
-                <div class="card-body">
-                    {!! Form::open(array('route' => 'users.store','method'=>'POST')) !!}
-                    <div class="row">
-                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <strong>Nombre* :</strong>
-                                    {!! Form::text('name', null, array('placeholder' => 'Nombre','class' => 'form-control')) !!}
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <strong>Correo Electronico* :</strong>
-                                    {!! Form::text('email', null, array('placeholder' => 'Correo Electronico','class' => 'form-control')) !!}
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <strong>Contraseña* :</strong>
-                                    {!! Form::password('password', array('placeholder' => 'Contraseña','class' => 'form-control')) !!}
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <strong>Confirmar Contraseña* :</strong>
-                                    {!! Form::password('confirm-password', array('placeholder' => 'Confirmar Contraseña','class' => 'form-control')) !!}
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-12 col-md-12">
-                                <div class="form-group">
-                                    <strong>Etiqueta* :</strong>
-                                    {!! Form::select('roles[]', $roles,[], array('class' => 'form-control','multiple')) !!}
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                                <button type="submit" class="btn btn-primary">Guardar</button>
-                            </div>
+<div class="card">
+    <div class="card-body">
+        {!! Form::open(array('route' => 'users.store','method'=>'POST', 'class'=> 'needs-validation', 'novalidate')) !!}
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="mb-3 position-relative">
+                        <label class="form-label" for="validationTooltip01">Nombre (s)</label>
+                        <input type="text" name="name" class="form-control" id="validationTooltip01" placeholder="Nombre (s)" required>
+                        <div class="invalid-tooltip">
+                            Ingrese el Campo de Nombre.
+                        </div>
+                        <div class="valid-tooltip">
+                            Listo!
+                        </div>
                     </div>
-                    {!! Form::close() !!}
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3 position-relative">
+                        <label class="form-label" for="validationTooltip02">Apellido (s)</label>
+                        <input type="text" name="apellido" class="form-control" id="validationTooltip02" placeholder="Apellido (s)" required>
+                        <div class="invalid-tooltip">
+                            Ingrese el Campo de Apellido.
+                        </div>
+                        <div class="valid-tooltip">
+                            Listo!
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="mb-3 position-relative">
+                        <label class="form-label" for="validationTooltipUsername">Correo Electrónico</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="validationTooltipUsernamePrepend">@</span>
+                            </div>
+                            <input type="email" name="email" class="form-control" id="validationTooltipUsername" placeholder="Correo Electrónico" aria-describedby="validationTooltipUsernamePrepend" required>
+                            <div class="invalid-tooltip">
+                                Ingrese un Correo Electronico.
+                            </div>
+                            <div class="valid-tooltip">
+                                Listo!
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3 position-relative">
+                        <label class="form-label" for="validationTooltip03">Contraseña</label>
+                        <input type="password" name="password" class="form-control" id="validationTooltip03" placeholder="***" required>
+                        <div class="invalid-tooltip">
+                            Ingrese una Contraseña.
+                        </div>
+                        <div class="valid-tooltip">
+                            Listo!
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3 position-relative">
+                        <label class="form-label" for="validationTooltip04">Confirmación de la Contraseña</label>
+                        <input type="password" name="confirm-password" class="form-control" id="validationTooltip04" placeholder="***" required>
+                        <div class="invalid-tooltip">
+                            Confirme la Contraseña.
+                        </div>
+                        <div class="valid-tooltip">
+                            Listo!
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="mb-3 position-relative">
+                        <label class="form-label" for="validationTooltip05">Etiqueta* :</label>
+                        {!! Form::select('roles[]', $roles,[], array('class' => 'form-control','multiple', 'id'=>'validationTooltip05','required')) !!}
+                        <div class="invalid-tooltip">
+                            Agrege una Etiqueta al Usuario.
+                        </div>
+                        <div class="valid-tooltip">
+                            Listo!
+                        </div>
+                    </div>
+                </div>
+            </div><br>
+            <button class="btn btn-primary" type="submit">Guardar</button>
+            <a href="{{ route('users.index') }}"class="btn btn-danger">Volver</a>
+        {!! Form::close() !!}
     </div>
 </div>
 @endsection
-
-@extends('layouts.footer')

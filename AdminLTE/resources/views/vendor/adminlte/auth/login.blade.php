@@ -21,69 +21,82 @@
 @section('auth_header', __('Acceder a Gestion de Cambio'))
 
 @section('auth_body')
-
-
-    <form action="{{ $login_url }}" method="post">
-        {{ csrf_field() }}
-
-        {{-- Email field --}}
-        <div class="input-group mb-3">
-            <input type="email" name="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}"
-                   value="{{ old('email') }}" placeholder="{{ __('Correo Electronico') }}" autofocus>
-            <div class="input-group-append">
-                <div class="input-group-text">
-                    <span class="fas fa-user {{ config('adminlte.classes_auth_icon', '') }}"></span>
-                </div>
-            </div>
-            @if($errors->has('email'))
-                <div class="invalid-feedback">
-                    <strong>{{ $errors->first('email') }}</strong>
-                </div>
-            @endif
+<div class="card">
+    <div class="card-body p-4">
+        <div class="text-center mt-2">
+            <h5 class="text-primary">Gestion de Cambio !</h5>
+            <p class="text-muted">Sign in to continue to Minible.</p>
         </div>
+        <div class="p-2 mt-4">
+            <form action="{{ $login_url }}" method="post">
+                {{ csrf_field() }}
 
-        {{-- Password field --}}
-        <div class="input-group mb-3">
-            <input type="password" name="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}"
-                   placeholder="{{ __('Contraseña') }}">
-            <div class="input-group-append">
-                <div class="input-group-text">
-                    <span class="fas fa-lock {{ config('adminlte.classes_auth_icon', '') }}"></span>
+                <div class="mb-3">
+                    <label class="form-label" for="name">Correo Electronico </label>
+                    <input type="email" name="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" value="{{ old('email') }}" placeholder="{{ __('Correo Electronico') }}" autofocus>
+                    @if($errors->has('email'))
+                        <div class="invalid-feedback">
+                            <strong>{{ $errors->first('email') }}</strong>
+                        </div>
+                    @endif
                 </div>
-            </div>
-            @if($errors->has('password'))
-                <div class="invalid-feedback">
-                    <strong>{{ $errors->first('password') }}</strong>
+
+                <div class="mb-3">
+                    <label class="form-label" for="password">Contraseña</label>
+                    <input type="password" name="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" placeholder="{{ __('Contraseña') }}">
+                    @if($errors->has('password'))
+                        <div class="invalid-feedback">
+                            <strong>{{ $errors->first('password') }}</strong>
+                        </div>
+                    @endif
                 </div>
-            @endif
+
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="auth-remember-check">
+                    <label class="form-check-label" for="auth-remember-check">Remember me</label>
+                </div>
+
+                <div class="mt-3 text-end">
+                    <button class="btn btn-block {{ config('adminlte.classes_auth_btn', 'btn btn-primary w-sm waves-effect waves-light') }}" type="submit">{{ __('Entrar') }}</button>
+                </div>
+
+
+
+                <div class="mt-4 text-center">
+                    <div class="signin-other-title">
+                        <h5 class="font-size-14 mb-3 title">Sign in with</h5>
+                    </div>
+
+
+                    <ul class="list-inline">
+                        <li class="list-inline-item">
+                            <a href="javascript:void()"
+                                class="social-list-item bg-primary text-white border-primary">
+                                <i class="mdi mdi-facebook"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="javascript:void()"
+                                class="social-list-item bg-info text-white border-info">
+                                <i class="mdi mdi-twitter"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="javascript:void()"
+                                class="social-list-item bg-danger text-white border-danger">
+                                <i class="mdi mdi-google"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="mt-4 text-center">
+                    <p class="mb-0">Don't have an account ? <a href="auth-register"
+                            class="fw-medium text-primary"> Signup now </a> </p>
+                </div>
+            </form>
         </div>
-
-        {{-- Login field --}}
-        <div class="row">
-            <div class="col-7">
-                <div class="icheck-primary">
-                    <input type="checkbox" name="remember" id="remember">
-                    <label for="remember">{{ __('Recordar Contraseña') }}</label>
-                </div>
-            </div>
-            <div class="col-5">
-                <button type=submit class="btn btn-block {{ config('adminlte.classes_auth_btn', 'btn-flat btn-primary') }}">
-                    <span class="fas fa-sign-in-alt"></span>
-                    {{ __('Entrar') }}
-                </button>
-            </div>
-        </div>
-
-    </form>
+    </div>
+</div>
 @stop
 
-@section('auth_footer')
-    {{-- Register link --}}
-    @if($register_url)
-        <p class="my-0">
-            <a href="{{ $register_url }}">
-                {{ __('Nuevo Miembro') }}
-            </a>
-        </p>
-    @endif
-@stop

@@ -21,6 +21,9 @@
 
     {{-- Custom stylesheets (pre AdminLTE) --}}
     @yield('adminlte_css_pre')
+    <link href="{{ asset('css/app.rtl.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('css/bootstrap.rtl.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('css/icons.min.css') }}" rel="stylesheet" type="text/css" />
 
     {{-- Base Stylesheets --}}
     @if(!config('adminlte.enabled_laravel_mix'))
@@ -72,7 +75,7 @@
     @endif
 
 </head>
-<body class="@yield('classes_body')" @yield('body_data')>
+<body class="@yield('authentication-bg classes_body')" @yield('body_data')>
     {{-- Body Content --}}
     @yield('body')
 
@@ -100,6 +103,16 @@
     @endif
 
     {{-- Custom Scripts --}}
+    <script src="http://minible-h-rtl.laravel.themesbrand.com/assets/libs/jquery/jquery.min.js"></script>
+    <script src="http://minible-h-rtl.laravel.themesbrand.com/assets/libs/bootstrap/bootstrap.min.js"></script>
+    <script src="http://minible-h-rtl.laravel.themesbrand.com/assets/libs/metismenu/metismenu.min.js"></script>
+    <script src="http://minible-h-rtl.laravel.themesbrand.com/assets/libs/simplebar/simplebar.min.js"></script>
+    <script src="http://minible-h-rtl.laravel.themesbrand.com/assets/libs/node-waves/node-waves.min.js"></script>
+    <script src="http://minible-h-rtl.laravel.themesbrand.com/assets/libs/waypoints/waypoints.min.js"></script>
+    <script src="http://minible-h-rtl.laravel.themesbrand.com/assets/libs/jquery-counterup/jquery-counterup.min.js"></script>
+    <script src="http://minible-h-rtl.laravel.themesbrand.com/assets/libs/parsleyjs/parsleyjs.min.js"></script>
+    <script src="http://minible-h-rtl.laravel.themesbrand.com/assets/js/pages/form-validation.init.js"></script>
+
     @yield('adminlte_js')
 </body>
 
