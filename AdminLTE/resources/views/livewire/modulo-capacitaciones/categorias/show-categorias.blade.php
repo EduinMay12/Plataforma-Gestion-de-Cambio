@@ -25,7 +25,7 @@
 
                 <table class="table table-bordered mt-4">
                     <thead>
-                        <tr class="table-primary">
+                        <tr class="table-primary ">
                             <th wire:click="order('id')" class="col-1">
                                 No
                                 {{-- Sort --}}
@@ -55,7 +55,7 @@
                                     <i class="fas fa-sort float-right mt-1"></i>
                                 @endif
                             </th>
-                            <th wire:click="order('descripcion')">
+                            <th wire:click="order('descripcion')" class="col-3">
                                 Descripcion
                                 {{-- Sort --}}
                                 @if ($sort == 'descripcion')
@@ -69,9 +69,9 @@
                                     <i class="fas fa-sort float-right mt-1"></i>
                                 @endif
                             </th>
-                            <th class="col-2">Imagen</th>
+                            <th class="col-2" class="col-2">Imagen</th>
 
-                            <th wire:click="order('status')" class="col-1">
+                            <th wire:click="order('status')" class="col-2">
                                 Estado
                                 {{-- Sort --}}
                                 @if ($sort == 'status')
@@ -108,13 +108,19 @@
                                 @endif
 
                                 <td>
-                                    <a href="#" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
+                                    <a href="{{ route('categorias.show', $categoria) }}" class="btn btn-primary btn-sm">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
                                 </td>
                                 <td>
-                                    <a href="{{ route('categorias.edit', $categoria) }}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
+                                    <a href="{{ route('categorias.edit', $categoria) }}"
+                                        class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
                                 </td>
                                 <td>
-                                    <button class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
+                                    <button class="btn btn-danger btn-sm"
+                                        wire:click="$emit('deleteCategoria', {{ $categoria }})">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
                                 </td>
                             </tr>
 
@@ -124,7 +130,7 @@
 
             @else
                 <div class="card-body">
-                    <strong>No existe ningún registro coincidente</strong>
+                    <strong>No existe ningún registro</strong>
                 </div>
             @endif
 
