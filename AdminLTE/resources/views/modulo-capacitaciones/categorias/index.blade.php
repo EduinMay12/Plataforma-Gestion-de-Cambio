@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Categorias')
+@section('title', 'categorias')
 
 @section('content_header')
 
@@ -17,6 +17,36 @@
 @section('content')
 
     @livewire('modulo-capacitaciones.categorias.show-categorias')
+
+    <!-- Scripts ---->
+
+    @livewireScripts
+
+    <script src="sweetalert2.all.min.js"></script>
+    <script>
+        livewire.on('deleteCategoria', categoriaId => {
+            Swal.fire({
+                title: '¿Estas segur@?',
+                text: "Esta accion no se podra revertir",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Eliminar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    livewire.emitTo('modulo-capacitaciones.categorias.show-categorias', 'delete', categoriaId);
+
+                    Swal.fire(
+                        'Eliminado!',
+                        'Categoria eliminada con exito',
+                        'success'
+                    )
+                }
+            })
+        })
+    </script>
 
 @stop
 

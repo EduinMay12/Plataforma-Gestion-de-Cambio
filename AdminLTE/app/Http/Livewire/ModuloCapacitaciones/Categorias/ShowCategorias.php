@@ -5,6 +5,7 @@ namespace App\Http\Livewire\ModuloCapacitaciones\Categorias;
 use Livewire\Component;
 use App\Models\ModuloCapacitaciones\Categoria;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\Storage;
 
 class ShowCategorias extends Component
 {
@@ -23,6 +24,8 @@ class ShowCategorias extends Component
         'direction' => ['except' => 'desc'], 
         'search' => ['except' => '']
     ];
+
+    protected $listeners = ['delete'];
 
     //resetea la pagina, al realizar una nueva busqueda
     public function updatingSearch()
@@ -53,5 +56,11 @@ class ShowCategorias extends Component
             $this->sort = $sort;
             $this->direction = 'asc';
         }
+    }
+
+    public function delete(Categoria $categoria)
+    {
+        Storage::delete([$categoria->imagen]);
+        $categoria->delete();
     }
 }

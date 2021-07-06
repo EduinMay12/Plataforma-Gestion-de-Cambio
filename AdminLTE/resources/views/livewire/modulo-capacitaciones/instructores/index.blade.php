@@ -44,10 +44,10 @@
                                     @endif
 
                                 </th>
-                                <th wire:click="order('nombre')" class="col-2">
+                                <th wire:click="order('name')" class="col-3">
                                     Nombre
                                     {{-- Sort --}}
-                                    @if ($sort == 'nombre')
+                                    @if ($sort == 'name')
                                         @if ($direction == 'asc')
                                             <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
                                         @else
@@ -58,10 +58,10 @@
                                         <i class="fas fa-sort float-right mt-1"></i>
                                     @endif
                                 </th>
-                                <th wire:click="order('resena')">
+                                <th wire:click="order('resena')" class="col-4">
                                     Reseña
                                     {{-- Sort --}}
-                                    @if ($sort == 'descripcion')
+                                    @if ($sort == 'resena')
                                         @if ($direction == 'asc')
                                             <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
                                         @else
@@ -72,7 +72,7 @@
                                         <i class="fas fa-sort float-right mt-1"></i>
                                     @endif
                                 </th>
-                                <th wire:click="order('status')" class="col-1">
+                                <th wire:click="order('status')" class="col-2">
                                     Estado
                                     {{-- Sort --}}
                                     @if ($sort == 'status')
@@ -87,9 +87,9 @@
                                     @endif
                                 </th>
 
-                                <th>Ver</th>
-                                <th>Editar</th>
-                                <th>Eliminar</th>
+                                <th class="col-1">Ver</th>
+                                <th class="col-1">Editar</th>
+                                <th class="col-1">Eliminar</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -97,7 +97,7 @@
 
                                 <tr>
                                     <td>{{ $instructore->id }}</td>
-                                    <td>{{ $instructore->user->name }}</td>
+                                    <td>{{ $instructore->name }}</td>
                                     <td>{{ $instructore->resena }}</td>
                                     @if ($instructore->status == 0)
                                         <td>Inactivo</td>
@@ -116,8 +116,10 @@
                                         </a>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                            data-target="#exampleModal"><i class="fas fa-trash-alt"></i></button>
+                                        <button class="btn btn-danger btn-sm"
+                                            wire:click="$emit('deleteInstructore', {{ $instructore }})">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
                                     </td>
                                 </tr>
 
@@ -125,43 +127,16 @@
                         </tbody>
                     </table>
 
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header d-block">
-                                    <button type="button" class="btn-close float-right" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                    <h5 class="modal-title text-center" id="exampleModalLabel">¿Esta seguro de eliminar
-                                        este
-                                        instructor?</h5>
-                                </div>
-                                <div class="modal-body">
-                                    <form action="{{ route('instructores.destroy', $instructore) }}" method="POST">
-                                        @csrf
-                                        @method('delete')
-                                        <button type="submit" class="btn btn-success btn-sm ">Aceptar</button>
-                                        <button type="button" class="btn btn-danger btn-sm "
-                                            data-bs-dismiss="modal">Cancelar</button>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                 @else
                     <div class="card-body">
-                        <strong>No existe ningún registro coincidente</strong>
+                        <strong>No existe ningún registro</strong>
                     </div>
                 @endif
 
                 <nav aria-label="Page navigation example" class="float-right">
                     <ul class="pagination">
                         <li class="page-item">
-
+                            {{ $instructores->links() }}
                         </li>
                     </ul>
                 </nav>
