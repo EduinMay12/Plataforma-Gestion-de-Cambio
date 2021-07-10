@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ModuloCapacitaciones\CategoriaController;
 use App\Http\Controllers\ModuloCapacitaciones\CursoController;
+use App\Http\Controllers\ModuloCapacitaciones\GrupoController;
 use App\Http\Controllers\ModuloCapacitaciones\InstructoreController;
 
 /*
@@ -41,6 +42,7 @@ use App\Http\Controllers\ModuloCapacitaciones\InstructoreController;
 Route::resource('categorias', CategoriaController::class)->parameters(['categorias' => 'categoria']);
 Route::resource('instructores', InstructoreController::class)->parameters(['instructores' => 'instructore']);
 Route::get('cursos', [CursoController::class, 'index'])->name('cursos.index');
+Route::get('grupos', [GrupoController::class, 'index'])->name('grupos.index');
 
 Route::get('/home', function() {
 	return view('home');

@@ -315,7 +315,7 @@ return [
                 [
                     'text' => 'Gestionar Grupos',
                     'icon' => 'fas fa-fw fa-users',
-                    'url' => '#'
+                    'route' => 'grupos.index'
                 ],
                 [
                     'text' => 'Gestionar matriculaciones',

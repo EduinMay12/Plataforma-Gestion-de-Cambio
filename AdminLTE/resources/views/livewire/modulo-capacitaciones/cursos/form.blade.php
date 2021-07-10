@@ -12,9 +12,8 @@
     @enderror
 </div>
 
-
 <div class="form-group">
-    <div wire:loading wire:target="imagen" class="alert alert-info" role="alert">
+    <div class="alert alert-info" role="alert" wire:loading wire:target="imagen">
         ¡Espera es esta cargando la imagen!
     </div>
     @if ($imagen)
