@@ -44,6 +44,7 @@ use App\Http\Controllers\ModuloCapacitaciones\LeccioneController;
 Route::resource('categorias', CategoriaController::class)->parameters(['categorias' => 'categoria']);
 Route::resource('instructores', InstructoreController::class)->parameters(['instructores' => 'instructore']);
 Route::get('cursos', [CursoController::class, 'index'])->name('cursos.index');
+Route::get('grupos', [GrupoController::class, 'index'])->name('grupos.index');
 
 Route::get('grupos', [GrupoController::class, 'index'])->name('grupos.index');
 Route::get('lecciones', [LeccioneController::class, 'index'])->name('lecciones.index');
