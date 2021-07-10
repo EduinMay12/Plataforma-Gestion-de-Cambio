@@ -49,12 +49,15 @@
                         @enderror
                     </div>
                     <div class="mt-4">
-                        <button class="btn btn-success" wire:click="save">Guardar</button>
+                        <button class="btn btn-success" wire:click="save" wire:loading.attr="disabled" wire:target="imagen, save">Guardar</button>
                         <a href="{{ route('categorias.index') }}" class="btn btn-danger">Volver</a>
                     </div>
 
                 </div>
                 <div class="col-6">
+                    <div wire:loading wire:target="imagen" class="alert alert-info" role="alert">
+                        ¡Espera es esta cargando la imagen!
+                    </div>
                     @if ($imagen)
                         <img class="col-auto" src="{{ $imagen->temporaryUrl() }}">
                     @endif

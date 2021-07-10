@@ -40,7 +40,7 @@ use App\Http\Controllers\ModuloCapacitaciones\InstructoreController;
 */
 Route::resource('categorias', CategoriaController::class)->parameters(['categorias' => 'categoria']);
 Route::resource('instructores', InstructoreController::class)->parameters(['instructores' => 'instructore']);
-Route::resource('cursos', CursoController::class);
+Route::get('cursos', [CursoController::class, 'index'])->name('cursos.index');
 
 Route::get('/home', function() {
 	return view('home');
