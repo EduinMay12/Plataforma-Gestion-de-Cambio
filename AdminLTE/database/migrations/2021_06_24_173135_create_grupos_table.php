@@ -16,10 +16,11 @@ class CreateGruposTable extends Migration
         Schema::create('grupos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre', 100);
+            $table->string('imagen');
             $table->string('descorta');
             $table->date('fechaInicio');
             $table->date('fechaFin');
-            $table->string('horarios');
+            $table->text('horarios');
             $table->boolean('status');
             $table->unsignedBigInteger('curso_id');
 

@@ -146,11 +146,11 @@ return [
     |
     */
 
-    'sidebar_mini' => false,
+    'sidebar_mini' => true,
     'sidebar_collapse' => false,
     'sidebar_collapse_auto_size' => false,
     'sidebar_collapse_remember' => false,
-    'sidebar_collapse_remember_no_transition' => false,
+    'sidebar_collapse_remember_no_transition' => true,
     'sidebar_scrollbar_theme' => 'os-theme-light',
     'sidebar_scrollbar_auto_hide' => 'l',
     'sidebar_nav_accordion' => true,
@@ -247,16 +247,35 @@ return [
             'icon' => 'fas fa-fw fa-user-circle',
         ],
 
-        //Rustas del Modulo de Empresa
-        ['header' => 'MÓDULO DE ADMINISTRACIÓN'],
+        //Rustas del Modulo de administrador
+
+        ['header' => 'MÓDULO DE ADMINISTRADOR'],
         [
-            'text' => 'Administrativo',
-            'icon' => 'fas fa-fw fa-list-alt',
+
+            'text' => 'Panel del administrador',
+            'icon' => 'fas fa-fw fa-user-cog',
+            'submenu' => [
+                [
+                    'text' => 'Asignaciónes de Etiqueta',
+                    'url'  => 'modulo-administrador/users',
+                    'icon' => 'fas fa-fw fa-boxes',
+                ],
+                [
+                    'text' => 'Etiquetas',
+                    'url'  => 'modulo-administrador/roles',
+                    'icon' => 'fas fa-fw fa-bookmark',
+                ],
+            ]
+        ],
+        [
+
+            'text' => 'Administrar Empresas',
+            'icon' => 'fas fa-fw fa-chart-line',
             'submenu' => [
                 [
                     'text'       => 'Gestionar Empleados',
                     'icon' => 'fas fa-fw fa-portrait',
-                    'url'        => 'modulo-administrador/users',
+                    'url'        => 'modulo-administrador/gestionempleado',
                 ],
                 [
                     'text'       => 'Gestionar Sucursales',
@@ -268,99 +287,69 @@ return [
                     'icon' => 'fas fa-fw fa-building',
                     'url'        => 'modulo-administrador/gestionempresa',
                 ],
-                [
-                    'text' => 'Tipos de Rol',
-                    'url'  => 'modulo-administrador/roles',
-                    'icon' => 'fas fa-fw fa-bookmark',
-                ],
             ]
         ],
+
         //Rutas del módulo capacitaciones
-        ['header' => 'MÓDULO DE CAPACITACIONES'],
+
+        ['header' => 'MÓDULO CAPACITACIONES'],
         [
-            'text' => 'Capacitaciones',
+            'text' => 'Módulo Capacitaciones',
             'icon' => 'fas fa-fw fa-chalkboard-teacher',
             'submenu' => [
                 [
                     'text' => 'Gestionar Categorias',
                     'icon' => 'fas fa-fw fa-layer-group',
-                    'route' => 'categorias.index',
+                    'route' => 'categorias.index'
                 ],
                 [
                     'text' => 'Gestionar Cursos',
                     'icon' => 'fas fa-fw fa-laptop',
-                    'route' => 'cursos.index',
+                    'route' => 'cursos.index'
                 ],
                 [
                     'text' => 'Gestionar Instructores',
                     'icon' => 'fas fa-fw fa-user-tie',
-                    'route' => 'instructores.index',
+                    'route' => 'instructores.index'
                 ],
                 [
                     'text' => 'Gestionar Grupos',
                     'icon' => 'fas fa-fw fa-users',
-                    'url' => '#',
+                    'route' => 'grupos.index'
                 ],
                 [
                     'text' => 'Gestionar matriculaciones',
                     'icon' => 'fas fa-fw fa-address-card',
-                    'url' => '#',
+                    'url' => '#'
                 ],
                 [
                     'text' => 'Gestionar Lecciones',
                     'icon' => 'fas fa-fw fa-book',
-                    'url' => '#',
+                    'route' => 'lecciones.index'
                 ],
                 [
                     'text' => 'Gestionar Recursos',
                     'icon' => 'fas fa-fw fa-photo-video',
-                    'url' => '#',
+                    'url' => '#'
                 ],
                 [
                     'text' => 'Gestionar Actividades',
                     'icon' => 'fas fa-fw fa-file-alt',
-                    'url' => '#',
+                    'url' => '#'
                 ],
                 [
                     'text' => 'Gestionar Cuestionarios',
                     'icon' => 'fas fa-fw fa-file-alt',
-                    'url' => '#',
+                    'route' => 'cuestionarios.index'
                 ],
                 [
                     'text' => 'Gestionar Preguntas',
                     'icon' => 'fas fa-fw fa-question-circle',
-                    'url' => '#',
+                    'url' => '#'
                 ]
             ]
         ],
-        //Rutas del módulo Comunicaciones
-        ['header' => 'MÓDULO DE COMUNICACIONES'],
-        [
-            'text' => 'Comunicaciones',
-            'icon' => 'fas fa-fw fa-icons',
-            'submenu' => [
-                [
-                    'text' => 'Gestionar Comunicación',
-                    'icon' => 'fas fa-fw fa-indent',
-                    'url' => '#',
-                ],
-                [
-                    'text' => 'Gestionar Elementos',
-                    'icon' => 'fas fa-fw fa-folder-open',
-                    'url' => '#',
-                ],
-                [
-                    'text' => 'Gestionar Campaña',
-                    'icon' => 'fas fa-fw fa-grip-horizontal',
-                    'url' => '#',
-                ],
-                [
-                    'text' => 'Vista Usuario Campaña',
-                    'icon' => 'fas fa-fw fa-digital-tachograph',
-                    'url' => '#',
-                ]
-            ]
-        ],
+
     ],
 
     /*
