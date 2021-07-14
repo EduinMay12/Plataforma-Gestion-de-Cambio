@@ -1,36 +1,4 @@
-<div class="row">
-
-    <div class="col-4 mb-4">
-        <label for="">Seleccionar categoria</label>
-        <select wire:model="categoria_id" class="form-select form-control">
-            <option value="">Seleccione...</option>
-            @foreach ($categorias as $categoria)
-                <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
-            @endforeach
-        </select>
-    </div>
-
-    <div class="col-4">
-        <label for="">Seleccionar curso</label>
-        <select wire:model="curso_id" class="form-select form-control">
-            <option value="">Seleccione...</option>
-            @if ($cursos->count())
-                @foreach ($cursos as $curso)
-                    <option value="{{ $curso->id }}">{{ $curso->nombre }}</option>
-                @endforeach
-            @else
-                <option value="">No hay registros</option>
-            @endif
-
-        </select>
-    </div>
-
-</div>
-
-@if ($curso_id)
-
 <div class="row mt-2">
-
     <div class="col-4">
         <span>Mostrar</span>
         <select wire:model="cant" class="form-select" aria-label="Default select example">
@@ -41,23 +9,22 @@
         </select>
         <span>Entradas</span>
     </div>
-
     <div class="col-4">
-        <button wire:click="create({{$categoria_id}}, {{$curso_id}})" class="btn btn-primary">Agregar grupo <i class="fas fa-plus"></i></button>
+        <button wire:click="create" class="btn btn-primary">
+            Agregar Cuestionario
+            <i class="fas fa-plus"></i>
+        </button>
     </div>
-
     <div class="col-4">
         <input class="form-control me-2" type="search" placeholder="Buscar" type="text" aria-label="Search"
             wire:model="search">
     </div>
-
 </div>
-
-@if ($grupos->count())
+@if ($cuestionarios->count())
 
     <table class="table table-bordered mt-4">
         <thead>
-            <tr class="table-primary">
+            <tr class="table-primary ">
                 <th wire:click="order('id')" class="col-1">
                     No
                     {{-- Sort --}}
@@ -87,10 +54,10 @@
                         <i class="fas fa-sort float-right mt-1"></i>
                     @endif
                 </th>
-                <th wire:click="order('descorta')">
-                    Fecha Inicio
+                <th wire:click="order('descripcion')" class="col-3">
+                    Descripcion
                     {{-- Sort --}}
-                    @if ($sort == 'descorta')
+                    @if ($sort == 'descripcion')
                         @if ($direction == 'asc')
                             <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
                         @else
@@ -101,9 +68,8 @@
                         <i class="fas fa-sort float-right mt-1"></i>
                     @endif
                 </th>
-                <th class="col-2">Fecha Fin</th>
 
-                <th wire:click="order('status')" class="col-1">
+                <th wire:click="order('status')" class="col-2">
                     Estado
                     {{-- Sort --}}
                     @if ($sort == 'status')
@@ -124,32 +90,34 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($grupos as $grupo)
+            @foreach ($cuestionarios as $cuestionario)
 
                 <tr>
-                    <td>{{ $grupo->id }}</td>
-                    <td>{{ $grupo->nombre }}</td>
-                    <td>{{ $grupo->descorta }}</td>
-                    <td><img width="50" height="50" src="{{ Storage::url($grupo->imagen) }}"></td>
-                    @if ($grupo->status == 0)
+                    <td>{{ $cuestionario->id }}</td>
+                    <td>{{ $cuestionario->nombre }}</td>
+                    <td>{{ $cuestionario->descripcion }}</td>
+
+                    @if ($cuestionario->status == 0)
                         <td>Inactivo</td>
-                    @elseif($grupo->status == 1)
+                    @elseif($cuestionario->status == 1)
                         <td>Activo</td>
                     @endif
 
                     <td>
-                        <button wire:click="show({{$grupo->id}})" class="btn btn-primary btn-sm">
+                        <button wire:click="show({{ $cuestionario->id }})" class="btn btn-primary btn-sm">
                             <i class="fas fa-eye"></i>
                         </button>
                     </td>
                     <td>
-                        <button wire:click="" class="btn btn-primary btn-sm">
+                        <button wire:click="edit({{ $cuestionario->id }})" class="btn btn-primary btn-sm">
                             <i class="fas fa-edit"></i>
                         </button>
-
                     </td>
                     <td>
-                        <button wire:click="" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
+                        <button class="btn btn-danger btn-sm"
+                            wire:click="$emit('deleteCuestionario', {{ $cuestionario->id }})">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
                     </td>
                 </tr>
 
@@ -166,9 +134,7 @@
 <nav aria-label="Page navigation example" class="float-right">
     <ul class="pagination">
         <li class="page-item">
-
+            
         </li>
     </ul>
 </nav>
-
-@endif

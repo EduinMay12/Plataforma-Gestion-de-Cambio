@@ -325,7 +325,7 @@ return [
                 [
                     'text' => 'Gestionar Lecciones',
                     'icon' => 'fas fa-fw fa-book',
-                    'url' => '#'
+                    'route' => 'lecciones.index'
                 ],
                 [
                     'text' => 'Gestionar Recursos',
@@ -340,7 +340,7 @@ return [
                 [
                     'text' => 'Gestionar Cuestionarios',
                     'icon' => 'fas fa-fw fa-file-alt',
-                    'url' => '#'
+                    'route' => 'cuestionarios.index'
                 ],
                 [
                     'text' => 'Gestionar Preguntas',
