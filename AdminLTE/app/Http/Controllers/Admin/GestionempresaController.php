@@ -23,17 +23,13 @@ class GestionempresaController extends Controller
     //Vista Index de empresa
     public function index()
     {
-        $users = User::all();
-        $estados = Estados::all();
-        return view('modulo-administrador.gestionempresa.index', compact('estados', 'users'));
+        return view('modulo-administrador.gestionempresa.index');
     }
     //Vista del Create empresas y relacion con la tabla de User
     public function create()
     {
         //Tabla users Para la vista enla creacion.
-        $users = User::all();
-        $estados = Estados::all();
-        return view('modulo-administrador.gestionempresa.create', compact('estados', 'users'));
+        return view('modulo-administrador.gestionempresa.create');
     }
     //constructor del create Y validacion de formulario
     public function store(Request $request)
@@ -63,7 +59,7 @@ class GestionempresaController extends Controller
             'd_codigo' => $request->d_codigo
         ]);
 
-        return redirect()->route('gestionempresa.index', compact('estados', 'users'))->with('message', 'Empresa Agregado con Exito!');
+        return redirect()->route('gestionempresa.index', compact('estados', 'users'))->with('message', '¡Empresa Agregado con Exito!');
     }
     //Funcion de eliminar
     public function destroy($id)
@@ -78,17 +74,22 @@ class GestionempresaController extends Controller
         $user = User::all();
         $estados = Estados::all();
 
-        return view('modulo-administrador.gestionempresa.edit', compact('empresa', 'user'));
+        return view('modulo-administrador.gestionempresa.edit', compact('estados', 'empresa', 'user'));
     }
     //Funcion de actualizar informacion
     public function update(Request $request, Empresa $empresa)
     {
-
+        $empresa->empresa = $request->empresa;
         $empresa->user_id = $request->user_id;
+        $empresa->direccion = $request->direccion;
+        $empresa->empleados = $request->empleados;
+        $empresa->d_asenta = $request->d_asenta;
+        $empresa->d_ciudad = $request->d_ciudad;
+        $empresa->d_codigo = $request->d_codigo;
         $empresa->estatus = $request->estatus;
         $empresa->save();
 
-        return redirect()->route('gestionempresa.index', $empresa)->with('message', 'Empresa Actualizado con Exito!');
+        return redirect()->route('gestionempresa.index', $empresa)->with('message', '¡Empresa Actualizado con Exito!');
     }
    //Funcion de ver la informacion
     public function show(Empresa $empresa)

@@ -1,48 +1,76 @@
-<div>
-    <div class="row mt-2">
-        <div class="col-4">
-            <span>Mostrar</span>
-            <select wire:model="cant" class="form-select" aria-label="Default select example">
-                <option value="5">5</option>
-                <option value="10">10</option>
-                <option value="25">25</option>
-                <option value="50">50</option>
-                <option value="100">100</option>
-            </select>
-            <span>Entradas</span>
-        </div>
-        <div class="col-4">
-            @can('crear-etiqueta')
-            <a href="{{ route('users.create') }}" class="btn btn-primary btn-rounded" title="Agregar nuevo Usuario">Nuevo Usuario <i class="fa fa-plus"></i></a>
-            @endcan
-        </div>
-        <div class="col-4">
-            <input class="form-control me-2" type="search" placeholder="Buscar" type="text" aria-label="Search" wire:model="search">
-        </div>
-    </div><br>
+<div class="container">
     <div class="card">
         <div class="card-body">
+            <div class="col">
+                <form class="needs-validation" action="{{ route('users.create') }}" enctype="multipart/form-data" novalidate>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3 position-relative">
+                                <label class="form-label" for="validationEmpresa">Seleccionar Empresa *</label>
+                                <select class="form-control" type="text" name="empresa_id" id="validationEmpresa" required>
+                                    <option value="">Seleccionar</option>
+                                    @foreach ($empresa as $empresa)
+                                        <option value="{{ $empresa->id }}">
+                                            {{ $empresa->empresa }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <div class="invalid-tooltip">
+                                    Ingrese el Campo de Empresa.
+                                </div>
+                                <div class="valid-tooltip">
+                                    Listo!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3 position-relative">
+                                <label class="form-label" for="validationEmpresa">Seleccionar Sucursal *</label>
+                                <select class="form-control" type="text" name="empresa_id" id="validationEmpresa" required>
+                                    <option value="">Seleccionar</option>
+                                    @foreach ($sucursal as $sucursales)
+                                        <option value="{{ $sucursales->id }}">
+                                            {{ $sucursales->sucursal }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <div class="invalid-tooltip">
+                                    Ingrese el Campo de Sucursal.
+                                </div>
+                                <div class="valid-tooltip">
+                                    Listo!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><br>
+                <div class="row mt-2">
+                    <div class="col-4">
+                        <span >Mostrar</span>
+                        <select wire:model="cant" class="form" aria-label="Default select example">
+                            <option value="10">10</option>
+                            <option value="20">20</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                        <span>Entradas</span>
+                    </div>
+                    <div class="col-4">
+                        <Button type="submit" class="btn btn-primary btn-rounded">Agregar Personal <i class="fas fa-plus"></i></Button>
+                    </div>
+                </form>
+                    <div class="col-4">
+                        <input class="form-control me-2" type="search" placeholder="Buscar" type="text" aria-label="Search" wire:model="search">
+                    </div>
+            </div><br>
             <div class="row">
                 <div class="col-md-12">
                     <div class="table-responsive mb-4"><br>
                         <table class="table table-centered datatable dt-responsive nowrap table-card-list" style="border-collapse: collapse; border-spacing: 0 12px; width: 100%;">
                             @if ($users->count())
                             <thead>
-                                <tr class="bg-transparent">
-                                    <th wire:click="order('id')">
-                                        No.
-                                        {{-- Sort --}}
-                                        @if ($sort == 'id')
-                                            @if ($direction == 'asc')
-                                                <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
-                                            @else
-                                                <i class="fas fa-sort-alpha-down-alt float-right mt-1"></i>
-                                            @endif
-
-                                        @else
-                                            <i class="fas fa-sort float-right mt-1"></i>
-                                        @endif
-                                    </th>
+                                <tr class="table-primary">
+                                    <th>No.</th>
                                     <th>Foto</th>
                                     <th wire:click="order('name')">
                                         Nombre
@@ -58,10 +86,68 @@
                                             <i class="fas fa-sort float-right mt-1"></i>
                                         @endif
                                     </th>
-                                    <th wire:click="order('email')">
-                                        Correo Electronico
+                                    <th wire:click="order('apellido')">
+                                        Apellido
                                         {{-- Sort --}}
-                                        @if ($sort == 'email')
+                                        @if ($sort == 'apellido')
+                                            @if ($direction == 'asc')
+                                                <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
+                                            @else
+                                                <i class="fas fa-sort-alpha-down-alt float-right mt-1"></i>
+                                            @endif
+
+                                        @else
+                                            <i class="fas fa-sort float-right mt-1"></i>
+                                        @endif
+                                    </th>
+                                    <th wire:click="order('empresa')">
+                                        Empresa/Sucursal
+                                        {{-- Sort --}}
+                                        @if ($sort == 'empresa')
+                                            @if ($direction == 'asc')
+                                                <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
+                                            @else
+                                                <i class="fas fa-sort-alpha-down-alt float-right mt-1"></i>
+                                            @endif
+
+                                        @else
+                                            <i class="fas fa-sort float-right mt-1"></i>
+                                        @endif
+                                    </th>
+                                    <th>Tipo</th>
+                                    <th>Puesto</th>
+                                    <th wire:click="order('empresa')">
+                                        Guia 1
+                                        {{-- Sort --}}
+                                        @if ($sort == 'empresa')
+                                            @if ($direction == 'asc')
+                                                <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
+                                            @else
+                                                <i class="fas fa-sort-alpha-down-alt float-right mt-1"></i>
+                                            @endif
+
+                                        @else
+                                            <i class="fas fa-sort float-right mt-1"></i>
+                                        @endif
+                                    </th>
+                                    <th wire:click="order('empresa')">
+                                        Guia 2
+                                        {{-- Sort --}}
+                                        @if ($sort == 'empresa')
+                                            @if ($direction == 'asc')
+                                                <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
+                                            @else
+                                                <i class="fas fa-sort-alpha-down-alt float-right mt-1"></i>
+                                            @endif
+
+                                        @else
+                                            <i class="fas fa-sort float-right mt-1"></i>
+                                        @endif
+                                    </th>
+                                    <th wire:click="order('estatus')">
+                                        Estado
+                                        {{-- Sort --}}
+                                        @if ($sort == 'estatus')
                                             @if ($direction == 'asc')
                                                 <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
                                             @else
@@ -89,14 +175,27 @@
                                 <tr>
                                     <td>{{ $user->id }}</td>
                                     <td><img src="../uploads/avatars/{{ $user->avatar }}" width="30" height="30" class="rounded-circle"></td>
-                                    <td>{{ $user->name }}
-                                    @if(!empty($user->getRoleNames()))
-                                        @foreach($user->getRoleNames() as $v)
-                                        <span class="badge badge-success">{{ $v }}</span>
-                                        @endforeach
-                                    @endif
+                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->apellido }}</td>
+                                    <td>{{ $user->empresa }}/{{ $user->sucursal }}</td>
+                                    <td>
+                                        @if(!empty($user->getRoleNames()))
+                                            @foreach($user->getRoleNames() as $v)
+                                                <span class="badge badge-primary">{{ $v }}</span>
+                                            @endforeach
+                                        @endif
                                     </td>
-                                    <td>{{ $user->email }}</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>
+                                        @if ($user->estatus == 0)
+                                        <td class="text-danger"> Necesita Ayuda</td>
+                                            @elseif($user->estatus == 1)
+                                        <td class="text-warning"> Pendiente</td>
+                                            @elseif($user->estatus == 2)
+                                        <td class="text-success"> Evaluado</td>
+                                            @endif
+                                    </>
                                     @can('ver-usuarios')
                                     <td width="50"><a class="btn btn-primary btn-sm" href="{{ route('users.show',$user->id) }}"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
                                     @endcan
@@ -105,11 +204,9 @@
                                     @endcan
                                     @can('eliminar-usuarios')
                                     <td width="50">
-                                        <form method="POST" action="{{ route('users.destroy', $user) }}" accept-charset="UTF-8" style="display:inline">
-                                            {{ method_field('DELETE') }}
-                                            {{ csrf_field() }}
-                                            <button type="submit" class="text-center btn btn-danger btn-sm" onclick="return confirm(&quot;Confirmar Para Eliminar &quot;)"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                                        </form>
+                                        <button class="btn btn-danger btn-sm" wire:click="$emit('deleteUsers', {{ $user }})">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
                                     </td>
                                     @endcan
                                 </tr>
