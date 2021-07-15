@@ -345,7 +345,7 @@ return [
                 [
                     'text' => 'Gestionar Preguntas',
                     'icon' => 'fas fa-fw fa-question-circle',
-                    'url' => '#'
+                    'route' => 'preguntas.index'
                 ]
             ]
         ],

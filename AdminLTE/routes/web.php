@@ -8,6 +8,7 @@ use App\Http\Controllers\ModuloCapacitaciones\CursoController;
 use App\Http\Controllers\ModuloCapacitaciones\GrupoController;
 use App\Http\Controllers\ModuloCapacitaciones\InstructoreController;
 use App\Http\Controllers\ModuloCapacitaciones\LeccioneController;
+use App\Http\Controllers\ModuloCapacitaciones\PreguntaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +49,7 @@ Route::get('cursos', [CursoController::class, 'index'])->name('cursos.index');
 Route::get('grupos', [GrupoController::class, 'index'])->name('grupos.index');
 Route::get('lecciones', [LeccioneController::class, 'index'])->name('lecciones.index');
 Route::get('cuestionarios', [CuestionarioController::class, 'index'])->name('cuestionarios.index');
+Route::get('preguntas', [PreguntaController::class, 'index'])->name('preguntas.index');
 
 Route::get('/home', function() {
 	return view('home');
