@@ -252,30 +252,13 @@ return [
         ['header' => 'MÓDULO DE ADMINISTRADOR'],
         [
 
-            'text' => 'Panel del administrador',
-            'icon' => 'fas fa-fw fa-user-cog',
-            'submenu' => [
-                [
-                    'text' => 'Asignaciónes de Etiqueta',
-                    'url'  => 'modulo-administrador/users',
-                    'icon' => 'fas fa-fw fa-boxes',
-                ],
-                [
-                    'text' => 'Etiquetas',
-                    'url'  => 'modulo-administrador/roles',
-                    'icon' => 'fas fa-fw fa-bookmark',
-                ],
-            ]
-        ],
-        [
-
             'text' => 'Administrar Empresas',
             'icon' => 'fas fa-fw fa-chart-line',
             'submenu' => [
                 [
                     'text'       => 'Gestionar Empleados',
                     'icon' => 'fas fa-fw fa-portrait',
-                    'url'        => 'modulo-administrador/gestionempleado',
+                    'url'        => 'modulo-administrador/users',
                 ],
                 [
                     'text'       => 'Gestionar Sucursales',
@@ -287,12 +270,17 @@ return [
                     'icon' => 'fas fa-fw fa-building',
                     'url'        => 'modulo-administrador/gestionempresa',
                 ],
+                [
+                    'text' => 'Etiquetas',
+                    'url'  => 'modulo-administrador/roles',
+                    'icon' => 'fas fa-fw fa-bookmark',
+                ],
             ]
         ],
 
         //Rutas del módulo capacitaciones
 
-        ['header' => 'MÓDULO CAPACITACIONES'],
+        ['header' => 'MÓDULO DE CAPACITACIONES'],
         [
             'text' => 'Módulo Capacitaciones',
             'icon' => 'fas fa-fw fa-chalkboard-teacher',
