@@ -243,37 +243,101 @@ return [
         ],
         [
             'text' => 'Perfil',
-            'url'  => 'modulo-administrador/perfil/edit',
+            'url'  => './perfil/edit',
             'icon' => 'fas fa-fw fa-user-circle',
         ],
 
-        ['header' => 'CONFIGURACION DE PERMISOS'],
+        //Rustas del Modulo de administrador
+
+        ['header' => 'MÓDULO DE ADMINISTRADOR'],
         [
-            'text' => 'Asignaciónes de Etiqueta',
-            'url'  => 'modulo-administrador/users',
-            'icon' => 'fas fa-fw fa-users',
+
+            'text' => 'Administrar Empresas',
+            'icon' => 'fas fa-fw fa-chart-line',
+            'submenu' => [
+                [
+                    'text'       => 'Gestionar Empleados',
+                    'icon' => 'fas fa-fw fa-portrait',
+                    'url'        => 'modulo-administrador/users',
+                ],
+                [
+                    'text'       => 'Gestionar Sucursales',
+                    'icon' => 'fas fa-fw fa-sitemap',
+                    'url'        => 'modulo-administrador/gestionsucursal',
+                ],
+                [
+                    'text'       => 'Gestion de Empresas',
+                    'icon' => 'fas fa-fw fa-building',
+                    'url'        => 'modulo-administrador/gestionempresa',
+                ],
+                [
+                    'text' => 'Etiquetas',
+                    'url'  => 'modulo-administrador/roles',
+                    'icon' => 'fas fa-fw fa-bookmark',
+                ],
+            ]
         ],
+
+        //Rutas del módulo capacitaciones
+
+        ['header' => 'MÓDULO DE CAPACITACIONES'],
         [
-            'text' => 'Etiquetas',
-            'url'  => 'modulo-administrador/roles',
-            'icon' => 'fas fa-fw fa-lock',
+            'text' => 'Módulo Capacitaciones',
+            'icon' => 'fas fa-fw fa-chalkboard-teacher',
+            'submenu' => [
+                [
+                    'text' => 'Gestionar Categorias',
+                    'icon' => 'fas fa-fw fa-layer-group',
+                    'route' => 'categorias.index'
+                ],
+                [
+                    'text' => 'Gestionar Cursos',
+                    'icon' => 'fas fa-fw fa-laptop',
+                    'route' => 'cursos.index'
+                ],
+                [
+                    'text' => 'Gestionar Instructores',
+                    'icon' => 'fas fa-fw fa-user-tie',
+                    'route' => 'instructores.index'
+                ],
+                [
+                    'text' => 'Gestionar Grupos',
+                    'icon' => 'fas fa-fw fa-users',
+                    'route' => 'grupos.index'
+                ],
+                [
+                    'text' => 'Gestionar matriculaciones',
+                    'icon' => 'fas fa-fw fa-address-card',
+                    'url' => '#'
+                ],
+                [
+                    'text' => 'Gestionar Lecciones',
+                    'icon' => 'fas fa-fw fa-book',
+                    'route' => 'lecciones.index'
+                ],
+                [
+                    'text' => 'Gestionar Recursos',
+                    'icon' => 'fas fa-fw fa-photo-video',
+                    'url' => '#'
+                ],
+                [
+                    'text' => 'Gestionar Actividades',
+                    'icon' => 'fas fa-fw fa-file-alt',
+                    'url' => '#'
+                ],
+                [
+                    'text' => 'Gestionar Cuestionarios',
+                    'icon' => 'fas fa-fw fa-file-alt',
+                    'route' => 'cuestionarios.index'
+                ],
+                [
+                    'text' => 'Gestionar Preguntas',
+                    'icon' => 'fas fa-fw fa-question-circle',
+                    'url' => '#'
+                ]
+            ]
         ],
-        ['header' => 'PANEL DE ADMINISTRADOR'],
-        [
-            'text'       => 'Gestionar Empleados',
-            'icon' => 'fas fa-fw fa-portrait',
-            'url'        => 'modulo-administrador/gestionempleado',
-        ],
-        [
-            'text'       => 'Gestionar Sucursales',
-            'icon' => 'fas fa-fw fa-sitemap',
-            'url'        => 'modulo-administrador/gestionsucursal',
-        ],
-        [
-            'text'       => 'Gestion de Empresas',
-            'icon' => 'fas fa-fw fa-building',
-            'url'        => 'modulo-administrador/gestionempresa',
-        ],
+
     ],
 
     /*
@@ -356,12 +420,12 @@ return [
             ],
         ],
         'Sweetalert2' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
                     'asset' => false,
-                    'location' => '//cdn.jsdelivr.net/npm/sweetalert2@8',
+                    'location' => '//cdn.jsdelivr.net/npm/sweetalert2@11',
                 ],
             ],
         ],
@@ -393,5 +457,5 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Other-Configuration
     */
 
-    'livewire' => false,
+    'livewire' => true,
 ];
