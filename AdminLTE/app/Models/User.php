@@ -76,6 +76,7 @@ class User extends Authenticatable
     {
          return $this->hasMany('App\Models\ModuloAdministrador\Sucursales');
     }
+    
     //Relacion muchos a muchos con grupo
     public function grupos()
     {
