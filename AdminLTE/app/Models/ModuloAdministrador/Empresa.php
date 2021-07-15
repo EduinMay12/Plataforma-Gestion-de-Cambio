@@ -17,9 +17,14 @@ class Empresa extends Model
     {
         return $this->belongsTo('App\Models\User');
     }
-
+       //Relacion uno a muchos
     public function estados()
     {
         return $this->hasMany('App\Models\Estados');
+    }
+
+     public function empresas()
+    {
+        return $this->hasMany('App\Models\ModuloAdministrador\Empresa');
     }
 }

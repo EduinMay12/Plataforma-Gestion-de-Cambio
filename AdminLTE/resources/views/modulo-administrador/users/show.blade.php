@@ -3,15 +3,15 @@
 @section('title', 'Gestion de Cambio | Detallles del Entiquetado')
 
 @section('content_header')
-
-<div class="card">
-    <div class="card-header d-flex justify-content-center">
-      <div class="card-title">
-        <h4>Etiqueta é Información del Usuario</h4>
-      </div>
+<div class="container">
+    <div class="card">
+        <div class="card-header d-flex justify-content-center">
+        <div class="card-title">
+            <h4>Etiqueta é Información del Usuario</h4>
+        </div>
+        </div>
     </div>
 </div>
-
 @stop
 
 @section('content')

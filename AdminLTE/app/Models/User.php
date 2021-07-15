@@ -28,14 +28,12 @@ class User extends Authenticatable
 
         'puesto_actual_id',
         'puesto_futuro_id',
-        'persona_id',
 
-        'd_codigo',
         'd_asenta',
         'd_ciudad',
 
-        'sucursal_id',
-        'empresa_id',
+        'sucursal',
+        'empresa',
 
     ];
 
@@ -67,8 +65,15 @@ class User extends Authenticatable
 
         return 'Hola Bienvenido a Gestion de Cambio';
     }
-    public function user()
+
+    public function empresas()
     {
          return $this->hasMany('App\Models\ModuloAdministrador\Empresa');
     }
+
+    public function sucursales()
+    {
+         return $this->hasMany('App\Models\ModuloAdministrador\Sucursales');
+    }
+
 }

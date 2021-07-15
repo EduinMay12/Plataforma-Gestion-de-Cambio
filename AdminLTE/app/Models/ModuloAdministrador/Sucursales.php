@@ -22,4 +22,9 @@ class Sucursales extends Model
     {
         return $this->belongsTo('App\Models\Estados');
     }
+
+    public function empresas()
+    {
+        return $this->belongsTo('App\Models\ModuloAdministrador\Empresa');
+    }
 }

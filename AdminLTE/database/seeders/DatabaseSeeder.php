@@ -20,9 +20,9 @@ class DatabaseSeeder extends Seeder
         // Carpeta donde se guardan las imagenes de categorias de capacitaciones
         Storage::deleteDirectory('categorias');
         Storage::makeDirectory('categorias');
-        \App\Models\User::Factory(20)->create();
+        \App\Models\User::Factory(10)->create();
         $this->call(PermissionTableSeeder::class);
         $this->call(CreateAdminUserSeeder::class);
-        Categoria::factory(20)->create();
+        Categoria::factory(10)->create();
     }
 }

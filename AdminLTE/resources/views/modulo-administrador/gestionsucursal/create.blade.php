@@ -1,14 +1,16 @@
 @extends('adminlte::page')
 
-@section('title', 'Crear Puesto')
+@section('title', 'Crear Sucursal')
 
 @section('content_header')
 
-<div class="card">
-    <div class="card-header d-flex justify-content-center">
-      <div class="card-title">
-          <h4>Crear Sucursal</h4>
-      </div>
+<div class="container">
+    <div class="card">
+        <div class="card-header d-flex justify-content-center">
+          <div class="card-title">
+              <h4>Crear Sucursal</h4>
+          </div>
+        </div>
     </div>
 </div>
 
@@ -16,98 +18,7 @@
 
 @section('content')
 
-<div class="row">
-    <div class="col-md-12">
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col">
-                        <label for="user" class="control-label">{{ 'Nombre(s)*' }}</label>
-                        <div class="input-group input-group-alternative mb-3">
-                            <input class="form-control" placeholder="{{ __('Nombre*') }}" type="text" name="name" value="" required autofocus>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <label for="user" class="control-label">{{ 'Resposable' }}</label>
-                        <select name="tipo" class="form-control" placeholder="{{ __('Nombre de la Persona') }}" id="tipo" type="text" name="tipo" value="" >
-
-                                <option>Juan Perez</option>
-                                <option>Juan Pablo Castro Lara</option>
-                                <option>Melisa Rocha</option>
-                                <option>...</option>
-                        </select>
-                    </div>
-                    <div class="col">
-                        <label for="user" class="control-label">{{ 'N. de Empleados' }}</label>
-                        <div class="input-group input-group-alternative mb-3">
-                            <input class="form-control" placeholder="{{ __('Nombre*') }}" type="number" name="number" value="" required autofocus>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <label for="user" class="control-label">{{ 'Direccion*' }}</label>
-                        <div class="input-group input-group-alternative mb-3">
-                            <input class="form-control" placeholder="{{ __('Direccion*') }}" type="text" name="name" value="" required autofocus>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <label for="user" class="control-label">{{ 'Colonia' }}</label>
-                        <select name="tipo" class="form-control" placeholder="{{ __('Nombre de la Persona') }}" id="tipo" type="text" name="tipo" value="" >
-
-                            <option>Gudalupe</option>
-                            <option>Sirena</option>
-                            <option>...</option>
-                        </select>
-                    </div>
-                    <div class="col">
-                        <label for="user" class="control-label">{{ 'Ciudad' }}</label>
-                        <select name="tipo" class="form-control" placeholder="{{ __('Nombre de la Persona') }}" id="tipo" type="text" name="tipo" value="" >
-
-                            <option>Pacabtun</option>
-                            <option>Merida</option>
-                            <option>...</option>
-                        </select>
-                    </div>
-                    <div class="col">
-                        <label for="user" class="control-label">{{ 'Estado' }}</label>
-                        <select name="tipo" class="form-control" placeholder="{{ __('Nombre de la Persona') }}" id="tipo" type="text" name="tipo" value="" >
-
-                            <option>Yucatán</option>
-                            <option>Cancún</option>
-                            <option>Capeche</option>
-                            <option>Tabasco</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <label for="user" class="control-label">{{ 'Codigo Postal*' }}</label>
-                        <select name="tipo" class="form-control" placeholder="{{ __('Nombre de la Persona') }}" id="tipo" type="text" name="tipo" value="" >
-
-                                <option>97800</option>
-                                <option>97856</option>
-                                <option>97867</option>
-                                <option>...</option>
-                        </select>
-                    </div>
-                    <div class="col">
-                        <label for="user" class="control-label">{{ 'Tamaño*' }}</label>
-                        <select name="tipo" class="form-control" placeholder="{{ __('Nombre de la Persona') }}" id="tipo" type="text" name="tipo" value="" >
-
-                                <option>Chico</option>
-                                <option>Madiano</option>
-                                <option>Grande</option>
-                        </select>
-                    </div>
-                </div><br>
-                <button type="submit" class="btn btn-primary">{{ __('Guardar') }}</button>
-                <button type="submit" class="btn btn-danger">{{ __('Volver') }}</button>
-            </div>
-        </div>
-    </div>
-</div>
+    @livewire('modulo-administrador.gestion-sucursales.create-sucursal')
 
 @stop
 
-@extends('layouts.footer')

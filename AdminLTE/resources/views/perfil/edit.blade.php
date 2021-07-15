@@ -64,12 +64,6 @@
                             <span class="d-none d-sm-block">Seguridad</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="tab" href="#messages" role="tab">
-                            <i class="uil uil-envelope-alt font-size-20"></i>
-                            <span class="d-none d-sm-block">Messages</span>
-                        </a>
-                    </li>
                 </ul>
                 <!-- tap panel -->
                 <div class="tab-content p-4">
@@ -173,93 +167,6 @@
                                     <button type="submit" class="btn btn-primary">{{ __('Cambiar Contraseña') }}</button>
                                 </div>
                             </form>
-                        </div>
-                    </div>
-
-                    <div class="tab-pane" id="messages" role="tabpanel">
-                        <div>
-                            <div data-simplebar style="max-height: 430px;">
-                                <div class="d-flex align-items-start border-bottom py-4">
-                                    <img class="me-2 rounded-circle avatar-xs"
-                                        src="http://minible-h-rtl.laravel.themesbrand.com/assets/images/users/avatar-3.jpg" alt="">
-                                    <div class="flex-1">
-                                        <h5 class="font-size-15 mt-0 mb-1">Marion Walker <small
-                                                class="text-muted float-end">1 hr ago</small></h5>
-                                        <p class="text-muted">If several languages coalesce, the grammar of the resulting .
-                                        </p>
-
-                                        <a href="javascript: void(0);" class="text-muted font-13 d-inline-block"><i
-                                                class="mdi mdi-reply"></i> Reply</a>
-
-                                        <div class="d-flex align-items-start mt-4">
-                                            <img class="me-2 rounded-circle avatar-xs"
-                                                src="http://minible-h-rtl.laravel.themesbrand.com/assets/images/users/avatar-4.jpg" alt="">
-                                            <div class="flex-1">
-                                                <h5 class="font-size-15 mt-0 mb-1">Shanon Marvin <small
-                                                        class="text-muted float-end">1 hr ago</small></h5>
-                                                <p class="text-muted">It will be as simple as in fact, it will be
-                                                    Occidental. To it will seem like simplified .</p>
-
-
-                                                <a href="javascript: void(0);" class="text-muted font-13 d-inline-block">
-                                                    <i class="mdi mdi-reply"></i> Reply
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="d-flex align-items-start border-bottom py-4">
-                                    <img class="me-2 rounded-circle avatar-xs"
-                                        src="http://minible-h-rtl.laravel.themesbrand.com/assets/images/users/avatar-5.jpg" alt="">
-                                    <div class="flex-1">
-                                        <h5 class="font-size-15 mt-0 mb-1">Janice Morgan <small
-                                                class="text-muted float-end">2 hrs ago</small></h5>
-                                        <p class="text-muted">To achieve this, it would be necessary to have uniform
-                                            pronunciation.</p>
-
-                                        <a href="javascript: void(0);" class="text-muted font-13 d-inline-block"><i
-                                                class="mdi mdi-reply"></i> Reply</a>
-
-                                    </div>
-                                </div>
-
-                                <div class="d-flex align-items-start border-bottom py-4">
-                                    <img class="me-2 rounded-circle avatar-xs"
-                                        src="http://minible-h-rtl.laravel.themesbrand.com/assets/images/users/avatar-7.jpg" alt="">
-                                    <div class="flex-1">
-                                        <h5 class="font-size-15 mt-0 mb-1">Patrick Petty <small
-                                                class="text-muted float-end">3 hrs ago</small></h5>
-                                        <p class="text-muted">Sed ut perspiciatis unde omnis iste natus error sit </p>
-
-                                        <a href="javascript: void(0);" class="text-muted font-13 d-inline-block"><i
-                                                class="mdi mdi-reply"></i> Reply</a>
-
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="border rounded mt-4">
-                                <form action="#">
-                                    <div class="px-2 py-1 bg-light">
-
-                                        <div class="btn-group" role="group">
-                                            <button type="button"
-                                                class="btn btn-sm btn-link text-dark text-decoration-none"><i
-                                                    class="uil uil-link"></i></button>
-                                            <button type="button"
-                                                class="btn btn-sm btn-link text-dark text-decoration-none"><i
-                                                    class="uil uil-smile"></i></button>
-                                            <button type="button"
-                                                class="btn btn-sm btn-link text-dark text-decoration-none"><i
-                                                    class="uil uil-at"></i></button>
-                                        </div>
-
-                                    </div>
-                                    <textarea rows="3" class="form-control border-0 resize-none"
-                                        placeholder="Your Message..."></textarea>
-
-                                </form>
-                            </div> <!-- end .border-->
                         </div>
                     </div>
                 </div>

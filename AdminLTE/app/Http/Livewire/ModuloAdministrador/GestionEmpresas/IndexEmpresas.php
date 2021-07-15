@@ -28,6 +28,8 @@ class IndexEmpresas extends Component
         $this->resetPage();
     }
 
+    protected $listeners = ['delete'];
+
     public function render()
     {
         $empresas = Empresa::where('empresa', 'like' , '%' . $this->search . '%')
@@ -50,5 +52,10 @@ class IndexEmpresas extends Component
             $this->sort = $sort;
             $this->direction = 'asc';
         }
+    }
+
+    public function delete(Empresa $empresa)
+    {
+        $empresa->delete();
     }
 }
