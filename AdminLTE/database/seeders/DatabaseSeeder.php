@@ -4,8 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
-use App\Models\ModuloCapacitaciones\Categoria;
-use App\Models\ModuloCapacitaciones\Instructore;
+use App\Models\User;use App\Models\ModuloCapacitaciones\Instructore;
 use App\Models\ModuloCapacitaciones\Curso;
 
 class DatabaseSeeder extends Seeder
@@ -17,6 +16,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+
         // Carpeta donde se guardan las imagenes de categorias de capacitaciones
         Storage::deleteDirectory('categorias');
         Storage::deleteDirectory('cursos');
@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PermissionTableSeeder::class);
         $this->call(CreateAdminUserSeeder::class);
         Categoria::factory(20)->create();
+        Categoria::factory(10)->create();
         Instructore::factory(50)->create();
         Curso::factory(80)->create();
     }

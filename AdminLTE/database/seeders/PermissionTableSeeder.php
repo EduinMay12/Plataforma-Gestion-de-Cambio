@@ -27,7 +27,17 @@ class PermissionTableSeeder extends Seeder
             'ver-etiqueta',
             'crear-etiqueta',
             'editar-etiqueta',
-            'eliminar-etiqueta'
+            'eliminar-etiqueta',
+
+            'ver-gestion-empresa',
+            'crear-gestion-empresa',
+            'editar-gestion-empresa',
+            'eliminar-gestion-empresa',
+
+            'ver-gestion-sucursal',
+            'crear-gestion-sucursal',
+            'editar-gestion-sucursal',
+            'eliminar-gestion-sucursal'
         ];
 
         foreach ($permissions as $permission) {

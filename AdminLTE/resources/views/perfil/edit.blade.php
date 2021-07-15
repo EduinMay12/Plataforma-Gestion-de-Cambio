@@ -23,7 +23,7 @@
                         <div class="table-responsive mt-4">
                             <div>
                                 <p class="mb-1">Nombre :</p>
-                                <h5 class="font-size-16">{{ Auth::user()->name }} {{ Auth::user()->apellido_paterno }} {{ Auth::user()->apellido_materno }}</h5>
+                                <h5 class="font-size-16">{{ Auth::user()->name }} {{ Auth::user()->apellido }}<h5>
                             </div>
                             <div class="mt-4">
                                 <p class="mb-1">Puesto :</p>
@@ -32,10 +32,6 @@
                             <div class="mt-4">
                                 <p class="mb-1">E-mail :</p>
                                 <h5 class="font-size-16">{{ Auth::user()->email }}</h5>
-                            </div>
-                            <div class="mt-4">
-                                <p class="mb-1">Fecha de Nacimiento :</p>
-                                <h5 class="font-size-16">{{ Auth::user()->fecha_nacimiento }}</h5>
                             </div>
                             <div class="mt-4">
                                 <p class="mb-1">Estado :</p>
@@ -66,12 +62,6 @@
                         <a class="nav-link" data-bs-toggle="tab" href="#seguridad" role="tab">
                             <i class="uil uil-clipboard-notes font-size-20"></i>
                             <span class="d-none d-sm-block">Seguridad</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-bs-toggle="tab" href="#messages" role="tab">
-                            <i class="uil uil-envelope-alt font-size-20"></i>
-                            <span class="d-none d-sm-block">Messages</span>
                         </a>
                     </li>
                 </ul>
@@ -106,30 +96,12 @@
                                         </div>
                                     </div><br>
                                     <div class="row">
-                                        <div class="col{{ $errors->has('apellido_paterno') ? ' has-danger' : '' }}">
-                                            <label class="form-control-label" for="input-apellido_paterno">{{ __('Apellido Paterno*') }}</label>
-                                            <input type="text" name="apellido_paterno" id="input-apellido_paterno" class="form-control form-control-alternative{{ $errors->has('apellido_paterno') ? ' is-invalid' : '' }}" placeholder="{{ __('Apellido Paterno') }}" value="{{ old('apellido_paterno', auth()->user()->apellido_paterno) }}" required >
-                                            @if ($errors->has('apellido_paterno'))
+                                        <div class="col{{ $errors->has('apellido') ? ' has-danger' : '' }}">
+                                            <label class="form-control-label" for="input-apellido">{{ __('Apellido*') }}</label>
+                                            <input type="text" name="apellido" id="input-apellido" class="form-control form-control-alternative{{ $errors->has('apellido') ? ' is-invalid' : '' }}" placeholder="{{ __('Apellido') }}" value="{{ old('apellido', auth()->user()->apellido) }}" required >
+                                            @if ($errors->has('apellido'))
                                                 <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('apellido_paterno') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-                                        <div class="col{{ $errors->has('apellido_materno') ? ' has-danger' : '' }}">
-                                            <label class="form-control-label" for="input-apellido_maternome">{{ __('Apellido Materno*') }}</label>
-                                            <input type="text" name="apellido_materno" id="input-apellido_materno" class="form-control form-control-alternative{{ $errors->has('apellido_materno') ? ' is-invalid' : '' }}" placeholder="{{ __('Apellido Materno') }}" value="{{ old('apellido_materno', auth()->user()->apellido_materno) }}" required >
-                                            @if ($errors->has('apellido_materno'))
-                                                <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('apellido_materno') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-                                        <div class="col{{ $errors->has('fecha_nacimiento') ? ' has-danger' : '' }}" id="datepicker3">
-                                            <label class="form-control-label" for="input-fecha_nacimiento">{{ __('Fecha de Nacimiento *') }}</label>
-                                            <input name="fecha_nacimiento" id="input-fecha_nacimiento" class="form-control form-control-alternative{{ $errors->has('fecha_nacimiento') ? ' is-invalid' : '' }}" placeholder="{{ __('dd M, yyyy') }}" value="{{ old('fecha_nacimiento', auth()->user()->fecha_nacimiento) }}" data-provide="datepicker" data-date-container='#datepicker3' data-date-format="dd M, yyyy" data-date-multidate="true" required >
-                                            @if ($errors->has('fecha_nacimiento'))
-                                                <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $errors->first('fecha_nacimiento') }}</strong>
+                                                <strong>{{ $errors->first('apellido') }}</strong>
                                                 </span>
                                             @endif
                                         </div>
@@ -195,93 +167,6 @@
                                     <button type="submit" class="btn btn-primary">{{ __('Cambiar Contraseña') }}</button>
                                 </div>
                             </form>
-                        </div>
-                    </div>
-
-                    <div class="tab-pane" id="messages" role="tabpanel">
-                        <div>
-                            <div data-simplebar style="max-height: 430px;">
-                                <div class="d-flex align-items-start border-bottom py-4">
-                                    <img class="me-2 rounded-circle avatar-xs"
-                                        src="http://minible-h-rtl.laravel.themesbrand.com/assets/images/users/avatar-3.jpg" alt="">
-                                    <div class="flex-1">
-                                        <h5 class="font-size-15 mt-0 mb-1">Marion Walker <small
-                                                class="text-muted float-end">1 hr ago</small></h5>
-                                        <p class="text-muted">If several languages coalesce, the grammar of the resulting .
-                                        </p>
-
-                                        <a href="javascript: void(0);" class="text-muted font-13 d-inline-block"><i
-                                                class="mdi mdi-reply"></i> Reply</a>
-
-                                        <div class="d-flex align-items-start mt-4">
-                                            <img class="me-2 rounded-circle avatar-xs"
-                                                src="http://minible-h-rtl.laravel.themesbrand.com/assets/images/users/avatar-4.jpg" alt="">
-                                            <div class="flex-1">
-                                                <h5 class="font-size-15 mt-0 mb-1">Shanon Marvin <small
-                                                        class="text-muted float-end">1 hr ago</small></h5>
-                                                <p class="text-muted">It will be as simple as in fact, it will be
-                                                    Occidental. To it will seem like simplified .</p>
-
-
-                                                <a href="javascript: void(0);" class="text-muted font-13 d-inline-block">
-                                                    <i class="mdi mdi-reply"></i> Reply
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="d-flex align-items-start border-bottom py-4">
-                                    <img class="me-2 rounded-circle avatar-xs"
-                                        src="http://minible-h-rtl.laravel.themesbrand.com/assets/images/users/avatar-5.jpg" alt="">
-                                    <div class="flex-1">
-                                        <h5 class="font-size-15 mt-0 mb-1">Janice Morgan <small
-                                                class="text-muted float-end">2 hrs ago</small></h5>
-                                        <p class="text-muted">To achieve this, it would be necessary to have uniform
-                                            pronunciation.</p>
-
-                                        <a href="javascript: void(0);" class="text-muted font-13 d-inline-block"><i
-                                                class="mdi mdi-reply"></i> Reply</a>
-
-                                    </div>
-                                </div>
-
-                                <div class="d-flex align-items-start border-bottom py-4">
-                                    <img class="me-2 rounded-circle avatar-xs"
-                                        src="http://minible-h-rtl.laravel.themesbrand.com/assets/images/users/avatar-7.jpg" alt="">
-                                    <div class="flex-1">
-                                        <h5 class="font-size-15 mt-0 mb-1">Patrick Petty <small
-                                                class="text-muted float-end">3 hrs ago</small></h5>
-                                        <p class="text-muted">Sed ut perspiciatis unde omnis iste natus error sit </p>
-
-                                        <a href="javascript: void(0);" class="text-muted font-13 d-inline-block"><i
-                                                class="mdi mdi-reply"></i> Reply</a>
-
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="border rounded mt-4">
-                                <form action="#">
-                                    <div class="px-2 py-1 bg-light">
-
-                                        <div class="btn-group" role="group">
-                                            <button type="button"
-                                                class="btn btn-sm btn-link text-dark text-decoration-none"><i
-                                                    class="uil uil-link"></i></button>
-                                            <button type="button"
-                                                class="btn btn-sm btn-link text-dark text-decoration-none"><i
-                                                    class="uil uil-smile"></i></button>
-                                            <button type="button"
-                                                class="btn btn-sm btn-link text-dark text-decoration-none"><i
-                                                    class="uil uil-at"></i></button>
-                                        </div>
-
-                                    </div>
-                                    <textarea rows="3" class="form-control border-0 resize-none"
-                                        placeholder="Your Message..."></textarea>
-
-                                </form>
-                            </div> <!-- end .border-->
                         </div>
                     </div>
                 </div>

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
+use App\Models\ModuloAdministrador\Empresa;
 
 class User extends Authenticatable
 {
@@ -19,16 +20,21 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'apellido_paterno',
-        'apellido_materno',
-        'fecha_nacimiento',
-        'puesto_actual_id',
-        'puesto_futuro_id',
-        'tipo_persona_id',
-        'estado_id',
-        'sucursal_id',
+        'apellido',
+        'direccion',
+        'estatus',
         'email',
         'password',
+
+        'puesto_actual_id',
+        'puesto_futuro_id',
+
+        'd_asenta',
+        'd_ciudad',
+
+        'sucursal',
+        'empresa',
+
     ];
 
     /**
@@ -60,6 +66,16 @@ class User extends Authenticatable
         return 'Hola Bienvenido a Gestion de Cambio';
     }
 
+
+    public function empresas()
+    {
+         return $this->hasMany('App\Models\ModuloAdministrador\Empresa');
+    }
+
+    public function sucursales()
+    {
+         return $this->hasMany('App\Models\ModuloAdministrador\Sucursales');
+    }
     //Relacion muchos a muchos con grupo
     public function grupos()
     {
@@ -71,4 +87,5 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Models\ModuloCapacitaciones\Instructore');
     }
+
 }

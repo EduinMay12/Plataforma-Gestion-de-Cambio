@@ -7,6 +7,9 @@ use Livewire\WithPagination;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Estados;
+use App\Models\ModuloAdministrador\Empresa;
+use App\Models\ModuloAdministrador\Sucursales;
 use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
@@ -16,10 +19,20 @@ class IndexUser extends Component
 {
     use WithPagination;
 
-    public $search;
+    public $search = '';
     public $sort = 'id';
     public $direction = 'desc';
+    public $cant = '8';
     protected $paginationTheme = "bootstrap";
+
+    protected $queryString = [
+        'cant' => ['except' => '8'],
+        'sort' => ['except' => 'id'],
+        'direction' => ['except' => 'desc'],
+        'search' => ['except' => '']
+    ];
+
+    protected $listeners = ['delete'];
 
     public function updatingSearch()
     {
@@ -28,12 +41,16 @@ class IndexUser extends Component
 
     public function render()
     {
+        $empresa = Empresa::all();
+        $users = User::all();
+        $estados = Estados::all();
+        $sucursal = Sucursales::all();
         $users = User::where('name', 'like' , '%' . $this->search . '%')
                     ->orWhere('email', 'like' , '%' . $this->search . '%')
                     ->orderBy($this->sort, $this->direction)
-                    ->paginate();
+                    ->paginate($this->cant);
 
-        return view('livewire.modulo-administrador.user.index-user');
+        return view('livewire.modulo-administrador.user.index-user', compact('empresa', 'sucursal', 'estados', 'users'));
     }
 
     public function order($sort)
@@ -51,4 +68,8 @@ class IndexUser extends Component
         }
     }
 
+    public function delete(User $users)
+    {
+        $users->delete();
+    }
 }
