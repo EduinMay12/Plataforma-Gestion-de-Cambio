@@ -5,6 +5,7 @@ namespace App\Http\Livewire\ModuloAdministrador\GestionSucursales;
 use Livewire\Component;
 use App\Models\ModuloAdministrador\Sucursales;
 use App\Models\ModuloAdministrador\Empresa;
+use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use App\Models\Estados;
 use Livewire\WithPagination;
@@ -12,31 +13,138 @@ use Livewire\WithPagination;
 class IndexSucursal extends Component
 {
     use WithPagination;
-
-    public $search;
+    //TABLA
+    public $view = 'table';
+    //FILTROS
+    public $empresa_id = '';
+    public $empresa;
+    public $cant = '10';
+    public $search = '';
     public $sort = 'id';
     public $direction = 'desc';
-    protected $paginationTheme = "bootstrap";
 
-    protected $listeners = ['delete'];
+    //CRUD
+    public $sucursal;
+    public $user_id;
+    public $direccion;
+    public $empleados;
+    public $estado;
+    public $d_asenta;
+    public $d_ciudad;
+    public $d_codigo;
+    public $estatus;
+    public $tamaño;
+
+    public function mount()
+    {
+        $this->identificar = rand();
+    }
 
     public function updatingSearch()
     {
         $this->resetPage();
     }
 
+    protected $paginationTheme = "bootstrap";
+
+    protected $listeners = ['delete'];
+
+    protected $queryString = [
+        'cant' => ['except' => '10'],
+        'sort' => ['except' => 'id'],
+        'direction' => ['except' => 'desc'],
+        'search' => ['except' => '']
+    ];
+
     public function render()
     {
-        $empresa = Empresa::all();
+        $empresas = Empresa::all();
         $users = User::all();
         $estados = Estados::all();
-        $sucursales = Sucursales::where('sucursal', 'like' , '%' . $this->search . '%')
-                    ->orWhere('user_id', 'like' , '%' . $this->search . '%')
+        $sucursales = Sucursales::where('empresa_id', 'like' , '%' . $this->search . '%')
+                    ->where('sucursal', 'like' , '%' . $this->search . '%')
                     ->orderBy($this->sort, $this->direction)
-                    ->paginate();
+                    ->paginate($this->cant);
 
-        return view('livewire.modulo-administrador.gestion-sucursales.index-sucursal', compact('empresa', 'users', 'estados', 'sucursales'));
+        return view('livewire.modulo-administrador.gestion-sucursales.index-sucursal', compact('empresas', 'users', 'estados', 'sucursales'));
     }
+
+    public function table($empresa)
+    {
+        $this->empresa_id = $empresa;
+        $this->reset([
+            'sucursal',
+            'user_id',
+            'direccion',
+            'empleados',
+            'estado',
+            'd_asenta',
+            'd_ciudad',
+            'd_codigo',
+            'estatus',
+            'tamaño'
+        ]);
+        $this->identificar = rand();
+        $this->view = 'table';
+    }
+
+    public function create(Empresa $empresa){
+        $this->empresa = $empresa;
+        $this->empresa_id = $empresa->id;
+        $this->view = 'create';
+    }
+
+    public function store()
+    {
+        $this->validate([
+            'empresa_id' => 'required',
+            'user_id' => 'required',
+            'sucursal' => 'required',
+            'direccion' => 'required',
+            'empleados' => 'required',
+            'estado' => 'required',
+            'd_asenta' => 'required',
+            'd_ciudad' => 'required',
+            'd_codigo' => 'required',
+            'estatus' => 'required',
+            'tamaño' => 'required'
+        ]);
+
+        Sucursales::create([
+            'sucursal' => $this->sucursal,
+            'user_id' => $this->user_id,
+            'direccion' => $this->direccion,
+            'empleados' => $this->empleados,
+            'estado' => $this->estado,
+            'd_asenta' => $this->d_asenta,
+            'd_ciudad' => $this->d_ciudad,
+            'd_codigo' => $this->d_codigo,
+            'estatus' => $this->estatus,
+            'tamaño' => $this->tamaño,
+            'empresa_id' => $this->empresa_id
+
+        ]);
+
+        $this->reset([
+            'sucursal',
+            'user_id',
+            'direccion',
+            'empleados',
+            'estado',
+            'd_asenta',
+            'd_ciudad',
+            'd_codigo',
+            'estatus',
+            'empresa_id',
+            'tamaño'
+        ]);
+
+        $this->identificar = rand();
+
+        $this->emit('alert', '!Se agregó el curso con exito¡');
+
+    }
+
     public function order($sort)
     {
         if ($this->sort == $sort) {
