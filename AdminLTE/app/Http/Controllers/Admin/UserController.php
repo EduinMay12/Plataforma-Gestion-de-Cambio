@@ -23,14 +23,18 @@ class UserController extends Controller
          $this->middleware('permission:editar-usuarios', ['only' => ['edit','update']]);
          $this->middleware('permission:eliminar-usuarios', ['only' => ['destroy']]);
     }
-    public function index(Request $request)
+    public function index()
     {
-        $data = User::orderBy('id','DESC')->paginate(10);
-        return view('modulo-administrador.users.index',compact('data'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+        return view('modulo-administrador.users.index');
     }
-    public function create()
+    public function create(Empresa $empresa, Sucursales $sucursal)
     {
+        $this->empresa = $empresa;
+        $this->sucursal = $sucursal;
+        $this->empresa_id = $empresa->id;
+        $this->sucursal_id = $sucursal->id;
+        $this->view = 'create';
+
         $empresa = Empresa::all();
         $sucursales = Sucursales::all();
         $estados = Estados::all();

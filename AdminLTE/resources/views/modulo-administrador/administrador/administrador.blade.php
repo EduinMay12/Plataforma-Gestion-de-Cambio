@@ -9,7 +9,7 @@
         <div class="card">
             <div class="card-body">
                 <div>
-                    <h4 class="mb-1 mt-1"><i class="fa fa-users"></i><span data-plugin="text-success me-1"> {{ $empresa_count }}</span></h4>
+                    <h4 class="mb-1 mt-1"><i class="fas fa-fw fa-building"></i><span data-plugin="text-success me-1"> {{ $empresa_count }}</span></h4>
                     <p class="text-muted mb-0">Total de Empresas</p>
                 </div>
             </div>
@@ -19,7 +19,7 @@
         <div class="card">
             <div class="card-body">
                 <div>
-                    <h4 class="mb-1 mt-1"><i class="fa fa-users"></i><span data-plugin="text-success me-1"> {{ $sucursal_count }}</span></h4>
+                    <h4 class="mb-1 mt-1"><i class="fas fa-fw fa-sitemap"></i><span data-plugin="text-success me-1"> {{ $sucursal_count }}</span></h4>
                     <p class="text-muted mb-0">Total de Sucursales</p>
                 </div>
             </div>
@@ -29,7 +29,7 @@
         <div class="card">
             <div class="card-body">
                 <div>
-                    <h4 class="mb-1 mt-1"><i class="fa fa-users"></i><span data-plugin="text-success me-1"> {{ $users_count }}</span></h4>
+                    <h4 class="mb-1 mt-1"><i class="fas fa-fw fa-portrait"></i><span data-plugin="text-success me-1"> {{ $users_count }}</span></h4>
                     <p class="text-muted mb-0">Total de Usuarios</p>
                 </div>
             </div>

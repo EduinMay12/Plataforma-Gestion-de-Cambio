@@ -30,8 +30,8 @@ class CreateUsersTable extends Migration
             $table->string('puesto_actual_id')->default('');
             $table->string('puesto_futuro_id')->default('');
 
-            $table->string('empresa')->default('');
-            $table->string('sucursal')->default('');
+            $table->string('empresa_id')->default('');
+            $table->string('sucursal_id')->default('');
 
             $table->rememberToken();
             $table->timestamps();

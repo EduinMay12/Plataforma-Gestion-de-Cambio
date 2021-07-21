@@ -15,7 +15,7 @@
     <script>
         livewire.on('alert', function(message) {
             Swal.fire(
-                'Good job!',
+                'Hecho!',
                 message,
                 'success'
             )

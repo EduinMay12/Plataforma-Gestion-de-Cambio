@@ -78,13 +78,12 @@
                                             <div class="col-6">
                                                 <div class="mb-3 position-relative">
                                                     <label class="form-label" for="validationPostal">Empresa</label>
-                                                    <select name="empresa"class="form-control" id="validationPostal" required>
-                                                        <option value="">Seleccionar</option>
-                                                        @foreach ($empresa as $empresas)
-                                                            <option value="{{ $empresas->empresa }}">
-                                                                {{ $empresas->empresa }}
-                                                            </option>
-                                                        @endforeach
+
+
+
+                                                                {{ $empresa->empresa }}
+
+
                                                     </select>
                                                     <div class="invalid-tooltip">
                                                         Ingresa tu Colonia
@@ -97,12 +96,11 @@
                                             <div class="col-6">
                                                 <div class="mb-3 position-relative">
                                                     <label class="form-label" for="validationPostal">Sucursal</label>
-                                                    <select name="sucursal"class="form-control" id="validationPostal" required>
-                                                        <option value="">Seleccionar</option>
+
                                                         @foreach ($sucursales as $sucursales)
-                                                            <option value="{{ $sucursales->sucursal }}">
+
                                                                 {{ $sucursales->sucursal }}
-                                                            </option>
+
                                                         @endforeach
                                                     </select>
                                                     <div class="invalid-tooltip">

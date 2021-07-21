@@ -7,22 +7,24 @@
             @endforeach
         </select>
     </div>
-
+    <center>
+        @if ($empresa_id)
+        <div class="col-4">
+            <button wire:click="create({{ $empresa_id }})" class="btn btn-primary">Agregar Sucursal <i class="fas fa-plus"></i></button>
+        </div>
+        @endif
+    </center>
     <div class="row mt-2">
 
-        <div class="col-4">
+        <div class="col-8">
             <span>Mostrar</span>
             <select wire:model="cant" class="form-select" aria-label="Default select example">
                 <option value="10">10</option>
-                <option value="25">25</option>
+                <option value="20">20</option>
                 <option value="50">50</option>
                 <option value="100">100</option>
             </select>
             <span>Entradas</span>
-        </div>
-
-        <div class="col-4">
-            <button wire:click="create({{ $empresa_id }})" class="btn btn-primary">Agregar Sucursal <i class="fas fa-plus"></i></button>
         </div>
 
         <div class="col-4">
@@ -34,13 +36,13 @@
     <div class="row">
         <div class="col">
             <div class="table-responsive mb-4"><br>
-                <table class="table table-border datatable dt-responsive nowrap table-card-list" style="border-collapse: collapse; border-spacing: 0 12px; width: 100%;">
+                <table class="table table-bordered datatable dt-responsive nowrap table-card-list" style="border-collapse: collapse; border-spacing: 0 12px; width: 100%;">
                     @if ($sucursales->count())
                     <thead>
                         <tr class="table-primary">
                             <th>No.</th>
                             <th wire:click="order('sucursal')">
-                                Nombre de la Sucursal
+                                Nombre
                                 {{-- Sort --}}
                                 @if ($sort == 'sucursal')
                                     @if ($direction == 'asc')
@@ -116,14 +118,20 @@
                             <td class="text-success"> Activo</td>
                                 @endif
 
-                            <td>
-                                <a href="#" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
-                            </td>
-                            <td>
-                                <a href="#" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
+                            <td width="80">
+                                <button  class="btn btn-primary btn-sm">
+                                    <i class="fas fa-eye"></i>
+                                </button>
                             </td>
                             <td width="80">
-                                <button type="submit" class="btn btn-danger btn-sm" wire:click="$emit('deleteSucursal', {{ $sucursal }})"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                <button wire:click="edit" class="btn btn-primary btn-sm">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </td>
+                            <td width="80">
+                                <button class="btn btn-danger btn-sm" wire:click="$emit('deleteSucursal', {{ $sucursal }})">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </button>
                             </td>
                         </tr>
                         @endforeach

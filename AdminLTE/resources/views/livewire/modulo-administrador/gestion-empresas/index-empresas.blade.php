@@ -1,35 +1,36 @@
 <div class="container">
     <div class="card">
         <div class="card-body">
-            <div class="row mt-2">
+            <center>
                 <div class="col-4">
+                    <a href="{{ route('gestionempresa.create') }}" class="btn btn-primary btn-rounded">Agregar Empresa <i class="fas fa-plus"></i></a>
+                </div>
+            </center>
+            <div class="row mt-2">
+                <div class="col-8">
                     <span>Mostrar</span>
                     <select wire:model="cant" class="form" aria-label="Default select example">
-                        <option value="5">5</option>
                         <option value="10">10</option>
-                        <option value="25">25</option>
+                        <option value="20">20</option>
                         <option value="50">50</option>
                         <option value="100">100</option>
                     </select>
                     <span>Entradas</span>
                 </div>
                 <div class="col-4">
-                    <a href="{{ route('gestionempresa.create') }}" class="btn btn-primary btn-rounded">Agregar Empresa <i class="fas fa-plus"></i></a>
-                </div>
-                <div class="col-4">
                     <input class="form-control me-2" type="search" placeholder="Buscar" type="text" aria-label="Search" wire:model="search">
                 </div>
-            </div><br>
+            </div>
             <div class="row">
                 <div class="col">
                     <div class="table-responsive mb-4"><br>
-                        <table class="table table-centered datatable dt-responsive nowrap table-card-list" style="border-collapse: collapse; border-spacing: 0 12px; width: 100%;">
+                        <table class="table table-bordered datatable dt-responsive nowrap table-card-list" style="border-collapse: collapse; border-spacing: 0 12px; width: 100%;">
                             @if ($empresas->count())
                             <thead>
                                 <tr class="table-primary">
                                     <th>No.</th>
                                     <th wire:click="order('empresa')">
-                                        Nombre de la Empresa
+                                        Nombre
                                         {{-- Sort --}}
                                         @if ($sort == 'empresa')
                                             @if ($direction == 'asc')
@@ -90,7 +91,7 @@
                                     <td class="text-success">Activo</td>
                                         @endif
                                     <td width="50">
-                                        <a href="{{ route('gestionempresa.edit',$empresa->id) }}" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
+                                        <a href="{{ route('gestionempresa.show',$empresa->id) }}" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
                                     </td>
                                     <td width="50">
                                         <a href="{{ route('gestionempresa.edit',$empresa->id) }}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
