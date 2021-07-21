@@ -1,6 +1,5 @@
 
     <div class="row">
-
         <div class="col-md-8">
             <div class="mb-3 position-relative">
                 <label class="form-label" for="">Empresa :</label>
@@ -131,8 +130,8 @@
         <div class="col form-group">
             <label for="">Tamaño *</label><br>
             <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                <label class="btn btn-primary active">
-                    <input type="radio" wire:model="tamaño" value="2" checked>Chico
+                <label class="btn btn-primary">
+                    <input type="radio" wire:model="tamaño" value="2">Chico
                 </label>
                 <label class="btn btn-primary">
                     <input type="radio" wire:model="tamaño" value="1">Mediano
@@ -146,8 +145,8 @@
         <div class="col form-group">
             <label for="">Estatus *</label><br>
             <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                <label class="btn btn-primary active">
-                    <input type="radio" wire:model="estatus" value="1" checked> Activo
+                <label class="btn btn-primary">
+                    <input type="radio" wire:model="estatus" value="1"> Activo
                 </label>
                 <label class="btn btn-primary">
                     <input type="radio" wire:model="estatus" value="0">Inactivo

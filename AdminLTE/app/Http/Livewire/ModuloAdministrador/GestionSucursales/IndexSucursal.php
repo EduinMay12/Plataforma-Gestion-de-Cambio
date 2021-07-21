@@ -88,7 +88,8 @@ class IndexSucursal extends Component
         $this->view = 'table';
     }
 
-    public function create(Empresa $empresa){
+    public function create(Empresa $empresa)
+    {
         $this->empresa = $empresa;
         $this->empresa_id = $empresa->id;
         $this->view = 'create';
@@ -158,6 +159,67 @@ class IndexSucursal extends Component
             $this->sort = $sort;
             $this->direction = 'asc';
         }
+    }
+
+    public function show(Empresa $empresa)
+    {
+        $this->empresa = $empresa;
+        $this->view = 'show';
+    }
+
+    public function edit(Empresa $Empresa, Sucursales $sucursal)
+    {
+        $this->sucursal = $sucursal;
+        $this->empresa_id = $sucursal->empresa_id;
+        $this->user_id = $sucursal->user_id;
+        $this->direccion = $sucursal->direccion;
+        $this->empleados = $sucursal->empleados;
+        $this->estado = $sucursal->estado;
+        $this->estatus = $sucursal->estatus;
+        $this->tamaño = $sucursal->tamaño;
+        $this->d_asenta = $sucursal->d_asenta;
+        $this->d_codigo = $sucursal->d_codigo;
+        $this->d_asenta = $sucursal->d_asenta;
+        $this->view = 'edit';
+    }
+
+    public function update()
+    {
+        $this->validate([
+            'empresa_id' => 'required',
+            'user_id' => 'required',
+            'sucursal' => 'required',
+            'direccion' => 'required',
+            'empleados' => 'required',
+            'estado' => 'required',
+            'd_asenta' => 'required',
+            'd_ciudad' => 'required',
+            'd_codigo' => 'required',
+            'estatus' => 'required',
+            'tamaño' => 'required'
+        ]);
+
+        $sucursal = Sucursales::find($this->curso_id);
+
+        $sucursal->update([
+            'nombre' => $this->nombre,
+            'sucursal' => $this->sucursal,
+            'user_id' => $this->user_id,
+            'direccion' => $this->direccion,
+            'empleados' => $this->empleados,
+            'estado' => $this->estado,
+            'd_asenta' => $this->d_asenta,
+            'd_ciudad' => $this->d_ciudad,
+            'd_codigo' => $this->d_codigo,
+            'estatus' => $this->estatus,
+            'tamaño' => $this->tamaño,
+            'empresa_id' => $this->empresa_id
+        ]);
+
+        $this->identificador = rand();
+
+        $this->emit('alert', '!Se actualizó el curso con exito¡');
+
     }
 
     public function delete(Sucursales $sucursal)

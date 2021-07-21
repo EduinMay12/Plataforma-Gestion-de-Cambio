@@ -117,7 +117,7 @@
                             <div class="form-group">
                                 <label for="">Estatus</label><br>
                                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                    <label class="btn btn-primary active">
+                                    <label class="btn btn-primary">
                                         <input type="radio" name="estatus" value="1" @if ($empresa->estatus == 1) checked @endif>
                                         Activo
                                     </label>

@@ -338,6 +338,35 @@ return [
             ]
         ],
 
+        //Rutas del módulo comunicaciones
+
+        ['header' => 'MÓDULO DE COMUNICACIONES'],
+        [
+            'text' => 'Comunicaciones',
+            'icon' => 'fas fa-fw fa-icons',
+            'submenu' => [
+                [
+                    'text' => 'Gestionar Comunicación',
+                    'icon' => 'fas fa-fw fa-indent',
+                    'url' => '#'
+                ],
+                [
+                    'text' => 'Gestionar Elementos',
+                    'icon' => 'fas fa-fw fa-folder-open',
+                    'url' => '#'
+                ],
+                [
+                    'text' => 'Gestionar Campaña',
+                    'icon' => 'fas fa-fw fa-grip-horizontal',
+                    'url' => '#'
+                ],
+                [
+                    'text' => 'Vista Usuario Campaña',
+                    'icon' => 'fas fa-fw fa-digital-tachograph',
+                    'url' => '#'
+                ]
+            ]
+        ],
     ],
 
     /*

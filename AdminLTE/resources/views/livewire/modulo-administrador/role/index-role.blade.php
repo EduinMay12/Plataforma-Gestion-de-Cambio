@@ -1,32 +1,31 @@
 <div class="container">
     <div class="card">
         <div class="card-body">
+            @can('crear-etiqueta')
+                <center>
+                    <a href="{{ route('roles.create') }}" class="btn btn-primary btn-rounded" title="Agregar nuevo Puesto">Nueva Etiqueta <i class="fa fa-plus"></i> </a>
+                </center>
+            @endcan
             <div class="row mt-2">
-                <div class="col-4">
+                <div class="col-8">
                     <span>Mostrar</span>
                     <select wire:model="cant" class="form" aria-label="Default select example">
-                        <option value="5">5</option>
                         <option value="10">10</option>
-                        <option value="25">25</option>
+                        <option value="20">20</option>
                         <option value="50">50</option>
                         <option value="100">100</option>
                     </select>
                     <span>Entradas</span>
                 </div>
                 <div class="col-4">
-                    @can('crear-etiqueta')
-                        <a href="{{ route('roles.create') }}" class="btn btn-primary btn-rounded" title="Agregar nuevo Puesto">Nueva Etiqueta <i class="fa fa-plus"></i> </a>
-                    @endcan
-                </div>
-                <div class="col-4">
                     <input class="form-control me-2" type="search" placeholder="Buscar" type="text" aria-label="Search"
                         wire:model="search">
                 </div>
-            </div><br>
+            </div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="table-responsive mb-4"><br>
-                        <table class="table table-centered datatable dt-responsive nowrap table-card-list" style="border-collapse: collapse; border-spacing: 0 12px; width: 100%;">
+                        <table class="table table-bordered datatable dt-responsive nowrap table-card-list" style="border-collapse: collapse; border-spacing: 0 12px; width: 100%;">
                             @if ($roles->count())
                             <thead>
                                 <tr class="table-primary">

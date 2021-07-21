@@ -17,11 +17,11 @@ class IndexRole extends Component
     public $search = '';
     public $sort = 'id';
     public $direction = 'desc';
-    public $cant = '5';
+    public $cant = '10';
     protected $paginationTheme = "bootstrap";
 
     protected $queryString = [
-        'cant' => ['except' => '5'],
+        'cant' => ['except' => '10'],
         'sort' => ['except' => 'id'],
         'direction' => ['except' => 'desc'],
         'search' => ['except' => '']
