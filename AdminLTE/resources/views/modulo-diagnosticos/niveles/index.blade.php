@@ -1,41 +1,30 @@
-<div>
+@extends('adminlte::page')
+
+@section('title', 'Niveles')
+
+@section('content_header')
+
     <div class="container">
         <div class="card">
-            <div class="card-body">
-
-                @include("livewire.modulo-capacitaciones.preguntas.$view")
-
+            <div class="card-header d-flex justify-content-center">
+                <div class="card-title">Gestionar Nivel</div>
             </div>
         </div>
     </div>
 
+@stop
+
+@section('content')
+
+    @livewire('modulo-diagnosticos.niveles.index')
+
     <!-- Scripts ---->
+
     @livewireScripts
 
-    <script>
-        livewire.on('alert', function(message) {
-            Swal.fire(
-                'Good job!',
-                message,
-                'success'
-            )
-        });
-    </script>
-    <script>
-        livewire.on('error', function(message) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: message,
-                footer: ''
-            })
-        });
-    </script>
-
     <script src="sweetalert2.all.min.js"></script>
-
     <script>
-        livewire.on('deletePregunta', preguntaId => {
+        livewire.on('deleteNivel', nivelId => {
             Swal.fire({
                 title: '¿Estas segur@?',
                 text: "Esta accion no se podra revertir",
@@ -47,17 +36,21 @@
             }).then((result) => {
                 if (result.isConfirmed) {
 
-                    livewire.emitTo('modulo-capacitaciones.preguntas.index', 'destroy', preguntaId);
+                    livewire.emitTo('modulo-diagnosticos.niveles.index', 'delete',
+                        nivelId);
 
-                    // Swal.fire(
-                    //     'Eliminado!',
-                    //     'Pregunta eliminada con exito',
-                    //     'success'
-                    // )
+                    Swal.fire(
+                        'Eliminado!',
+                        'Nivel eliminado con exito',
+                        'success'
+                    )
                 }
             })
         })
     </script>
 
-</div>
+@stop
 
+@section('css')
+    <link rel="stylesheet" href="/css/admin_custom.css">
+@stop

@@ -37,7 +37,7 @@
                         @enderror
 
                         <div class="mt-4">
-                            <button class="btn btn-success" wire:click="save">Actualizar</button>
+                            <button class="btn btn-success" wire:click="save">Guardar</button>
                             <a href="{{ route('roldiagnosticos.index') }}" class="btn btn-danger">Volver</a>
                         </div>
 

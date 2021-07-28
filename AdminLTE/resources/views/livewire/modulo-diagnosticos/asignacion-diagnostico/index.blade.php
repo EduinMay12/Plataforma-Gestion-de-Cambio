@@ -194,9 +194,6 @@
                         </li>
                     </ul>
                 </nav>
-                <div class="mt-3">
-                    <p> Mostrando {{ $asignaciondiagnosticos->firstItem() }} a {{ $asignaciondiagnosticos->lastItem() }} de {{ $asignaciondiagnosticos->total() }} Entradas</p>
-                </div>
             </div>
         </div>
 

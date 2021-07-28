@@ -223,7 +223,7 @@
 
 
                     <div class="mt-4">
-                        <button class="btn btn-success" wire:click="save" wire:loading.attr="disabled" wire:target="save">Actualizar</button>
+                        <button class="btn btn-success" wire:click="save" wire:loading.attr="disabled" wire:target="save">Guardar</button>
                         <a href="{{ route('competencias.index') }}" class="btn btn-danger">Volver</a>
                     </div>
 

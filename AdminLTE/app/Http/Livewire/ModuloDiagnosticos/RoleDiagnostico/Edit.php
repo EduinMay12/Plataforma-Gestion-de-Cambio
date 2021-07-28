@@ -26,7 +26,7 @@ class Edit extends Component
 
         $this->roldiagnostico->save();
 
-       $this->emit('alert', 'El rol evaluación se actualizó con exito'); 
+       $this->emit('alert', 'El rol diagnostico se actualizó con exito'); 
     }
     public function render()
     {

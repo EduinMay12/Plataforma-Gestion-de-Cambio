@@ -117,11 +117,7 @@
                                     <td>{{ $puesto->nombre }}</td>
                                     <td>{{ $puesto->descripcion }}</td>
                                     <td>{{ $puesto->reporta_a }}</td>
-                                    @if ($puesto->estatus == 2)
-                                    <td>Inactivo</td>
-                                    @elseif($puesto->estatus == 1)
-                                    <td>Activo</td>
-                                    @endif
+                                    <td>{{ $puesto->estatus }}</td>
 
                                     <td>
                                         <a href="{{ route('puestos.show', $puesto) }}"
@@ -158,10 +154,6 @@
                         </li>
                     </ul>
                 </nav>
-
-                <div class="mt-3">
-                    <p> Mostrando {{ $puestos->firstItem() }} a {{ $puestos->lastItem() }} de {{ $puestos->total() }} Entradas</p>
-                </div>
             </div>
         </div>
 

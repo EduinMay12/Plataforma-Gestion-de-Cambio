@@ -15,7 +15,7 @@
                     </div>
                     <div class="col-4">
                         <a href="{{ route('roldiagnosticos.create') }}" class="btn btn-primary">
-                            Agregar Rol Evaluación
+                            Agregar Rol Diagnóstico
                             <i class="fas fa-plus"></i>
                         </a>
                     </div>
@@ -101,11 +101,7 @@
                                     <td>{{ $roldiagnostico->id }}</td>
                                     <td>{{ $roldiagnostico->nombre }}</td>
                                     <td>{{ $roldiagnostico->descripcion }}</td>
-                                    @if ($roldiagnostico->estatus == 2)
-                                    <td>Inactivo</td>
-                                    @elseif($roldiagnostico->estatus == 1)
-                                    <td>Activo</td>
-                                    @endif
+                                    <td>{{ $roldiagnostico->estatus }}</td>
 
                                     <td>
                                         <a href="{{ route('roldiagnosticos.show', $roldiagnostico) }}"
@@ -142,9 +138,6 @@
                         </li>
                     </ul>
                 </nav>
-                <div class="mt-3">
-                    <p> Mostrando {{ $roldiagnosticos->firstItem() }} a {{ $roldiagnosticos->lastItem() }} de {{ $roldiagnosticos->total() }} Entradas</p>
-                </div>
             </div>
         </div>
 

@@ -1,13 +1,13 @@
 @extends('adminlte::page')
 
-@section('title', 'Ver Rol Evaluación')
+@section('title', 'Ver diagnóstico')
 
 @section('content_header')
 
     <div class="container">
         <div class="card">
             <div class="card-header d-flex justify-content-center">
-                <div class="card-title">Ver Rol Evaluación</div>
+                <div class="card-title">Ver Diagnóstico</div>
             </div>
         </div>
     </div>

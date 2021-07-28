@@ -28,7 +28,7 @@ class Create extends Component
 
         $this->reset(['nombre', 'descripcion', 'estatus']);
 
-        $this->emit('alert', '¡Se agregó el rol evaluación con exito!');
+        $this->emit('alert', '¡Se agregó el rol diagnostico con exito!');
     }
     public function render()
     {

@@ -1,13 +1,13 @@
 @extends('adminlte::page')
 
-@section('title', 'Rol Evaluación')
+@section('title', 'Rol Diagnósticos')
 
 @section('content_header')
 
     <div class="container">
         <div class="card">
             <div class="card-header d-flex justify-content-center">
-                <div class="card-title">Gestionar Rol Evaluación</div>
+                <div class="card-title">Gestionar Rol Diagnóstico</div>
             </div>
         </div>
     </div>
@@ -41,7 +41,7 @@
 
                     Swal.fire(
                         'Eliminado!',
-                        'Rol evaluación eliminado con exito',
+                        'Rol diagnóstico eliminado con exito',
                         'success'
                     )
                 }
