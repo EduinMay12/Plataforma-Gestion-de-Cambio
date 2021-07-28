@@ -76,4 +76,8 @@ class User extends Authenticatable
          return $this->hasMany('App\Models\ModuloAdministrador\Sucursales');
     }
 
+    public function asignaciondiagnosticos(){
+        return $this->hasMany('App\Models\ModuloDiagnosticos\AsignacionDiagnostico');
+    }
+
 }
