@@ -11,7 +11,7 @@
 
     <!-- Scripts ---->
     @livewireScripts
-
+    <script src="sweetalert2.all.min.js"></script>
     <script>
         livewire.on('alert', function(message) {
             Swal.fire(
@@ -20,12 +20,7 @@
                 'success'
             )
         });
-    </script>
-
-    <script src="sweetalert2.all.min.js"></script>
-
-    <script>
-        livewire.on('deleteSucursal', UserID => {
+        livewire.on('deleteUsers', usersId => {
             Swal.fire({
                 title: '¿Estas segur@?',
                 text: "Esta accion no se podra revertir",
@@ -36,10 +31,12 @@
                 confirmButtonText: 'Eliminar'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    livewire.emitTo('modulo-administrador.gestion-sucursales.index', 'destroy', UserID);
+
+                    livewire.emitTo('modulo-administrador.user.index-user', 'delete', usersId);
+
                     Swal.fire(
                         'Eliminado!',
-                        'Curso eliminado con exito',
+                        'Usuario eliminado con exito',
                         'success'
                     )
                 }

@@ -17,12 +17,19 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('avatar')->default('default.png');
             $table->string('name');
-            $table->string('apellido')->default('');
-            $table->string('direccion')->default('');
-            $table->string('estatus')->default('');
+            $table->string('apellido_paterno')->default('Agregar Apellido Paterno');
+            $table->string('apellido_materno')->default('Agregar Apellido Materno');
+            $table->string('fecha_nacimiento')->default('Agregar Fecha de Nacimiento');
+            $table->string('puesto_actual_id')->default('Puesto Actual');
+            $table->string('puesto_futuro_id')->default('Puesto Futuro');
+            $table->string('tipo_persona_id')->default('Tipo');
+            $table->string('estado_id')->default('Estado');
+            $table->string('sucursal_id')->default('Sucursal');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+<<<<<<< Updated upstream
+=======
 
             $table->string('d_asenta')->default('');
             $table->string('d_ciudad')->default('');
@@ -31,8 +38,8 @@ class CreateUsersTable extends Migration
             $table->string('puesto_futuro_id')->default('');
 
             $table->string('empresa_id')->default('');
-            $table->string('sucursal_id')->default('');
 
+>>>>>>> Stashed changes
             $table->rememberToken();
             $table->timestamps();
         });

@@ -25,6 +25,6 @@ class Empresa extends Model
 
      public function empresas()
     {
-        return $this->belongsTo('App\Models\ModuloAdministrador\Empresa');
+        return $this->hasMany('App\Models\ModuloAdministrador\Empresa');
     }
 }

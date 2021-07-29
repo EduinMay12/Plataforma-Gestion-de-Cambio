@@ -1,16 +1,22 @@
-    <div class="col-4 mb-4">
-        <label for="">Seleccionar Empresa *</label>
-        <select wire:model="empresa_id" class="form-select form-control" required>
-            <option value="">Seleccione</option>
-            @foreach ($empresas as $empresa)
-                <option value="{{ $empresa->id }}">{{ $empresa->empresa }}</option>
-            @endforeach
-        </select>
+    @can('crear-gestion-sucursal')
+    <div class="col-md-6">
+        <div class="mb-3 position-relative">
+            <label class="form-label" for="">Seleccionar Empresa *</label>
+            <select class="form-control" type="text" wire:model="empresa_id" required>
+                <option value="">Seleccionar</option>
+                @foreach ($empresas as $empresa)
+                    <option value="{{ $empresa->id }}">
+                        {{ $empresa->empresa }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
     </div>
+    @endcan
     <center>
         @if ($empresa_id)
         <div class="col-4">
-            <button wire:click="create({{ $empresa_id }})" class="btn btn-primary">Agregar Sucursal <i class="fas fa-plus"></i></button>
+            <button wire:click="create({{ $empresa_id }})" class="btn btn-primary">Crear Sucursal <i class="fas fa-plus"></i></button>
         </div>
         @endif
     </center>
@@ -18,7 +24,7 @@
 
         <div class="col-8">
             <span>Mostrar</span>
-            <select wire:model="cant" class="form-select" aria-label="Default select example">
+            <select wire:model="cant" class="" aria-label="Default select example">
                 <option value="10">10</option>
                 <option value="20">20</option>
                 <option value="50">50</option>
@@ -36,12 +42,12 @@
     <div class="row">
         <div class="col">
             <div class="table-responsive mb-4"><br>
-                <table class="table table-bordered datatable dt-responsive nowrap table-card-list" style="border-collapse: collapse; border-spacing: 0 12px; width: 100%;">
+                <table class="table table-striped table-bordered datatable dt-responsive nowrap table-card-list" style="border-collapse: collapse; border-spacing: 0 12px; width: 100%;">
                     @if ($sucursales->count())
                     <thead>
                         <tr class="table-primary">
-                            <th>No.</th>
-                            <th wire:click="order('sucursal')">
+                            <th scope="col">No.</th>
+                            <th scope="col" wire:click="order('sucursal')">
                                 Nombre
                                 {{-- Sort --}}
                                 @if ($sort == 'sucursal')
@@ -56,7 +62,7 @@
                                 @endif
 
                             </th>
-                            <th wire:click="order('user_id')">
+                            <th scope="col" wire:click="order('user_id')">
                                 Resposable
                                 {{-- Sort --}}
                                 @if ($sort == 'user_id')
@@ -70,7 +76,7 @@
                                     <i class="fas fa-sort float-right mt-1"></i>
                                 @endif
                             </th>
-                            <th wire:click="order('empleados')">
+                            <th scope="col" wire:click="order('empleados')">
                                 No. Empleados
                                 {{-- Sort --}}
                                 @if ($sort == 'empleados')
@@ -84,55 +90,66 @@
                                     <i class="fas fa-sort float-right mt-1"></i>
                                 @endif
                             </th>
-                            <th>Tamaño</th>
-                            <th>Ciudad</th>
-                            <th>Estado</th>
-                            <th>Estatus</th>
-                            <th>Ver</th>
-                            <th>Editar</th>
-                            <th>Eliminar</th>
+                            <th scope="col">Tamaño</th>
+                            <th scope="col">Ciudad</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Estatus</th>
+                            @can('ver-gestion-sucursal')
+                            @endcan
+                            <th scope="col">Ver</th>
+                            @can('editar-gestion-sucursal')
+                            <th scope="col">Editar</th>
+                            @endcan
+                            @can('eliminar-gestion-sucursal')
+                            <th scope="col">Eliminar</th>
+                            @endcan
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($sucursales as $sucursal)
                         <tr>
-                            <td>{{ $sucursal->id }}</td>
+                            <td scope="row" >{{ $sucursal->id }}</td>
                             <td>{{ $sucursal->sucursal }}</td>
                             <td>{{ $sucursal->user->name  }}</td>
                             <td>{{ $sucursal->empleados }}</td>
 
                                 @if ($sucursal->tamaño == 0)
-                            <td class="text-dark"> Grande</td>
+                            <td><center><span class="badge badge-pill badge-secondary"> Grande </span></center></td>
                                 @elseif($sucursal->tamaño == 1)
-                            <td class="text-dark"> Mediano</td>
+                            <td><center><span class="badge badge-pill badge-warning"> Mediano </span></center></td>
                                 @elseif($sucursal->tamaño == 2)
-                            <td class="text-dark"> Chico</td>
+                            <td><center><span class="badge badge-pill badge-light"> Chico </span></center></td>
                                 @endif
 
                             <td>{{ $sucursal->d_ciudad }}</td>
                             <td>{{ $sucursal->estado }}</td>
 
                                 @if ($sucursal->estatus == 0)
-                            <td class="text-danger"> Inactivo</td>
+                            <td><center><span class="badge badge-pill badge-danger"> Inactivo </span></center></td>
                                 @elseif($sucursal->estatus == 1)
-                            <td class="text-success"> Activo</td>
+                            <td><center><span class="badge badge-pill badge-success">Activo</span></center></td>
                                 @endif
-
+                            @can('ver-gestion-sucursal')
                             <td width="80">
-                                <button  class="btn btn-primary btn-sm">
+                                <button wire:click="show({{ $sucursal->id }})" class="btn btn-primary btn-sm">
                                     <i class="fas fa-eye"></i>
                                 </button>
                             </td>
+                            @endcan
+                            @can('editar-gestion-sucursal')
                             <td width="80">
-                                <button wire:click="edit" class="btn btn-primary btn-sm">
+                                <button wire:click="edit({{ $empresa }},{{ $sucursal->id }})" class="btn btn-primary btn-sm">
                                     <i class="fas fa-edit"></i>
                                 </button>
                             </td>
+                            @endcan
+                            @can('eliminar-gestion-sucursal')
                             <td width="80">
                                 <button class="btn btn-danger btn-sm" wire:click="$emit('deleteSucursal', {{ $sucursal }})">
                                     <i class="fa fa-trash" aria-hidden="true"></i>
                                 </button>
                             </td>
+                            @endcan
                         </tr>
                         @endforeach
                     </tbody>
@@ -150,6 +167,9 @@
                     </li>
                 </ul>
             </nav>
+            <div class="mt-3">
+                <p>Mostrar {{$sucursales->firstItem()}} a {{$sucursales->lastItem()}} de {{$sucursales->total()}}</p>
+            </div>
         </div>
     </div>
 

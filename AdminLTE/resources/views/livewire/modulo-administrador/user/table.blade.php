@@ -1,7 +1,7 @@
 
     <div class="col">
         <div class="row">
-
+            @can('crear-usuarios')
             <div class="col-md-6">
                 <div class="mb-3 position-relative">
                     <label class="form-label" for="">Seleccionar Empresa *</label>
@@ -15,8 +15,8 @@
                     </select>
                 </div>
             </div>
-
-            @if ($empresa_id )
+            @endcan
+            @if($empresa_id )
 
             <div class="col-md-6">
                 <div class="mb-3 position-relative">
@@ -38,7 +38,7 @@
         @if ($sucursal_id )
         <center>
             <div class="col-4">
-                <Button wire:click="create({{  $empresa_id, $sucursal_id  }})" class="btn btn-primary btn-rounded">Agregar Personal <i class="fas fa-plus"></i></Button>
+                <Button wire:click="create({{$empresa_id}},{{$sucursal_id}})" class="btn btn-primary btn-rounded">Crear Personal <i class="fas fa-plus"></i></Button>
             </div>
         </center>
         @endif
@@ -46,7 +46,7 @@
         <div class="row mt-2">
             <div class="col-8">
                 <span >Mostrar</span>
-                <select wire:model="cant" class="form" aria-label="Default select example">
+                <select wire:model="cant" class="" aria-label="Default select example">
                     <option value="10">10</option>
                     <option value="20">20</option>
                     <option value="50">50</option>
@@ -61,13 +61,13 @@
     <div class="row">
         <div class="col-md-12">
             <div class="table-responsive mb-4"><br>
-                <table class="table table-bordered datatable dt-responsive nowrap table-card-list" style="border-collapse: collapse; border-spacing: 0 12px; width: 100%;">
+                <table class="table table-striped table-bordered datatable dt-responsive nowrap table-card-list" style="border-collapse: collapse; border-spacing: 0 12px; width: 100%;">
                     @if ($users->count())
                     <thead>
                         <tr class="table-primary">
-                            <th>No.</th>
-                            <th>Foto</th>
-                            <th wire:click="order('name')">
+                            <th scope="col">No.</th>
+                            <th scope="col">Foto</th>
+                            <th scope="col" wire:click="order('name')">
                                 Nombre
                                 {{-- Sort --}}
                                 @if ($sort == 'name')
@@ -81,7 +81,7 @@
                                     <i class="fas fa-sort float-right mt-1"></i>
                                 @endif
                             </th>
-                            <th wire:click="order('apellido')">
+                            <th scope="col" wire:click="order('apellido')">
                                 Apellido
                                 {{-- Sort --}}
                                 @if ($sort == 'apellido')
@@ -95,7 +95,7 @@
                                     <i class="fas fa-sort float-right mt-1"></i>
                                 @endif
                             </th>
-                            <th wire:click="order('empresa')">
+                            <th scope="col" wire:click="order('empresa')">
                                 Empresa/Sucursal
                                 {{-- Sort --}}
                                 @if ($sort == 'empresa')
@@ -109,37 +109,11 @@
                                     <i class="fas fa-sort float-right mt-1"></i>
                                 @endif
                             </th>
-                            <th>Tipo</th>
-                            <th>Puesto</th>
-                            <th wire:click="order('empresa')">
-                                Guia 1
-                                {{-- Sort --}}
-                                @if ($sort == 'empresa')
-                                    @if ($direction == 'asc')
-                                        <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
-                                    @else
-                                        <i class="fas fa-sort-alpha-down-alt float-right mt-1"></i>
-                                    @endif
-
-                                @else
-                                    <i class="fas fa-sort float-right mt-1"></i>
-                                @endif
-                            </th>
-                            <th wire:click="order('empresa')">
-                                Guia 2
-                                {{-- Sort --}}
-                                @if ($sort == 'empresa')
-                                    @if ($direction == 'asc')
-                                        <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
-                                    @else
-                                        <i class="fas fa-sort-alpha-down-alt float-right mt-1"></i>
-                                    @endif
-
-                                @else
-                                    <i class="fas fa-sort float-right mt-1"></i>
-                                @endif
-                            </th>
-                            <th wire:click="order('estatus')">
+                            <th scope="col">Tipo</th>
+                            <th scope="col">Puesto</th>
+                            <th scope="col">Guia 1</th>
+                            <th scope="col">Guia 2</th>
+                            <th scope="col" wire:click="order('estatus')">
                                 Estado
                                 {{-- Sort --}}
                                 @if ($sort == 'estatus')
@@ -154,13 +128,13 @@
                                 @endif
                             </th>
                             @can('ver-usuarios')
-                            <th>Ver</th>
+                            <th scope="col">Ver</th>
                             @endcan
                             @can('editar-usuarios')
-                            <th>Editar</th>
+                            <th scope="col">Editar</th>
                             @endcan
                             @can('eliminar-usuarios')
-                            <th>Eliminar</th>
+                            <th scope="col">Eliminar</th>
                             @endcan
                         </tr>
                     </thead>
@@ -168,7 +142,7 @@
 
                         @foreach ($users as $user)
                         <tr>
-                            <td>{{ $user->id }}</td>
+                            <td scope="row">{{ $user->id }}</td>
                             <td><img src="../uploads/avatars/{{ $user->avatar }}" width="30" height="30" class="rounded-circle"></td>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->apellido }}</td>
@@ -176,7 +150,7 @@
                             <td>
                                 @if(!empty($user->getRoleNames()))
                                     @foreach($user->getRoleNames() as $v)
-                                        <span class="badge badge-primary">{{ $v }}</span>
+                                        <center><span class="badge badge-pill badge-primary">{{ $v }}</span></center>
                                     @endforeach
                                 @endif
                             </td>
@@ -184,11 +158,11 @@
                             <td></td>
                             <td>
                                 @if ($user->estatus == 0)
-                                <td class="text-danger"> Necesita Ayuda</td>
+                                <td><center><span class="badge badge-pill badge-danger"> Necesita Ayuda </span></center></td>
                                     @elseif($user->estatus == 1)
-                                <td class="text-warning"> Pendiente</td>
+                                <td><center><span class="badge badge-pill badge-warning"> Pendiente </span></center></td>
                                     @elseif($user->estatus == 2)
-                                <td class="text-success"> Evaluado</td>
+                                <td><center><span class="badge badge-pill badge-info"> Evaluado </span></center></td>
                                     @endif
                             </>
                             @can('ver-usuarios')
@@ -221,6 +195,9 @@
                     </li>
                 </ul>
             </nav>
+            <div class="mt-3">
+                <p>Mostrar {{$users->firstItem()}} a {{$users->lastItem()}} de {{$users->total()}}</p>
+            </div>
         </div>
     </div>
 

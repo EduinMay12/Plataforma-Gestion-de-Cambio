@@ -233,20 +233,6 @@ return [
             'topnav_right' => true,
         ],
 
-        // Sidebar items:
-
-        ['header' => 'PUBLICO'],
-        [
-            'text' => 'Inicio',
-            'url'  => '/home',
-            'icon' => 'fas fa-fw fa-home',
-        ],
-        [
-            'text' => 'Perfil',
-            'url'  => './perfil/edit',
-            'icon' => 'fas fa-fw fa-user-circle',
-        ],
-
         //Rustas del Modulo de administrador
 
         ['header' => 'MÓDULO DE ADMINISTRADOR'],
@@ -258,22 +244,22 @@ return [
                 [
                     'text'       => 'Gestionar Empleados',
                     'icon' => 'fas fa-fw fa-portrait',
-                    'url'        => 'modulo-administrador/users',
+                    'route'        => 'users.index',
                 ],
                 [
                     'text'       => 'Gestionar Sucursales',
                     'icon' => 'fas fa-fw fa-sitemap',
-                    'url'        => 'modulo-administrador/gestionsucursal',
+                    'route'        => 'gestionsucursal.index',
                 ],
                 [
                     'text'       => 'Gestion de Empresas',
                     'icon' => 'fas fa-fw fa-building',
-                    'url'        => 'modulo-administrador/gestionempresa',
+                    'route'        => 'gestionempresa.index',
                 ],
                 [
-                    'text' => 'Etiquetas',
-                    'url'  => 'modulo-administrador/roles',
-                    'icon' => 'fas fa-fw fa-bookmark',
+                    'text' => 'Roles',
+                    'route'  => 'roles.index',
+                    'icon' => 'fas fa-fw fa-project-diagram',
                 ],
             ]
         ],
@@ -348,22 +334,22 @@ return [
                 [
                     'text' => 'Gestionar Comunicación',
                     'icon' => 'fas fa-fw fa-indent',
-                    'url' => '#'
+                    'route' => 'comunicacion.index'
                 ],
                 [
                     'text' => 'Gestionar Elementos',
                     'icon' => 'fas fa-fw fa-folder-open',
-                    'url' => '#'
+                    'route' => 'elemento.index'
                 ],
                 [
                     'text' => 'Gestionar Campaña',
                     'icon' => 'fas fa-fw fa-grip-horizontal',
-                    'url' => '#'
+                    'route' => 'campaña.index'
                 ],
                 [
                     'text' => 'Vista Usuario Campaña',
                     'icon' => 'fas fa-fw fa-digital-tachograph',
-                    'url' => '#'
+                    'route' => 'home'
                 ]
             ]
         ],

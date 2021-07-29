@@ -1,58 +1,68 @@
 <div>
+    @if (session('message'))
+        <div class="alert alert-success">
+            {{ session('message') }}
+        </div>
+    @endif
     <div class="container">
         <div class="card">
-            <div class="card-body">
+            <div class="card-body row">
                 <div class="col-6">
-                    <form action="{{ route('categorias.store') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        <div class="form-group">
-                            <label for="">Nombre:*</label>
-                            <input type="text" name="nombre" class="form-control">
 
-                            @error('nombre')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="">Descripcion:*</label>
-                            <input type="text" name="descripcion" class="form-control">
+                    <div class="form-group">
+                        <label for="">Nombre:*</label>
+                        <input type="text" class="form-control" wire:model="nombre">
 
-                            @error('descripcion')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
+                        @error('nombre')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
 
-                        <div class="form-group">
-                            <label for="">Agregar imagen:*</label>
-                            <input type="file" class="form-control" accept="image/*" name="imagen">
+                    <div class="form-group">
+                        <label for="">Descripcion:*</label>
+                        <input type="text" class="form-control" wire:model="descripcion">
 
-                            @error('imagen')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="">Estatus:*</label><br>
-                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                <label class="btn btn-primary active">
-                                    <input type="radio" name="status" value="1" checked> Activo
-                                </label>
-                                <label class="btn btn-primary">
-                                    <input type="radio" name="status" value="0"> Inactivo
-                                </label>
-                            </div>
+                        @error('descripcion')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
 
-                            @error('status')
-                                <small class="text-danger">{{ $message }}</small>
-                            @enderror
-                        </div>
-                        <div class="mt-4">
-                            <button class="btn btn-success">Guardar</button>
-                            <a href="{{ route('categorias.index') }}" class="btn btn-danger">Volver</a>
-                        </div>
-                    </form>
+                    <div class="form-group">
+                        <label for="">Agregar imagen:*</label>
+                        <input type="file" class="form-control" accept="image/*" wire:model="imagen"
+                            id="{{ $identificador }}">
+
+                        @error('imagen')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="">Estatus:*</label>
+                        <select class="form-control" wire:model="status">
+                            <option value="">Seleccione...</option>
+                            <option value="1">Activo</option>
+                            <option value="0">Inactivo</option>
+                        </select>
+
+                        @error('status')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <div class="mt-4">
+                        <button class="btn btn-success" wire:click="save" wire:loading.attr="disabled" wire:target="imagen, save">Guardar</button>
+                        <a href="{{ route('categorias.index') }}" class="btn btn-danger">Volver</a>
+                    </div>
+
+                </div>
+                <div class="col-6">
+                    <div wire:loading wire:target="imagen" class="alert alert-info" role="alert">
+                        ¡Espera es esta cargando la imagen!
+                    </div>
+                    @if ($imagen)
+                        <img class="col-auto" src="{{ $imagen->temporaryUrl() }}">
+                    @endif
                 </div>
             </div>
         </div>
     </div>
-
 </div>

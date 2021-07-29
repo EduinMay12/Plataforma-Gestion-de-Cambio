@@ -32,8 +32,9 @@ class IndexUser extends Component
     public $name;
     public $sucursal_id;
     public $empresa_id;
-    public $email;
-    public $password;
+    public $user;
+    public $email = '';
+    public $password = '';
     public $roles;
     public $apellido;
     public $direccion;
@@ -44,11 +45,6 @@ class IndexUser extends Component
 
     public $puesto_actual_id;
     public $puesto_futuro_id;
-
-    public function mount()
-    {
-        $this->identificar = rand();
-    }
 
     public function updatingSearch()
     {
@@ -71,40 +67,24 @@ class IndexUser extends Component
         $empresas = Empresa::all();
         $users = User::all();
         $estados = Estados::all();
-        $sucursales = Sucursales::all();
+        $roles = Role::pluck('name','name')->all();
+        $sucursales = Sucursales::where('empresa_id','=', $this->empresa_id)->get();
         $users = User::where('name', 'like' , '%' . $this->search . '%')
                     ->orWhere('email', 'like' , '%' . $this->search . '%')
                     ->orderBy($this->sort, $this->direction)
                     ->paginate($this->cant);
 
-        return view('livewire.modulo-administrador.user.index-user', compact('empresas', 'sucursales', 'estados', 'users'));
+        return view('livewire.modulo-administrador.user.index-user', compact('empresas', 'sucursales', 'estados', 'users', 'roles'));
     }
 
     public function table($sucursal_id, $empresa_id)
     {
         $this->sucursal_id = $sucursal;
         $this->empresa_id = $empresa;
-        $this->reset([
-            'sucursal_id',
-            'empresa_id',
-            'name',
-            'apellido',
-            'roles',
-            'email',
-            'direccion',
-            'password',
-            'confirm-password',
-            'd_asenta',
-            'd_ciudad',
-            'estatus',
-            'puesto_futuro_id',
-            'puesto_actual_id'
-        ]);
-        $this->identificar = rand();
         $this->view = 'table';
     }
 
-    public function create(Empresa $empresa , Sucursales $sucursal)
+    public function create(Empresa $empresa , Sucursales $sucursal, Role $roles)
     {
         $this->empresa = $empresa;
         $this->sucursal = $sucursal;
@@ -115,51 +95,43 @@ class IndexUser extends Component
 
     public function store()
     {
-        $this->validate([
+        $validatedDate = $this->validate([
             'name' => 'required',
             'apellido' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|same:confirm-password',
+            'email' => 'required|email',
+            'password' => 'required',
             'direccion' => 'required',
 
             'd_asenta' => 'required',
             'd_ciudad' => 'required',
-
-            'empresa_id' => 'required',
-            'sucursal_id' => 'required',
             'estatus' => 'required'
         ]);
 
+        $this->password = Hash::make($this->password);
+
         User::create([
-            'empresa_id' => $this->empresa_id,
-            'sucursal_id' => $this->sucursal_id,
             'roles' => $this->roles,
             'name' => $this->name,
             'apellido' => $this->apellido,
             'direccion' => $this->direccion,
             'email' => $this->email,
             'password' => $this->password,
-            'confirm-password' => $this->confirm-password,
 
             'd_asenta' => $this->d_asenta,
             'd_ciudad' => $this->d_ciudad,
 
             'estatus' => $this->estatus,
-            'empresa_id' => $this->empresa_id,
-            'sucursal_id' => $this->empresa_id
+            'empresa_id' => $this->empresa_id
 
         ]);
 
         $this->reset([
             'roles',
-            'empresa_id',
-            'sucursal_id',
             'name',
             'apellido',
             'direccion',
             'email',
             'password',
-            'confirm-password',
 
             'd_asenta',
             'd_ciudad',
@@ -169,9 +141,7 @@ class IndexUser extends Component
             'estatus'
         ]);
 
-        $this->identificar = rand();
-
-        $this->emit('alert', '!Se agregó el curso con exito¡');
+        $this->emit('alert', '!Se Agregó un Empleado con Exito¡');
 
     }
 
