@@ -3,13 +3,13 @@
         <div class="card-body">
             @can('crear-etiqueta')
                 <center>
-                    <a href="{{ route('roles.create') }}" class="btn btn-primary btn-rounded" title="Agregar nuevo Puesto">Nueva Etiqueta <i class="fa fa-plus"></i> </a>
+                    <a href="{{ route('roles.create') }}" class="btn btn-primary btn-rounded" title="Agregar nuevo Puesto">Crear Etiqueta <i class="fa fa-plus"></i> </a>
                 </center>
             @endcan
             <div class="row mt-2">
                 <div class="col-8">
                     <span>Mostrar</span>
-                    <select wire:model="cant" class="form" aria-label="Default select example">
+                    <select wire:model="cant" class="" aria-label="Default select example">
                         <option value="10">10</option>
                         <option value="20">20</option>
                         <option value="50">50</option>
@@ -25,12 +25,12 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="table-responsive mb-4"><br>
-                        <table class="table table-bordered datatable dt-responsive nowrap table-card-list" style="border-collapse: collapse; border-spacing: 0 12px; width: 100%;">
+                        <table class="table table-bordered table-striped datatable dt-responsive nowrap table-card-list" style="border-collapse: collapse; border-spacing: 0 12px; width: 100%;">
                             @if ($roles->count())
                             <thead>
                                 <tr class="table-primary">
-                                    <th>No.</th>
-                                    <th wire:click="order('name')">
+                                    <th scope="col">No.</th>
+                                    <th scope="col" wire:click="order('name')">
                                         Etiqueta
                                         {{-- Sort --}}
                                         @if ($sort == 'name')
@@ -45,16 +45,22 @@
                                         @endif
 
                                     </th>
-                                    <th>Ver</th>
-                                    <th>Editar</th>
-                                    <th>Eliminar</th>
+                                    @can('ver-etiqueta')
+                                    <th scope="col">Ver</th>
+                                    @endcan
+                                    @can('editar-etiqueta')
+                                    <th scope="col">Editar</th>
+                                    @endcan
+                                    @can('eliminar-etiqueta')
+                                    <th scope="col">Eliminar</th>
+                                    @endcan
                                 </tr>
                             </thead>
                             <tbody>
                             @foreach ($roles as $role)
                                 <tr>
-                                <td>{{ $role->id }}</td>
-                                <td>{{ $role->name }}</td>
+                                <td scope="row" >{{ $role->id }}</td>
+                                <td><center><span class="badge badge-pill badge-primary">{{ $role->name }}</span></center></td>
                                 @can('ver-etiqueta')
                                 <td width="50"><a class="btn btn-primary btn-sm" href="{{ route('roles.show',$role->id) }}"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
                                 @endcan
@@ -86,6 +92,9 @@
                             </li>
                         </ul>
                     </nav>
+                    <div class="mt-3">
+                        <p>Mostrar {{$roles->firstItem()}} a {{$roles->lastItem()}} de {{$roles->total()}}</p>
+                    </div>
                 </div>
             </div>
         </div>

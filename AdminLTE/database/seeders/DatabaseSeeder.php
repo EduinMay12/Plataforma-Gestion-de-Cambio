@@ -2,11 +2,16 @@
 
 namespace Database\Seeders;
 
-use App\Models\ModuloCapacitaciones\Categoria;
 use Illuminate\Database\Seeder;
+<<<<<<< Updated upstream
+=======
 use Illuminate\Support\Facades\Storage;
-use App\Models\User;
+>>>>>>> Stashed changes
 
+use App\Models\ModuloCapacitaciones\Categoria;
+use App\Models\ModuloCapacitaciones\Curso;
+use App\Models\ModuloCapacitaciones\Instructore;
+use App\Models\User;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -16,13 +21,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-
-        // Carpeta donde se guardan las imagenes de categorias de capacitaciones
-        Storage::deleteDirectory('categorias');
-        Storage::makeDirectory('categorias');
-        \App\Models\User::Factory(10)->create();
+<<<<<<< Updated upstream
+        // \App\Models\User::factory(10)->create();
+=======
         $this->call(PermissionTableSeeder::class);
         $this->call(CreateAdminUserSeeder::class);
-        Categoria::factory(10)->create();
+>>>>>>> Stashed changes
     }
 }

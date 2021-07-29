@@ -25,32 +25,5 @@
 @endif
 
     @livewire('modulo-administrador.gestion-empresas.index-empresas')
-    @livewireScripts
 
-    <script src="sweetalert2.all.min.js"></script>
-    <script>
-        livewire.on('deleteEmpresa', empresa => {
-            Swal.fire({
-                title: '¿Estas segur@?',
-                text: "Esta accion no se podra revertir",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Eliminar'
-            }).then((result) => {
-                if (result.isConfirmed) {
-
-                    livewire.emitTo('modulo-administrador.gestion-empresas.index-empresas', 'delete',
-                    empresa);
-
-                    Swal.fire(
-                        'Eliminado!',
-                        'Empresa eliminado con exito',
-                        'success'
-                    )
-                }
-            })
-        })
-    </script>
 @endsection
