@@ -121,7 +121,8 @@ class IndexUser extends Component
             'd_ciudad' => $this->d_ciudad,
 
             'estatus' => $this->estatus,
-            'empresa_id' => $this->empresa_id
+            'empresa_id' => $this->empresa_id,
+            'sucursal_id' => $this->sucursal_id
 
         ]);
 

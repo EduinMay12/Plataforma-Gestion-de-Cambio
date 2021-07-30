@@ -16,7 +16,7 @@ class CreateComunicacionsTable extends Migration
         Schema::create('comunicacions', function (Blueprint $table) {
             $table->id();
             $table->string('name', 100);
-            $table->string('descripcion');
+            $table->text('descripcion');
             $table->string('imagen');
             $table->boolean('status');
             $table->timestamps();

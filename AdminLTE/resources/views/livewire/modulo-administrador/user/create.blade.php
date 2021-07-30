@@ -35,14 +35,14 @@
                         <div class="col-6">
                             <div class="mb-3 position-relative">
                                 <label class="form-label" for="">Empresa :</label><br>
-                                <span wire:model="empresa_id">{{ $empresa->empresa }}</span>
+                                <span>{{ $empresa->empresa }}</span>
                             </div>
 
                         </div>
                         <div class="col-6">
                             <div class="mb-3 position-relative">
                                 <label class="form-label" for="">Sucursal :</label><br>
-                                <span wire:model="sucursal_id">{{ $sucursal->sucursal }}</span>
+                                <span>{{ $sucursal->sucursal }}</span>
                             </div>
                         </div>
                     </div>

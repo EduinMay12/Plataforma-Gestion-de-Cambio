@@ -4,7 +4,7 @@
             <div class="col-md-6">
                 <div class="mb-3 position-relative">
                     <label class="form-group" for="">Nombre de la Empresa* :</label>
-                    <input type="text" wire:model="empresa" class="form-control" placeholder="Empresa" required>
+                    <input type="text" wire:model="empresa" class="form-control" placeholder="Empresa" autofocus>
                     @error('empresa') <span class="error badge badge-danger">{{ $message }}</span>@enderror
                 </div>
             </div>
@@ -12,7 +12,7 @@
             <div class="col-md-4">
                 <div class="mb-3 position-relative">
                     <label class="form-group" for="">Resposable* (s):</label>
-                    <select class="form-control" type="text" wire:model="user_id" required>
+                    <select class="form-control" type="text" wire:model="user_id" autofocus>
                         <option value="">Seleccione...</option>
                         @foreach ($users as $user)
                             <option value="{{ $user->id }}">
@@ -27,7 +27,7 @@
             <div class="col-md-6">
                 <div class="mb-3 position-relative">
                     <label class="form-group" for="">Direccion* :</label>
-                    <input type="text" wire:model="direccion" class="form-control" placeholder="Direccion" required>
+                    <input type="text" wire:model="direccion" class="form-control" placeholder="Direccion" autofocus>
                     @error('direccion') <span class="error badge badge-danger">{{ $message }}</span>@enderror
                 </div>
             </div>

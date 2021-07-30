@@ -21,11 +21,10 @@
 
     {{-- Custom stylesheets (pre AdminLTE) --}}
     @yield('adminlte_css_pre')
-<<<<<<< Updated upstream
-=======
+
 
     <link href="{{ asset('css/app.rtl.css') }}" rel="stylesheet" type="text/css" />
->>>>>>> Stashed changes
+
 
 
     {{-- Base Stylesheets --}}
@@ -107,26 +106,9 @@
         @endif
     @endif
 
-<<<<<<< Updated upstream
     {{-- Custom Scripts --}}
     @yield('adminlte_js')
 
-=======
-
-    @yield('adminlte_js')
-
-
-    <!-- JAVASCRIPT -->
-    <script src="{{ asset('js/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('js/metismenu.min.js') }}"></script>
-    <script src="{{ asset('js/simplebar.min.js') }}"></script>
-    <script src="{{ asset('js/node-waves.min.js') }}"></script>
-    <script src="{{ asset('js/waypoints.min.js') }}"></script>
-    <script src="{{ asset('js/jquery-counterup.min.js') }}"></script>
-    <script src="{{ asset('js/app.min.js') }}"></script>
-
->>>>>>> Stashed changes
 </body>
 
 </html>

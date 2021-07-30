@@ -21,103 +21,37 @@
 @section('auth_header', __('Acceder a Gestion de Cambio'))
 
 @section('auth_body')
-<<<<<<< Updated upstream
-    <form action="{{ $login_url }}" method="post">
-        {{ csrf_field() }}
-
-        {{-- Email field --}}
-        <div class="input-group mb-3">
-            <input type="email" name="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}"
-                   value="{{ old('email') }}" placeholder="{{ __('Correo Electronico') }}" autofocus>
-            <div class="input-group-append">
-                <div class="input-group-text">
-                    <span class="fas fa-user {{ config('adminlte.classes_auth_icon', '') }}"></span>
-                </div>
-            </div>
-            @if($errors->has('email'))
-                <div class="invalid-feedback">
-                    <strong>{{ $errors->first('email') }}</strong>
-                </div>
-            @endif
-        </div>
-
-        {{-- Password field --}}
-        <div class="input-group mb-3">
-            <input type="password" name="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}"
-                   placeholder="{{ __('Contraseña') }}">
-            <div class="input-group-append">
-                <div class="input-group-text">
-                    <span class="fas fa-lock {{ config('adminlte.classes_auth_icon', '') }}"></span>
-                </div>
-            </div>
-            @if($errors->has('password'))
-                <div class="invalid-feedback">
-                    <strong>{{ $errors->first('password') }}</strong>
-                </div>
-            @endif
-        </div>
-
-        {{-- Login field --}}
-        <div class="row">
-            <div class="col-7">
-                <div class="icheck-primary">
-                    <input type="checkbox" name="remember" id="remember">
-                    <label for="remember">{{ __('Recordar Contraseña') }}</label>
-                </div>
-            </div>
-            <div class="col-5">
-                <button type=submit class="btn btn-block {{ config('adminlte.classes_auth_btn', 'btn-flat btn-primary') }}">
-                    <span class="fas fa-sign-in-alt"></span>
-                    {{ __('Entrar') }}
-                </button>
-            </div>
-=======
 <div class="card">
     <div class="card-body p-4">
         <div class="text-center mt-2">
-            <h5 class="text-primary">Gestion de Cambio !</h5>
+            <h5 class="text-primary"><center><img src="vendor/adminlte/dist/img/edumatics.png" alt="" height="42" class="logo logo-dark"></center><br>Gestion de Cambio</h5>
         </div>
         <div class="p-2 mt-4">
             <form action="{{ $login_url }}" method="post">
                 {{ csrf_field() }}
 
                 <div class="mb-3">
-                    <label class="form-label" for="name">Correo Electronico </label>
+                    <label class="form-label" for="email">Correo Electronico </label>
                     <input type="email" name="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" value="{{ old('email') }}" placeholder="{{ __('Correo Electronico') }}" autofocus>
-                    @if($errors->has('email'))
-                        <div class="invalid-feedback">
-                            <strong>{{ $errors->first('email') }}</strong>
-                        </div>
-                    @endif
+                    @if($errors->has('email')) <span class="terror badge badge-danger">{{ $errors->first('email') }}</span>@endif
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label" for="password">Contraseña</label>
                     <input type="password" name="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" placeholder="{{ __('Contraseña') }}">
-                    @if($errors->has('password'))
-                        <div class="invalid-feedback">
-                            <strong>{{ $errors->first('password') }}</strong>
-                        </div>
-                    @endif
+                    @if($errors->has('password')) <span class="terror badge badge-danger">{{ $errors->first('password') }}</span>@endif
+                </div>
+
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="auth-remember-check">
+                    <label class="form-check-label" for="auth-remember-check">Recordarme</label>
                 </div>
 
                 <div class="mt-3 text-end">
                     <button class="btn btn-block {{ config('adminlte.classes_auth_btn', 'btn btn-primary w-sm waves-effect waves-light') }}" type="submit">{{ __('Entrar') }}</button>
                 </div>
             </form>
->>>>>>> Stashed changes
         </div>
-
-    </form>
-@stop
-
-@section('auth_footer')
-    {{-- Register link --}}
-    @if($register_url)
-        <p class="my-0">
-            <a href="{{ $register_url }}">
-                {{ __('Nuevo Miembro') }}
-            </a>
-        </p>
-    @endif
+    </div>
+</div>
 @stop
