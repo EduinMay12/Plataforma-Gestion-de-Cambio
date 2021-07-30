@@ -77,6 +77,8 @@ Route::get('preguntas', [PreguntaController::class, 'index'])->name('preguntas.i
 |--------------------------------------------------------------------------
 */
 
-Route::resource('comunicacion', App\Http\Controllers\ModuloComunicacion\ComunicacionController::class,)->parameters(['comunicacion' => 'comunicacion']);
-Route::resource('elemento', App\Http\Controllers\ModuloComunicacion\ElementoController::class,)->parameters(['elemento' => 'elemento']);
-Route::resource('campaña', App\Http\Controllers\ModuloComunicacion\CampañaController::class,)->parameters(['campaña' => 'campaña']);
+Route::resource('comunicacion', App\Http\Controllers\ModuloComunicacion\ComunicacionController::class)->parameters(['comunicacion' => 'comunicacion']);
+Route::resource('elemento', App\Http\Controllers\ModuloComunicacion\ElementoController::class)->parameters(['elemento' => 'elemento']);
+Route::resource('campaña', App\Http\Controllers\ModuloComunicacion\CampañaController::class)->parameters(['campaña' => 'campaña']);
+
+});
