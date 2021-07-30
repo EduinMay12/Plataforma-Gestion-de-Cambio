@@ -122,7 +122,7 @@ class Index extends Component
     {
 
         $this->name = $comunicacion->name;
-        $this->imagen_curso = $comunicacion->imagen;
+        $this->imagen_comunicacion = $comunicacion->imagen;
         $this->descripcion = $comunicacion->descripcion;
         $this->status = $comunicacion->status;
         $this->view = 'edit';
@@ -145,13 +145,12 @@ class Index extends Component
             'name' => $this->name,
             'imagen' => $this->imagen,
             'descripcion' => $this->descripcion,
-
             'status' => $this->status
         ]);
 
         $this->identificador = rand();
 
-        $this->emit('alert', '!Se actualizó la Categoria de la Comunicacion con Exito¡');
+        $this->emit('alert', '!Se actualizó la categoria de la comunicacion con exito¡');
 
     }
 }

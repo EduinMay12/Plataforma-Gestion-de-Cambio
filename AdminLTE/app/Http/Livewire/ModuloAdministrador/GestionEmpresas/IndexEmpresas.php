@@ -50,6 +50,10 @@ class IndexEmpresas extends Component
     {
         $this->resetPage();
     }
+    public function mount()
+    {
+        $this->identificador = rand();
+    }
 
     protected $listeners = ['delete'];
 
@@ -140,6 +144,7 @@ class IndexEmpresas extends Component
 
     public function edit(Empresa $empresa)
     {
+        $this->id = $empresa->id;
         $this->empresa = $empresa->empresa;
         $this->user_id = $empresa->user_id;
         $this->direccion = $empresa->direccion;
@@ -147,7 +152,7 @@ class IndexEmpresas extends Component
         $this->estatus = $empresa->estatus;
         $this->d_asenta = $empresa->d_asenta;
         $this->d_codigo = $empresa->d_codigo;
-        $this->d_asenta = $empresa->d_asenta;
+        $this->d_ciudad = $empresa->d_ciudad;
         $this->view = 'edit';
     }
 
@@ -163,7 +168,7 @@ class IndexEmpresas extends Component
             'd_ciudad' => 'required',
             'd_codigo' => 'required'
         ]);
-
+        $empresa = Empresa::find($this->id);
         $empresa->update([
             'user_id' => $this->user_id,
             'direccion' => $this->direccion,
@@ -174,10 +179,8 @@ class IndexEmpresas extends Component
             'estatus' => $this->estatus,
             'empresa' => $this->empresa
         ]);
-
         $this->identificador = rand();
-
-        $this->emit('alert', '!Se Actualizó la Empresa con Exito¡');
+        $this->emit('alert', '!Se actualizó el empresa con exito¡');
 
     }
 }

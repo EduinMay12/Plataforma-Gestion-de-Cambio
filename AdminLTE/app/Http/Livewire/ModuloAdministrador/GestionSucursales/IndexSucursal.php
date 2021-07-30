@@ -169,7 +169,7 @@ class IndexSucursal extends Component
 
     public function edit(Empresa $empresa, Sucursales $sucursal)
     {
-        $this->sucursal = $sucursal;
+        $this->sucursal = $sucursal->sucursal;
         $this->empresa = $sucursal->empresa_id;
         $this->user_id = $sucursal->user_id;
         $this->direccion = $sucursal->direccion;
@@ -179,7 +179,7 @@ class IndexSucursal extends Component
         $this->tamaño = $sucursal->tamaño;
         $this->d_asenta = $sucursal->d_asenta;
         $this->d_codigo = $sucursal->d_codigo;
-        $this->d_asenta = $sucursal->d_asenta;
+        $this->d_ciudad = $sucursal->d_ciudad;
         $this->view = 'edit';
     }
 
@@ -187,7 +187,7 @@ class IndexSucursal extends Component
     {
         $this->validate([
             'empresa_id' => 'required',
-            'user_id' => 'required|unique:sucursales',
+            'user_id' => 'required',
             'sucursal' => 'required',
             'direccion' => 'required',
             'empleados' => 'required',
@@ -218,7 +218,7 @@ class IndexSucursal extends Component
 
         $this->identificador = rand();
 
-        $this->emit('alert', '!Se actualizó el curso con exito¡');
+        $this->emit('alert', '!Se actualizó el sucursal con exito¡');
 
     }
 

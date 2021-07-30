@@ -20,23 +20,9 @@
 <body style="background: linear-gradient(to right, #c7c8f0, #a6a7ff);">
     <div class="{{ $auth_type ?? 'login' }}">
         <div class="account-pages my-5 pt-sm-5 {{ config('adminlte.classes_auth_card') }}">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="text-center">
-                            <a href="#" class="mb-5 d-block auth-logo">
-                                <img src="vendor/adminlte/dist/img/edumatics.png" alt="" height="62"
-                                    class="logo logo-dark">
-                                <img src="vendor/adminlte/dist/img/edumatics.png" alt="" height="62"
-                                    class="logo logo-light">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="row align-items-center {{ $auth_type ?? 'login' }} justify-content-center {{ config('adminlte.classes_auth_body', '') }}">
-                    <div class="col-md-8 col-lg-6 col-xl-5">
-                        @yield('auth_body')
-                    </div>
+            <div class="container {{ $auth_type ?? 'login' }} justify-content-center {{ config('adminlte.classes_auth_body', '') }}">
+                <div class="col-12">
+                    @yield('auth_body')
                 </div>
             </div>
         </div>
