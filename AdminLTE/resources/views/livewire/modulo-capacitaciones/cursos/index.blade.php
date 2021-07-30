@@ -21,6 +21,17 @@
             )
         });
     </script>
+    
+    <script>
+        livewire.on('error', function(message) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: message,
+                footer: ''
+            })
+        });
+    </script>
 
     <script src="sweetalert2.all.min.js"></script>
 
@@ -36,12 +47,14 @@
                 confirmButtonText: 'Eliminar'
             }).then((result) => {
                 if (result.isConfirmed) {
+
                     livewire.emitTo('modulo-capacitaciones.cursos.index', 'destroy', cursoId);
-                    Swal.fire(
-                        'Eliminado!',
-                        'Curso eliminado con exito',
-                        'success'
-                    )
+
+                    // Swal.fire(
+                    //     'Eliminado!',
+                    //     'Curso eliminado con exito',
+                    //     'success'
+                    // )
                 }
             })
         })

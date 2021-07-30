@@ -22,6 +22,27 @@
 
     @livewireScripts
 
+    <script>
+        livewire.on('alert', function(message) {
+            Swal.fire(
+                'Good job!',
+                message,
+                'success'
+            )
+        });
+    </script>
+
+    <script>
+        livewire.on('error', function(message) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: message,
+                footer: ''
+            })
+        });
+    </script>
+
     <script src="sweetalert2.all.min.js"></script>
     <script>
         livewire.on('deleteInstructore', instructoreId => {
@@ -39,18 +60,14 @@
                     livewire.emitTo('modulo-capacitaciones.instructores.index', 'delete',
                         instructoreId);
 
-                    Swal.fire(
-                        'Eliminado!',
-                        'Instructor eliminado con exito',
-                        'success'
-                    )
+                    // Swal.fire(
+                    //     'Eliminado!',
+                    //     'Instructor eliminado con exito',
+                    //     'success'
+                    // )
                 }
             })
         })
     </script>
 
-@stop
-
-@section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
-@stop
+@endsection

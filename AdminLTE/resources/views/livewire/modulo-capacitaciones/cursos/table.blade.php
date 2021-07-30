@@ -15,6 +15,7 @@
         <div class="col-4">
             <span>Mostrar</span>
             <select wire:model="cant" class="form-select" aria-label="Default select example">
+                <option value="5">5</option>
                 <option value="10">10</option>
                 <option value="25">25</option>
                 <option value="50">50</option>
@@ -37,7 +38,7 @@
 
     @if ($cursos->count())
 
-        <table class="table table-bordered mt-4">
+        <table class="table table-bordered mt-4 table-responsive">
             <thead>
                 <tr class="table-primary">
                     <th wire:click="order('id')" class="col-1">
@@ -69,7 +70,7 @@
                             <i class="fas fa-sort float-right mt-1"></i>
                         @endif
                     </th>
-                    <th wire:click="order('descorta')">
+                    <th wire:click="order('descorta')" class="col-3">
                         Descripcion
                         {{-- Sort --}}
                         @if ($sort == 'descorta')
@@ -83,9 +84,9 @@
                             <i class="fas fa-sort float-right mt-1"></i>
                         @endif
                     </th>
-                    <th class="col-2">Imagen</th>
+                    <th class="col-1">Imagen</th>
 
-                    <th wire:click="order('status')" class="col-1">
+                    <th wire:click="order('status')" class="col-2">
                         Estado
                         {{-- Sort --}}
                         @if ($sort == 'status')
@@ -100,9 +101,9 @@
                         @endif
                     </th>
 
-                    <th>Ver</th>
-                    <th>Editar</th>
-                    <th>Eliminar</th>
+                    <th class="col-1">Ver</th>
+                    <th class="col-1">Editar</th>
+                    <th class="col-1">Eliminar</th>
                 </tr>
             </thead>
             <tbody>
@@ -125,13 +126,15 @@
                             </button>
                         </td>
                         <td>
-                            <button wire:click="edit({{ $categoria_id }}, {{ $curso->id }})" class="btn btn-primary btn-sm">
+                            <button wire:click="edit({{ $categoria_id }}, {{ $curso->id }})"
+                                class="btn btn-primary btn-sm">
                                 <i class="fas fa-edit"></i>
                             </button>
 
                         </td>
                         <td>
-                            <button wire:click="$emit('deleteCurso', {{ $curso->id }})" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
+                            <button wire:click="$emit('deleteCurso', {{ $curso->id }})"
+                                class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
                         </td>
                     </tr>
 
@@ -139,18 +142,22 @@
             </tbody>
         </table>
 
+        <nav aria-label="Page navigation example" class="float-right mt-2">
+            <ul class="pagination">
+                <li class="page-item">
+                    {{ $cursos->links() }}
+                </li>
+            </ul>
+        </nav>
+    
+        <div class="mt-3">
+            <p> Mostrando {{ $cursos->firstItem() }} a {{ $cursos->lastItem() }} de {{ $cursos->total() }} Entradas</p>
+        </div>
+
     @else
         <div class="card-body">
             <strong>No existe ningún registro</strong>
         </div>
     @endif
-
-    <nav aria-label="Page navigation example" class="float-right">
-        <ul class="pagination">
-            <li class="page-item">
-
-            </li>
-        </ul>
-    </nav>
 
 @endif

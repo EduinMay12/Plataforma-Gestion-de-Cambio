@@ -4,6 +4,8 @@ namespace App\Http\Livewire\ModuloCapacitaciones\Cuestionarios;
 
 use Livewire\Component;
 use App\Models\ModuloCapacitaciones\Cuestionario;
+use App\Models\ModuloCapacitaciones\Pregunta;
+use Illuminate\Support\Facades\DB;
 use Livewire\WithPagination;
 
 class Index extends Component
@@ -15,7 +17,7 @@ class Index extends Component
     public $sort = 'id';
     public $direction = 'desc';
     public $view = 'table';
-    public $cant = '10';
+    public $cant = '5';
     public $cuestionario;
 
 
@@ -30,7 +32,7 @@ class Index extends Component
     protected $listeners = ['destroy'];
 
     protected $queryString = [
-        'cant' => ['except' => '10'], 
+        'cant' => ['except' => '5'], 
         'sort' => ['except' => 'id'], 
         'direction' => ['except' => 'desc'], 
         'search' => ['except' => '']
@@ -123,7 +125,21 @@ class Index extends Component
 
     public function destroy(Cuestionario $cuestionario)
     {
-        $cuestionario->delete();
+        $preguntas = Pregunta::where('cuestionario_id', '=', $cuestionario->id)->get();
+        $contadorPreguntas = count($preguntas);
+
+        $actividades = DB::table('actividades')->where('cuestionario_id','=', $cuestionario->id)->get();
+        $contadorActividades = count($actividades);
+        
+        if($contadorPreguntas > 0){
+            $this->emit('error', 'Este cuestionario no se puede eliminar, contiene preguntas');
+        }elseif($contadorActividades > 0){
+            $this->emit('error', 'Este cuestionario no se puede eliminar, contiene actividades');
+        }else{
+            $cuestionario->delete();
+            $this->emit('alert', '¡Cuestionario eliminado con exito!');
+        }
+        
     }
 
     public function order($sort)

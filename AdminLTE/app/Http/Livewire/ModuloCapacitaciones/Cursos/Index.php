@@ -5,8 +5,11 @@ namespace App\Http\Livewire\ModuloCapacitaciones\Cursos;
 use Livewire\Component;
 use App\Models\ModuloCapacitaciones\Curso;
 use App\Models\ModuloCapacitaciones\Categoria;
+use App\Models\ModuloCapacitaciones\Grupo;
 use App\Models\ModuloCapacitaciones\Instructore;
+use App\Models\ModuloCapacitaciones\Leccione;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 
@@ -22,7 +25,7 @@ class Index extends Component
     //variables de filtros
     public $categoria_id = '';
     public $categoria;
-    public $cant = '10';
+    public $cant = '5';
     public $search = '';
     public $sort = 'id';
     public $direction = 'desc';
@@ -56,7 +59,7 @@ class Index extends Component
     protected $listeners = ['destroy'];
 
     protected $queryString = [
-        'cant' => ['except' => '10'],
+        'cant' => ['except' => '5'],
         'sort' => ['except' => 'id'],
         'direction' => ['except' => 'desc'],
         'search' => ['except' => '']
@@ -65,20 +68,35 @@ class Index extends Component
     public function render()
     {
 
-        $categorias = Categoria::all();
-        $instructores = Instructore::all();
-        $cursos = Curso::where('categoria_id', '=', $this->categoria_id )
-                ->where('nombre', 'like', '%' .$this->search . '%')
-                ->where('descorta', 'like', '%'. $this->search. '%')
-                ->orderBy($this->sort, $this->direction)
-                ->paginate($this->cant);
+        $categorias = Categoria::where('status', '=', 1)->get();
+        $instructores = Instructore::where('status', '=', 1)->get();
 
-        return view('livewire.modulo-capacitaciones.cursos.index', compact('categorias','cursos', 'instructores'));
+        $cursos = DB::table('cursos')
+                    ->where('categoria_id', '=', $this->categoria_id)
+                    ->where(function($query) {
+                        $query->where('nombre', 'like', '%' . $this->search . '%')
+                                ->orWhere('descorta', 'like', '%' . $this->search . '%');             
+                    })
+                    ->orderBy($this->sort, $this->direction)
+                    ->paginate($this->cant);
+
+        return view('livewire.modulo-capacitaciones.cursos.index', compact('categorias', 'cursos', 'instructores'));
     }
 
     public function table($categoria)
     {
         $this->categoria_id = $categoria;
+        $this->validate([
+            'nombre' => '',
+            'imagen' => '',
+            'descorta' => '',
+            'deslarga' => '',
+            'requisitos' => '',
+            'horas' => '',
+            'status' => '',
+            'instructore_id' => ''
+        ]);
+
         $this->reset([
             'nombre',
             'imagen',
@@ -93,7 +111,8 @@ class Index extends Component
         $this->view = 'table';
     }
 
-    public function create(Categoria $categoria){
+    public function create(Categoria $categoria)
+    {
         $this->categoria = $categoria;
         $this->categoria_id = $categoria->id;
         $this->view = 'create';
@@ -128,6 +147,12 @@ class Index extends Component
 
         ]);
 
+        $categoria = Categoria::find($this->categoria_id);
+        $contador = $categoria->contador + 1;
+        $categoria->update([
+            'contador' => $contador
+        ]);
+
         $this->reset([
             'nombre',
             'imagen',
@@ -143,7 +168,6 @@ class Index extends Component
         $this->identificador = rand();
 
         $this->emit('alert', '!Se agregó el curso con exito¡');
-
     }
 
     public function show(Curso $curso)
@@ -152,7 +176,7 @@ class Index extends Component
         $this->view = 'show';
     }
 
-    public function edit( Categoria $categoria , Curso $curso)
+    public function edit(Categoria $categoria, Curso $curso)
     {
         $this->categoria = $categoria;
         $this->categoria_id = $categoria->id;
@@ -203,13 +227,26 @@ class Index extends Component
         $this->identificador = rand();
 
         $this->emit('alert', '!Se actualizó el curso con exito¡');
-
     }
 
     public function destroy(Curso $curso)
     {
-        Storage::delete([$curso->imagen]);
-        $curso->delete();
+        $lecciones = Leccione::where('curso_id', '=', $curso->id)->get();
+        $contadorLecciones = count($lecciones);
+
+        $grupos = Grupo::where('curso_id', '=', $curso->id)->get();
+        $contadorGrupos = count($grupos);
+
+        if ($contadorLecciones > 0) {
+            $this->emit('error', 'Este curso no se puede eliminar, contiene lecciones');
+        }elseif($contadorGrupos > 0){
+            $this->emit('error', 'Este curso no se puede eliminar, contiene grupos');
+        }else{
+            Storage::delete([$curso->imagen]);
+            $curso->delete();
+            $this->emit('alert', '¡Curso eliminado con exito!');
+        }
+
     }
 
     public function order($sort)
@@ -220,13 +257,9 @@ class Index extends Component
             } else {
                 $this->direction = 'desc';
             }
-
         } else {
             $this->sort = $sort;
             $this->direction = 'asc';
         }
     }
-
-
-
 }

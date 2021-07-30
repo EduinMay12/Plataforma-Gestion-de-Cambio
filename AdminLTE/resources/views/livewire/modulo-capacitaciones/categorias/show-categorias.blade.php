@@ -3,14 +3,17 @@
         <div class="card-body">
             <div class="row mt-2">
                 <div class="col-4">
+
                     <span>Mostrar</span>
-                    <select wire:model="cant" class="form-select" aria-label="Default select example">
+                    <select wire:model="cant" class="" aria-label="Default select example">
+                        <option value="5">5</option>
                         <option value="10">10</option>
                         <option value="25">25</option>
                         <option value="50">50</option>
                         <option value="100">100</option>
                     </select>
                     <span>Entradas</span>
+
                 </div>
                 <div class="col-4">
                     <a href="{{ route('categorias.create') }}" class="btn btn-primary">Agregar Categoria <i
@@ -23,7 +26,7 @@
             </div>
             @if ($categorias->count())
 
-                <table class="table table-bordered mt-4">
+                <table class="table table-bordered mt-4 table-responsive">
                     <thead>
                         <tr class="table-primary ">
                             <th wire:click="order('id')" class="col-1">
@@ -108,7 +111,8 @@
                                 @endif
 
                                 <td>
-                                    <a href="{{ route('categorias.show', $categoria) }}" class="btn btn-primary btn-sm">
+                                    <a href="{{ route('categorias.show', $categoria) }}"
+                                        class="btn btn-primary btn-sm">
                                         <i class="fas fa-eye"></i>
                                     </a>
                                 </td>
@@ -128,19 +132,24 @@
                     </tbody>
                 </table>
 
+                <nav aria-label="Page navigation example" class="float-right mt-2">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            {{ $categorias->links() }}
+                        </li>
+                    </ul>
+                </nav>
+    
+                <div class="mt-3">
+                    <p> Mostrando {{$categorias->firstItem()}} a {{$categorias->lastItem()}} de {{$categorias->total()}} Entradas</p>
+                </div>
+
             @else
                 <div class="card-body">
                     <strong>No existe ningún registro</strong>
                 </div>
             @endif
 
-            <nav aria-label="Page navigation example" class="float-right">
-                <ul class="pagination">
-                    <li class="page-item">
-                        {{ $categorias->links() }}
-                    </li>
-                </ul>
-            </nav>
         </div>
     </div>
 
