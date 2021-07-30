@@ -12,4 +12,9 @@ class LeccioneController extends Controller
         return view('modulo-capacitaciones.lecciones.index');
     }
 
+    public function actividades()
+    {
+        return view('modulo-capacitaciones.actividades.index');
+    }
+
 }

@@ -13,4 +13,9 @@ class GrupoController extends Controller
         return view('modulo-capacitaciones.grupos.index');
     }
 
+    public function matriculaciones()
+    {
+        return view('modulo-capacitaciones.matriculaciones.index');
+    }
+
 }

@@ -7,7 +7,7 @@
     <div class="container">
         <div class="card">
             <div class="card-header d-flex justify-content-center">
-                <div class="card-title">Gestionar cuestionarios</div>
+                <div class="card-title">Gestionar Cuestionarios</div>
             </div>
         </div>
     </div>

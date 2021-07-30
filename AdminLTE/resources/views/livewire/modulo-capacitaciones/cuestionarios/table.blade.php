@@ -1,7 +1,8 @@
 <div class="row mt-2">
     <div class="col-4">
         <span>Mostrar</span>
-        <select wire:model="cant" class="form-select" aria-label="Default select example">
+        <select wire:model="cant">
+            <option value="5">5</option>
             <option value="10">10</option>
             <option value="25">25</option>
             <option value="50">50</option>
@@ -40,7 +41,7 @@
                     @endif
 
                 </th>
-                <th wire:click="order('nombre')" class="col-2">
+                <th wire:click="order('nombre')" class="col-6">
                     Nombre
                     {{-- Sort --}}
                     @if ($sort == 'nombre')
@@ -54,10 +55,10 @@
                         <i class="fas fa-sort float-right mt-1"></i>
                     @endif
                 </th>
-                <th wire:click="order('descripcion')" class="col-3">
+                {{-- <th wire:click="order('descripcion')" class="col-3">
                     Descripcion
                     {{-- Sort --}}
-                    @if ($sort == 'descripcion')
+                    {{-- @if ($sort == 'descripcion')
                         @if ($direction == 'asc')
                             <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
                         @else
@@ -67,7 +68,7 @@
                     @else
                         <i class="fas fa-sort float-right mt-1"></i>
                     @endif
-                </th>
+                </th> --}}
 
                 <th wire:click="order('status')" class="col-2">
                     Estado
@@ -84,9 +85,9 @@
                     @endif
                 </th>
 
-                <th>Ver</th>
-                <th>Editar</th>
-                <th>Eliminar</th>
+                <th class="col-1">Ver</th>
+                <th class="col-1">Editar</th>
+                <th class="col-1">Eliminar</th>
             </tr>
         </thead>
         <tbody>
@@ -95,7 +96,7 @@
                 <tr>
                     <td>{{ $cuestionario->id }}</td>
                     <td>{{ $cuestionario->nombre }}</td>
-                    <td>{{ $cuestionario->descripcion }}</td>
+                    {{-- <td>{{ $cuestionario->descripcion }}</td> --}}
 
                     @if ($cuestionario->status == 0)
                         <td>Inactivo</td>
@@ -125,16 +126,22 @@
         </tbody>
     </table>
 
+    <nav aria-label="Page navigation example" class="float-right mt-2">
+        <ul class="pagination">
+            <li class="page-item">
+                {{$cuestionarios->links()}}
+            </li>
+        </ul>
+    </nav>
+
+    <div class="mt-3">
+        <p> Mostrando {{ $cuestionarios->firstItem() }} a {{ $cuestionarios->lastItem() }} de {{ $cuestionarios->total() }} Entradas</p>
+    </div>
+
 @else
     <div class="card-body">
         <strong>No existe ningún registro</strong>
     </div>
 @endif
 
-<nav aria-label="Page navigation example" class="float-right">
-    <ul class="pagination">
-        <li class="page-item">
-            
-        </li>
-    </ul>
-</nav>
+

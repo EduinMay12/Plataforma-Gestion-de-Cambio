@@ -320,7 +320,7 @@ return [
                 [
                     'text' => 'Gestionar matriculaciones',
                     'icon' => 'fas fa-fw fa-address-card',
-                    'url' => '#'
+                    'route' => 'grupos.matriculaciones'
                 ],
                 [
                     'text' => 'Gestionar Lecciones',
@@ -330,12 +330,12 @@ return [
                 [
                     'text' => 'Gestionar Recursos',
                     'icon' => 'fas fa-fw fa-photo-video',
-                    'url' => '#'
+                    'route' => 'recursos.index'
                 ],
                 [
                     'text' => 'Gestionar Actividades',
                     'icon' => 'fas fa-fw fa-file-alt',
-                    'url' => '#'
+                    'route' => 'lecciones.actividades'
                 ],
                 [
                     'text' => 'Gestionar Cuestionarios',

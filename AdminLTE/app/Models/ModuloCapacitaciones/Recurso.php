@@ -9,8 +9,10 @@ class Recurso extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     //Relacion uno a muchos inversa
-    public function leccion()
+    public function leccione()
     {
         return $this->belongsTo('App\Models\ModuloCapacitaciones\Leccione');
     }

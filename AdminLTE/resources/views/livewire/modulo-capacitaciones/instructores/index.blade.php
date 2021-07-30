@@ -5,7 +5,8 @@
                 <div class="row mt-2">
                     <div class="col-4">
                         <span>Mostrar</span>
-                        <select wire:model="cant" class="form-select" aria-label="Default select example">
+                        <select wire:model="cant" class="">
+                            <option value="5">5</option>
                             <option value="10">10</option>
                             <option value="25">25</option>
                             <option value="50">50</option>
@@ -26,7 +27,7 @@
                 </div>
                 @if ($instructores->count())
 
-                    <table class="table table-bordered mt-4">
+                    <table class="table table-bordered mt-4 table-responsive">
                         <thead>
                             <tr class="table-primary">
                                 <th wire:click="order('id')" class="col-1">
@@ -44,24 +45,10 @@
                                     @endif
 
                                 </th>
-                                <th wire:click="order('name')" class="col-3">
+                                <th wire:click="order('name')" class="col-6">
                                     Nombre
                                     {{-- Sort --}}
                                     @if ($sort == 'name')
-                                        @if ($direction == 'asc')
-                                            <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
-                                        @else
-                                            <i class="fas fa-sort-alpha-down-alt float-right mt-1"></i>
-                                        @endif
-
-                                    @else
-                                        <i class="fas fa-sort float-right mt-1"></i>
-                                    @endif
-                                </th>
-                                <th wire:click="order('resena')" class="col-4">
-                                    Reseña
-                                    {{-- Sort --}}
-                                    @if ($sort == 'resena')
                                         @if ($direction == 'asc')
                                             <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
                                         @else
@@ -98,7 +85,6 @@
                                 <tr>
                                     <td>{{ $instructore->id }}</td>
                                     <td>{{ $instructore->name }}</td>
-                                    <td>{{ $instructore->resena }}</td>
                                     @if ($instructore->status == 0)
                                         <td>Inactivo</td>
                                     @elseif($instructore->status == 1)
@@ -127,19 +113,25 @@
                         </tbody>
                     </table>
 
+                    <nav aria-label="Page navigation example" class="float-right mt-2">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                {{ $instructores->links() }}
+                            </li>
+                        </ul>
+                    </nav>
+
+                    <div class="mt-3">
+                        <p> Mostrando {{ $instructores->firstItem() }} a {{ $instructores->lastItem() }} de {{ $instructores->total() }} Entradas</p>
+                    </div>
+
                 @else
                     <div class="card-body">
                         <strong>No existe ningún registro</strong>
                     </div>
                 @endif
 
-                <nav aria-label="Page navigation example" class="float-right">
-                    <ul class="pagination">
-                        <li class="page-item">
-                            {{ $instructores->links() }}
-                        </li>
-                    </ul>
-                </nav>
+                
             </div>
         </div>
 

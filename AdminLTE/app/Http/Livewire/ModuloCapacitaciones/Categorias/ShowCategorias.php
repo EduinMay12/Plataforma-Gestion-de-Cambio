@@ -4,6 +4,7 @@ namespace App\Http\Livewire\ModuloCapacitaciones\Categorias;
 
 use Livewire\Component;
 use App\Models\ModuloCapacitaciones\Categoria;
+use App\Models\ModuloCapacitaciones\Curso;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Storage;
 
@@ -15,13 +16,13 @@ class ShowCategorias extends Component
     public $search = '';
     public $sort = 'id';
     public $direction = 'desc';
-    public $cant = '10';
+    public $cant = '5';
     protected $paginationTheme = "bootstrap";
 
     protected $queryString = [
-        'cant' => ['except' => '10'], 
-        'sort' => ['except' => 'id'], 
-        'direction' => ['except' => 'desc'], 
+        'cant' => ['except' => '5'],
+        'sort' => ['except' => 'id'],
+        'direction' => ['except' => 'desc'],
         'search' => ['except' => '']
     ];
 
@@ -35,10 +36,10 @@ class ShowCategorias extends Component
 
     public function render()
     {
-        $categorias = Categoria::where('nombre', 'like' , '%' . $this->search . '%')
-                    ->orWhere('descripcion', 'like' , '%' . $this->search . '%')
-                    ->orderBy($this->sort, $this->direction)
-                    ->paginate($this->cant);
+        $categorias = Categoria::where('nombre', 'like', '%' . $this->search . '%')
+            ->orWhere('descripcion', 'like', '%' . $this->search . '%')
+            ->orderBy($this->sort, $this->direction)
+            ->paginate($this->cant);
 
         return view('livewire.modulo-capacitaciones.categorias.show-categorias', compact('categorias'));
     }
@@ -51,7 +52,6 @@ class ShowCategorias extends Component
             } else {
                 $this->direction = 'desc';
             }
-            
         } else {
             $this->sort = $sort;
             $this->direction = 'asc';
@@ -60,7 +60,16 @@ class ShowCategorias extends Component
 
     public function delete(Categoria $categoria)
     {
-        Storage::delete([$categoria->imagen]);
-        $categoria->delete();
+        $cursos = Curso::where('categoria_id', '=', $categoria->id)->get();
+        $contador = count($cursos);
+
+        if ($contador > 0) {
+            $this->emit('error', 'Esta categoria no se puede eliminar, contiene cursos');
+        } else {
+            Storage::delete([$categoria->imagen]);
+            $categoria->delete();
+            $this->emit('alert', '¡Categoria eliminada con exito!');
+        }
+
     }
 }

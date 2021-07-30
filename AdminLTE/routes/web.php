@@ -9,6 +9,7 @@ use App\Http\Controllers\ModuloCapacitaciones\GrupoController;
 use App\Http\Controllers\ModuloCapacitaciones\InstructoreController;
 use App\Http\Controllers\ModuloCapacitaciones\LeccioneController;
 use App\Http\Controllers\ModuloCapacitaciones\PreguntaController;
+use App\Http\Controllers\ModuloCapacitaciones\RecursoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,9 +48,13 @@ Route::resource('instructores', InstructoreController::class)->parameters(['inst
 Route::get('cursos', [CursoController::class, 'index'])->name('cursos.index');
 
 Route::get('grupos', [GrupoController::class, 'index'])->name('grupos.index');
+Route::get('matriculaciones', [GrupoController::class, 'matriculaciones'])->name('grupos.matriculaciones');
 Route::get('lecciones', [LeccioneController::class, 'index'])->name('lecciones.index');
+Route::get('actividades', [LeccioneController::class, 'actividades'])->name('lecciones.actividades');
+Route::get('recursos', [RecursoController::class, 'index'])->name('recursos.index');
 Route::get('cuestionarios', [CuestionarioController::class, 'index'])->name('cuestionarios.index');
 Route::get('preguntas', [PreguntaController::class, 'index'])->name('preguntas.index');
+
 
 Route::get('/home', function() {
 	return view('home');
