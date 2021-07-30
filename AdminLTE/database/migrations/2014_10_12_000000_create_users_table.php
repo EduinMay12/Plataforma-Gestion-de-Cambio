@@ -17,21 +17,24 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('avatar')->default('default.png');
             $table->string('name');
-            $table->string('apellido')->default('');
-            $table->string('direccion')->default('');
-            $table->string('estatus')->default('');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('apellido')->default('Agregar Apellido Paterno');
+
+
+            $table->string('puesto_actual_id')->default('Puesto Actual');
+            $table->string('puesto_futuro_id')->default('Puesto Futuro');
 
             $table->string('d_asenta')->default('');
             $table->string('d_ciudad')->default('');
 
-            $table->string('puesto_actual_id')->default('');
-            $table->string('puesto_futuro_id')->default('');
+            $table->string('empresa_id')->default('Empresa');
+            $table->string('sucursal_id')->default('Sucursal');
+            $table->string('direccion')->default('Direccion');
 
-            $table->string('empresa')->default('');
-            $table->string('sucursal')->default('');
+            $table->boolean('estatus')->default('0');
+
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
 
             $table->rememberToken();
             $table->timestamps();

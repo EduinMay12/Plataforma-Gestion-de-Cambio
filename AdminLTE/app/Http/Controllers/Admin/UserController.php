@@ -23,38 +23,11 @@ class UserController extends Controller
          $this->middleware('permission:editar-usuarios', ['only' => ['edit','update']]);
          $this->middleware('permission:eliminar-usuarios', ['only' => ['destroy']]);
     }
-    public function index(Request $request)
+    public function index()
     {
-        $data = User::orderBy('id','DESC')->paginate(10);
-        return view('modulo-administrador.users.index',compact('data'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+        return view('modulo-administrador.users.index');
     }
-    public function create()
-    {
-        $empresa = Empresa::all();
-        $sucursales = Sucursales::all();
-        $estados = Estados::all();
-        $roles = Role::pluck('name','name')->all();
-        return view('modulo-administrador.users.create',compact('empresa', 'estados', 'sucursales', 'roles'));
-    }
-    public function store(Request $request)
-    {
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|same:confirm-password',
-            'roles' => 'required'
-        ]);
 
-        $input = $request->all();
-        $input['password'] = Hash::make($input['password']);
-
-        $user = User::create($input);
-        $user->assignRole($request->input('roles'));
-
-        return redirect()->route('gestionempleado.index')
-                        ->with('success','¡Usuario Agregado con Exito!');
-    }
     public function show($id)
     {
         $user = User::find($id);
@@ -93,12 +66,5 @@ class UserController extends Controller
 
         return redirect()->route('users.index')
                         ->with('success','¡Usuario Actualizado con Exito!');
-    }
-    //Funcion deeliminar usuarios
-    public function destroy($id)
-    {
-        User::find($id)->delete();
-        return redirect()->route('users.index')
-                        ->with('success','User deleted successfully');
     }
 }

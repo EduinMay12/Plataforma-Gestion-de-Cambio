@@ -4,7 +4,7 @@
         <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="uil-angle-down d-none d-xl-inline-block font-size-15"></i>
-            <span class="d-none d-xl-inline-block ms-1 fw-medium font-size-15"> {{ Auth::user()->name }}</span>
+            <span class="d-none d-xl-inline-block ms-1 fw-medium font-size-15"> {{ Auth::user()->name }} {{ Auth::user()->apellido }}</span>
             <img class="rounded-circle header-profile-user" src="/uploads/avatars/{{ auth()->user()->avatar }}"
                 alt="Header Avatar">
         </button>

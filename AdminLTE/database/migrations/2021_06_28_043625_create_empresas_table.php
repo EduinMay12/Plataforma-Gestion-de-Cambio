@@ -28,12 +28,7 @@ class CreateEmpresasTable extends Migration
 
             $table->string('d_asenta');
             $table->string('d_ciudad');
-
-            $table->unsignedBigInteger('d_codigo')->unique();
-            $table->foreign('d_codigo')
-                  ->references('d_codigo')
-                  ->on('estados')
-                  ->onDelete('cascade');
+            $table->string('d_codigo');
             $table->timestamps();
         });
     }

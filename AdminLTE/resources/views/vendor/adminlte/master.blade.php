@@ -21,7 +21,11 @@
 
     {{-- Custom stylesheets (pre AdminLTE) --}}
     @yield('adminlte_css_pre')
+
+
     <link href="{{ asset('css/app.rtl.css') }}" rel="stylesheet" type="text/css" />
+
+
 
     {{-- Base Stylesheets --}}
     @if(!config('adminlte.enabled_laravel_mix'))
@@ -73,7 +77,9 @@
     @endif
 
 </head>
-<body class="@yield('authentication-bg classes_body')" @yield('body_data')>
+
+<body class="@yield('classes_body')" @yield('body_data')>
+
     {{-- Body Content --}}
     @yield('body')
 
@@ -101,37 +107,8 @@
     @endif
 
     {{-- Custom Scripts --}}
-    <script>
-        // Example starter JavaScript for disabling form submissions if there are invalid fields
-        (function() {
-          'use strict';
-          window.addEventListener('load', function() {
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            var forms = document.getElementsByClassName('needs-validation');
-            // Loop over them and prevent submission
-            var validation = Array.prototype.filter.call(forms, function(form) {
-              form.addEventListener('submit', function(event) {
-                if (form.checkValidity() === false) {
-                  event.preventDefault();
-                  event.stopPropagation();
-                }
-                form.classList.add('was-validated');
-              }, false);
-            });
-          }, false);
-        })();
-    </script>
-<!-- JAVASCRIPT -->
-<script src="{{ asset('js/jquery.min.js') }}"></script>
-<script src="{{ asset('js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('js/metismenu.min.js') }}"></script>
-<script src="{{ asset('js/simplebar.min.js') }}"></script>
-<script src="{{ asset('js/node-waves.min.js') }}"></script>
-<script src="{{ asset('js/waypoints.min.js') }}"></script>
-<script src="{{ asset('js/jquery-counterup.min.js') }}"></script>
-<script src="{{ asset('js/app.min.js') }}"></script>
-
     @yield('adminlte_js')
+
 </body>
 
 </html>

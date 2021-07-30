@@ -14,43 +14,136 @@ use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Route;
 
 class IndexUser extends Component
 {
     use WithPagination;
-
+    //TABLA
+    public $view = 'table';
+    //FILTROS
+    public $cant = '10';
+    public $sucursal = '';
+    public $empresa = '';
     public $search = '';
     public $sort = 'id';
     public $direction = 'desc';
-    public $cant = '8';
-    protected $paginationTheme = "bootstrap";
+    //CRUD
+    public $name;
+    public $sucursal_id;
+    public $empresa_id;
+    public $user;
+    public $email = '';
+    public $password = '';
+    public $roles;
+    public $apellido;
+    public $direccion;
+    public $estatus;
 
-    protected $queryString = [
-        'cant' => ['except' => '8'],
-        'sort' => ['except' => 'id'],
-        'direction' => ['except' => 'desc'],
-        'search' => ['except' => '']
-    ];
+    public $d_asenta;
+    public $d_ciudad;
 
-    protected $listeners = ['delete'];
+    public $puesto_actual_id;
+    public $puesto_futuro_id;
 
     public function updatingSearch()
     {
         $this->resetPage();
     }
 
+    protected $paginationTheme = "bootstrap";
+
+    protected $listeners = ['delete'];
+
+    protected $queryString = [
+        'cant' => ['except' => '10'],
+        'sort' => ['except' => 'id'],
+        'direction' => ['except' => 'desc'],
+        'search' => ['except' => '']
+    ];
+
     public function render()
     {
-        $empresa = Empresa::all();
+        $empresas = Empresa::all();
         $users = User::all();
         $estados = Estados::all();
-        $sucursal = Sucursales::all();
+        $roles = Role::pluck('name','name')->all();
+        $sucursales = Sucursales::where('empresa_id','=', $this->empresa_id)->get();
         $users = User::where('name', 'like' , '%' . $this->search . '%')
                     ->orWhere('email', 'like' , '%' . $this->search . '%')
                     ->orderBy($this->sort, $this->direction)
                     ->paginate($this->cant);
 
-        return view('livewire.modulo-administrador.user.index-user', compact('empresa', 'sucursal', 'estados', 'users'));
+        return view('livewire.modulo-administrador.user.index-user', compact('empresas', 'sucursales', 'estados', 'users', 'roles'));
+    }
+
+    public function table($sucursal_id, $empresa_id)
+    {
+        $this->sucursal_id = $sucursal;
+        $this->empresa_id = $empresa;
+        $this->view = 'table';
+    }
+
+    public function create(Empresa $empresa , Sucursales $sucursal, Role $roles)
+    {
+        $this->empresa = $empresa;
+        $this->sucursal = $sucursal;
+        $this->empresa_id = $empresa->id;
+        $this->sucursal_id = $sucursal->id;
+        $this->view = 'create';
+    }
+
+    public function store()
+    {
+        $validatedDate = $this->validate([
+            'name' => 'required',
+            'apellido' => 'required',
+            'email' => 'required|email',
+            'password' => 'required',
+            'direccion' => 'required',
+
+            'd_asenta' => 'required',
+            'd_ciudad' => 'required',
+            'estatus' => 'required'
+        ]);
+
+        $this->password = Hash::make($this->password);
+
+        User::create([
+            'roles' => $this->roles,
+            'name' => $this->name,
+            'apellido' => $this->apellido,
+            'direccion' => $this->direccion,
+            'email' => $this->email,
+            'password' => $this->password,
+
+            'd_asenta' => $this->d_asenta,
+            'd_ciudad' => $this->d_ciudad,
+
+            'estatus' => $this->estatus,
+            'empresa_id' => $this->empresa_id,
+            'sucursal_id' => $this->sucursal_id
+
+        ]);
+
+        $this->reset([
+            'roles',
+            'name',
+            'apellido',
+            'direccion',
+            'email',
+            'password',
+
+            'd_asenta',
+            'd_ciudad',
+
+            'empresa_id',
+            'sucursal_id',
+            'estatus'
+        ]);
+
+        $this->emit('alert', '!Se Agregó un Empleado con Exito¡');
+
     }
 
     public function order($sort)
