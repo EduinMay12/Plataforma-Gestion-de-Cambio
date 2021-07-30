@@ -58,7 +58,7 @@ class IndexSucursal extends Component
 
     public function render()
     {
-        $empresas = Empresa::all();
+        $empresas = Empresa::where('estatus', '=', 1)->get();
         $users = User::all();
         $estados = Estados::all();
         $sucursales = Sucursales::where('empresa_id', 'like' , '%' . $this->search . '%')
