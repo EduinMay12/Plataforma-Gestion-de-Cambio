@@ -19,6 +19,14 @@ use App\Http\Controllers\ModuloComunicacion\ComunicacionController;
 use App\Http\Controllers\ModuloComunicacion\ElementoController;
 use App\Http\Controllers\ModuloComunicacion\CampañaController;
 
+use App\Http\Controllers\ModuloDiagnosticos\NivelController;
+use App\Http\Controllers\ModuloDiagnosticos\CompetenciaController;
+use App\Http\Controllers\ModuloDiagnosticos\PuestoController;
+use App\Http\Controllers\ModuloDiagnosticos\RoleDiagnosticoController;
+use App\Http\Controllers\ModuloDiagnosticos\AsignacionDiagnosticoController;
+use App\Http\Controllers\ModuloDiagnosticos\Cuestionario1Controller;
+use App\Http\Controllers\ModuloDiagnosticos\PreguntasabiertaController;
+
 /*
 |--------------------------------------------------------------------------
 | Rutas vistas por el publico
@@ -27,10 +35,9 @@ use App\Http\Controllers\ModuloComunicacion\CampañaController;
 Route::get('/', function () {
     return view('welcome');
 });
-
 Auth::routes();
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 /*
 |--------------------------------------------------------------------------
 | Modulo de Administrador
@@ -38,6 +45,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 */
 
 	Route::group(['middleware' => ['auth']], function() {
+
 	Route::get('modulo-administrador/administrador', [App\Http\Controllers\HomeController::class, 'administrador'])->name('administrador');
 	Route::resource('modulo-administrador/roles', App\Http\Controllers\Admin\RoleController::class)->parameters(['role' => 'role']);
 	Route::resource('modulo-administrador/users', App\Http\Controllers\Admin\UserController::class)->parameters(['user' => 'user']);
@@ -50,7 +58,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 /*
 |--------------------------------------------------------------------------
-| Modulo de Comunicación
+| Modulo de Capacitaciones
 |--------------------------------------------------------------------------
 */
 
@@ -68,5 +76,19 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::resource('comunicacion', App\Http\Controllers\ModuloComunicacion\ComunicacionController::class,)->parameters(['comunicacion' => 'comunicacion']);
     Route::resource('elemento', App\Http\Controllers\ModuloComunicacion\ElementoController::class,)->parameters(['elemento' => 'elemento']);
     Route::resource('campaña', App\Http\Controllers\ModuloComunicacion\CampañaController::class,)->parameters(['campaña' => 'campaña']);
+/*
+|--------------------------------------------------------------------------
+| Modulo de Diagnostico
+|--------------------------------------------------------------------------
+*/
+    Route::resource('niveles', NivelController::class);
+    Route::resource('competencias', CompetenciaController::class)->parameters(['competencias' => 'competencia']);
+    Route::resource('puestos', PuestoController::class);
+    Route::post('competencia-puesto/{puesto}', [PuestoController::class, 'recuperar'])->name('competencia-puesto.recuperar');
+    Route::delete('competencia-puesto/{puesto}', [PuestoController::class, 'borrar'])->name('competencia-puesto.borrar');
+    Route::resource('roldiagnosticos', RoleDiagnosticoController::class);
+    Route::resource('asignaciondiagnosticos', AsignacionDiagnosticoController::class);
+    Route::resource('cuestionario1s', Cuestionario1Controller::class);
+
 
     });
