@@ -98,10 +98,5 @@ Route::get('preguntas', [PreguntaController::class, 'index'])->name('preguntas.i
     Route::resource('roldiagnosticos', RoleDiagnosticoController::class);
     Route::resource('asignaciondiagnosticos', AsignacionDiagnosticoController::class);
     Route::resource('cuestionario1s', Cuestionario1Controller::class);
-
-
-Route::resource('comunicacion', App\Http\Controllers\ModuloComunicacion\ComunicacionController::class)->parameters(['comunicacion' => 'comunicacion']);
-Route::resource('elemento', App\Http\Controllers\ModuloComunicacion\ElementoController::class)->parameters(['elemento' => 'elemento']);
-Route::resource('campaña', App\Http\Controllers\ModuloComunicacion\CampañaController::class)->parameters(['campaña' => 'campaña']);
-
+    
 });
