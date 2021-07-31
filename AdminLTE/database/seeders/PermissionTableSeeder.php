@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Permission; 
 
 class PermissionTableSeeder extends Seeder
 {
@@ -37,17 +37,7 @@ class PermissionTableSeeder extends Seeder
             'ver-gestion-sucursal',
             'crear-gestion-sucursal',
             'editar-gestion-sucursal',
-            'eliminar-gestion-sucursal',
-
-            'ver-comunicacion',
-            'crear-comunicacion',
-            'editar-comunicacion',
-            'eliminar-comunicacion',
-
-            'ver-elemento',
-            'crear-elemento',
-            'editar-elemento',
-            'eliminar-elemento'
+            'eliminar-gestion-sucursal'
         ];
 
         foreach ($permissions as $permission) {

@@ -12,6 +12,13 @@ use App\Models\ModuloCapacitaciones\Grupo;
 use App\Models\ModuloCapacitaciones\Instructore;
 use App\Models\ModuloCapacitaciones\Leccione;
 use App\Models\User;
+
+use App\Models\ModuloDiagnosticos\Nivel;
+use App\Models\ModuloDiagnosticos\Competencia;
+use App\Models\ModuloDiagnosticos\Puesto;
+use App\Models\ModuloDiagnosticos\RoleDiagnostico;
+use App\Models\ModuloDiagnosticos\Cuestionario1;
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -39,5 +46,11 @@ class DatabaseSeeder extends Seeder
         Grupo::factory(300)->create();
         Leccione::factory(300)->create();
         Cuestionario::factory(20)->create();
+
+        $this->call(NivelSeeder::class);
+        Competencia::factory(10)->create();
+        Puesto::factory(6)->create();
+        RoleDiagnostico::factory(10)->create();
+        Cuestionario1::factory(6)->create();
     }
 }
