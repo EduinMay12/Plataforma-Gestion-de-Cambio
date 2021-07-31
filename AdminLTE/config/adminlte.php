@@ -323,6 +323,40 @@ return [
                 ]
             ]
         ],
+                      //Rutas del módulo Diagnósticos
+
+                      ['header' => 'MÓDULO DE DIAGNÓSTICOS'],
+                      [
+                          'text' => 'Módulo Diagnósticos',
+                          'icon' => 'fas fa-arrow-alt-circle-down',
+                          'submenu' => [
+                              [
+                                  'text' => 'Competencias',
+                                  'icon' => '',
+                                  'route' => 'competencias.index'
+                              ],
+                              [
+                                  'text' => ' Comp - Puestos',
+                                  'icon' => '',
+                                  'route' => 'puestos.index'
+                              ],
+                              [
+                                  'text' => 'Roles Evaluación',
+                                  'icon' => '',
+                                  'route' => 'roldiagnosticos.index'
+                              ],
+                              [
+                                  'text' => 'Asig - Diagnósticos',
+                                  'icon' => '',
+                                  'route' => 'asignaciondiagnosticos.index'
+                              ],
+                              [
+                                  'text' => 'Cuestionario P-abiertas',
+                                  'icon' => '',
+                                  'route' => 'cuestionario1s.index'
+                              ],
+                          ]
+                      ],
 
         //Rutas del módulo comunicaciones
 
