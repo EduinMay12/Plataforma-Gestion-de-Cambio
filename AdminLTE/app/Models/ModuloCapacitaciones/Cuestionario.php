@@ -11,15 +11,14 @@ class Cuestionario extends Model
 
     protected $guarded = [];
 
-    //Relacion muchos a muchos
-    public function lecciones()
-    {
-        return $this->belongsToMany('App\Models\ModuloCapacitaciones\Leccione');
-    }
-
     //Relacion uno a muchos
     public function preguntas()
     {
         return $this->hasMany('App\Models\ModuloCapacitaciones\Pregunta');
+    }
+
+    public function actividades()
+    {
+        return $this->hasMany('App\Models\ModuloCapacitaciones\Actividade');
     }
 }

@@ -1,30 +1,31 @@
-@extends('adminlte::page')
-
-@section('title', 'Niveles')
-
-@section('content_header')
-
+<div>
     <div class="container">
         <div class="card">
-            <div class="card-header d-flex justify-content-center">
-                <div class="card-title">Gestionar Nivel</div>
+            <div class="card-body">
+
+                @include("livewire.modulo-capacitaciones.preguntas.$view")
+
             </div>
         </div>
     </div>
 
-@stop
-
-@section('content')
-
-    @livewire('modulo-diagnosticos.niveles.index')
-
     <!-- Scripts ---->
-
     @livewireScripts
 
-    <script src="sweetalert2.all.min.js"></script>
     <script>
-        livewire.on('deleteNivel', nivelId => {
+        livewire.on('alert', function(message) {
+            Swal.fire(
+                'Good job!',
+                message,
+                'success'
+            )
+        });
+    </script>
+
+    <script src="sweetalert2.all.min.js"></script>
+
+    <script>
+        livewire.on('deletePregunta', preguntaId => {
             Swal.fire({
                 title: '¿Estas segur@?',
                 text: "Esta accion no se podra revertir",
@@ -36,21 +37,17 @@
             }).then((result) => {
                 if (result.isConfirmed) {
 
-                    livewire.emitTo('modulo-diagnosticos.niveles.index', 'delete',
-                        nivelId);
+                    livewire.emitTo('modulo-capacitaciones.preguntas.index', 'destroy', preguntaId);
 
-                    Swal.fire(
-                        'Eliminado!',
-                        'Nivel eliminado con exito',
-                        'success'
-                    )
+                    // Swal.fire(
+                    //     'Eliminado!',
+                    //     'Pregunta eliminada con exito',
+                    //     'success'
+                    // )
                 }
             })
         })
     </script>
 
-@stop
+</div>
 
-@section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
-@stop
