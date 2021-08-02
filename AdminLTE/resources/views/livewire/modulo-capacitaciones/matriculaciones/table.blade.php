@@ -59,8 +59,8 @@
         </div>
 
         <div class="col-4">
-            <button wire:click="create({{$curso_id}}, {{$leccione_id}})" class="btn btn-primary">
-                Agregar recurso 
+            <button wire:click="create({{$categoria_id}}, {{$curso_id}}, {{$grupo_id}})" class="btn btn-primary">
+                Agregar matriculaciones 
                 <i class="fas fa-plus"></i>
             </button>
         </div>
@@ -72,7 +72,7 @@
 
     </div>
 
-    @if ($recursos->count())
+    @if ($matriculaciones->count())
 
         <table class="table table-bordered mt-4">
             <thead>

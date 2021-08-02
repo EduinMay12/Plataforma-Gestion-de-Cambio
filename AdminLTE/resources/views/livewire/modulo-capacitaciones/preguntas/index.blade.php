@@ -39,11 +39,11 @@
 
                     livewire.emitTo('modulo-capacitaciones.preguntas.index', 'destroy', preguntaId);
 
-                    Swal.fire(
-                        'Eliminado!',
-                        'Pregunta eliminada con exito',
-                        'success'
-                    )
+                    // Swal.fire(
+                    //     'Eliminado!',
+                    //     'Pregunta eliminada con exito',
+                    //     'success'
+                    // )
                 }
             })
         })

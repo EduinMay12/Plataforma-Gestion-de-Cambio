@@ -27,25 +27,15 @@
 </div>
 
 <div class="form-group">
-    <label for="">Clasificación:*</label>
-    <select wire:model="tipo" class="form-control">
+    <label for="">Cuestionario:*</label>
+    <select wire:model="cuestionario_id" class="form-control">
         <option value="">Seleccione...</option>
-        <option value="video">Video</option>
-        <option value="audio">Audio</option>
-        <option value="documento">Documento(Word)</option>
-        <option value="pdf">PDF</option>   
+        @foreach($cuestionarios as $cuestionario)
+            <option value="{{$cuestionario->id}}">{{$cuestionario->nombre}}</option>
+        @endforeach
     </select>    
 
-    @error('tipo')
-        <small class="text-danger">{{ $message }}</small>
-    @enderror
-</div>
-
-<div class="form-group">
-    <label for="">URL:*</label>
-    <input placeholder="https://example.com" wire:model="url" class="form-control" type="text">
-
-    @error('url')
+    @error('cuestionario')
         <small class="text-danger">{{ $message }}</small>
     @enderror
 </div>

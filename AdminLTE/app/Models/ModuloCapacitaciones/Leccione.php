@@ -23,9 +23,8 @@ class Leccione extends Model
         return $this->hasMany('App\Models\ModuloCapacitaciones\Recurso');
     }
 
-    //Relacion muchos a muchos
-    public function cuestionarios()
+    public function actividades()
     {
-        return $this->belongsToMany('App\Models\ModuloCapacitaciones\Cuestionario');
+        return $this->hasMany('App\Models\ModuloCapacitaciones\Actividade');
     }
 }

@@ -45,7 +45,7 @@
 
         <div class="col-4">
             <button wire:click="create({{$curso_id}}, {{$leccione_id}})" class="btn btn-primary">
-                Agregar recurso 
+                Agregar actividad 
                 <i class="fas fa-plus"></i>
             </button>
         </div>
@@ -57,7 +57,7 @@
 
     </div>
 
-    @if ($recursos->count())
+    @if ($actividades->count())
 
         <table class="table table-bordered mt-4">
             <thead>
@@ -105,20 +105,6 @@
                             <i class="fas fa-sort float-right mt-1"></i>
                         @endif
                     </th>
-                    <th wire:click="order('tipo')" class="col-2">
-                        Tipo
-                        {{-- Sort --}}
-                        @if ($sort == 'tipo')
-                            @if ($direction == 'asc')
-                                <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
-                            @else
-                                <i class="fas fa-sort-alpha-down-alt float-right mt-1"></i>
-                            @endif
-
-                        @else
-                            <i class="fas fa-sort float-right mt-1"></i>
-                        @endif
-                    </th>
 
                     <th wire:click="order('status')" class="col-2">
                         Estado
@@ -141,32 +127,31 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($recursos as $recurso)
+                @foreach ($actividades as $actividade)
 
                     <tr>
-                        <td>{{ $recurso->id }}</td>
-                        <td>{{ $recurso->nombre }}</td>
-                        <td>{{ $recurso->descripcion }}</td>
-                        <td>{{ $recurso->tipo }}</td>
-                        @if ($recurso->status == 0)
+                        <td>{{ $actividade->id }}</td>
+                        <td>{{ $actividade->nombre }}</td>
+                        <td>{{ $actividade->descripcion }}</td>
+                        @if ($actividade->status == 0)
                             <td>Inactivo</td>
-                        @elseif($recurso->status == 1)
+                        @elseif($actividade->status == 1)
                             <td>Activo</td>
                         @endif
 
                         <td>
-                            <button wire:click="show({{$recurso->id}})" class="btn btn-primary btn-sm">
+                            <button wire:click="show({{$actividade->id}})" class="btn btn-primary btn-sm">
                                 <i class="fas fa-eye"></i>
                             </button>
                         </td>
                         <td>
-                            <button wire:click="edit({{$curso_id}}, {{$leccione_id}}, {{$recurso->id}})" class="btn btn-primary btn-sm">
+                            <button wire:click="edit({{$curso_id}}, {{$leccione_id}}, {{$actividade->id}})" class="btn btn-primary btn-sm">
                                 <i class="fas fa-edit"></i>
                             </button>
 
                         </td>
                         <td>
-                            <button wire:click="$emit('deleteRecurso', {{ $recurso->id }})" class="btn btn-danger btn-sm"><i
+                            <button wire:click="$emit('deleteActividade', {{ $actividade->id }})" class="btn btn-danger btn-sm"><i
                                     class="fas fa-trash-alt"></i></button>
                         </td>
                     </tr>
@@ -178,13 +163,13 @@
         <nav aria-label="Page navigation example" class="float-right mt-2">
             <ul class="pagination">
                 <li class="page-item">
-                    {{ $recursos->links() }}
+                    {{ $actividades->links() }}
                 </li>
             </ul>
         </nav>
 
         <div class="mt-3">
-            <p> Mostrando {{ $recursos->firstItem() }} a {{ $recursos->lastItem() }} de {{ $recursos->total() }} Entradas</p>
+            <p> Mostrando {{ $actividades->firstItem() }} a {{ $actividades->lastItem() }} de {{ $actividades->total() }} Entradas</p>
         </div>
 
     @else
