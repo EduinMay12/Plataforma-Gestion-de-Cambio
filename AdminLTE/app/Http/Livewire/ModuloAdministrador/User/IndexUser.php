@@ -67,7 +67,7 @@ class IndexUser extends Component
         $empresas = Empresa::all();
         $users = User::all();
         $estados = Estados::all();
-        $roles = Role::pluck('name','name')->all();
+        $roles = Role::pluck('id','name')->all();
         $sucursales = Sucursales::where('empresa_id','=', $this->empresa_id)->get();
         $users = User::where('name', 'like' , '%' . $this->search . '%')
                     ->orWhere('email', 'like' , '%' . $this->search . '%')

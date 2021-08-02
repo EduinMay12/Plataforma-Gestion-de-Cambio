@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('avatar')->default('default.png');
             $table->string('name');
-            $table->string('apellido')->default('Agregar Apellido Paterno');
+            $table->string('apellido')->default('');
 
 
             $table->string('puesto_actual_id')->default('Puesto Actual');
@@ -26,8 +26,8 @@ class CreateUsersTable extends Migration
             $table->string('d_asenta')->default('');
             $table->string('d_ciudad')->default('');
 
-            $table->string('empresa_id')->default('Empresa');
-            $table->string('sucursal_id')->default('Sucursal');
+            $table->string('empresa_id')->default('');
+            $table->string('sucursal_id')->default('');
             $table->string('direccion')->default('Direccion');
 
             $table->boolean('estatus')->default('0');

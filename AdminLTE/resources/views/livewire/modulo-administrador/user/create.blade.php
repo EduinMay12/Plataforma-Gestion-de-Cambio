@@ -59,9 +59,9 @@
                         <div class="col-md-6">
                             <div class="mb-3 position-relative">
                                 <label class="form-label" for="">Puesto Futuro* :</label>
-                                <select class="form-control" required>
+                                <select wire:model="tipo"class="form-control" required>
                                     <option value="">Seleccione...</option>
-                                        <option value=""></option>
+
                                 </select>
                             </div>
                         </div>

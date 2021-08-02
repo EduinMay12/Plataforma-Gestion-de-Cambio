@@ -11,7 +11,7 @@
 
             <div class="form-group">
                 <label for="">Descripcion* :</label>
-                <input type="text" class="form-control" wire:model="descripcion">
+                <textarea type="text" class="form-control" wire:model="descripcion"></textarea>
 
                 @error('descripcion') <span class="error badge badge-danger">{{ $message }}</span>@enderror
             </div>
