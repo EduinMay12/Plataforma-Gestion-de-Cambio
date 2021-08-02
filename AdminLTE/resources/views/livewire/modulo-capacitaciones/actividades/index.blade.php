@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-body">
 
-                @include("livewire.modulo-capacitaciones.preguntas.$view")
+                @include("livewire.modulo-capacitaciones.actividades.$view")
 
             </div>
         </div>
@@ -22,10 +22,21 @@
         });
     </script>
 
+    <script>
+        livewire.on('error', function(message) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: message,
+                footer: ''
+            })
+        });
+    </script>
+
     <script src="sweetalert2.all.min.js"></script>
 
     <script>
-        livewire.on('deletePregunta', preguntaId => {
+        livewire.on('deleteActividade', actividadeId => {
             Swal.fire({
                 title: '¿Estas segur@?',
                 text: "Esta accion no se podra revertir",
@@ -37,11 +48,11 @@
             }).then((result) => {
                 if (result.isConfirmed) {
 
-                    livewire.emitTo('modulo-capacitaciones.preguntas.index', 'destroy', preguntaId);
+                    livewire.emitTo('modulo-capacitaciones.actividades.index', 'destroy', actividadeId);
 
                     // Swal.fire(
                     //     'Eliminado!',
-                    //     'Pregunta eliminada con exito',
+                    //     'Lección eliminada con exito',
                     //     'success'
                     // )
                 }
@@ -50,4 +61,3 @@
     </script>
 
 </div>
-

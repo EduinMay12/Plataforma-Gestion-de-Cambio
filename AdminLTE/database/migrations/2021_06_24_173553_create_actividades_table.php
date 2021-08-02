@@ -17,10 +17,11 @@ class CreateActividadesTable extends Migration
             $table->id();
             $table->string('nombre');
             $table->text('descripcion');
-            $table->unsignedBigInteger('leccion_id');
+            $table->boolean('status');
+            $table->unsignedBigInteger('leccione_id');
             $table->unsignedBigInteger('cuestionario_id')->nullable();
 
-            $table->foreign('leccion_id')
+            $table->foreign('leccione_id')
                   ->references('id')
                   ->on('lecciones')
                   ->onDelete('cascade');
