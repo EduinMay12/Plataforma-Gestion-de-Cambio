@@ -40,7 +40,7 @@
             <table class="table table-bordered">
                 <thead>
                     <tr class="th-color">
-                        <td>id</td>
+                        {{--<td>id</td>--}}
                         <th>Opciones</th>
                         <th>Valor</th>
                         <th>Explicación</th>
@@ -52,7 +52,7 @@
                 @foreach ($opciones as $opc)
                 <tbody>
                     <tr>
-                        <td>{{ $opc->id }}</td>
+                        {{--<td>{{ $opc->id }}</td>--}}
                         <td>{{ $opc->opcion }}</td>
                         <td>{{ $opc->valor }}</td>
                         <td>{{ $opc->explicacion }}</td>
