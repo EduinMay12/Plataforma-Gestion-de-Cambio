@@ -90,7 +90,7 @@ class Index extends Component
     public function render()
     {
         $users = User::all();
-        $comunicacion = Comunicacion::all();
+        $comunicacion = Comunicacion::where('status', '=', 1)->get();
         $elementos = Elemento::where('name', 'like' , '%' . $this->search . '%')
                     ->Where('descripcion', 'like' , '%' . $this->search . '%')
                     ->orderBy($this->sort, $this->direction)

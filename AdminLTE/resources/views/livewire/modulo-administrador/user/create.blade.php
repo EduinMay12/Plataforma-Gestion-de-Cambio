@@ -51,7 +51,7 @@
                             <div class="mb-3 position-relative">
                                 <label class="form-label" for="">Puesto Actual* :</label>
                                 <select class="form-control" required>
-                                    <option value="">Seleccione...</option>
+                                    <option value="">Seleccionar</option>
                                         <option value=""></option>
                                 </select>
                             </div>
@@ -60,7 +60,7 @@
                             <div class="mb-3 position-relative">
                                 <label class="form-label" for="">Puesto Futuro* :</label>
                                 <select wire:model="tipo"class="form-control" required>
-                                    <option value="">Seleccione...</option>
+                                    <option value="">Seleccionar</option>
 
                                 </select>
                             </div>
@@ -86,7 +86,7 @@
             <div class="mb-3 position-relative">
                 <label class="form-label" for="">Tipo* :</label>
                 <select class="form-control" required>
-                    <option value="">Seleccione...</option>
+                    <option value="">Seleccionar</option>
                         <option value=""></option>
                 </select>
             </div>
@@ -105,7 +105,7 @@
             <div class="mb-3 position-relative">
                 <label class="form-group" for="">Ciudad* :</label>
                 <select wire:model="d_ciudad"class="form-control" required>
-                    <option value="">Seleccione...</option>
+                    <option value="">Seleccionar</option>
                     @foreach ($estados as $estado)
                         <option value="{{ $estado->d_ciudad }}">
                             {{ $estado->d_ciudad }}
@@ -119,7 +119,7 @@
             <div class="mb-3 position-relative">
                 <label class="form-group" for="">Colonia* :</label>
                 <select wire:model="d_asenta"class="form-control" required>
-                    <option value="">Seleccione...</option>
+                    <option value="">Seleccionar</option>
                     @foreach ($estados as $estado)
                         <option value="{{ $estado->d_asenta }}">
                             {{ $estado->d_asenta }}
@@ -133,7 +133,7 @@
             <div class="md-3 position-relative">
                 <label class="form-group" for="">Estatus* :</label>
                 <select class="form-control" wire:model="estatus">
-                    <option value="">Seleccione...</option>
+                    <option value="">Seleccionar</option>
                     <option value="2"> Evaluado </option>
                     <option value="1">Pendiente</option>
                     <option value="0">Necesita Ayuda</option>

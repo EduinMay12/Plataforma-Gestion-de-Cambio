@@ -13,7 +13,7 @@
                 <div class="mb-3 position-relative">
                     <label class="form-group" for="">Resposable* (s):</label>
                     <select class="form-control" type="text" wire:model="user_id" autofocus>
-                        <option value="">Seleccione...</option>
+                        <option value="">Seleccionar</option>
                         @foreach ($users as $user)
                             <option value="{{ $user->id }}">
                                 {{ $user->name }}
@@ -48,7 +48,7 @@
                 <div class="mb-3 position-relative">
                     <label class="form-label" for="">Codigo Postal* :</label>
                     <select wire:model="d_codigo"class="form-control" placeholder="Agregar un Codigo Postal" required>
-                        <option value="">Seleccione...</option>
+                        <option value="">Seleccionar</option>
                         @foreach ($estados as $estado)
                             <option value="{{ $estado->d_codigo }}">
                                 {{ $estado->d_codigo }}
@@ -63,7 +63,7 @@
                 <div class="mb-3 position-relative">
                     <label class="form-label" for="">Ciudad* :</label>
                     <select wire:model="d_ciudad"class="form-control" placeholder="Agregar una Ciudad" required>
-                        <option value="">Seleccione...</option>
+                        <option value="">Seleccionar</option>
                         @foreach ($estados as $estado)
                             <option value="{{ $estado->d_ciudad }}">
                                 {{ $estado->d_ciudad }}
@@ -78,7 +78,7 @@
                 <div class="mb-3 position-relative">
                     <label class="form-label" for="">Colonia* :</label>
                     <select wire:model="d_asenta"class="form-control" placeholder="Agregar una Colonia" required>
-                        <option value="">Seleccione...</option>
+                        <option value="">Seleccionar</option>
                         @foreach ($estados as $estado)
                             <option value="{{ $estado->d_asenta }}">
                                 {{ $estado->d_asenta }}
@@ -93,7 +93,7 @@
                 <div class="md-3 position-relative">
                     <label class="form-label" for="">Estatus* :</label>
                     <select class="form-control" wire:model="estatus">
-                        <option value="">Seleccione...</option>
+                        <option value="">Seleccionar</option>
                         <option value="1"> Activo </option>
                         <option value="0"> Inactivo </option>
                     </select>

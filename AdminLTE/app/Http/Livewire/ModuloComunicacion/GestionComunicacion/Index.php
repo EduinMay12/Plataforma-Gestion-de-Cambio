@@ -23,7 +23,9 @@ class Index extends Component
 
     public $descripcion;
     public $name;
+    public $comunicacion_id;
     public $comunicacion;
+    public $imagen_comunicacion;
     public $imagen;
     public $status;
     public $identificador;
@@ -94,6 +96,7 @@ class Index extends Component
         $imagen = $this->imagen->store('comunicacion');
 
         Comunicacion::create([
+
             'name' => $this->name,
             'descripcion' => $this->descripcion,
             'imagen' => $imagen,
@@ -120,7 +123,7 @@ class Index extends Component
 
     public function edit( Comunicacion $comunicacion)
     {
-
+        $this->comunicacion_id = $comunicacion->id;
         $this->name = $comunicacion->name;
         $this->imagen_comunicacion = $comunicacion->imagen;
         $this->descripcion = $comunicacion->descripcion;
@@ -133,17 +136,21 @@ class Index extends Component
         $this->validate([
             'name' => 'required',
             'descripcion' => 'required',
-            'status' => 'required'
+            'status' => 'required',
+            'comunicacion_id' => 'required'
         ]);
 
         if ($this->imagen) {
-            Storage::delete([$this->imagen]);
-            $this->imagen = $this->imagen->store('comunicacion');
+            Storage::delete([$this->imagen_comunicacion]);
+            $this->imagen_comunicacion = $this->imagen->store('comunicacion');
         }
 
+        $comunicacion = Comunicacion::find($this->comunicacion_id);
+
         $comunicacion->update([
+            'comunicacion_id' => $this->comunicacion_id,
             'name' => $this->name,
-            'imagen' => $this->imagen,
+            'imagen' => $this->imagen_comunicacion,
             'descripcion' => $this->descripcion,
             'status' => $this->status
         ]);

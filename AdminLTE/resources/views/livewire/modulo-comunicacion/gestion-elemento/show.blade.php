@@ -7,13 +7,7 @@
         </div>
     </div>
     <div class="col-6">
-        <div class="card">
-            <div class="card-body">
-                <div class="ratio ratio-16x9">
-                    <iframe src="{{ $elemento->url }}" title="YouTube video" allowfullscreen></iframe>
-                </div>
-            </div>
-        </div>
+        <iframe height="95%" width="100%"src="{{ $elemento->url }}" title="YouTube video" allowfullscreen></iframe>
     </div>
 </div>
 

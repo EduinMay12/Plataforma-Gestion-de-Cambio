@@ -24,6 +24,7 @@ class IndexSucursal extends Component
     public $direction = 'desc';
 
     //CRUD
+    public $sucursal_id;
     public $sucursal;
     public $user_id;
     public $direccion;
@@ -169,8 +170,10 @@ class IndexSucursal extends Component
 
     public function edit(Empresa $empresa, Sucursales $sucursal)
     {
+        $this->sucursal_id = $sucursal->id;
         $this->sucursal = $sucursal->sucursal;
-        $this->empresa = $sucursal->empresa_id;
+        $this->empresa = $empresa->empresa;
+        $this->empresa_id = $sucursal->empresa_id;
         $this->user_id = $sucursal->user_id;
         $this->direccion = $sucursal->direccion;
         $this->empleados = $sucursal->empleados;
@@ -199,10 +202,9 @@ class IndexSucursal extends Component
             'tamaño' => 'required'
         ]);
 
-        $sucursal = Sucursales::find($this->empresa_id);
+        $sucursal = Sucursales::find($this->sucursal_id);
 
         $sucursal->update([
-            'nombre' => $this->nombre,
             'sucursal' => $this->sucursal,
             'user_id' => $this->user_id,
             'direccion' => $this->direccion,

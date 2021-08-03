@@ -65,7 +65,7 @@
             </div>
 
             <div class="row">
-                <div class="col-12">
+                <div class="col-6">
                     <div class="mb-3 position-relative">
                         <label class="form-label" for="">Descripción* :</label>
                         <textarea rows="8" wire:model="descripcion" class="form-control" placeholder="Descripción" required></textarea>
@@ -73,7 +73,7 @@
                     </div>
                 </div>
 
-                <div class="col-12">
+                <div class="col-6">
                     <div class="mb-3 position-relative">
                         <label class="form-label" for="">Dirigido* a :</label>
                         <textarea rows="8" wire:model="dirigido" class="form-control" placeholder="Dirigido" required></textarea>
@@ -102,7 +102,7 @@
                     <div class="form-group">
                         <label for="">Estatus* :</label>
                         <select class="form-control" wire:model="status">
-                            <option value="">Seleccione...</option>
+                            <option value="">Seleccionar</option>
                             <option value="1">Activo</option>
                             <option value="0">Inactivo</option>
                         </select>
