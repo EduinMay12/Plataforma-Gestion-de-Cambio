@@ -78,7 +78,7 @@ class Index extends Component
             'pregunta_id' => 'required'
         ]);
 
-        Respuestas1::create([
+        Respuestas2::create([
             'textRespuesta' => $this->textRespuesta,
             'pregunta_id' => $this->pregunta_id
         ]);
