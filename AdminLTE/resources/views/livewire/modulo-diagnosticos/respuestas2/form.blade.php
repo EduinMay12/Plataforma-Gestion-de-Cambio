@@ -12,14 +12,9 @@
         </div>
 
         <div class="form-group">
-            <label for="">Elegir Respuesta:* </label>
-            
-            @foreach($opciones as $item)
-            <div class="form-check form-check-inline position-bottom">
-                <input class="form-check-input" type="radio" name="textRespuesta" value="{{$item->opcion}}">
-                <label class="form-check-label" for="inlineRadio1">{{ $item->opcion }}</label>
-            </div>
-        @endforeach
+            <label for="">Respuesta:* </label>
+            <textarea wire:model="textRespuesta" class="form-control" rows="4"></textarea>
+        
             @error('textRespuesta')
                 <small class="text-danger">{{ $message }}</small>
             @enderror
