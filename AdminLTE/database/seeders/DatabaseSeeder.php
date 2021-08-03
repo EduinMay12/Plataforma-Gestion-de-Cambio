@@ -18,6 +18,11 @@ use App\Models\ModuloDiagnosticos\Competencia;
 use App\Models\ModuloDiagnosticos\Puesto;
 use App\Models\ModuloDiagnosticos\RoleDiagnostico;
 use App\Models\ModuloDiagnosticos\Cuestionario1;
+use App\Models\ModuloDiagnosticos\Preguntas1;
+use App\Models\ModuloDiagnosticos\Respuestas1;
+
+use App\Models\ModuloDiagnosticos\Cuestionario2;
+use App\Models\ModuloDiagnosticos\Preguntas2;
 
 class DatabaseSeeder extends Seeder
 {
@@ -52,5 +57,9 @@ class DatabaseSeeder extends Seeder
         Puesto::factory(6)->create();
         RoleDiagnostico::factory(10)->create();
         Cuestionario1::factory(6)->create();
+        Preguntas1::factory(10)->create();
+        Respuestas1::factory(10)->create();
+        Cuestionario2::factory(6)->create();
+        Preguntas2::factory(10)->create();
     }
 }

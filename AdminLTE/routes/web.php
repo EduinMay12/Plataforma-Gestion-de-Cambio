@@ -27,8 +27,14 @@ use App\Http\Controllers\ModuloDiagnosticos\CompetenciaController;
 use App\Http\Controllers\ModuloDiagnosticos\PuestoController;
 use App\Http\Controllers\ModuloDiagnosticos\RoleDiagnosticoController;
 use App\Http\Controllers\ModuloDiagnosticos\AsignacionDiagnosticoController;
+
 use App\Http\Controllers\ModuloDiagnosticos\Cuestionario1Controller;
-use App\Http\Controllers\ModuloDiagnosticos\PreguntasabiertaController;
+use App\Http\Controllers\ModuloDiagnosticos\Preguntas1Controller;
+use App\Http\Controllers\ModuloDiagnosticos\Respuestas1Controller;
+
+use App\Http\Controllers\ModuloDiagnosticos\Cuestionario2Controller;
+use App\Http\Controllers\ModuloDiagnosticos\Preguntas2Controller;
+use App\Http\Controllers\ModuloDiagnosticos\Respuestas2Controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -98,5 +104,11 @@ Route::get('preguntas', [PreguntaController::class, 'index'])->name('preguntas.i
     Route::resource('roldiagnosticos', RoleDiagnosticoController::class);
     Route::resource('asignaciondiagnosticos', AsignacionDiagnosticoController::class);
     Route::resource('cuestionario1s', Cuestionario1Controller::class);
-    
+    Route::resource('preguntas1s', Preguntas1Controller::class);
+    Route::resource('respuestas1s', Respuestas1Controller::class);
+    Route::resource('cuestionario2s', Cuestionario2Controller::class);
+    Route::resource('preguntas2s', Preguntas2Controller::class);
+    Route::resource('respuestas2s', Respuestas2Controller::class);
+
+
 });

@@ -351,9 +351,34 @@ return [
                                   'route' => 'asignaciondiagnosticos.index'
                               ],
                               [
-                                  'text' => 'Cuestionario P-abiertas',
+                                  'text' => 'Cuestionario P-Abiertas',
                                   'icon' => '',
                                   'route' => 'cuestionario1s.index'
+                              ],
+                              [
+                                  'text' => 'Preguntas Abiertas',
+                                  'icon' => '',
+                                  'route' => 'preguntas1s.index' 
+                              ],
+                              [
+                                  'text' => 'Respuestas P-Abiertas',
+                                  'icon' => '',
+                                  'route' => 'respuestas1s.index'
+                              ],
+                              [
+                                  'text' => 'Cuestionario Verdadero/Falso',
+                                  'icon' => '',
+                                  'route' => 'cuestionario2s.index'
+                              ],
+                              [
+                                  'text' => 'Preguntas Verdadero/Falso',
+                                  'icon' => '',
+                                  'route' => 'preguntas2s.index'
+                              ],
+                              [
+                                  'text' => 'Respuestas Verdadero / Falso',
+                                  'icon' => '',
+                                  'route' => 'respuestas2s.index'
                               ],
                           ]
                       ],
@@ -384,7 +409,7 @@ return [
                     'text' => 'Vista Usuario Campaña',
                     'icon' => 'fas fa-fw fa-digital-tachograph',
                     'route' => 'home'
-                ]
+                ],
             ]
         ],
     ],
