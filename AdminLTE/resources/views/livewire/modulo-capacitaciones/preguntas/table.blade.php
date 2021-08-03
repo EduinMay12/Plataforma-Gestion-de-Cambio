@@ -37,7 +37,7 @@
 
     @if ($preguntas->count())
 
-        <table class="table table-bordered mt-4">
+        <table class="table table-bordered mt-4 table-responsive">
             <thead>
                 <tr class="table-primary">
                     <th wire:click="order('id')" class="col-1">
@@ -55,7 +55,7 @@
                         @endif
 
                     </th>
-                    <th wire:click="order('textPregunta')" class="col-2">
+                    <th wire:click="order('textPregunta')" class="col-4">
                         Pregunta
                         {{-- Sort --}}
                         @if ($sort == 'textPregunta')
@@ -69,7 +69,7 @@
                             <i class="fas fa-sort float-right mt-1"></i>
                         @endif
                     </th>
-                    <th wire:click="order('descripcion')">
+                    <th wire:click="order('descripcion')" class="col-5">
                         Descripcion
                         {{-- Sort --}}
                         @if ($sort == 'descripcion')
@@ -83,25 +83,9 @@
                             <i class="fas fa-sort float-right mt-1"></i>
                         @endif
                     </th>
-
-                    <th wire:click="order('status')" class="col-1">
-                        Estado
-                        {{-- Sort --}}
-                        @if ($sort == 'status')
-                            @if ($direction == 'asc')
-                                <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
-                            @else
-                                <i class="fas fa-sort-alpha-down-alt float-right mt-1"></i>
-                            @endif
-
-                        @else
-                            <i class="fas fa-sort float-right mt-1"></i>
-                        @endif
-                    </th>
-
-                    <th>Ver</th>
-                    <th>Editar</th>
-                    <th>Eliminar</th>
+                    <th class="col-1">Ver</th>
+                    <th class="col-1">Editar</th>
+                    <th class="col-1">Eliminar</th>
                 </tr>
             </thead>
             <tbody>
@@ -111,12 +95,6 @@
                         <td>{{ $pregunta->id }}</td>
                         <td>{{ $pregunta->textPregunta }}</td>
                         <td>{{ $pregunta->descripcion }}</td>
-                        @if ($pregunta->status == 0)
-                            <td>Inactivo</td>
-                        @elseif($pregunta->status == 1)
-                            <td>Activo</td>
-                        @endif
-
                         <td>
                             <button wire:click="show({{ $pregunta->id }})" class="btn btn-primary btn-sm">
                                 <i class="fas fa-eye"></i>
@@ -139,18 +117,23 @@
             </tbody>
         </table>
 
+        <nav aria-label="Page navigation example" class="float-right mt-2">
+            <ul class="pagination">
+                <li class="page-item">
+                    {{ $preguntas->links() }}
+                </li>
+            </ul>
+        </nav>
+
+        <div class="mt-3">
+            <p> Mostrando {{ $preguntas->firstItem() }} a {{ $preguntas->lastItem() }} de {{ $preguntas->total() }} Entradas</p>
+        </div>
+
     @else
         <div class="card-body">
             <strong>No existe ningún registro</strong>
         </div>
     @endif
 
-    <nav aria-label="Page navigation example" class="float-right">
-        <ul class="pagination">
-            <li class="page-item">
-
-            </li>
-        </ul>
-    </nav>
 
 @endif
