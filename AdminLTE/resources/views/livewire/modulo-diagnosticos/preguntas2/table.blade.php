@@ -99,9 +99,9 @@
                         @endif
                     </th>
 
-                    <th wire:click="order('status')" class="col-1">
+                    {{--<th wire:click="order('status')" class="col-1">
                         Estado
-                        {{-- Sort --}}
+                       
                         @if ($sort == 'status')
                             @if ($direction == 'asc')
                                 <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
@@ -112,7 +112,7 @@
                         @else
                             <i class="fas fa-sort float-right mt-1"></i>
                         @endif
-                    </th>
+                    </th>--}}
 
                     <th>Ver</th>
                     <th>Editar</th>
@@ -127,11 +127,11 @@
                         <td>{{ $pregunta->textPregunta }}</td>
                         <td>{{ $pregunta->descripcion }}</td>
                         <td>{{ $pregunta->cuestionario->nombre }}</td>
-                        @if ($pregunta->status == 0)
+                        {{--@if ($pregunta->status == 0)
                             <td>Inactivo</td>
                         @elseif($pregunta->status == 1)
                             <td>Activo</td>
-                        @endif
+                        @endif--}}
 
                         <td>
                             <button wire:click="show({{ $pregunta->id }})" class="btn btn-primary btn-sm">
