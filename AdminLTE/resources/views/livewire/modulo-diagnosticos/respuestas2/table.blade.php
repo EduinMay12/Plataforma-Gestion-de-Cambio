@@ -1,5 +1,5 @@
 <div class="col-4 mb-4">
-    <label for="">Seleccionar Pregunta 2</label>
+    <label for="">Seleccionar Pregunta</label>
     <select wire:model="pregunta_id" class="form-select form-control">
         <option value="">Seleccione...</option>
         @foreach ($preguntas as $pregunta)
@@ -84,7 +84,20 @@
                             <i class="fas fa-sort float-right mt-1"></i>
                         @endif
                     </th>
+                    <th wire:click="order('status')" class="col-1">
+                        Estado
+                        {{-- Sort --}}
+                        @if ($sort == 'status')
+                            @if ($direction == 'asc')
+                                <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
+                            @else
+                                <i class="fas fa-sort-alpha-down-alt float-right mt-1"></i>
+                            @endif
 
+                        @else
+                            <i class="fas fa-sort float-right mt-1"></i>
+                        @endif
+                    </th>
 
                     <th>Ver</th>
                     <th>Editar</th>
@@ -98,7 +111,11 @@
                         <td>{{ $respuesta->id }}</td>
                         <td>{{ $respuesta->pregunta->textPregunta }}</td>
                         <td>{{ $respuesta->textRespuesta }}</td>
-
+                        @if ($respuesta->status == 0)
+                        <td>Inactivo</td>
+                        @elseif($respuesta->status == 1)
+                        <td>Activo</td>
+                        @endif
 
                         <td>
                             <button wire:click="show({{ $respuesta->id }})" class="btn btn-primary btn-sm">

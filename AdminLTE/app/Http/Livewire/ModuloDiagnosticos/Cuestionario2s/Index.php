@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Livewire\ModuloDiagnosticos\Cuestionario1s;
+namespace App\Http\Livewire\ModuloDiagnosticos\Cuestionario2s;
 
 use Livewire\Component;
 
-use App\Models\ModuloDiagnosticos\Cuestionario1;
+use App\Models\ModuloDiagnosticos\Cuestionario2;
 use Livewire\WithPagination;
 
 class Index extends Component
@@ -34,14 +34,15 @@ class Index extends Component
     public function render()
     {
 
-        $cuestionario1s = Cuestionario1::Where('nombre', 'like', '%' . $this->search . '%')
+        $cuestionario2s = Cuestionario2::where('nombre', 'like', '%' . $this->search . '%')
                                         ->orWhere('descripcion', 'like', '%' . $this->search . '%')
                                         ->orWhere('estatus', 'like', '%' . $this->search . '%')
                                         ->orderBy($this->sort, $this->direction)
                                         ->paginate($this->cant);
 
-        return view('livewire.modulo-diagnosticos.cuestionario1s.index', compact('cuestionario1s'));
+        return view('livewire.modulo-diagnosticos.cuestionario2s.index', compact('cuestionario2s'));
     }
+
 
     public function order($sort)
     {
@@ -57,7 +58,7 @@ class Index extends Component
         }
     }
 
-    public function delete(Cuestionario1 $cuestionario1){
-        $cuestionario1->delete();
+    public function delete(Cuestionario2 $cuestionario2){
+        $cuestionario2->delete();
     }
 }

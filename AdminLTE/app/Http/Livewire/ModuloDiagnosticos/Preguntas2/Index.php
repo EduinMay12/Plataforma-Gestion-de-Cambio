@@ -41,11 +41,6 @@ class Index extends Component
     public $explicacion;
     public $respuesta;
 
-    public $opcion1;
-    public $valor1;
-    public $explicacion1;
-    public $respuesta1;
-
     protected $paginationTheme = 'bootstrap';
 
     protected $queryString = [
@@ -78,21 +73,11 @@ class Index extends Component
     //boton de regresar
     public function table($cuestionario2){
         $this->cuestionario_id = $cuestionario2;
-
-        $this->reset([
-            'textPregunta',
-            'descripcion',
-        ]);
-
-        $this->emit('reset');
-        
         $this->view = 'table';
     }
 
     public function create(Cuestionario2 $cuestionario2){
         $this->cuestionario2 = $cuestionario2;
-        $this->cuestionario_id = $cuestionario2->id;
-
         $this->view = 'create';
     }
 
@@ -110,10 +95,15 @@ class Index extends Component
             'cuestionario_id' => $this->cuestionario_id
         ]);
 
+        /*
+        Opciones1::create([
+            'opcion' => $this->opcion
+        ]);*/
 
         $this->reset([
             'textPregunta',
             'descripcion',
+            //'opcion'
         ]);
 
         $this->emit('reset');
@@ -123,7 +113,7 @@ class Index extends Component
     }
 
     public function show(Preguntas2 $pregunta){
-        $this->pregunta = $pregunta; 
+        $this->pregunta = $pregunta;
         $this->view = 'show';
     }
 
@@ -142,25 +132,6 @@ class Index extends Component
     }
 
     public function update(){
-        $this->validate([
-            'textPregunta' => 'required',
-            'descripcion' => 'required',
-            'cuestionario_id' => 'required'
-        ]);
-
-        $pregunta = Preguntas2::find($this->pregunta_id);
-
-        $pregunta->update([
-            'textPregunta' => $this->textPregunta,
-            'descripcion' => $this->descripcion,
-            'cuestionario_id' => $this->cuestionario_id
-        ]);
-
-        $this->emit('alert', '¡Se actualizó la pregunta con exito!');
-
-    }
-
-    public function update1(){
         $this->validate([
             'textPregunta' => 'required',
             'descripcion' => 'required',
@@ -188,14 +159,6 @@ class Index extends Component
             'pregunta_id' => $this->pregunta_id
         ]);
 
-        Opciones1::create([
-            'opcion' => $this->opcion1,
-            'valor' => $this->valor1,
-            'explicacion' => $this->explicacion1,
-            'respuesta' => $this->respuesta1,
-            'pregunta_id' => $this->pregunta_id
-        ]);
-
         $this->opciones = Opciones1::where('pregunta_id', '=', $this->pregunta_id)->get();
 
 
@@ -203,11 +166,7 @@ class Index extends Component
             'opcion',
             'valor',
             'explicacion',
-            'respuesta',
-            'opcion1',
-            'valor1',
-            'explicacion1',
-            'respuesta1'
+            'respuesta'
         ]);
 
         $this->emit('reset');
@@ -229,9 +188,9 @@ class Index extends Component
 
     }*/
 
-    public function borrar(Opciones1 $opciones){
+    public function borrar(Opciones1 $opc){
 
-        $opciones->delete($this->pregunta_id);
+        $opc = $opc->delete();
 
         $this->emit('alert', '¡La opción se borro con exito!');
 

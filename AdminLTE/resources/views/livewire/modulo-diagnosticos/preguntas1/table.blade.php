@@ -84,6 +84,36 @@
                         @endif
                     </th>
 
+                    <th wire:click="order('cuestionario_id')" class="col-1">
+                        Cuestionario
+                        {{-- Sort --}}
+                        @if ($sort == 'cuestionario_id')
+                            @if ($direction == 'asc')
+                                <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
+                            @else
+                                <i class="fas fa-sort-alpha-down-alt float-right mt-1"></i>
+                            @endif
+
+                        @else
+                            <i class="fas fa-sort float-right mt-1"></i>
+                        @endif
+                    </th>
+
+                    <th wire:click="order('status')" class="col-1">
+                        Estado
+                        {{-- Sort --}}
+                        @if ($sort == 'status')
+                            @if ($direction == 'asc')
+                                <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
+                            @else
+                                <i class="fas fa-sort-alpha-down-alt float-right mt-1"></i>
+                            @endif
+
+                        @else
+                            <i class="fas fa-sort float-right mt-1"></i>
+                        @endif
+                    </th>
+
                     <th>Ver</th>
                     <th>Editar</th>
                     <th>Eliminar</th>
@@ -96,7 +126,12 @@
                         <td>{{ $pregunta->id }}</td>
                         <td>{{ $pregunta->textPregunta }}</td>
                         <td>{{ $pregunta->descripcion }}</td>
-
+                        <td>{{ $pregunta->cuestionario->nombre }}</td>
+                        @if ($pregunta->status == 0)
+                            <td>Inactivo</td>
+                        @elseif($pregunta->status == 1)
+                            <td>Activo</td>
+                        @endif
 
                         <td>
                             <button wire:click="show({{ $pregunta->id }})" class="btn btn-primary btn-sm">

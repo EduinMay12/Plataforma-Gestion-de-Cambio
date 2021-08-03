@@ -36,12 +36,6 @@ use App\Http\Controllers\ModuloDiagnosticos\Cuestionario2Controller;
 use App\Http\Controllers\ModuloDiagnosticos\Preguntas2Controller;
 use App\Http\Controllers\ModuloDiagnosticos\Respuestas2Controller;
 
-use App\Http\Controllers\ModuloDiagnosticos\Cuestionario3Controller;
-use App\Http\Controllers\ModuloDiagnosticos\Preguntas3Controller;
-use App\Http\Controllers\ModuloDiagnosticos\Respuestas3Controller;
-
-use App\Http\Controllers\ModuloDiagnosticos\AsignacionCuestionarioController;
-
 /*
 |--------------------------------------------------------------------------
 | Rutas vistas por el publico
@@ -52,26 +46,31 @@ Route::get('/', function () {
 });
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 /*
 |--------------------------------------------------------------------------
 | Modulo de Administrador
 |--------------------------------------------------------------------------
 */
+
 	Route::group(['middleware' => ['auth']], function() {
+
 	Route::get('modulo-administrador/administrador', [App\Http\Controllers\HomeController::class, 'administrador'])->name('administrador');
-	Route::resource('modulo-administrador/roles', RoleController::class)->parameters(['role' => 'role']);
-	Route::resource('modulo-administrador/users', UserController::class)->parameters(['users' => 'user']);
-	Route::resource('modulo-administrador/gestionsucursal', GestionsucursalController::class)->parameters(['sucursal' => 'sucursal']);
-	Route::resource('modulo-administrador/gestionempresa', GestionempresaController::class)->parameters(['empresas' => 'empresa']);
+	Route::resource('modulo-administrador/roles', App\Http\Controllers\Admin\RoleController::class)->parameters(['role' => 'role']);
+	Route::resource('modulo-administrador/users', App\Http\Controllers\Admin\UserController::class)->parameters(['user' => 'user']);
+	Route::resource('modulo-administrador/gestionsucursal', App\Http\Controllers\Admin\GestionsucursalController::class)->parameters(['gestionsucursal' => 'sucursal']);
+	Route::resource('modulo-administrador/gestionempresa', App\Http\Controllers\Admin\GestionempresaController::class)->parameters(['gestionempresa' => 'empresa']);
 	Route::post('perfil/edit', ['as' => 'perfil.edit', 'uses' => 'App\Http\Controllers\PerfilController@update_avatar']);
 	Route::get('perfil/edit', ['as' => 'perfil.edit', 'uses' => 'App\Http\Controllers\PerfilController@edit']);
 	Route::put('perfil/edit', ['as' => 'perfil.update', 'uses' => 'App\Http\Controllers\PerfilController@update']);
 	Route::put('perfil/password', ['as' => 'perfil.password', 'uses' => 'App\Http\Controllers\PerfilController@password']);
+
 /*
 |--------------------------------------------------------------------------
 | Modulo de Capacitaciones
 |--------------------------------------------------------------------------
 */
+
 Route::resource('categorias', CategoriaController::class)->parameters(['categorias' => 'categoria']);
 Route::resource('instructores', InstructoreController::class)->parameters(['instructores' => 'instructore']);
 Route::get('cursos', [CursoController::class, 'index'])->name('cursos.index');
@@ -82,15 +81,16 @@ Route::get('lecciones', [LeccioneController::class, 'index'])->name('lecciones.i
 Route::get('actividades', [LeccioneController::class, 'actividades'])->name('lecciones.actividades');
 Route::get('recursos', [RecursoController::class, 'index'])->name('recursos.index');
 Route::get('cuestionarios', [CuestionarioController::class, 'index'])->name('cuestionarios.index');
-Route::get('preguntas', [PreguntaController::class, 'index'])->name('preguntas.index');    Route::get('preguntas', [PreguntaController::class, 'index'])->name('preguntas.index');
+Route::get('preguntas', [PreguntaController::class, 'index'])->name('preguntas.index');
+
 /*
 |--------------------------------------------------------------------------
 | Modulo de Comunicaciones
 |--------------------------------------------------------------------------
 */
-    Route::resource('comunicacion', ComunicacionController::class,)->parameters(['comunicacions' => 'comunicacion']);
-    Route::resource('elemento', ElementoController::class,)->parameters(['elementos' => 'elemento']);
-    Route::resource('campaña', CampañaController::class,)->parameters(['campañas' => 'campaña']);
+    Route::resource('comunicacion', App\Http\Controllers\ModuloComunicacion\ComunicacionController::class,)->parameters(['comunicacion' => 'comunicacion']);
+    Route::resource('elemento', App\Http\Controllers\ModuloComunicacion\ElementoController::class,)->parameters(['elemento' => 'elemento']);
+    Route::resource('campaña', App\Http\Controllers\ModuloComunicacion\CampañaController::class,)->parameters(['campaña' => 'campaña']);
 /*
 |--------------------------------------------------------------------------
 | Modulo de Diagnostico
@@ -106,16 +106,9 @@ Route::get('preguntas', [PreguntaController::class, 'index'])->name('preguntas.i
     Route::resource('cuestionario1s', Cuestionario1Controller::class);
     Route::resource('preguntas1s', Preguntas1Controller::class);
     Route::resource('respuestas1s', Respuestas1Controller::class);
-
     Route::resource('cuestionario2s', Cuestionario2Controller::class);
     Route::resource('preguntas2s', Preguntas2Controller::class);
     Route::resource('respuestas2s', Respuestas2Controller::class);
-
-    Route::resource('cuestionario3s', Cuestionario3Controller::class);
-    Route::resource('preguntas3s', Preguntas3Controller::class);
-    Route::resource('respuestas3s', Respuestas3Controller::class);
-
-    Route::resource('asignacioncuestionarios', AsignacionCuestionarioController::class);
 
 
 });

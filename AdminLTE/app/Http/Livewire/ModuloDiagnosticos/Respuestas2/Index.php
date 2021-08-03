@@ -27,7 +27,6 @@ class Index extends Component
 
     public $textRespuesta;
 
-
     public $search  = '';
     public $sort = 'id';
     public $direction = 'desc';
@@ -62,13 +61,6 @@ class Index extends Component
 
     public function table($pregunta){
         $this->pregunta_id = $pregunta;
-
-        $this->reset([
-            'textRespuesta'
-        ]);
-
-        $this->emit('reset');
-
         $this->view = 'table';
     }
 
@@ -86,7 +78,7 @@ class Index extends Component
             'pregunta_id' => 'required'
         ]);
 
-        Respuestas2::create([
+        Respuestas1::create([
             'textRespuesta' => $this->textRespuesta,
             'pregunta_id' => $this->pregunta_id
         ]);
@@ -112,8 +104,6 @@ class Index extends Component
         $this->respuesta = $respuesta;
         $this->respuesta_id = $respuesta->id;
         $this->textRespuesta = $respuesta->textRespuesta;
-
-        $this->opciones = Opciones1::where('pregunta_id', '=', $this->pregunta_id)->get();
 
         $this->view = 'edit';
     }

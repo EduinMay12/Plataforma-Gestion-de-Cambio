@@ -61,14 +61,6 @@ class Index extends Component
     //boton de regresar
     public function table($cuestionario1){
         $this->cuestionario_id = $cuestionario1;
-
-        $this->reset([
-            'textPregunta',
-            'descripcion',
-        ]);
-
-        $this->emit('reset');
-        
         $this->view = 'table';
     }
 
