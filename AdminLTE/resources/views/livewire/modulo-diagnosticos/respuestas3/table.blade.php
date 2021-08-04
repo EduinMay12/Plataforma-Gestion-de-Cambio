@@ -1,5 +1,5 @@
 <div class="col-4 mb-4">
-    <label for="">Seleccionar Pregunta</label>
+    <label for="">Seleccionar Pregunta 2</label>
     <select wire:model="pregunta_id" class="form-select form-control">
         <option value="">Seleccione...</option>
         @foreach ($preguntas as $pregunta)
@@ -98,7 +98,6 @@
                         <td>{{ $respuesta->id }}</td>
                         <td>{{ $respuesta->pregunta->textPregunta }}</td>
                         <td>{{ $respuesta->textRespuesta }}</td>
-
 
                         <td>
                             <button wire:click="show({{ $respuesta->id }})" class="btn btn-primary btn-sm">

@@ -24,6 +24,9 @@ use App\Models\ModuloDiagnosticos\Respuestas1;
 use App\Models\ModuloDiagnosticos\Cuestionario2;
 use App\Models\ModuloDiagnosticos\Preguntas2;
 
+use App\Models\ModuloDiagnosticos\Cuestionario3;
+use App\Models\ModuloDiagnosticos\Preguntas3;
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -61,5 +64,7 @@ class DatabaseSeeder extends Seeder
         Respuestas1::factory(10)->create();
         Cuestionario2::factory(6)->create();
         Preguntas2::factory(10)->create();
+        Cuestionario3::factory(6)->create();
+        Preguntas3::factory(10)->create();
     }
 }

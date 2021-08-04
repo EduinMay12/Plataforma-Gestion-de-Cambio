@@ -1,14 +1,14 @@
 <div class="col-4 mb-4">
-    <label for="">Seleccionar Pregunta</label>
-    <select wire:model="pregunta_id" class="form-select form-control">
+    <label for="">Seleccionar cuestionario</label>
+    <select wire:model="cuestionario_id" class="form-select form-control">
         <option value="">Seleccione...</option>
-        @foreach ($preguntas as $pregunta)
-            <option value="{{ $pregunta->id }}">{{ $pregunta->textPregunta }}</option>
+        @foreach ($cuestionarios as $cuestionario)
+            <option value="{{ $cuestionario->id }}">{{ $cuestionario->nombre }}</option>
         @endforeach
     </select>
 </div>
 
-@if ($pregunta_id)
+@if ($cuestionario_id)
 
     <div class="row mt-2">
 
@@ -24,9 +24,8 @@
         </div>
 
         <div class="col-4">
-            <button wire:click="create({{ $pregunta_id }})" class="btn btn-primary">
-                Agregar Respuesta <i class="fas fa-plus"></i>
-            </button>
+            <button wire:click="create({{ $cuestionario_id }})" class="btn btn-primary">Agregar pregunta <i
+                    class="fas fa-plus"></i></button>
         </div>
 
         <div class="col-4">
@@ -36,7 +35,7 @@
 
     </div>
 
-    @if ($respuestas->count())
+    @if ($preguntas->count())
 
         <table class="table table-bordered mt-4">
             <thead>
@@ -56,10 +55,10 @@
                         @endif
 
                     </th>
-                    <th wire:click="order('pregunta_id')" class="col-2">
+                    <th wire:click="order('textPregunta')" class="col-2">
                         Pregunta
                         {{-- Sort --}}
-                        @if ($sort == 'pregunta_id')
+                        @if ($sort == 'textPregunta')
                             @if ($direction == 'asc')
                                 <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
                             @else
@@ -70,10 +69,10 @@
                             <i class="fas fa-sort float-right mt-1"></i>
                         @endif
                     </th>
-                    <th wire:click="order('textRespuesta')" class="col-2">
-                        Respuestas
+                    <th wire:click="order('descripcion')">
+                        Descripcion
                         {{-- Sort --}}
-                        @if ($sort == 'textRespuesta')
+                        @if ($sort == 'descripcion')
                             @if ($direction == 'asc')
                                 <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
                             @else
@@ -84,6 +83,8 @@
                             <i class="fas fa-sort float-right mt-1"></i>
                         @endif
                     </th>
+
+
 
 
                     <th>Ver</th>
@@ -92,28 +93,28 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($respuestas as $respuesta)
+                @foreach ($preguntas as $pregunta)
 
                     <tr>
-                        <td>{{ $respuesta->id }}</td>
-                        <td>{{ $respuesta->pregunta->textPregunta }}</td>
-                        <td>{{ $respuesta->textRespuesta }}</td>
+                        <td>{{ $pregunta->id }}</td>
+                        <td>{{ $pregunta->textPregunta }}</td>
+                        <td>{{ $pregunta->descripcion }}</td>
 
 
                         <td>
-                            <button wire:click="show({{ $respuesta->id }})" class="btn btn-primary btn-sm">
+                            <button wire:click="show({{ $pregunta->id }})" class="btn btn-primary btn-sm">
                                 <i class="fas fa-eye"></i>
                             </button>
                         </td>
                         <td>
-                            <button wire:click="edit({{ $pregunta_id }}, {{ $respuesta->id }})"
+                            <button wire:click="edit({{ $cuestionario_id }}, {{ $pregunta->id }})"
                                 class="btn btn-primary btn-sm">
                                 <i class="fas fa-edit"></i>
                             </button>
 
                         </td>
                         <td>
-                            <button wire:click="$emit('deleteRespuesta', {{ $respuesta->id }})"
+                            <button wire:click="$emit('deletePregunta', {{ $pregunta->id }})"
                                 class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
                         </td>
                     </tr>
@@ -131,13 +132,13 @@
     <nav aria-label="Page navigation example" class="float-right">
         <ul class="pagination">
             <li class="page-item">
-                {{ $respuestas->links() }}
+                {{ $preguntas->links() }}
             </li>
         </ul>
     </nav>
 
     <div class="mt-3">
-        <p> Mostrando {{ $respuestas->firstItem() }} a {{ $respuestas->lastItem() }} de {{ $respuestas->total() }} Entradas</p>
+        <p> Mostrando {{ $preguntas->firstItem() }} a {{ $preguntas->lastItem() }} de {{ $preguntas->total() }} Entradas</p>
     </div>
 
 @endif

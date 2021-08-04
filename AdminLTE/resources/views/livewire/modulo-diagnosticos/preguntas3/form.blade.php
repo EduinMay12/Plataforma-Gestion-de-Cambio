@@ -3,7 +3,7 @@
 
         <div class="form-group">
             <label for="">Cuestionario: </label>
-            <span>{{ $cuestionario2->nombre }}</span>
+            <span>{{ $cuestionario3->nombre }}</span>
         </div>
 
         <div class="form-group">

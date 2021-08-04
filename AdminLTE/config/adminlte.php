@@ -350,38 +350,78 @@ return [
                                   'icon' => '',
                                   'route' => 'asignaciondiagnosticos.index'
                               ],
-                              [
-                                  'text' => 'Cuestionario P-Abiertas',
-                                  'icon' => '',
-                                  'route' => 'cuestionario1s.index'
-                              ],
-                              [
-                                  'text' => 'Preguntas Abiertas',
-                                  'icon' => '',
-                                  'route' => 'preguntas1s.index' 
-                              ],
-                              [
-                                  'text' => 'Respuestas P-Abiertas',
-                                  'icon' => '',
-                                  'route' => 'respuestas1s.index'
-                              ],
-                              [
-                                  'text' => 'Cuestionario Verdadero/Falso',
-                                  'icon' => '',
-                                  'route' => 'cuestionario2s.index'
-                              ],
-                              [
-                                  'text' => 'Preguntas Verdadero/Falso',
-                                  'icon' => '',
-                                  'route' => 'preguntas2s.index'
-                              ],
-                              [
-                                  'text' => 'Respuestas Verdadero / Falso',
-                                  'icon' => '',
-                                  'route' => 'respuestas2s.index'
-                              ],
                           ]
                       ],
+
+                      [
+                        'text' => 'Cuestionarios',
+                        'icon' => 'fas fa-chalkboard',
+                        'submenu' => [
+                            [
+                                'text' => 'Cue. Preguntas-Abiertas',
+                                'icon' => 'fas fa-address-book',
+                                'route' => 'cuestionario1s.index'
+                            ],
+                            [
+                                'text' => 'Cue. Verdadero / Falso',
+                                'icon' => 'fas fa-address-book',
+                                'route' => 'cuestionario2s.index'
+                            ],
+                            [
+                                'text' => 'Cue. Opciónes - Múltiple',
+                                'icon' => 'fas fa-address-book',
+                                'route' => 'cuestionario3s.index'
+                              ],
+                        ]
+                    ],
+                    [
+                        'text' => 'Preguntas_Respuestas',
+                        'icon' => 'oi oi-check',
+                        'submenu' => [
+                            [
+                                'text' => 'Preguntas - Abiertas',
+                                'icon' => '',
+                                'route' => 'preguntas1s.index' 
+                            ],
+                            [
+                                'text' => 'Res. Preguntas - Abiertas',
+                                'icon' => '',
+                                'route' => 'respuestas1s.index'
+                            ],
+                            [
+                                'text' => 'Preguntas Verdadero / Falso',
+                                'icon' => '',
+                                'route' => 'preguntas2s.index'
+                            ],
+                            [
+                                'text' => 'Res. Verdadero / Falso',
+                                'icon' => '',
+                                'route' => 'respuestas2s.index'
+                            ],
+                            [
+                                'text' => 'Preguntas Opciones - Múltiples',
+                                'icon' => '',
+                                'route' => 'preguntas3s.index'
+                            ],
+                            [
+                                'text' => 'Res. Opciones - Múltiples',
+                                'icon' => '',
+                                'route' => 'respuestas3s.index'
+                            ]
+                        ]
+                    ],
+                    [
+                        'text' => 'Asig. de Cuestionarios',
+                        'icon' => 'fa-solid fa-pen-field',
+                        'submenu' => [
+                            [
+                                'text' => 'Preguntas',
+    
+                            ],
+ 
+                        ]
+                    ],
+
 
         //Rutas del módulo comunicaciones
 
