@@ -21,6 +21,16 @@
             )
         });
     </script>
+    <script>
+        livewire.on('error', function(message) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: message,
+                footer: ''
+            })
+        });
+    </script>
 
     <script src="sweetalert2.all.min.js"></script>
 
@@ -39,11 +49,11 @@
 
                     livewire.emitTo('modulo-capacitaciones.preguntas.index', 'destroy', preguntaId);
 
-                    Swal.fire(
-                        'Eliminado!',
-                        'Pregunta eliminada con exito',
-                        'success'
-                    )
+                    // Swal.fire(
+                    //     'Eliminado!',
+                    //     'Pregunta eliminada con exito',
+                    //     'success'
+                    // )
                 }
             })
         })

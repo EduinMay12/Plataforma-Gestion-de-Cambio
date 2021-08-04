@@ -242,8 +242,17 @@ class Index extends Component
         }elseif($contadorGrupos > 0){
             $this->emit('error', 'Este curso no se puede eliminar, contiene grupos');
         }else{
+            //elimar la imagen
             Storage::delete([$curso->imagen]);
+            //elimar curso
             $curso->delete();
+            //actualizar contador
+            $categoria = Categoria::find($curso->categoria_id);
+            $contador = $categoria->contador - 1;
+            $categoria->update([
+                'contador' => $contador
+            ]);
+
             $this->emit('alert', '¡Curso eliminado con exito!');
         }
 
