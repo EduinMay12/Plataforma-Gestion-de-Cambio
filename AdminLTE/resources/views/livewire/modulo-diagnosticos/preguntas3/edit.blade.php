@@ -204,35 +204,5 @@
         <button wire:click="table({{ $cuestionario3->id }})" class="btn btn-danger">Volver</button>
         
     </div>
-    <br>
-
-    <div class="row">
-        <div class="col-6">
-            <table class="table table-bordered">
-                <thead>
-                    <tr class="th-color">
-
-                        <th>Opciones</th>
-                        <th>Valor</th>
-                        <th>Eliminar</th>
-                    </tr>
-                </thead>
-                <tbody>
-                @foreach($opciones as $item) 
-                    <tr>
-                        <td>{{ $item->opcion }}</td>
-                        <td>{{ $item->valor }}</td>
-                        <td>
-                            <button wire:click="borrar({{ $item->id }})"
-                                class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
-                        </td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    
 
 </div>

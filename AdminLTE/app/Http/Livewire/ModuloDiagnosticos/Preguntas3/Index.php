@@ -18,7 +18,6 @@ class Index extends Component
 
     public $view = 'table';
     public $cuestionario_id;
-    public $deleteOpcion;
     //
     public $cuestionario3;
     public $pregunta;
@@ -94,13 +93,6 @@ class Index extends Component
     //boton de regresar
     public function table($cuestionario3){
         $this->cuestionario_id = $cuestionario3;
-
-        $this->reset([
-            'textPregunta',
-            'descripcion',
-        ]);
-
-        $this->emit('reset');
         $this->view = 'table';
     }
 
@@ -129,6 +121,7 @@ class Index extends Component
         $this->reset([
             'textPregunta',
             'descripcion',
+            //'opcion'
         ]);
 
         $this->emit('reset');
@@ -261,9 +254,9 @@ class Index extends Component
 
     }*/
 
-    public function borrar(Opciones2 $opc){
+    public function borrar(Opciones3 $opc){
 
-        $opc->delete();
+        $opc = $opc->delete();
 
         $this->emit('alert', '¡La opción se borro con exito!');
 
