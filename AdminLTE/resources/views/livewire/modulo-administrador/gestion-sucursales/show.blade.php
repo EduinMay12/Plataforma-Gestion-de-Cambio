@@ -7,7 +7,7 @@
     <span>{{ $sucursal->sucursal }}</span><br>
 
     <label for="">Resposable: </label>
-    <span>{{ $sucursal->user->name  }}</span><br>
+    <span>{{ $sucursal->user->name  }} {{ $sucursal->user->apellido }}</span><br>
 
     <label for="">Direccion : </label>
     <span>{{ $sucursal->direccion }}</span><br>

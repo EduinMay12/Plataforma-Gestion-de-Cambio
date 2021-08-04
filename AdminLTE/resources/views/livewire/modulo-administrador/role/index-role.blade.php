@@ -45,6 +45,7 @@
                                         @endif
 
                                     </th>
+                                    <th>Descripción</th>
                                     @can('ver-etiqueta')
                                     <th scope="col">Ver</th>
                                     @endcan
@@ -60,7 +61,8 @@
                             @foreach ($roles as $role)
                                 <tr>
                                 <td scope="row" >{{ $role->id }}</td>
-                                <td><center><span class="badge badge-pill badge-primary">{{ $role->name }}</span></center></td>
+                                <td><center><span style="background:{{ $role->color }}" class="badge badge-pill badge-primary">{{ $role->name }}</span></center></td>
+                                <td>{{ $role->description }}</td>
                                 @can('ver-etiqueta')
                                 <td width="50"><a class="btn btn-primary btn-sm" href="{{ route('roles.show',$role->id) }}"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
                                 @endcan

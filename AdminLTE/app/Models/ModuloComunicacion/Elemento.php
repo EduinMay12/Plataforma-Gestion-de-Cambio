@@ -11,4 +11,13 @@ class Elemento extends Model
 
     protected $guarded = [];
 
+    public function comunicacion()
+    {
+        return $this->belongsTo('App\Models\ModuloComunicacion\Comunicacion');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
 }

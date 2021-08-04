@@ -2,12 +2,14 @@
     <div class="col-6">
         <div class="card">
             <div class="card-body btn btn-secondary">
-               <center> <img class="mb-3 position-relative" src="{{ Storage::url($elemento->imagen) }}"></center>
+               <center> <img height="95%" width="100%" class="mb-3 position-relative" src="{{ Storage::url($elemento->imagen) }}"></center>
             </div>
         </div>
     </div>
     <div class="col-6">
-        <iframe height="95%" width="100%"src="{{ $elemento->url }}" title="YouTube video" allowfullscreen></iframe>
+
+        <iframe height="95%" width="100%" src="{{ $elemento->url }}" title="Ducumento" allowfullscreen></iframe>
+
     </div>
 </div>
 
@@ -15,7 +17,10 @@
 <span>{{ $elemento->name }}</span><br>
 
 <label for="">Response : </label>
-<span>{{ $elemento->user_id }}</span><br>
+<span>{{ $elemento->user->name }} {{ $elemento->user->apellido }}</span><br>
+
+<label for="">Categoria : </label>
+<span>{{ $elemento->comunicacion->name }}</span><br>
 
 <label for="">Descripcion : </label>
 <span>{{ $elemento->descripcion }}</span><br>

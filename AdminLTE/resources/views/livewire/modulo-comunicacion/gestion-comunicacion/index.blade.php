@@ -20,9 +20,18 @@
                 'success'
             )
         });
+
+        livewire.on('error', function(message) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: message,
+            })
+        });
+
         livewire.on('deleteComunicacion', comunicacion => {
             Swal.fire({
-                title: '¿Estas Segur@?',
+                title: '¿Estas segur@?',
                 text: "Esta accion no se podra revertir",
                 icon: 'warning',
                 showCancelButton: true,
@@ -31,15 +40,7 @@
                 confirmButtonText: 'Eliminar'
             }).then((result) => {
                 if (result.isConfirmed) {
-
-                    livewire.emitTo('modulo-comunicacion.gestion-comunicacion.index', 'delete',
-                    comunicacion);
-
-                    Swal.fire(
-                        'Eliminado!',
-                        'Esta Categoria de Comunicación se Elimino con Exito',
-                        'success'
-                    )
+                    livewire.emitTo('modulo-comunicacion.gestion-comunicacion.index', 'delete', comunicacion);
                 }
             })
         })

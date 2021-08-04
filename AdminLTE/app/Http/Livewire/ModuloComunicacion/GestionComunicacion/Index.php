@@ -5,8 +5,10 @@ namespace App\Http\Livewire\ModuloComunicacion\GestionComunicacion;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
+use DB;
 use Illuminate\Support\Facades\Storage;
 use App\Models\ModuloComunicacion\Comunicacion;
+use App\Models\ModuloComunicacion\Elemento;
 use Illuminate\Http\Request;
 
 class Index extends Component
@@ -107,7 +109,7 @@ class Index extends Component
 
         $this->identificador = rand();
 
-        $this->emit('alert', '!Se Agregó una Categoria con Exito¡');
+        $this->emit('alert', '!Se agregó un elemento de categoria con exito¡');
     }
 
     public function show(Comunicacion $comunicacion)
@@ -118,7 +120,16 @@ class Index extends Component
 
     public function delete(Comunicacion $comunicacion)
     {
-        $comunicacion->delete();
+        $consulta = DB::table('elementos')->where('comunicacion_id','=', $comunicacion->id)->get();
+        $contador = count($consulta);
+
+        if($contador > 0)
+        {
+            $this->emit('error', 'Este categoria de comunicación no se puede eliminar, contiene un elemento de comunicación');
+        }else{
+            $comunicacion->delete();
+            $this->emit('alert', 'Categoria de comunicacion eliminado con exito!');
+        }
     }
 
     public function edit( Comunicacion $comunicacion)
@@ -148,7 +159,7 @@ class Index extends Component
         $comunicacion = Comunicacion::find($this->comunicacion_id);
 
         $comunicacion->update([
-            'comunicacion_id' => $this->comunicacion_id,
+
             'name' => $this->name,
             'imagen' => $this->imagen_comunicacion,
             'descripcion' => $this->descripcion,
