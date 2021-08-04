@@ -67,7 +67,7 @@ class Index extends Component
 
     public function render()
     {
-        $cuestionarios = Cuestionario::all();
+        $cuestionarios = Cuestionario::where('status', '=', 1)->get();
         $preguntas = DB::table('preguntas')
                     ->where('cuestionario_id', '=', $this->cuestionario_id)
                     ->where(function($query) {
@@ -267,21 +267,21 @@ class Index extends Component
         $this->valor1 = $pregunta->valor1;
         $this->explicacion1 = $pregunta->explicacion1;
         //opcion 2
-        $this->opcion2 = $pregunta->opcion1;
+        $this->opcion2 = $pregunta->opcion2;
         $this->valor2 = $pregunta->valor2;
-        $this->explicacion2 = $pregunta->explicacion1;
+        $this->explicacion2 = $pregunta->explicacion2;
         //opcion 3
-        $this->opcion3 = $pregunta->opcion1;
+        $this->opcion3 = $pregunta->opcion3;
         $this->valor3 = $pregunta->valor3;
-        $this->explicacion3 = $pregunta->explicacion1;
+        $this->explicacion3 = $pregunta->explicacion3;
         // opcion 4
-        $this->opcion4 = $pregunta->opcion1;
+        $this->opcion4 = $pregunta->opcion4;
         $this->valor4 = $pregunta->valor4;
-        $this->explicacion4 = $pregunta->explicacion1;
+        $this->explicacion4 = $pregunta->explicacion4;
         // opcion 5
-        $this->opcion5 = $pregunta->opcion1;
+        $this->opcion5 = $pregunta->opcion5;
         $this->valor5 = $pregunta->valor5;
-        $this->explicacion5 = $pregunta->explicacion1;
+        $this->explicacion5 = $pregunta->explicacion5;
 
         $this->view = 'edit';
     }
