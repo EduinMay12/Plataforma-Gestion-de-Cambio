@@ -43,6 +43,7 @@
                                 @endif
 
                             </th>
+                            <th>Foto</th>
                             <th scope="col" wire:click="order('user_id')">
                                 Resposable
                                 {{-- Sort --}}
@@ -88,7 +89,8 @@
                         <tr>
                             <td scope="row">{{ $empresa->id }}</td>
                             <td>{{ $empresa->empresa }}</td>
-                            <td>{{ $empresa->user->name  }}</td>
+                            <td><center><img src="../uploads/avatars/{{ $empresa->user->avatar }}" width="30" height="30" class="rounded-circle"></center></td>
+                            <td> {{ $empresa->user->name  }} {{ $empresa->user->apellido  }}</td>
                             <td> {{ $empresa->empleados }}</td>
                                 @if ($empresa->estatus == 0)
                             <td><center><span class="badge badge-pill badge-danger">Inactivo</span></center></td>

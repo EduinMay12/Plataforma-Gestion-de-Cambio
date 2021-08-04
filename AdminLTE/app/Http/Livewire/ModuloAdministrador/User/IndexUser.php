@@ -64,16 +64,12 @@ class IndexUser extends Component
 
     public function render()
     {
-        $empresas = Empresa::all();
+        $empresas = Empresa::where('estatus', '=', 1)->get();
+        $sucursales = Sucursales::where('empresa_id','=', $this->empresa_id)->where('estatus', '=', 1)->get();
         $users = User::all();
         $estados = Estados::all();
-        $roles = Role::pluck('name','name')->all();
-        $sucursales = Sucursales::where('empresa_id','=', $this->empresa_id)->get();
-        $users = User::where('name', 'like' , '%' . $this->search . '%')
-                    ->orWhere('email', 'like' , '%' . $this->search . '%')
-                    ->orderBy($this->sort, $this->direction)
-                    ->paginate($this->cant);
-
+        $roles = Role::all();
+        $users = User::where('name', 'like' , '%' . $this->search . '%')->orWhere('email', 'like' , '%' . $this->search . '%')->orderBy($this->sort, $this->direction)->paginate($this->cant);
         return view('livewire.modulo-administrador.user.index-user', compact('empresas', 'sucursales', 'estados', 'users', 'roles'));
     }
 
@@ -104,6 +100,7 @@ class IndexUser extends Component
 
             'd_asenta' => 'required',
             'd_ciudad' => 'required',
+            'empresa_id' => 'required',
             'estatus' => 'required'
         ]);
 
@@ -121,8 +118,7 @@ class IndexUser extends Component
             'd_ciudad' => $this->d_ciudad,
 
             'estatus' => $this->estatus,
-            'empresa_id' => $this->empresa_id,
-            'sucursal_id' => $this->sucursal_id
+            'empresa_id' => $this->empresa_id
 
         ]);
 
@@ -163,6 +159,15 @@ class IndexUser extends Component
 
     public function delete(User $users)
     {
-        $users->delete();
+        $consulta = DB::table('empresas')->where('user_id','=', $users->id)->get();
+        $contador = count($consulta);
+
+        if($contador > 0)
+        {
+            $this->emit('error', 'Este usuario no se puede eliminar, contiene empresas y sucursales');
+        }else{
+            $users->delete();
+            $this->emit('alert', 'Usuario eliminado con exito!');
+        }
     }
 }

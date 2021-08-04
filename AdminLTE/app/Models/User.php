@@ -66,17 +66,18 @@ class User extends Authenticatable
         return 'Hola Bienvenido a Gestion de Cambio';
     }
 
-    public function empresas()
+    public function empresa()
     {
          return $this->hasMany('App\Models\ModuloAdministrador\Empresa');
     }
 
-    public function sucursales()
+    public function sucursale()
     {
          return $this->hasMany('App\Models\ModuloAdministrador\Sucursales');
     }
 
-    public function asignaciondiagnosticos(){
+    public function asignaciondiagnosticos()
+    {
         return $this->hasMany('App\Models\ModuloDiagnosticos\AsignacionDiagnostico');
     }
 

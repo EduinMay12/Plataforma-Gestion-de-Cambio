@@ -4,6 +4,7 @@ namespace App\Http\Livewire\ModuloAdministrador\GestionEmpresas;
 
 use Livewire\Component;
 use App\Models\ModuloAdministrador\Empresa;
+use DB;
 use App\Models\User;
 use App\Models\Estados;
 use Livewire\WithPagination;
@@ -85,7 +86,16 @@ class IndexEmpresas extends Component
 
     public function delete(Empresa $empresa)
     {
-        $empresa->delete();
+        $consulta = DB::table('sucursales')->where('empresa_id','=', $empresa->id)->get();
+        $contador = count($consulta);
+
+        if($contador > 0)
+        {
+            $this->emit('error', 'Esta empresa no se puede eliminar, contiene sucursales');
+        }else{
+            $empresa->delete();
+            $this->emit('alert', 'Empresa eliminado con exito!');
+        }
     }
 
     public function show(Empresa $empresa)

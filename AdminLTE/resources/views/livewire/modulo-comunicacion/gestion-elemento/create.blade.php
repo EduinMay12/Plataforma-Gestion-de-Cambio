@@ -20,15 +20,15 @@
         <div class="col-6">
             <div class="mb-3 position-relative">
                 <label class="form-label" for="">Categoria* :</label>
-                <select class="form-control" type="text" wire:model="categoria_id" required>
+                <select class="form-control" type="text" wire:model="comunicacion_id" required>
                     <option value="">Seleccionar</option>
                     @foreach ($comunicacion as $comunicacion)
-                        <option value="{{ $comunicacion->name }}">
+                        <option value="{{ $comunicacion->id }}">
                             {{ $comunicacion->name }}
                         </option>
                     @endforeach
                 </select>
-                @error('categoria_id') <span class="error badge badge-danger">{{ $message }}</span>@enderror
+                @error('comunicacion_id') <span class="error badge badge-danger">{{ $message }}</span>@enderror
             </div>
             <div class="form-group">
                 <label for="">Agregar imagen* :</label>
@@ -54,8 +54,8 @@
                         <select class="form-control" type="text" wire:model="user_id" required>
                             <option value="">Seleccionar</option>
                             @foreach ($users as $user)
-                                <option value="{{ $user->name }}">
-                                    {{ $user->name }}
+                                <option value="{{ $user->id }} ">
+                                    {{ $user->name }} {{ $user->apellido }}
                                 </option>
                             @endforeach
                         </select>

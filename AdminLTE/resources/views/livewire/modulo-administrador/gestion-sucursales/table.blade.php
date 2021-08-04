@@ -62,6 +62,7 @@
                                 @endif
 
                             </th>
+                            <th>Foto</th>
                             <th scope="col" wire:click="order('user_id')">
                                 Resposable
                                 {{-- Sort --}}
@@ -110,7 +111,8 @@
                         <tr>
                             <td scope="row" >{{ $sucursal->id }}</td>
                             <td>{{ $sucursal->sucursal }}</td>
-                            <td>{{ $sucursal->user->name  }}</td>
+                            <td><center><img src="../uploads/avatars/{{ $sucursal->user->avatar }}" width="30" height="30" class="rounded-circle"></center></td>
+                            <td>{{ $sucursal->user->name  }}  {{ $sucursal->user->apellido }}</td>
                             <td>{{ $sucursal->empleados }}</td>
 
                                 @if ($sucursal->tamaño == 0)

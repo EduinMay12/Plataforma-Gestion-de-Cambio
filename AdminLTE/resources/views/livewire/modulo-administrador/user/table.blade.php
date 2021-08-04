@@ -109,6 +109,7 @@
                                     <i class="fas fa-sort float-right mt-1"></i>
                                 @endif
                             </th>
+                            <th scope="col">Role</th>
                             <th scope="col">Tipo</th>
                             <th scope="col">Puesto</th>
                             <th scope="col">Guia 1</th>
@@ -149,11 +150,12 @@
                             <td>{{ $user->empresa_id }}/{{ $user->sucursal_id }}</td>
                             <td>
                                 @if(!empty($user->getRoleNames()))
-                                    @foreach($user->getRoleNames() as $v)
-                                        <center><span class="badge badge-pill badge-primary">{{ $v }}</span></center>
+                                    @foreach($user->getRoleNames() as $role)
+                                        <center><span style="background:{{ $role }}" class="badge badge-pill badge-primary">{{ $role }}</span></center>
                                     @endforeach
                                 @endif
                             </td>
+                            <td></td>
                             <td></td>
                             <td></td>
                             <td>

@@ -24,7 +24,7 @@
                     <option value="">Seleccione...</option>
                     @foreach ($users as $user)
                         <option value="{{ $user->id }}">
-                            {{ $user->name }}
+                            {{ $user->name }} {{ $user->apellido }}
                         </option>
                     @endforeach
                 </select>

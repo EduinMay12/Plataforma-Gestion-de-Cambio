@@ -4,7 +4,7 @@
     <span>{{ $empresa->empresa }}</span><br>
 
     <label for="">Resposable: </label>
-    <span>{{ $empresa->user->name }}</span><br>
+    <span>{{ $empresa->user->name }} {{ $empresa->user->apellido }}</span><br>
 
     <label for="">Direccion : </label>
     <span>{{ $empresa->direccion }}</span><br>

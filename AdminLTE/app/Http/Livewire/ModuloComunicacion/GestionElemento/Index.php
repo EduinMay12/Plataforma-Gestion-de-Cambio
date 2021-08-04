@@ -5,6 +5,7 @@ namespace App\Http\Livewire\ModuloComunicacion\GestionElemento;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
+use DB;
 use Illuminate\Support\Facades\Storage;
 use App\Models\ModuloComunicacion\Elemento;
 use App\Models\User;
@@ -24,7 +25,7 @@ class Index extends Component
 
     public $name;
     public $elemento;
-    public $categoria_id;
+    public $comunicacion_id;
     public $user_id;
     public $descripcion;
     public $dirigido;
@@ -52,7 +53,7 @@ class Index extends Component
     protected $rules =
     [
         'name' => 'required',
-        'categoria_id' => 'required',
+        'comunicacion_id' => 'required',
         'user_id' => 'required',
         'descripcion' => 'required',
         'dirigido' => 'required',
@@ -106,13 +107,23 @@ class Index extends Component
 
     public function save()
     {
-        $this->validate();
+        $this->validate([
+            'user_id' => 'required|unique:elementos',
+            'name' => 'required',
+            'comunicacion_id' => 'required|unique:elementos',
+            'url' => 'required',
+            'imagen' => 'required',
+            'status' => 'required',
+            'dirigido' => 'required',
+            'contenido' => 'required',
+            'descripcion' => 'required'
+        ]);
 
         $imagen = $this->imagen->store('elemento');
 
         Elemento::create([
             'name' => $this->name,
-            'categoria_id' => $this->categoria_id,
+            'comunicacion_id' => $this->comunicacion_id,
             'user_id' => $this->user_id,
             'descripcion' => $this->descripcion,
             'dirigido' => $this->dirigido,
@@ -122,11 +133,20 @@ class Index extends Component
             'status' => $this->status
         ]);
 
-        $this->reset(['name', 'dirigido', 'descripcion','contenido', 'url', 'user_id', 'categoria_id', 'imagen', 'status']);
+        $this->reset([
+            'name',
+            'dirigido',
+            'descripcion',
+            'contenido',
+            'url',
+            'user_id',
+            'comunicacion_id',
+            'imagen',
+            'status']);
 
         $this->identificador = rand();
 
-        $this->emit('alert', '!Se agregó la categoria con exito¡');
+        $this->emit('alert', '!Se agregó un elemento de comunicación con exito¡');
     }
 
     public function show(Elemento $elemento)
@@ -137,6 +157,8 @@ class Index extends Component
 
     public function delete(Elemento $elemento)
     {
+
         $elemento->delete();
+
     }
 }

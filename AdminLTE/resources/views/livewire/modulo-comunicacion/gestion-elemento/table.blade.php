@@ -41,7 +41,7 @@
                                     <i class="fas fa-sort float-right mt-1"></i>
                                 @endif
                             </th>
-
+                            <th>Foto</th>
                             <th scope="col" wire:click="order('user_id')">
                                 Resposable
                                 {{-- Sort --}}
@@ -99,9 +99,10 @@
                             <tr>
                                 <td scope="row">{{ $elemento->id }}</td>
                                 <td>{{ $elemento->name }}</td>
-                                <td>{{ $elemento->user_id }}</td>
+                                <td><center><img src="../uploads/avatars/{{ $elemento->user->avatar }}" width="30" height="30" class="rounded-circle"></center></td>
+                                <td>{{ $elemento->user->name }} {{ $elemento->user->apellido }}</td>
                                 <td>{{ $elemento->descripcion }}</td>
-                                <td>{{ $elemento->categoria_id }}</td>
+                                <td>{{ $elemento->comunicacion->name }}</td>
                                 <td>{{ $elemento->contenido }}</td>
                                 <td>
                                     <center>
