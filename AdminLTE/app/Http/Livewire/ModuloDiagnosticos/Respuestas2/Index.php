@@ -27,6 +27,7 @@ class Index extends Component
 
     public $textRespuesta;
 
+
     public $search  = '';
     public $sort = 'id';
     public $direction = 'desc';
