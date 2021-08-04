@@ -8,6 +8,7 @@ use App\Models\ModuloCapacitaciones\Curso;
 use App\Models\ModuloCapacitaciones\Grupo;
 use App\Models\ModuloAdministrador\Sucursales;
 use Spatie\Permission\Models\Role;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Livewire\WithPagination;
 
@@ -29,6 +30,9 @@ class Index extends Component
     public $curso_id;
     public $grupo_id;
 
+    public $role_id;
+    public $sucursal_id;
+
 
     //variables del crud
 
@@ -49,7 +53,13 @@ class Index extends Component
 
         $matriculaciones = DB::table('matriculaciones')->get();
 
-        return view('livewire.modulo-capacitaciones.matriculaciones.index', compact('categorias', 'cursos', 'grupos', 'sucursales', 'roles','matriculaciones'));
+        $participantes = User::select('users.name', 'users.apellido')
+                ->join('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
+                ->where('users.sucursal_id', '=', 'Sucursal')
+                ->where('model_has_roles.role_id', '=', $this->role_id)
+                ->get();
+
+        return view('livewire.modulo-capacitaciones.matriculaciones.index', compact('categorias', 'cursos', 'grupos', 'sucursales', 'roles','matriculaciones', 'participantes'));
     }
 
     public function create(Categoria $categoria, Curso $curso, Grupo $grupo)
