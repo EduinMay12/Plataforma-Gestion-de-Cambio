@@ -35,7 +35,17 @@
                             </div>
                             <div class="mt-4">
                                 <p class="mb-1">Estado :</p>
-                                <h5 class="font-size-16">{{ Auth::user()->estado_id }}</h5>
+                                <h5 class="font-size-16">
+
+                                @if (Auth::user()->estatus == 0)
+                                <span class="badge badge-pill badge-danger"> Necesita Ayuda </span>
+                                @elseif(Auth::user()->estatus == 1)
+                                <span class="badge badge-pill badge-warning"> Pendiente </span>
+                                @elseif(Auth::user()->estatus == 2)
+                                <span class="badge badge-pill badge-info"> Evaluado </span>
+                                @endif
+
+                                </h5>
                             </div>
                             <div class="mt-4">
                                 <p class="mb-1">Sucursal :</p>

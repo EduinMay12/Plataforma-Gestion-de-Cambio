@@ -109,7 +109,6 @@
                                     <i class="fas fa-sort float-right mt-1"></i>
                                 @endif
                             </th>
-                            <th scope="col">Role</th>
                             <th scope="col">Tipo</th>
                             <th scope="col">Puesto</th>
                             <th scope="col">Guia 1</th>
@@ -147,16 +146,15 @@
                             <td><img src="../uploads/avatars/{{ $user->avatar }}" width="30" height="30" class="rounded-circle"></td>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->apellido }}</td>
-                            <td>{{ $user->empresa_id }}/{{ $user->sucursal_id }}</td>
+                            <td><span class="badge badge-pill badge-light"> {{ $user->empresa_id }} </span> / <span class="badge badge-pill badge-light"> {{ $user->sucursal_id }} </span></td>
                             <td>
                                 @if(!empty($user->getRoleNames()))
                                     @foreach($user->getRoleNames() as $role)
-                                        <center><span style="background:{{ $role }}" class="badge badge-pill badge-primary">{{ $role }}</span></center>
+                                        <center><span class="badge badge-pill badge-primary">{{ $role }}</span></center>
                                     @endforeach
                                 @endif
                             </td>
-                            <td></td>
-                            <td></td>
+                            <td>{{ $user->puesto_actual_id }}</td>
                             <td></td>
                             <td>
                                 @if ($user->estatus == 0)
@@ -165,8 +163,8 @@
                                 <td><center><span class="badge badge-pill badge-warning"> Pendiente </span></center></td>
                                     @elseif($user->estatus == 2)
                                 <td><center><span class="badge badge-pill badge-info"> Evaluado </span></center></td>
-                                    @endif
-                            </>
+                                @endif
+                            </td>
                             @can('ver-usuarios')
                             <td width="50"><a class="btn btn-primary btn-sm" href="{{ route('users.show',$user->id) }}"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
                             @endcan

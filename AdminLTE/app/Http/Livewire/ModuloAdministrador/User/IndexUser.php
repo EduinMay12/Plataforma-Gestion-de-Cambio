@@ -84,8 +84,8 @@ class IndexUser extends Component
     {
         $this->empresa = $empresa;
         $this->sucursal = $sucursal;
-        $this->empresa_id = $empresa->id;
-        $this->sucursal_id = $sucursal->id;
+        $this->empresa_id = $empresa->empresa;
+        $this->sucursal_id = $sucursal->sucursal;
         $this->view = 'create';
     }
 
@@ -101,6 +101,7 @@ class IndexUser extends Component
             'd_asenta' => 'required',
             'd_ciudad' => 'required',
             'empresa_id' => 'required',
+            'sucursal_id' => 'required',
             'estatus' => 'required'
         ]);
 
@@ -118,7 +119,8 @@ class IndexUser extends Component
             'd_ciudad' => $this->d_ciudad,
 
             'estatus' => $this->estatus,
-            'empresa_id' => $this->empresa_id
+            'empresa_id' => $this->empresa_id,
+            'sucursal_id' => $this->sucursal_id
 
         ]);
 
@@ -138,7 +140,7 @@ class IndexUser extends Component
             'estatus'
         ]);
 
-        $this->emit('alert', '!Se Agregó un Empleado con Exito¡');
+        $this->emit('alert', '!Se agregó un empleado con exito¡');
 
     }
 
