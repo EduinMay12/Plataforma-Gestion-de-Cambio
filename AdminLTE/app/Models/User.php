@@ -71,7 +71,7 @@ class User extends Authenticatable
          return $this->hasMany('App\Models\ModuloAdministrador\Empresa');
     }
 
-    public function sucursale()
+    public function sucursal()
     {
          return $this->hasMany('App\Models\ModuloAdministrador\Sucursales');
     }

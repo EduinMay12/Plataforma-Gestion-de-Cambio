@@ -20,11 +20,11 @@ class Sucursales extends Model
 
     public function estados()
     {
-        return $this->belongsTo('App\Models\Estados');
+        return $this->hasMany('App\Models\Estados');
     }
 
     public function empresas()
     {
-        return $this->belongsToMany('App\Models\ModuloAdministrador\Empresa');
+        return $this->hasMany('App\Models\ModuloAdministrador\Empresa');
     }
 }
