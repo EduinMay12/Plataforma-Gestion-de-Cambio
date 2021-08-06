@@ -1,7 +1,8 @@
-
+    @can('crear-comunicacion')
     <div class="text-center">
-        <a wire:click="create"  class="btn btn-primary">Crear Categoria <i class="fas fa-plus"></i></a>
+        <a wire:click="create"  class="btn btn-primary">Agregar Categoria <i class="fas fa-plus"></i></a>
     </div>
+    @endcan
     <div class="row mt-2">
         <div class="col-8">
             <span>Mostrar</span>
@@ -25,7 +26,7 @@
                     @if($comunicacions->count())
                     <thead>
                         <tr class="table-primary ">
-                            <th  scope="col">No</th>
+                            <th  scope="col">No.</th>
                             <th scope="col" wire:click="order('comunicacion')">
                                 Nombre
                                 {{-- Sort --}}
@@ -56,9 +57,15 @@
                             </th>
                             <th scope="col">Imagen</th>
                             <th scope="col">Estado</th>
+                            @can('ver-comunicacion')
                             <th scope="col">Ver</th>
+                            @endcan
+                            @can('editar-comunicacion')
                             <th scope="col">Editar</th>
+                            @endcan
+                            @can('eliminar-comunicacion')
                             <th scope="col">Eliminar</th>
+                            @endcan
                         </tr>
                     </thead>
                     <tbody>
@@ -77,21 +84,27 @@
                                 @elseif($comunicacion->status == 1)
                                 <td><center><span class="badge badge-pill badge-success">Activo</span></center></td>
                                 @endif
+                                @can('ver-comunicacion')
                                 <td width="80">
                                     <button  wire:click="show({{ $comunicacion->id }})" class="btn btn-primary btn-sm">
                                         <i class="fas fa-eye"></i>
                                     </button>
                                 </td>
+                                @endcan
+                                @can('editar-comunicacion')
                                 <td width="80">
                                     <button wire:click="edit({{ $comunicacion->id }})" class="btn btn-primary btn-sm">
                                         <i class="fas fa-edit"></i>
                                     </button>
                                 </td>
+                                @endcan
+                                @can('eliminar-comunicacion')
                                 <td width="80">
                                     <button class="btn btn-danger btn-sm" wire:click="$emit('deleteComunicacion', {{ $comunicacion }})">
                                         <i class="fas fa-trash-alt"></i>
                                     </button>
                                 </td>
+                                @endcan
                             </tr>
                         @endforeach
                     </tbody>

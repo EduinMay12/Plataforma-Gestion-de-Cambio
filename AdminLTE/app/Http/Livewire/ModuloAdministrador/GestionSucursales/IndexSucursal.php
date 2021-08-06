@@ -62,8 +62,9 @@ class IndexSucursal extends Component
         $empresas = Empresa::where('estatus', '=', 1)->get();
         $users = User::all();
         $estados = Estados::all();
-        $sucursales = Sucursales::where('empresa_id', 'like' , '%' . $this->search . '%')
-                    ->where('sucursal', 'like' , '%' . $this->search . '%')
+        $sucursales = Sucursales::where('sucursal', 'like' , '%' . $this->search . '%')
+                    ->orWhere('user_id', 'like' , '%' . $this->search . '%')
+                    ->orWhere('id', 'like' , '%' . $this->search . '%')
                     ->orderBy($this->sort, $this->direction)
                     ->paginate($this->cant);
 

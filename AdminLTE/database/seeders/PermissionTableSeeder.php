@@ -47,7 +47,12 @@ class PermissionTableSeeder extends Seeder
             'ver-elemento',
             'crear-elemento',
             'editar-elemento',
-            'eliminar-elemento'
+            'eliminar-elemento',
+
+            'ver-campaña',
+            'crear-campaña',
+            'editar-campaña',
+            'eliminar-campaña'
         ];
 
         foreach ($permissions as $permission) {

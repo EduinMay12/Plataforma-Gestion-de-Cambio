@@ -15,7 +15,7 @@ class CreateSucursalesTable extends Migration
     {
         Schema::create('sucursales', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('empresa_id')->unique();
+            $table->unsignedBigInteger('empresa_id');
             $table->foreign('empresa_id')
                   ->references('id')
                   ->on('empresas')

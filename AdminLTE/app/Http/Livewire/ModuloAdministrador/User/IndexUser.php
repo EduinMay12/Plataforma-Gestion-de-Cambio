@@ -69,7 +69,14 @@ class IndexUser extends Component
         $users = User::all();
         $estados = Estados::all();
         $roles = Role::all();
-        $users = User::where('name', 'like' , '%' . $this->search . '%')->orWhere('email', 'like' , '%' . $this->search . '%')->orderBy($this->sort, $this->direction)->paginate($this->cant);
+        $users = User::where('name', 'like' , '%' . $this->search . '%')
+                    ->orWhere('email', 'like' , '%' . $this->search . '%')
+                    ->orWhere('empresa_id', 'like' , '%' . $this->search . '%')
+                    ->orWhere('sucursal_id', 'like' , '%' . $this->search . '%')
+                    ->orWhere('puesto_actual_id', 'like' , '%' . $this->search . '%')
+                    ->orWhere('estatus', 'like' , '%' . $this->search . '%')
+                    ->orderBy($this->sort, $this->direction)
+                    ->paginate($this->cant);
         return view('livewire.modulo-administrador.user.index-user', compact('empresas', 'sucursales', 'estados', 'users', 'roles'));
     }
 
@@ -94,7 +101,7 @@ class IndexUser extends Component
         $validatedDate = $this->validate([
             'name' => 'required',
             'apellido' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:email',
             'password' => 'required',
             'direccion' => 'required',
 

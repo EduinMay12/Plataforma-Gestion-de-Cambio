@@ -25,6 +25,6 @@ class Sucursales extends Model
 
     public function empresas()
     {
-        return $this->hasMany('App\Models\ModuloAdministrador\Empresa');
+        return $this->belongsToMany('App\Models\ModuloAdministrador\Empresa');
     }
 }

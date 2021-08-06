@@ -7,7 +7,7 @@
     <div class="card">
         <div class="card-header d-flex justify-content-center">
         <div class="card-title">
-            <h4>Editado de Etiqueta</h4>
+            <h4>Editado</h4>
         </div>
         </div>
     </div>
@@ -36,16 +36,15 @@
                         <div class="col-md-12">
                             <div class="mb-3 position-relative">
                                 <label class="form-label" for="validationEtiqueta">Nombre de la Etiqueta</label>
-                                {!! Form::text('name', null, array('placeholder' => 'Nombres (s)','class' => 'form-control', 'id'=> 'validationEtiqueta', 'required')) !!}
-                                <div class="invalid-tooltip">
-                                    Ingrese el Campo de Nombre.
-                                </div>
-                                <div class="valid-tooltip">
-                                    Listo!
-                                </div>
+                                {!! Form::text('name', null, array('placeholder' => 'Nombres (s)','class' => 'form-control', 'required')) !!}
+                                @error('name') <span class="error badge badge-danger">{{ $message }}</span>@enderror
                             </div>
                         </div>
-
+                        <div class="mb-3 position-relative">
+                            <label class="form-label" for="">Color* :</label>
+                            <input type="color" name="color" id="input-theme" class="form-control" required>
+                            @error('color') <span class="error badge badge-danger">{{ $message }}</span>@enderror
+                        </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <strong>Permisos de la Etiqueta :</strong>

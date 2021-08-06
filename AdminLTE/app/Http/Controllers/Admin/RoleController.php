@@ -116,12 +116,13 @@ class RoleController extends Controller
 
         $role = Role::find($id);
         $role->name = $request->input('name');
+        $role->color = $request->input('color');
         $role->save();
 
         $role->syncPermissions($request->input('permission'));
 
         return redirect()->route('roles.index')
-                        ->with('success','Etiqueta Actulizada!');
+                        ->with('success','Rol actulizado!');
     }
     /**
      * Remove the specified resource from storage.
