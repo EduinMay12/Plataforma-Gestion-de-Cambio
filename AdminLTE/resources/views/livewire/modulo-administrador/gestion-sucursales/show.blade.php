@@ -40,7 +40,7 @@
     @elseif ($sucursal->tamaño == 1)
     <span class="badge badge-pill badge-warning"> Mediano </span><br>
     @elseif($sucursal->tamaño == 2)
-    <span class="badge badge-pill badge-light"> Chico </span><br>
+    <span class="badge badge-pill badge-dark"> Chico </span><br>
     @endif
 
     <div class="mt-4">

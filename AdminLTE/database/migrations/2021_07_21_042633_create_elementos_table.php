@@ -17,10 +17,12 @@ class CreateElementosTable extends Migration
             $table->id();
             $table->string('name');
 
-            $table->unsignedBigInteger('user_id')->unique();
+            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->unsignedBigInteger('comunicacion_id')->unique();
+
+            $table->unsignedBigInteger('comunicacion_id');
             $table->foreign('comunicacion_id')->references('id')->on('comunicacions')->onDelete('cascade');
+
             $table->text('descripcion');
             $table->text('dirigido');
             $table->string('imagen');

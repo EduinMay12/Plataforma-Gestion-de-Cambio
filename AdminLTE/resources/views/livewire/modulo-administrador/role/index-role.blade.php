@@ -3,7 +3,7 @@
         <div class="card-body">
             @can('crear-etiqueta')
                 <center>
-                    <a href="{{ route('roles.create') }}" class="btn btn-primary btn-rounded" title="Agregar nuevo Puesto">Crear Etiqueta <i class="fa fa-plus"></i> </a>
+                    <a href="{{ route('roles.create') }}" class="btn btn-primary btn-rounded" title="Agregar nuevo Rol">Agregar Rol <i class="fa fa-plus"></i> </a>
                 </center>
             @endcan
             <div class="row mt-2">
@@ -31,7 +31,7 @@
                                 <tr class="table-primary">
                                     <th scope="col">No.</th>
                                     <th scope="col" wire:click="order('name')">
-                                        Etiqueta
+                                        Roles
                                         {{-- Sort --}}
                                         @if ($sort == 'name')
                                             @if ($direction == 'asc')

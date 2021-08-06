@@ -1,7 +1,7 @@
     @can('crear-gestion-empresa')
     <center>
         <div class="col-4">
-            <button wire:click="create" class="btn btn-primary btn-rounded">Crear Empresa <i class="fas fa-plus"></i></button>
+            <button wire:click="create" class="btn btn-primary btn-rounded">Agregar Empresa <i class="fas fa-plus"></i></button>
         </div>
     </center>
     @endcan

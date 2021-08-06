@@ -1,7 +1,8 @@
-
+    @can('crear-elemento')
     <div class="text-center">
-        <a wire:click="create"  class="btn btn-primary">Crear Elemento <i class="fas fa-plus"></i></a>
+        <a wire:click="create"  class="btn btn-primary">Agregar Elemento <i class="fas fa-plus"></i></a>
     </div>
+    @endcan
     <div class="row mt-2">
         <div class="col-8">
             <span>Mostrar</span>
@@ -21,7 +22,7 @@
     <div class="row">
         <div class="col">
             <div class="table-responsive  mb-4"><br>
-                <table class="table table-bordered table-striped datatable dt-responsive nowrap table-card-list" style="border-collapse: collapse; border-spacing: 0 12px; width: 100%;">
+                <table class="table table-bordered table-striped datatable dt-responsive nowrap table-card-list" style="border-collapse: collapse; border-spacing: 0 12px; width: 140%;">
                     @if ($elementos->count())
                     <thead>
                         <tr class="table-primary ">
@@ -89,9 +90,15 @@
                             <th scope="col">contenido</th>
                             <th scope="col">Imagen</th>
                             <th scope="col">Estado</th>
+                            @can('ver-elemento')
                             <th scope="col">Ver</th>
+                            @endcan
+                            @can('editar-elemento')
                             <th scope="col">Editar</th>
+                            @endcan
+                            @can('eliminar-elemento')
                             <th scope="col">Eliminar</th>
+                            @endcan
                         </tr>
                     </thead>
                     <tbody>
@@ -114,21 +121,27 @@
                                 @elseif($elemento->status == 1)
                                 <td><center><span class="badge badge-pill badge-success">Activo</span></center></td>
                                 @endif
+                                @can('ver-elemento')
                                 <td width="80">
                                     <button wire:click="show({{ $elemento->id }})" class="btn btn-primary btn-sm">
                                         <i class="fas fa-eye"></i>
                                     </button>
                                 </td>
+                                @endcan
+                                @can('editar-elemento')
                                 <td width="80">
                                     <button wire:click="edit({{ $elemento->id }})"  class="btn btn-primary btn-sm">
                                         <i class="fas fa-edit"></i>
                                     </button>
                                 </td>
+                                @endcan
+                                @can('eliminar-elemento')
                                 <td width="80">
                                     <button class="btn btn-danger btn-sm" wire:click="$emit('deleteElemento', {{ $elemento }})">
                                         <i class="fas fa-trash-alt"></i>
                                     </button>
                                 </td>
+                                @endcan
                             </tr>
                         @endforeach
                     </tbody>

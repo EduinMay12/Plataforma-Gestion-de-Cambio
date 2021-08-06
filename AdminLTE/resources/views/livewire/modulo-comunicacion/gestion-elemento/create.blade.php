@@ -55,7 +55,12 @@
                             <option value="">Seleccionar</option>
                             @foreach ($users as $user)
                                 <option value="{{ $user->id }} ">
-                                    {{ $user->name }} {{ $user->apellido }}
+                                    {{ $user->name }} {{ $user->apellido }} /
+                                @if(!empty($user->getRoleNames()))
+                                    @foreach($user->getRoleNames() as $role)
+                                        <span>{{ $role }}</span>
+                                    @endforeach
+                                @endif
                                 </option>
                             @endforeach
                         </select>

@@ -7,7 +7,7 @@
     <div class="card">
         <div class="card-header d-flex justify-content-center">
         <div class="card-title">
-            <h4>Etiquetas</h4>
+            <h4>Roles del sistema</h4>
         </div>
         </div>
     </div>
