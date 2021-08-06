@@ -13,11 +13,11 @@ class Elemento extends Model
 
     public function comunicacion()
     {
-        return $this->belongsTo('App\Models\ModuloComunicacion\Comunicacion');
+        return $this->hasMany('App\Models\ModuloComunicacion\Comunicacion');
     }
 
     public function user()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->hasMany('App\Models\User');
     }
 }
