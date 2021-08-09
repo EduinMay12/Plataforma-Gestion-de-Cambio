@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-6">
                     <div class="mb-3 position-relative">
-                        <label class="form-group" for="">Nombre* (s):</label>
+                        <label class="form-group" for="">Nombre* (s): {{$sucursal_id}}</label>
                         <input type="text" wire:model="name" class="form-control" placeholder="Nombre (s)" required>
                         @error('name') <span class="error badge badge-danger">{{ $message }}</span>@enderror
                     </div>

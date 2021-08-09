@@ -36,7 +36,7 @@
     <script src="sweetalert2.all.min.js"></script>
 
     <script>
-        livewire.on('deleteRecurso', recursoId => {
+        livewire.on('deleteMatriculacion', userId => {
             Swal.fire({
                 title: '¿Estas segur@?',
                 text: "Esta accion no se podra revertir",
@@ -48,7 +48,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
 
-                    livewire.emitTo('modulo-capacitaciones.recursos.index', 'destroy', recursoId);
+                    livewire.emitTo('modulo-capacitaciones.matriculaciones.index', 'destroy', userId);
 
                     // Swal.fire(
                     //     'Eliminado!',
