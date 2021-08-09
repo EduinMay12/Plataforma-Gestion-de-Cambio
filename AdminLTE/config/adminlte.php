@@ -381,32 +381,32 @@ return [
                             [
                                 'text' => 'Preguntas - Abiertas',
                                 'icon' => '',
-                                'route' => 'preguntas1s.index' 
+                                'route' => 'preguntas1s.index'
                             ],
                             [
                                 'text' => 'Res. Preguntas - Abiertas',
                                 'icon' => '',
-                                'route' => 'respuestas1s.index'
+                                'url' => 'respuestas1s.index'
                             ],
                             [
                                 'text' => 'Preguntas Verdadero / Falso',
                                 'icon' => '',
-                                'route' => 'preguntas2s.index'
+                                'url' => 'preguntas2s.index'
                             ],
                             [
                                 'text' => 'Res. Verdadero / Falso',
                                 'icon' => '',
-                                'route' => 'respuestas2s.index'
+                                'url' => 'respuestas2s.index'
                             ],
                             [
                                 'text' => 'Preguntas Opciones - Múltiples',
                                 'icon' => '',
-                                'route' => 'preguntas3s.index'
+                                'url' => 'preguntas3s.index'
                             ],
                             [
                                 'text' => 'Res. Opciones - Múltiples',
                                 'icon' => '',
-                                'route' => 'respuestas3s.index'
+                                'url' => 'respuestas3s.index'
                             ]
                         ]
                     ],
@@ -417,9 +417,9 @@ return [
                             [
                                 'text' => 'Asig. pre. Verdader/Falso',
                                 'icon' => '',
-                                'route' => 'asignacioncuestionarios.index'
+                                'url' => 'asignacioncuestionarios.index'
                             ],
- 
+
                         ]
                     ],
 
