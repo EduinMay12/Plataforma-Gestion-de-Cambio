@@ -40,6 +40,8 @@ use App\Http\Controllers\ModuloDiagnosticos\Cuestionario3Controller;
 use App\Http\Controllers\ModuloDiagnosticos\Preguntas3Controller;
 use App\Http\Controllers\ModuloDiagnosticos\Respuestas3Controller;
 
+use App\Http\Controllers\ModuloDiagnosticos\AsignacionCuestionarioController;
+
 /*
 |--------------------------------------------------------------------------
 | Rutas vistas por el publico
@@ -118,6 +120,8 @@ Route::get('preguntas', [PreguntaController::class, 'index'])->name('preguntas.i
     Route::resource('cuestionario3s', Cuestionario3Controller::class);
     Route::resource('preguntas3s', Preguntas3Controller::class);
     Route::resource('respuestas3s', Respuestas3Controller::class);
+
+    Route::resource('asignacioncuestionarios', AsignacionCuestionarioController::class);
 
 
 });

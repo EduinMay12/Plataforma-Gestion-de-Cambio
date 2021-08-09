@@ -58,6 +58,13 @@ class Index extends Component
 
     public function table($pregunta){
         $this->pregunta_id = $pregunta;
+
+        $this->reset([
+            'textRespuesta'
+        ]);
+
+        $this->emit('reset');
+        
         $this->view = 'table';
     }
 

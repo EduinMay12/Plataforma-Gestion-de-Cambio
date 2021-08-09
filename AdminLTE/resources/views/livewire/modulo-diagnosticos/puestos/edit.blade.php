@@ -93,7 +93,7 @@
                                         <td>{{ $item->nombre }}</td>
                                         <td>{{ $item->pivot->nivel_id }}</td>
                                         <td>
-                                            <form action="{{ route('competencia-puesto.borrar', $puesto) }}" method="POST">
+                                            <form action="{{ route('competencia-puesto.borrar', $puesto->id) }}" method="POST">
                                                 @csrf
                                                 @method('delete')
                                                 <button type="submit" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
@@ -107,7 +107,7 @@
                     </div>
 
                     <div class="mt-4">
-                        <button class="btn btn-success" wire:click="save" wire:loading.attr="disabled" wire:target="save">Guardar</button>
+                        <button class="btn btn-success" wire:click="save" wire:loading.attr="disabled" wire:target="save">Actualizar</button>
                         <a href="{{ route('puestos.index') }}" class="btn btn-danger">Volver</a>
                     </div>
 

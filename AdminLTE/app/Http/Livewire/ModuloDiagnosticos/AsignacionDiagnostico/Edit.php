@@ -33,7 +33,7 @@ class Edit extends Component
 
         $this->asignaciondiagnostico->save();
 
-        $this->emit('alert', '¡La asignacion diagnostico se actualizó con exito!');
+        $this->emit('alert', '¡La asignación diagnóstico se actualizó con exito!');
     }
 
     public function render()
