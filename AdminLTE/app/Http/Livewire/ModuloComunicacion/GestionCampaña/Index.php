@@ -31,6 +31,16 @@ class Index extends Component
 
     public $view = 'table';
 
+    public $name;
+    public $sucursal_id;
+    public $empresa_id;
+    public $user_id;
+    public $fechainicio;
+    public $fechafin;
+    public $status;
+    public $elemento_id;
+    public $comunicacion_id;
+
     protected $paginationTheme = "bootstrap";
 
     protected $listeners =['delete'];
@@ -87,6 +97,47 @@ class Index extends Component
     public function create()
     {
         $this->view = 'create';
+    }
+
+    public function save()
+    {
+        $this->validate([
+            'name' => 'required',
+            'user_id' => 'required',
+            'empresa_id' => 'required',
+            'sucursal_id' => 'required',
+            'fechainicio' => 'required',
+            'fechafin' => 'required',
+            'elemento_id' => 'required',
+            'comunicacion_id' => 'required',
+            'status' => 'required'
+        ]);
+
+        Campana::create([
+            'name' => $this->name,
+            'user_id' => $this->user_id,
+            'empresa_id' => $this->empresa_id,
+            'sucursal_id' => $this->sucursal_id,
+            'fechainicio' => $this->fechainicio,
+            'fechafin' => $this->fechafin,
+            'elemento_id' => $this->elemento_id,
+            'comunicacion_id' => $this->comunicacion_id,
+            'status' => $this->status
+        ]);
+
+        $this->reset([
+            'name',
+            'user_id',
+            'sucursal_id',
+            'empresa_id',
+            'fechainicio',
+            'fechafin',
+            'elemento_id',
+            'comunicacion_id',
+            'status'
+        ]);
+
+        $this->emit('alert', '!Se agregó un nuevo elemento de campaña con exito¡');
     }
 
     public function show(Campana $campaña)
