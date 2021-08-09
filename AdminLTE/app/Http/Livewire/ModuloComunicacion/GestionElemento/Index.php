@@ -182,4 +182,44 @@ class Index extends Component
         $elemento->delete();
 
     }
+
+    public function edit( Comunicacion $comunicacion)
+    {
+        $this->comunicacion_id = $comunicacion->id;
+        $this->name = $comunicacion->name;
+        $this->imagen_comunicacion = $comunicacion->imagen;
+        $this->descripcion = $comunicacion->descripcion;
+        $this->status = $comunicacion->status;
+        $this->view = 'edit';
+    }
+
+    public function update()
+    {
+        $this->validate([
+            'name' => 'required',
+            'descripcion' => 'required',
+            'status' => 'required',
+            'comunicacion_id' => 'required'
+        ]);
+
+        if ($this->imagen) {
+            Storage::delete([$this->imagen_comunicacion]);
+            $this->imagen_comunicacion = $this->imagen->store('comunicacion');
+        }
+
+        $comunicacion = Comunicacion::find($this->comunicacion_id);
+
+        $comunicacion->update([
+
+            'name' => $this->name,
+            'imagen' => $this->imagen_comunicacion,
+            'descripcion' => $this->descripcion,
+            'status' => $this->status
+        ]);
+
+        $this->identificador = rand();
+
+        $this->emit('alert', '!Se actualizó la categoria de la comunicacion con exito¡');
+
+    }
 }
