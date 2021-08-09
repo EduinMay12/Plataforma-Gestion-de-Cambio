@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Livewire\ModuloDiagnosticos\Respuestas3;
+namespace App\Http\Livewire\ModuloDiagnosticos\Respuestas2;
 
 use Livewire\Component;
 use Livewire\WithPagination;
 
-use App\Models\ModuloDiagnosticos\Respuestas3;
-use App\Models\ModuloDiagnosticos\Preguntas3;
-use App\Models\ModuloDiagnosticos\Opciones2;
+use App\Models\ModuloDiagnosticos\Respuestas2;
+use App\Models\ModuloDiagnosticos\Preguntas2;
+use App\Models\ModuloDiagnosticos\Opciones1;
 
 class Index extends Component
 {
@@ -51,13 +51,13 @@ class Index extends Component
     public function render()
     {
 
-        $preguntas = Preguntas3::all();
+        $preguntas = Preguntas2::all();
 
-        $respuestas = Respuestas3::where('pregunta_id', '=', $this->pregunta_id)
+        $respuestas = Respuestas2::where('pregunta_id', '=', $this->pregunta_id)
                                 ->where('textRespuesta', 'like', '%' . $this->search . '%')
                                 ->orderBy($this->sort, $this->direction)
                                 ->paginate($this->cant);
-        return view('livewire.modulo-diagnosticos.respuestas3.index', compact('preguntas', 'respuestas'));
+        return view('livewire.modulo-diagnosticos.respuestas2.index', compact('preguntas', 'respuestas'));
     }
 
     public function table($pregunta){
@@ -68,14 +68,14 @@ class Index extends Component
         ]);
 
         $this->emit('reset');
-        
+
         $this->view = 'table';
     }
 
-    public function create(Preguntas3 $pregunta){
+    public function create(Preguntas2 $pregunta){
         $this->pregunta = $pregunta;
 
-        $this->opciones = Opciones2::where('pregunta_id', '=', $this->pregunta_id)->get();
+        $this->opciones = Opciones1::where('pregunta_id', '=', $this->pregunta_id)->get();
 
         $this->view = 'create';
     }
@@ -86,7 +86,7 @@ class Index extends Component
             'pregunta_id' => 'required'
         ]);
 
-        Respuestas3::create([
+        Respuestas2::create([
             'textRespuesta' => $this->textRespuesta,
             'pregunta_id' => $this->pregunta_id
         ]);
@@ -100,12 +100,12 @@ class Index extends Component
         $this->emit('alert', '¡Se agregó la respuesta con exito!');
     }
 
-    public function show(Respuestas3 $respuesta){
+    public function show(Respuestas2 $respuesta){
         $this->respuesta = $respuesta;
         $this->view = 'show';
     }
 
-    public function edit(Preguntas3 $pregunta, Respuestas3 $respuesta){
+    public function edit(Preguntas2 $pregunta, Respuestas2 $respuesta){
         $this->pregunta = $pregunta;
         $this->pregunta_id = $pregunta->id;
 
@@ -113,7 +113,7 @@ class Index extends Component
         $this->respuesta_id = $respuesta->id;
         $this->textRespuesta = $respuesta->textRespuesta;
 
-        $this->opciones = Opciones2::where('pregunta_id', '=', $this->pregunta_id)->get();
+        $this->opciones = Opciones1::where('pregunta_id', '=', $this->pregunta_id)->get();
 
         $this->view = 'edit';
     }
@@ -124,7 +124,7 @@ class Index extends Component
             'pregunta_id' => 'required'
         ]);
 
-        $respuesta = Respuestas3::find($this->respuesta_id);
+        $respuesta = Respuestas2::find($this->respuesta_id);
 
         $respuesta->update([
             'textRespuesta' => $this->textRespuesta,
@@ -134,7 +134,7 @@ class Index extends Component
         $this->emit('alert', 'Se actualizó la respuesta con exito');
     }
 
-    public function destroy(Respuestas3 $respuesta){
+    public function destroy(Respuestas2 $respuesta){
         $respuesta->delete();
     }
 

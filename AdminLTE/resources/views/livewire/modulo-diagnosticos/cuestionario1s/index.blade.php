@@ -14,8 +14,8 @@
                         <span>Entradas</span>
                     </div>
                     <div class="col-4">
-                        <a href="{{ route('competencias.create') }}" class="btn btn-primary">
-                            Agregar Competencia
+                        <a href="{{ route('cuestionario1s.create') }}" class="btn btn-primary">
+                            Agregar Cuestionario
                             <i class="fas fa-plus"></i>
                         </a>
                     </div>
@@ -24,7 +24,7 @@
                             aria-label="Search" wire:model="search">
                     </div>
                 </div>
-                @if ($competencias->count())
+                @if ($cuestionario1s->count())
 
                     <table class="table table-bordered mt-4">
                         <thead>
@@ -58,40 +58,10 @@
                                         <i class="fas fa-sort float-right mt-1"></i>
                                     @endif
                                 </th>
-
-                                <th wire:click="order('accionCorta1_ba')" class="col-3">
-                                    Básico(conoce,comprende y ejecuta)
+                                <th wire:click="order('descripcion')" class="col-3">
+                                    Descripción
                                     {{-- Sort --}}
-                                    @if ($sort == 'accionCorta1_ba')
-                                        @if ($direction == 'asc')
-                                            <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
-                                        @else
-                                            <i class="fas fa-sort-alpha-down-alt float-right mt-1"></i>
-                                        @endif
-
-                                    @else
-                                        <i class="fas fa-sort float-right mt-1"></i>
-                                    @endif
-                                </th>
-                                
-                                <th wire:click="order('accionCorta1_ca')" class="col-3">
-                                    Calificado(evalúa,aplica y adapta)
-                                    {{-- Sort --}}
-                                    @if ($sort == 'accionCorta1_ca')
-                                        @if ($direction == 'asc')
-                                            <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
-                                        @else
-                                            <i class="fas fa-sort-alpha-down-alt float-right mt-1"></i>
-                                        @endif
-
-                                    @else
-                                        <i class="fas fa-sort float-right mt-1"></i>
-                                    @endif
-                                </th>
-                                <th wire:click="order('accionCorta1_ex')" class="col-3">
-                                    Experimentado(mejora,enseña y guía)
-                                    {{-- Sort --}}
-                                    @if ($sort == 'accionCorta1_ex')
+                                    @if ($sort == 'descripcion')
                                         @if ($direction == 'asc')
                                             <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
                                         @else
@@ -123,32 +93,30 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($competencias as $competencia)
+                            @foreach ($cuestionario1s as $cuestionario1)
 
                                 <tr>
-                                    <td>{{ $competencia->id }}</td>
-                                    <td>{{ $competencia->nombre }}</td>
-                                    <td>{{ $competencia->accionCorta1_ba }} <br> {{ $competencia->accionCorta2_ba }} <br> {{ $competencia->accionCorta3_ba }}</td>
-                                    <td>{{ $competencia->accionCorta1_ca }} <br> {{ $competencia->accionCorta2_ca }} <br> {{ $competencia->accionCorta3_ca }}</td>
-                                    <td>{{ $competencia->accionCorta1_ex }} <br> {{ $competencia->accionCorta2_ex }} <br> {{ $competencia->accionCorta3_ex }}</td>
-                                    @if ($competencia->estatus == 2)
-                                        <td>Inactivo</td>
-                                    @elseif($competencia->estatus == 1)
-                                        <td>Activo</td>
+                                    <td>{{ $cuestionario1->id }}</td>
+                                    <td>{{ $cuestionario1->nombre }}</td>
+                                    <td>{{ $cuestionario1->descripcion }}</td>
+                                    @if ($cuestionario1->estatus == 2)
+                                    <td>Inactivo</td>
+                                    @elseif($cuestionario1->estatus == 1)
+                                    <td>Activo</td>
                                     @endif
                                     <td>
-                                        <a href="{{ route('competencias.show', $competencia) }}"
+                                        <a href="{{ route('cuestionario1s.show', $cuestionario1) }}"
                                             class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
                                     </td>
                                     <td>
-                                        <a href="{{ route('competencias.edit', $competencia) }}"
+                                        <a href="{{ route('cuestionario1s.edit', $cuestionario1) }}"
                                             class="btn btn-primary btn-sm">
                                             <i class="fas fa-edit"></i>
                                         </a>
                                     </td>
                                     <td>
                                         <button class="btn btn-danger btn-sm"
-                                            wire:click="$emit('deleteCompetencia', {{ $competencia }})">
+                                            wire:click="$emit('deleteCuestionario1', {{ $cuestionario1 }})">
                                             <i class="fas fa-trash-alt"></i>
                                         </button>
                                     </td>
@@ -167,13 +135,12 @@
                 <nav aria-label="Page navigation example" class="float-right">
                     <ul class="pagination">
                         <li class="page-item">
-                            {{ $competencias->links() }}
+                            {{ $cuestionario1s->links() }}
                         </li>
                     </ul>
                 </nav>
-
                 <div class="mt-3">
-                    <p> Mostrando {{ $competencias->firstItem() }} a {{ $competencias->lastItem() }} de {{ $competencias->total() }} Entradas</p>
+                    <p> Mostrando {{ $cuestionario1s->firstItem() }} a {{ $cuestionario1s->lastItem() }} de {{ $cuestionario1s->total() }} Entradas</p>
                 </div>
             </div>
         </div>

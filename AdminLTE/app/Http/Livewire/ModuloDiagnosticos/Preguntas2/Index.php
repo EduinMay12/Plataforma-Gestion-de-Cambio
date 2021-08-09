@@ -78,6 +78,14 @@ class Index extends Component
     //boton de regresar
     public function table($cuestionario2){
         $this->cuestionario_id = $cuestionario2;
+
+        $this->reset([
+            'textPregunta',
+            'descripcion',
+        ]);
+
+        $this->emit('reset');
+        
         $this->view = 'table';
     }
 
@@ -106,7 +114,6 @@ class Index extends Component
         $this->reset([
             'textPregunta',
             'descripcion',
-            //'opcion'
         ]);
 
         $this->emit('reset');
@@ -135,6 +142,25 @@ class Index extends Component
     }
 
     public function update(){
+        $this->validate([
+            'textPregunta' => 'required',
+            'descripcion' => 'required',
+            'cuestionario_id' => 'required'
+        ]);
+
+        $pregunta = Preguntas2::find($this->pregunta_id);
+
+        $pregunta->update([
+            'textPregunta' => $this->textPregunta,
+            'descripcion' => $this->descripcion,
+            'cuestionario_id' => $this->cuestionario_id
+        ]);
+
+        $this->emit('alert', '¡Se actualizó la pregunta con exito!');
+
+    }
+
+    public function update1(){
         $this->validate([
             'textPregunta' => 'required',
             'descripcion' => 'required',
@@ -203,9 +229,9 @@ class Index extends Component
 
     }*/
 
-    public function borrar(Opciones1 $opc){
+    public function borrar(Opciones1 $opciones){
 
-        $opc = $opc->delete();
+        $opciones->delete($this->pregunta_id);
 
         $this->emit('alert', '¡La opción se borro con exito!');
 

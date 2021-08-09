@@ -58,10 +58,8 @@ class PuestoController extends Controller
 
     public function borrar(Request $request, Puesto $puesto){
 
-
         $nivel_id = $request->nivel_id;
         $puesto->competencias()->detach($request->competencia, ['nivel_id' => $nivel_id]);
-
         return redirect()->route('puestos.edit', $puesto);
     }
 }
