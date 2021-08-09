@@ -14,6 +14,8 @@ use App\Http\Controllers\ModuloCapacitaciones\CursoController;
 use App\Http\Controllers\ModuloCapacitaciones\GrupoController;
 use App\Http\Controllers\ModuloCapacitaciones\InstructoreController;
 use App\Http\Controllers\ModuloCapacitaciones\LeccioneController;
+use App\Http\Controllers\ModuloCapacitaciones\PreguntaController;
+use App\Http\Controllers\ModuloCapacitaciones\RecursoController;
 
 use App\Http\Controllers\ModuloComunicacion\ComunicacionController;
 use App\Http\Controllers\ModuloComunicacion\ElementoController;
@@ -24,8 +26,20 @@ use App\Http\Controllers\ModuloDiagnosticos\CompetenciaController;
 use App\Http\Controllers\ModuloDiagnosticos\PuestoController;
 use App\Http\Controllers\ModuloDiagnosticos\RoleDiagnosticoController;
 use App\Http\Controllers\ModuloDiagnosticos\AsignacionDiagnosticoController;
+
 use App\Http\Controllers\ModuloDiagnosticos\Cuestionario1Controller;
-use App\Http\Controllers\ModuloDiagnosticos\PreguntasabiertaController;
+use App\Http\Controllers\ModuloDiagnosticos\Preguntas1Controller;
+use App\Http\Controllers\ModuloDiagnosticos\Respuestas1Controller;
+
+use App\Http\Controllers\ModuloDiagnosticos\Cuestionario2Controller;
+use App\Http\Controllers\ModuloDiagnosticos\Preguntas2Controller;
+use App\Http\Controllers\ModuloDiagnosticos\Respuestas2Controller;
+
+use App\Http\Controllers\ModuloDiagnosticos\Cuestionario3Controller;
+use App\Http\Controllers\ModuloDiagnosticos\Preguntas3Controller;
+use App\Http\Controllers\ModuloDiagnosticos\Respuestas3Controller;
+
+use App\Http\Controllers\ModuloDiagnosticos\AsignacionCuestionarioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,15 +51,12 @@ Route::get('/', function () {
 });
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 /*
 |--------------------------------------------------------------------------
 | Modulo de Administrador
 |--------------------------------------------------------------------------
 */
-
 	Route::group(['middleware' => ['auth']], function() {
-
 	Route::get('modulo-administrador/administrador', [App\Http\Controllers\HomeController::class, 'administrador'])->name('administrador');
 	Route::resource('modulo-administrador/roles', RoleController::class)->parameters(['role' => 'role']);
 	Route::resource('modulo-administrador/users', UserController::class)->parameters(['users' => 'user']);
@@ -55,17 +66,14 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 	Route::get('perfil/edit', ['as' => 'perfil.edit', 'uses' => 'App\Http\Controllers\PerfilController@edit']);
 	Route::put('perfil/edit', ['as' => 'perfil.update', 'uses' => 'App\Http\Controllers\PerfilController@update']);
 	Route::put('perfil/password', ['as' => 'perfil.password', 'uses' => 'App\Http\Controllers\PerfilController@password']);
-
 /*
 |--------------------------------------------------------------------------
 | Modulo de Capacitaciones
 |--------------------------------------------------------------------------
 */
-
     Route::resource('categorias', CategoriaController::class)->parameters(['categorias' => 'categoria']);
     Route::resource('instructores', InstructoreController::class)->parameters(['instructores' => 'instructore']);
     Route::get('cursos', [CursoController::class, 'index'])->name('cursos.index');
-
     Route::get('grupos', [GrupoController::class, 'index'])->name('grupos.index');
     Route::get('matriculaciones', [GrupoController::class, 'matriculaciones'])->name('grupos.matriculaciones');
     Route::get('lecciones', [LeccioneController::class, 'index'])->name('lecciones.index');
@@ -104,4 +112,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::resource('cuestionario3s', Cuestionario3Controller::class);
     Route::resource('preguntas3s', Preguntas3Controller::class);
     Route::resource('respuestas3s', Respuestas3Controller::class);
+
+    Route::resource('asignacioncuestionarios', AsignacionCuestionarioController::class);
     });
+

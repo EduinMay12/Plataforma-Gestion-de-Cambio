@@ -386,27 +386,27 @@ return [
                             [
                                 'text' => 'Res. Preguntas - Abiertas',
                                 'icon' => '',
-                                'url' => 'respuestas1s.index'
+                                'route' => 'respuestas1s.index'
                             ],
                             [
                                 'text' => 'Preguntas Verdadero / Falso',
                                 'icon' => '',
-                                'url' => 'preguntas2s.index'
+                                'route' => 'preguntas2s.index'
                             ],
                             [
                                 'text' => 'Res. Verdadero / Falso',
                                 'icon' => '',
-                                'url' => 'respuestas2s.index'
+                                'route' => 'respuestas2s.index'
                             ],
                             [
                                 'text' => 'Preguntas Opciones - Múltiples',
                                 'icon' => '',
-                                'url' => 'preguntas3s.index'
+                                'route' => 'preguntas3s.index'
                             ],
                             [
                                 'text' => 'Res. Opciones - Múltiples',
                                 'icon' => '',
-                                'url' => 'respuestas3s.index'
+                                'route' => 'respuestas3s.index'
                             ]
                         ]
                     ],
@@ -417,7 +417,7 @@ return [
                             [
                                 'text' => 'Asig. pre. Verdader/Falso',
                                 'icon' => '',
-                                'url' => 'asignacioncuestionarios.index'
+                                'route' => 'asignacioncuestionarios.index'
                             ],
 
                         ]

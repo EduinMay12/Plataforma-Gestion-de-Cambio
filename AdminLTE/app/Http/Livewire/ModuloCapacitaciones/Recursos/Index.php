@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 class Index extends Component
 {
     use WithPagination;
-    
+
     //variables para los filtros
     public $view = 'table';
     public $search = '';
@@ -61,7 +61,7 @@ class Index extends Component
                 ->where('leccione_id', '=', $this->leccione_id)
                 ->where(function($query) {
                     $query->where('nombre', 'like', '%' . $this->search . '%')
-                            ->orWhere('descripcion', 'like', '%'. $this->search. '%');       
+                            ->orWhere('descripcion', 'like', '%'. $this->search. '%');
                 })
                 ->orderBy($this->sort, $this->direction)
                 ->paginate($this->cant);
