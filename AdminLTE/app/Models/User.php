@@ -75,7 +75,7 @@ class User extends Authenticatable
 
     public function sucursales()
     {
-         return $this->hasMany('App\Models\ModuloAdministrador\Sucursales');
+         return $this->hasOne('App\Models\ModuloAdministrador\Sucursales');
     }
 
     public function asignaciondiagnosticos()
@@ -87,5 +87,11 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Models\ModuloDiagnosticos\Asignacioncuestionario');
     }
+
+    public function grupos()
+    {
+        return $this->bolongsToMany('App\Models\ModuloCapacitaiones\Grupo');
+    }
+
 
 }

@@ -96,7 +96,7 @@ class Index extends Component
         //         $this->usersId[] = $user_id["user_id"];
         //     }
         // }
-        
+
         // json_encode($this->users_id);
         //$arreglo = [];
 
@@ -117,7 +117,7 @@ class Index extends Component
 
     public function store(){
         $contador  = count($this->usersId);
-        
+
         if($contador == 0){
             $this->emit('error', 'Debes al menos seleccionar un usuario');
 

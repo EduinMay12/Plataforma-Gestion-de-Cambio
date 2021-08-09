@@ -72,7 +72,7 @@ class Index extends Component
                     ->where('cuestionario_id', '=', $this->cuestionario_id)
                     ->where(function($query) {
                         $query->where('descripcion', 'like', '%' . $this->search . '%')
-                                ->orWhere('textPregunta', 'like', '%' . $this->search . '%');             
+                                ->orWhere('textPregunta', 'like', '%' . $this->search . '%');
                     })
                     ->orderBy($this->sort, $this->direction)
                     ->paginate($this->cant);
@@ -214,7 +214,7 @@ class Index extends Component
                 'explicacion5' => $this->explicacion5,
                 'cuestionario_id' => $this->cuestionario_id
             ]);
-    
+
             $this->reset([
                 'descripcion',
                 'textPregunta',
@@ -239,7 +239,7 @@ class Index extends Component
                 'valor5',
                 'explicacion5',
             ]);
-    
+
             $this->emit('alert', '!Se agregó la pregunta con exito¡');
 
         }elseif($contador1 > 1){
@@ -359,7 +359,7 @@ class Index extends Component
                 'valor5' => $this->valor5,
                 'explicacion5' => $this->explicacion5
             ]);
-    
+
             $this->emit('alert', '!Se actualizó la pregunta con exito¡');
 
         }elseif($contador1 > 1){
