@@ -94,4 +94,14 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::resource('roldiagnosticos', RoleDiagnosticoController::class);
     Route::resource('asignaciondiagnosticos', AsignacionDiagnosticoController::class);
     Route::resource('cuestionario1s', Cuestionario1Controller::class);
+    Route::resource('preguntas1s', Preguntas1Controller::class);
+    Route::resource('respuestas1s', Respuestas1Controller::class);
+
+    Route::resource('cuestionario2s', Cuestionario2Controller::class);
+    Route::resource('preguntas2s', Preguntas2Controller::class);
+    Route::resource('respuestas2s', Respuestas2Controller::class);
+
+    Route::resource('cuestionario3s', Cuestionario3Controller::class);
+    Route::resource('preguntas3s', Preguntas3Controller::class);
+    Route::resource('respuestas3s', Respuestas3Controller::class);
     });
