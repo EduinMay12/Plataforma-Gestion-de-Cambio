@@ -22,7 +22,7 @@
                 <label class="form-label" for="">Categoria* :</label>
                 <select class="form-control" type="text" wire:model="comunicacion_id" required>
                     <option value="">Seleccionar</option>
-                    @foreach ($comunicacion as $comunicacion)
+                    @foreach ($comunicacions as $comunicacion)
                         <option value="{{ $comunicacion->id }}">
                             {{ $comunicacion->name }}
                         </option>

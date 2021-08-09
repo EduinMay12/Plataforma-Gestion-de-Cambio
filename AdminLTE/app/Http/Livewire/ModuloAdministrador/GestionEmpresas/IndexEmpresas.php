@@ -12,6 +12,7 @@ use Livewire\WithPagination;
 class IndexEmpresas extends Component
 {
     use WithPagination;
+
     public $view = 'table';
     public $search = '';
     public $sort = 'id';

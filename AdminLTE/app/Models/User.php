@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 use App\Models\ModuloAdministrador\Empresa;
+use App\Models\ModuloComunicacion\Comunicacion;
 
 class User extends Authenticatable
 {
@@ -28,6 +29,7 @@ class User extends Authenticatable
 
         'puesto_actual_id',
         'puesto_futuro_id',
+        'tipo',
 
         'd_asenta',
         'd_ciudad',
@@ -71,7 +73,7 @@ class User extends Authenticatable
          return $this->hasMany('App\Models\ModuloAdministrador\Empresa');
     }
 
-    public function sucursal()
+    public function sucursales()
     {
          return $this->hasMany('App\Models\ModuloAdministrador\Sucursales');
     }

@@ -13,7 +13,7 @@ class CreateCampañasTable extends Migration
      */
     public function up()
     {
-        Schema::create('campañas', function (Blueprint $table) {
+        Schema::create('campanas', function (Blueprint $table) {
             $table->id();
 
             $table->string('nombre', 100);
@@ -22,8 +22,11 @@ class CreateCampañasTable extends Migration
             $table->date('fechafin');
             $table->boolean('status');
 
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id')->unique();
+            $table->foreign('user_id')
+                  ->references('id')
+                  ->on('users')
+                  ->onDelete('cascade');
 
             $table->unsignedBigInteger('empresa_id');
             $table->foreign('empresa_id')->references('id')->on('empresas')->onDelete('cascade');

@@ -6,7 +6,7 @@
                 <div class="mb-3 position-relative">
                     <label class="form-label" for="">Seleccionar Empresa *</label>
                     <select class="form-control" type="text" wire:model="empresa_id" required>
-                        <option value="">Seleccionar</option>
+                        <option value="">Seleccione...</option>
                         @foreach ($empresas as $empresa)
                             <option value="{{ $empresa->id }}">
                                 {{ $empresa->empresa }}
@@ -22,7 +22,7 @@
                 <div class="mb-3 position-relative">
                     <label class="form-label" for="">Seleccionar Sucursal *</label>
                     <select class="form-control" type="text" wire:model="sucursal_id" required>
-                        <option value="">Seleccionar</option>
+                        <option value="">Seleccione...</option>
                         @foreach ($sucursales as $sucursales)
                             <option value="{{ $sucursales->id }}">
                                 {{ $sucursales->sucursal }}
@@ -61,7 +61,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="table-responsive mb-4"><br>
-                <table class="table table-striped table-bordered datatable dt-responsive nowrap table-card-list" style="border-collapse: collapse; border-spacing: 0 12px; width: 140%;">
+                <table class="table table-striped table-bordered datatable dt-responsive nowrap table-card-list" style="border-collapse: collapse; border-spacing: 0 12px; width: 170%;">
                     @if ($users->count())
                     <thead>
                         <tr class="table-primary">
@@ -96,7 +96,7 @@
                                 @endif
                             </th>
                             <th scope="col" wire:click="order('empresa')">
-                                Empresa / Sucursal
+                                Empresa/Sucursal
                                 {{-- Sort --}}
                                 @if ($sort == 'empresa')
                                     @if ($direction == 'asc')
@@ -109,6 +109,7 @@
                                     <i class="fas fa-sort float-right mt-1"></i>
                                 @endif
                             </th>
+                            <th scope="col">Role</th>
                             <th scope="col">Tipo</th>
                             <th scope="col">Puesto</th>
                             <th scope="col">Guia. 1</th>
@@ -146,7 +147,7 @@
                             <td><img src="../uploads/avatars/{{ $user->avatar }}" width="30" height="30" class="rounded-circle"></td>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->apellido }}</td>
-                            <td>{{ $user->empresa_id }} / {{ $user->sucursal_id }} </td>
+                            <td> <span class="badge badge-pill badge-light">{{ $user->empresa_id }}</span>/<span class="badge badge-pill badge-light">{{ $user->sucursal_id }} </span> </td>
                             <td>
                                 @if(!empty($user->getRoleNames()))
                                     @foreach($user->getRoleNames() as $role)
@@ -154,7 +155,8 @@
                                     @endforeach
                                 @endif
                             </td>
-                            <td>Jefe Directo</td>
+                            <td>{{ $user->tipo }}</td>
+                            <td>{{ $user->puesto_actual_id }}</td>
                             <td><center><span class="badge badge-pill badge-success"> Finalizar </span></center></td>
                             <td><center><span class="badge badge-pill badge-warning"> Pendiente </span></center></td>
                             <td>

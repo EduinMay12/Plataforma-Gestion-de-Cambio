@@ -22,6 +22,7 @@ class CreateAdminUserSeeder extends Seeder
             'avatar' => 'admin.png',
             'name' => 'Administrador',
             'apellido' => '',
+            'tipo' => 'Administrador',
             'puesto_actual_id' => 'Administrador',
             'email' => 'admin@admin.com',
             'estatus' => '3',

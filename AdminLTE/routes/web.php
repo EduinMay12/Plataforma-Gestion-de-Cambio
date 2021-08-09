@@ -48,9 +48,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 	Route::get('modulo-administrador/administrador', [App\Http\Controllers\HomeController::class, 'administrador'])->name('administrador');
 	Route::resource('modulo-administrador/roles', RoleController::class)->parameters(['role' => 'role']);
-	Route::resource('modulo-administrador/users', UserController::class)->parameters(['user' => 'user']);
+	Route::resource('modulo-administrador/users', UserController::class)->parameters(['users' => 'user']);
 	Route::resource('modulo-administrador/gestionsucursal', GestionsucursalController::class)->parameters(['sucursal' => 'sucursal']);
-	Route::resource('modulo-administrador/gestionempresa', GestionempresaController::class)->parameters(['empresa' => 'empresa']);
+	Route::resource('modulo-administrador/gestionempresa', GestionempresaController::class)->parameters(['empresas' => 'empresa']);
 	Route::post('perfil/edit', ['as' => 'perfil.edit', 'uses' => 'App\Http\Controllers\PerfilController@update_avatar']);
 	Route::get('perfil/edit', ['as' => 'perfil.edit', 'uses' => 'App\Http\Controllers\PerfilController@edit']);
 	Route::put('perfil/edit', ['as' => 'perfil.update', 'uses' => 'App\Http\Controllers\PerfilController@update']);
@@ -78,9 +78,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 | Modulo de Comunicaciones
 |--------------------------------------------------------------------------
 */
-    Route::resource('comunicacion', ComunicacionController::class,)->parameters(['comunicacion' => 'comunicacion']);
-    Route::resource('elemento', ElementoController::class,)->parameters(['elemento' => 'elemento']);
-    Route::resource('campaña', CampañaController::class,)->parameters(['campaña' => 'campaña']);
+    Route::resource('comunicacion', ComunicacionController::class,)->parameters(['comunicacions' => 'comunicacion']);
+    Route::resource('elemento', ElementoController::class,)->parameters(['elementos' => 'elemento']);
+    Route::resource('campaña', CampañaController::class,)->parameters(['campañas' => 'campaña']);
 /*
 |--------------------------------------------------------------------------
 | Modulo de Diagnostico

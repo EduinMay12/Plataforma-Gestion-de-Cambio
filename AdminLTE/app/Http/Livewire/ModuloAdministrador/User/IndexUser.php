@@ -10,6 +10,10 @@ use App\Models\User;
 use App\Models\Estados;
 use App\Models\ModuloAdministrador\Empresa;
 use App\Models\ModuloAdministrador\Sucursales;
+use App\Models\ModuloComunicacion\Elemento;
+use App\Models\ModuloComunicacion\Comunicacion;
+use App\Models\ModuloDiagnosticos\RoleDiagnostico;
+use App\Models\ModuloDiagnosticos\Puesto;
 use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
@@ -32,6 +36,7 @@ class IndexUser extends Component
     public $name;
     public $sucursal_id;
     public $empresa_id;
+    public $elemento_id;
     public $user;
     public $email = '';
     public $password = '';
@@ -45,6 +50,7 @@ class IndexUser extends Component
 
     public $puesto_actual_id;
     public $puesto_futuro_id;
+    public $tipo;
 
     public function updatingSearch()
     {
@@ -67,8 +73,10 @@ class IndexUser extends Component
         $empresas = Empresa::where('estatus', '=', 1)->get();
         $sucursales = Sucursales::where('empresa_id','=', $this->empresa_id)->where('estatus', '=', 1)->get();
         $users = User::all();
+        $puestos = Puesto::all();
         $estados = Estados::all();
         $roles = Role::all();
+        $roldiagnosticos = RoleDiagnostico::all();
         $users = User::where('name', 'like' , '%' . $this->search . '%')
                     ->orWhere('email', 'like' , '%' . $this->search . '%')
                     ->orWhere('empresa_id', 'like' , '%' . $this->search . '%')
@@ -77,7 +85,7 @@ class IndexUser extends Component
                     ->orWhere('estatus', 'like' , '%' . $this->search . '%')
                     ->orderBy($this->sort, $this->direction)
                     ->paginate($this->cant);
-        return view('livewire.modulo-administrador.user.index-user', compact('empresas', 'sucursales', 'estados', 'users', 'roles'));
+        return view('livewire.modulo-administrador.user.index-user', compact('empresas','puestos', 'sucursales', 'estados', 'roldiagnosticos', 'users', 'roles'));
     }
 
     public function table($sucursal_id, $empresa_id)
@@ -101,12 +109,17 @@ class IndexUser extends Component
         $validatedDate = $this->validate([
             'name' => 'required',
             'apellido' => 'required',
-            'email' => 'required|email|unique:email',
+            'email' => 'required|email',
             'password' => 'required',
             'direccion' => 'required',
 
             'd_asenta' => 'required',
             'd_ciudad' => 'required',
+
+            'puesto_actual_id' => 'required',
+            'puesto_futuro_id' => 'required',
+            'tipo' => 'required',
+
             'empresa_id' => 'required',
             'sucursal_id' => 'required',
             'estatus' => 'required'
@@ -126,6 +139,11 @@ class IndexUser extends Component
             'd_ciudad' => $this->d_ciudad,
 
             'estatus' => $this->estatus,
+
+            'puesto_actual_id' => $this->puesto_actual_id,
+            'puesto_futuro_id' => $this->puesto_futuro_id,
+            'tipo' => $this->tipo,
+
             'empresa_id' => $this->empresa_id,
             'sucursal_id' => $this->sucursal_id
 
@@ -141,6 +159,10 @@ class IndexUser extends Component
 
             'd_asenta',
             'd_ciudad',
+
+            'puesto_actual_id',
+            'puesto_actual_id',
+            'tipo',
 
             'empresa_id',
             'sucursal_id',

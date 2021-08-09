@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
 
             $table->string('puesto_actual_id')->default('***');
             $table->string('puesto_futuro_id')->default('***');
+            $table->string('tipo')->default('***');
 
             $table->string('d_asenta')->default('***');
             $table->string('d_ciudad')->default('***');

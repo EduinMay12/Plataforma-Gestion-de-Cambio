@@ -8,7 +8,7 @@ use Livewire\WithFileUploads;
 use DB;
 use Illuminate\Support\Facades\Storage;
 use App\Models\ModuloComunicacion\Comunicacion;
-use App\Models\ModuloComunicacion\Campaña;
+use App\Models\ModuloComunicacion\Campana;
 use App\Models\ModuloComunicacion\Elemento;
 use App\Models\User;
 use App\Models\Estados;
@@ -28,8 +28,6 @@ class Index extends Component
     public $search = '';
     public $sort = 'id';
     public $direction = 'desc';
-
-    public$camapañas;
 
     public $view = 'table';
 
@@ -77,7 +75,7 @@ class Index extends Component
         $sucursales = Sucursales::where('estatus', '=', 1)->get();
         $elementos = Elemento::where('status', '=', 1)->get();
         $comunicacion = Comunicacion::where('status', '=', 1)->get();
-        $campañas = Campaña::where('nombre', 'like' , '%' . $this->search . '%')
+        $campañas = Campana::where('nombre', 'like' , '%' . $this->search . '%')
                     ->orWhere('fechainicio', 'like' , '%' . $this->search . '%')
                     ->orWhere('fechafin', 'like' , '%' . $this->search . '%')
                     ->orWhere('status', 'like' , '%' . $this->search . '%')
@@ -85,8 +83,15 @@ class Index extends Component
                     ->paginate($this->cant);
         return view('livewire.modulo-comunicacion.gestion-campaña.index', compact('campañas','users','empresas','sucursales','comunicacion', 'elementos'));
     }
+
     public function create()
     {
         $this->view = 'create';
+    }
+
+    public function show(Campana $campaña)
+    {
+        $this->campaña = $campaña;
+        $this->view = 'show';
     }
 }
