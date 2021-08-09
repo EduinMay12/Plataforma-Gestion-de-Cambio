@@ -14,7 +14,7 @@
                         <span>Entradas</span>
                     </div>
                     <div class="col-4">
-                        <a href="{{ route('cuestionario3s.create') }}" class="btn btn-primary">
+                        <a href="{{ route('cuestionario2s.create') }}" class="btn btn-primary">
                             Agregar Cuestionario
                             <i class="fas fa-plus"></i>
                         </a>
@@ -24,7 +24,7 @@
                             aria-label="Search" wire:model="search">
                     </div>
                 </div>
-                @if ($cuestionario3s->count())
+                @if ($cuestionario2s->count())
 
                     <table class="table table-bordered mt-4">
                         <thead>
@@ -93,30 +93,30 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($cuestionario3s as $cuestionario3)
+                            @foreach ($cuestionario2s as $cuestionario2)
 
                                 <tr>
-                                    <td>{{ $cuestionario3->id }}</td>
-                                    <td>{{ $cuestionario3->nombre }}</td>
-                                    <td>{{ $cuestionario3->descripcion }}</td>
-                                    @if ($cuestionario3->estatus == 2)
+                                    <td>{{ $cuestionario2->id }}</td>
+                                    <td>{{ $cuestionario2->nombre }}</td>
+                                    <td>{{ $cuestionario2->descripcion }}</td>
+                                    @if ($cuestionario2->estatus == 2)
                                     <td>Inactivo</td>
-                                    @elseif($cuestionario3->estatus == 1)
+                                    @elseif($cuestionario2->estatus == 1)
                                     <td>Activo</td>
                                     @endif
                                     <td>
-                                        <a href="{{ route('cuestionario3s.show', $cuestionario3) }}"
+                                        <a href="{{ route('cuestionario2s.show', $cuestionario2) }}"
                                             class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
                                     </td>
                                     <td>
-                                        <a href="{{ route('cuestionario3s.edit', $cuestionario3) }}"
+                                        <a href="{{ route('cuestionario2s.edit', $cuestionario2) }}"
                                             class="btn btn-primary btn-sm">
                                             <i class="fas fa-edit"></i>
                                         </a>
                                     </td>
                                     <td>
                                         <button class="btn btn-danger btn-sm"
-                                            wire:click="$emit('deleteCuestionario3', {{ $cuestionario3 }})">
+                                            wire:click="$emit('deleteCuestionario2', {{ $cuestionario2 }})">
                                             <i class="fas fa-trash-alt"></i>
                                         </button>
                                     </td>
@@ -135,12 +135,12 @@
                 <nav aria-label="Page navigation example" class="float-right">
                     <ul class="pagination">
                         <li class="page-item">
-                            {{ $cuestionario3s->links() }}
+                            {{ $cuestionario2s->links() }}
                         </li>
                     </ul>
                 </nav>
                 <div class="mt-3">
-                    <p> Mostrando {{ $cuestionario3s->firstItem() }} a {{ $cuestionario3s->lastItem() }} de {{ $cuestionario3s->total() }} Entradas</p>
+                    <p> Mostrando {{ $cuestionario2s->firstItem() }} a {{ $cuestionario2s->lastItem() }} de {{ $cuestionario2s->total() }} Entradas</p>
                 </div>
             </div>
         </div>

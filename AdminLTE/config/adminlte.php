@@ -368,7 +368,7 @@ return [
                                 'route' => 'cuestionario2s.index'
                             ],
                             [
-                                'text' => 'Cue. Opciónes - Múltiple',
+                                'text' => 'Cue. Opciones - Múltiple',
                                 'icon' => 'fas fa-address-book',
                                 'route' => 'cuestionario3s.index'
                               ],
