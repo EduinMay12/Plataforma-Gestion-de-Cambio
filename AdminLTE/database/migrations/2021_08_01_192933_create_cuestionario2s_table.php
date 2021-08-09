@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 class CreateCuestionario2sTable extends Migration
 {
     /**
-     * Run the migrations.
+     * Run the migrations.   rrr
      *
      * @return void
      */

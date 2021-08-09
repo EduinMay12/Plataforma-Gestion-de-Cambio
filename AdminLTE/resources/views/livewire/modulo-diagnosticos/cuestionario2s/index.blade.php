@@ -99,7 +99,11 @@
                                     <td>{{ $cuestionario2->id }}</td>
                                     <td>{{ $cuestionario2->nombre }}</td>
                                     <td>{{ $cuestionario2->descripcion }}</td>
-                                    <td>{{ $cuestionario2->estatus }}</td>
+                                    @if ($cuestionario2->estatus == 2)
+                                    <td>Inactivo</td>
+                                    @elseif($cuestionario2->estatus == 1)
+                                    <td>Activo</td>
+                                    @endif
                                     <td>
                                         <a href="{{ route('cuestionario2s.show', $cuestionario2) }}"
                                             class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
@@ -135,6 +139,9 @@
                         </li>
                     </ul>
                 </nav>
+                <div class="mt-3">
+                    <p> Mostrando {{ $cuestionario2s->firstItem() }} a {{ $cuestionario2s->lastItem() }} de {{ $cuestionario2s->total() }} Entradas</p>
+                </div>
             </div>
         </div>
 
