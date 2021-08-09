@@ -25,6 +25,7 @@ class Index extends Component
 
     public $name;
     public $elemento;
+    public $elemento_id;
     public $comunicacion_id;
     public $user_id;
     public $descripcion;
@@ -91,12 +92,31 @@ class Index extends Component
     public function render()
     {
         $users = User::all();
-        $comunicacion = Comunicacion::all();
+        $comunicacions = Comunicacion::where('status', '=', 1)->get();
         $elementos = Elemento::where('name', 'like' , '%' . $this->search . '%')
+                    ->orWhere('user_id', 'like' , '%' . $this->search . '%')
                     ->Where('descripcion', 'like' , '%' . $this->search . '%')
                     ->orderBy($this->sort, $this->direction)
                     ->paginate($this->cant);
-        return view('livewire.modulo-comunicacion.gestion-elemento.index', compact('elementos', 'users', 'comunicacion'));
+        return view('livewire.modulo-comunicacion.gestion-elemento.index', compact('elementos', 'comunicacions'))->with('users',$users);
+    }
+
+    public function table($elemento)
+    {
+        $this->elemento_id = $elemento;
+        $this->reset([
+            'name',
+            'dirigido',
+            'descripcion',
+            'contenido',
+            'url',
+            'user_id',
+            'comunicacion_id',
+            'imagen',
+            'status'
+        ]);
+        $this->identificar = rand();
+        $this->view = 'table';
     }
 
     public function create(Elemento $elemento)
@@ -108,9 +128,9 @@ class Index extends Component
     public function save()
     {
         $this->validate([
-            'user_id' => 'required|unique:elementos',
+            'user_id' => 'required',
             'name' => 'required',
-            'comunicacion_id' => 'required|unique:elementos',
+            'comunicacion_id' => 'required',
             'url' => 'required',
             'imagen' => 'required',
             'status' => 'required',
@@ -142,7 +162,8 @@ class Index extends Component
             'user_id',
             'comunicacion_id',
             'imagen',
-            'status']);
+            'status'
+        ]);
 
         $this->identificador = rand();
 

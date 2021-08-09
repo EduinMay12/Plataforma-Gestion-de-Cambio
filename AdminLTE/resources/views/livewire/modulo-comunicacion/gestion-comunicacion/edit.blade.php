@@ -41,6 +41,7 @@
             <div class="card">
                 <div class="card-body btn btn-secondary">
                     @if ($imagen)
+                    <img class="col-6" src="{{ Storage::url($comunicacion->imagen) }}">
                     <img width="200" height="400" src="{{ $imagen->temporaryUrl() }}" class="card-img-top col-auto" alt="...">
                     @endif
                     <br>

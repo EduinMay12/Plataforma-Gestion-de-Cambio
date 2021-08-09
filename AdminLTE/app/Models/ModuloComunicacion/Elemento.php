@@ -4,6 +4,8 @@ namespace App\Models\ModuloComunicacion;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
+use App\Models\ModuloComunicacion\Comunicacion;
 
 class Elemento extends Model
 {
@@ -13,11 +15,11 @@ class Elemento extends Model
 
     public function comunicacion()
     {
-        return $this->hasMany('App\Models\ModuloComunicacion\Comunicacion');
+        return $this->belongsTo('App\Models\ModuloComunicacion\Comunicacion');
     }
 
     public function user()
     {
-        return $this->hasMany('App\Models\User');
+        return $this->belongsTo('App\Models\User');
     }
 }

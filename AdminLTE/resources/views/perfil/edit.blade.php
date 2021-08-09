@@ -38,11 +38,11 @@
                                 <h5 class="font-size-16">
 
                                 @if (Auth::user()->estatus == 0)
-                                <span class="badge badge-pill badge-danger"> Necesita Ayuda </span>
+                                <span class="badge bg-danger rounded-pill"> Necesita Ayuda </span>
                                 @elseif(Auth::user()->estatus == 1)
-                                <span class="badge badge-pill badge-warning"> Pendiente </span>
+                                <span class="badge bg-warning rounded-pill"> Pendiente </span>
                                 @elseif(Auth::user()->estatus == 2)
-                                <span class="badge badge-pill badge-info"> Evaluado </span>
+                                <span class="badge bg-info rounded-pill"> Evaluado </span>
                                 @endif
 
                                 </h5>
@@ -50,6 +50,10 @@
                             <div class="mt-4">
                                 <p class="mb-1">Sucursal :</p>
                                 <h5 class="font-size-16">{{ Auth::user()->sucursal_id }}</h5>
+                            </div>
+                            <div class="mt-4">
+                                <p class="mb-1">Empresa :</p>
+                                <h5 class="font-size-16">{{ Auth::user()->empresa_id }}</h5>
                             </div>
 
                         </div>
