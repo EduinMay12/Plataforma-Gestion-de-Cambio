@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Livewire\ModuloDiagnosticos\RoleDiagnostico;
+namespace App\Http\Livewire\ModuloDiagnosticos\Cuestionario2s;
 
 use Livewire\Component;
 
-use App\Models\ModuloDiagnosticos\RoleDiagnostico;
+use App\Models\ModuloDiagnosticos\Cuestionario2;
 
 class Create extends Component
 {
@@ -20,7 +20,7 @@ class Create extends Component
     public function save(){
         $this->validate();
 
-        RoleDiagnostico::create([
+        Cuestionario2::create([
             'nombre' => $this->nombre,
             'descripcion' => $this->descripcion,
             'estatus' => $this->estatus
@@ -28,10 +28,10 @@ class Create extends Component
 
         $this->reset(['nombre', 'descripcion', 'estatus']);
 
-        $this->emit('alert', '¡Se agregó el rol evaluación con exito!');
+        $this->emit('alert', '¡Se agregó el cuestionario con exito!');
     }
     public function render()
     {
-        return view('livewire.modulo-diagnosticos.role-diagnostico.create');
+        return view('livewire.modulo-diagnosticos.cuestionario2s.create');
     }
 }

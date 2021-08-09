@@ -1,13 +1,13 @@
 @extends('adminlte::page')
 
-@section('title', 'Ver Rol Evaluación')
+@section('title', 'Ver Cuestionario Verdadero / Falso')
 
 @section('content_header')
 
     <div class="container">
         <div class="card">
             <div class="card-header d-flex justify-content-center">
-                <div class="card-title">Ver Rol Evaluación</div>
+                <div class="card-title">Ver Cuestionario Verdadero / Falso</div>
             </div>
         </div>
     </div>
@@ -21,18 +21,17 @@
             <div class="card-body">
 
                 <label for="">Nombre:</label>
-                <span>{{ $roldiagnostico->nombre }}</span><br>
+                <span>{{ $cuestionario2->nombre }}</span><br>
 
-                <label for="">Descripción:</label>
-                <span>{{ $roldiagnostico->descripcion }}</span><br>
+                <label for="">Descrición:</label>
+                <span>{{ $cuestionario2->descripcion }}</span><br>
 
                 <label for="">Estatus:</label>
-                <span>{{ $roldiagnostico->estatus }}</span><br>
-
+                <span>{{ $cuestionario2->estatus }}</span><br>
 
 
                 <div class="mt-4">
-                    <a href="{{ route('roldiagnosticos.index') }}" class="btn btn-danger">
+                    <a href="{{ route('cuestionario2s.index') }}" class="btn btn-danger">
                         Vover
                     </a>
                 </div>

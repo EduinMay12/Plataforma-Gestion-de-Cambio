@@ -1,13 +1,13 @@
 @extends('adminlte::page')
 
-@section('title', 'Rol Evaluación')
+@section('title', 'Cuestionarios Verdadero / Falso')
 
 @section('content_header')
 
     <div class="container">
         <div class="card">
             <div class="card-header d-flex justify-content-center">
-                <div class="card-title">Gestionar Rol Evaluación</div>
+                <div class="card-title">Gestionar Cuestionario Verdadero / Falso</div>
             </div>
         </div>
     </div>
@@ -16,7 +16,7 @@
 
 @section('content')
 
-    @livewire('modulo-diagnosticos.role-diagnostico.index')
+    @livewire('modulo-diagnosticos.cuestionario2s.index')
 
     <!-- Scripts ---->
 
@@ -24,10 +24,10 @@
 
     <script src="sweetalert2.all.min.js"></script>
     <script>
-        livewire.on('deleteRoldiagnostico', roldiagnosticoId => {
+        livewire.on('deleteCuestionario2', cuestionario2Id => {
             Swal.fire({
                 title: '¿Estas segur@?',
-                text: "Esta acción no se podra revertir",
+                text: "Esta accion no se podra revertir",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -36,12 +36,12 @@
             }).then((result) => {
                 if (result.isConfirmed) {
 
-                    livewire.emitTo('modulo-diagnosticos.role-diagnostico.index', 'delete',
-                        roldiagnosticoId);
+                    livewire.emitTo('modulo-diagnosticos.cuestionario2s.index', 'delete',
+                        cuestionario2Id);
 
                     Swal.fire(
                         'Eliminado!',
-                        'Rol evaluación eliminado con exito',
+                        'El cuestionario se a eliminado con exito',
                         'success'
                     )
                 }

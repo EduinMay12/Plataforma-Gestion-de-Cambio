@@ -1,13 +1,13 @@
 @extends('adminlte::page')
 
-@section('title', 'Agregar Rol Evaluación')
+@section('title', 'Editar Cuestionario Verdadero / Falso')
 
 @section('content_header')
 
     <div class="container">
         <div class="card">
             <div class="card-header d-flex justify-content-center">
-                <div class="card-title">Agregar Rol Evaluación</div>
+                <div class="card-title">Editar Cuestionario Vedadero / Falso</div>
             </div>
         </div>
     </div>
@@ -16,7 +16,7 @@
 
 @section('content')
 
-    @livewire('modulo-diagnosticos.role-diagnostico.create')
+    @livewire('modulo-diagnosticos.cuestionario2s.edit', ['cuestionario2' => $cuestionario2])
 
     <!-- Scripts ---->
     @livewireScripts

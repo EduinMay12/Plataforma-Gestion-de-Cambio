@@ -131,7 +131,11 @@
                                     <td>{{ $competencia->accionCorta1_ba }} <br> {{ $competencia->accionCorta2_ba }} <br> {{ $competencia->accionCorta3_ba }}</td>
                                     <td>{{ $competencia->accionCorta1_ca }} <br> {{ $competencia->accionCorta2_ca }} <br> {{ $competencia->accionCorta3_ca }}</td>
                                     <td>{{ $competencia->accionCorta1_ex }} <br> {{ $competencia->accionCorta2_ex }} <br> {{ $competencia->accionCorta3_ex }}</td>
-                                    <td>{{ $competencia->estatus }}</td>
+                                    @if ($competencia->estatus == 2)
+                                        <td>Inactivo</td>
+                                    @elseif($competencia->estatus == 1)
+                                        <td>Activo</td>
+                                    @endif
                                     <td>
                                         <a href="{{ route('competencias.show', $competencia) }}"
                                             class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a>
@@ -167,6 +171,10 @@
                         </li>
                     </ul>
                 </nav>
+
+                <div class="mt-3">
+                    <p> Mostrando {{ $competencias->firstItem() }} a {{ $competencias->lastItem() }} de {{ $competencias->total() }} Entradas</p>
+                </div>
             </div>
         </div>
 

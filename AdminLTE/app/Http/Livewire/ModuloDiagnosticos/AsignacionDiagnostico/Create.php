@@ -37,7 +37,7 @@ class Create extends Component
 
         $this->reset(['user_id', 'puesto_actual', 'puesto_futuro', 'evaluador', 'rol_diagnostico', 'reporta_a']);
 
-        $this->emit('alert', '¡Se agregó la asignacion diagnostico con exito!');
+        $this->emit('alert', '¡Se agregó la asignación diagnóstico con exito!');
     }
     public function render()
     {
