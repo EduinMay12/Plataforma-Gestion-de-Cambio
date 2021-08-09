@@ -22,6 +22,26 @@ use App\Http\Controllers\ModuloComunicacion\ComunicacionController;
 use App\Http\Controllers\ModuloComunicacion\ElementoController;
 use App\Http\Controllers\ModuloComunicacion\CampañaController;
 
+use App\Http\Controllers\ModuloDiagnosticos\NivelController;
+use App\Http\Controllers\ModuloDiagnosticos\CompetenciaController;
+use App\Http\Controllers\ModuloDiagnosticos\PuestoController;
+use App\Http\Controllers\ModuloDiagnosticos\RoleDiagnosticoController;
+use App\Http\Controllers\ModuloDiagnosticos\AsignacionDiagnosticoController;
+
+use App\Http\Controllers\ModuloDiagnosticos\Cuestionario1Controller;
+use App\Http\Controllers\ModuloDiagnosticos\Preguntas1Controller;
+use App\Http\Controllers\ModuloDiagnosticos\Respuestas1Controller;
+
+use App\Http\Controllers\ModuloDiagnosticos\Cuestionario2Controller;
+use App\Http\Controllers\ModuloDiagnosticos\Preguntas2Controller;
+use App\Http\Controllers\ModuloDiagnosticos\Respuestas2Controller;
+
+use App\Http\Controllers\ModuloDiagnosticos\Cuestionario3Controller;
+use App\Http\Controllers\ModuloDiagnosticos\Preguntas3Controller;
+use App\Http\Controllers\ModuloDiagnosticos\Respuestas3Controller;
+
+use App\Http\Controllers\ModuloDiagnosticos\AsignacionCuestionarioController;
+
 /*
 |--------------------------------------------------------------------------
 | Rutas vistas por el publico
@@ -30,9 +50,7 @@ use App\Http\Controllers\ModuloComunicacion\CampañaController;
 Route::get('/', function () {
     return view('welcome');
 });
-
 Auth::routes();
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 /*
@@ -41,21 +59,21 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 |--------------------------------------------------------------------------
 */
 
-Route::group(['middleware' => ['auth']], function() {
-Route::get('modulo-administrador/administrador', [App\Http\Controllers\HomeController::class, 'administrador'])->name('administrador');
-Route::resource('modulo-administrador/roles', App\Http\Controllers\Admin\RoleController::class)->parameters(['role' => 'role']);
-Route::resource('modulo-administrador/users', App\Http\Controllers\Admin\UserController::class)->parameters(['user' => 'user']);
-Route::resource('modulo-administrador/gestionsucursal', App\Http\Controllers\Admin\GestionsucursalController::class)->parameters(['gestionsucursal' => 'sucursal']);
-Route::resource('modulo-administrador/gestionempresa', App\Http\Controllers\Admin\GestionempresaController::class)->parameters(['gestionempresa' => 'empresa']);
-Route::post('perfil/edit', ['as' => 'perfil.edit', 'uses' => 'App\Http\Controllers\PerfilController@update_avatar']);
-Route::get('perfil/edit', ['as' => 'perfil.edit', 'uses' => 'App\Http\Controllers\PerfilController@edit']);
-Route::put('perfil/edit', ['as' => 'perfil.update', 'uses' => 'App\Http\Controllers\PerfilController@update']);
-Route::put('perfil/password', ['as' => 'perfil.password', 'uses' => 'App\Http\Controllers\PerfilController@password']);
+	Route::group(['middleware' => ['auth']], function() {
 
+	Route::get('modulo-administrador/administrador', [App\Http\Controllers\HomeController::class, 'administrador'])->name('administrador');
+	Route::resource('modulo-administrador/roles', App\Http\Controllers\Admin\RoleController::class)->parameters(['role' => 'role']);
+	Route::resource('modulo-administrador/users', App\Http\Controllers\Admin\UserController::class)->parameters(['user' => 'user']);
+	Route::resource('modulo-administrador/gestionsucursal', App\Http\Controllers\Admin\GestionsucursalController::class)->parameters(['gestionsucursal' => 'sucursal']);
+	Route::resource('modulo-administrador/gestionempresa', App\Http\Controllers\Admin\GestionempresaController::class)->parameters(['gestionempresa' => 'empresa']);
+	Route::post('perfil/edit', ['as' => 'perfil.edit', 'uses' => 'App\Http\Controllers\PerfilController@update_avatar']);
+	Route::get('perfil/edit', ['as' => 'perfil.edit', 'uses' => 'App\Http\Controllers\PerfilController@edit']);
+	Route::put('perfil/edit', ['as' => 'perfil.update', 'uses' => 'App\Http\Controllers\PerfilController@update']);
+	Route::put('perfil/password', ['as' => 'perfil.password', 'uses' => 'App\Http\Controllers\PerfilController@password']);
 
 /*
 |--------------------------------------------------------------------------
-| Modulo Capacitaciones
+| Modulo de Capacitaciones
 |--------------------------------------------------------------------------
 */
 
@@ -76,9 +94,34 @@ Route::get('preguntas', [PreguntaController::class, 'index'])->name('preguntas.i
 | Modulo de Comunicaciones
 |--------------------------------------------------------------------------
 */
+    Route::resource('comunicacion', App\Http\Controllers\ModuloComunicacion\ComunicacionController::class,)->parameters(['comunicacion' => 'comunicacion']);
+    Route::resource('elemento', App\Http\Controllers\ModuloComunicacion\ElementoController::class,)->parameters(['elemento' => 'elemento']);
+    Route::resource('campaña', App\Http\Controllers\ModuloComunicacion\CampañaController::class,)->parameters(['campaña' => 'campaña']);
+/*
+|--------------------------------------------------------------------------
+| Modulo de Diagnostico
+|--------------------------------------------------------------------------
+*/
+    Route::resource('niveles', NivelController::class);
+    Route::resource('competencias', CompetenciaController::class)->parameters(['competencias' => 'competencia']);
+    Route::resource('puestos', PuestoController::class);
+    Route::post('competencia-puesto/{puesto}', [PuestoController::class, 'recuperar'])->name('competencia-puesto.recuperar');
+    Route::delete('competencia-puesto/{puesto}', [PuestoController::class, 'borrar'])->name('competencia-puesto.borrar');
+    Route::resource('roldiagnosticos', RoleDiagnosticoController::class);
+    Route::resource('asignaciondiagnosticos', AsignacionDiagnosticoController::class);
+    Route::resource('cuestionario1s', Cuestionario1Controller::class);
+    Route::resource('preguntas1s', Preguntas1Controller::class);
+    Route::resource('respuestas1s', Respuestas1Controller::class);
 
-Route::resource('comunicacion', App\Http\Controllers\ModuloComunicacion\ComunicacionController::class)->parameters(['comunicacion' => 'comunicacion']);
-Route::resource('elemento', App\Http\Controllers\ModuloComunicacion\ElementoController::class)->parameters(['elemento' => 'elemento']);
-Route::resource('campaña', App\Http\Controllers\ModuloComunicacion\CampañaController::class)->parameters(['campaña' => 'campaña']);
+    Route::resource('cuestionario2s', Cuestionario2Controller::class);
+    Route::resource('preguntas2s', Preguntas2Controller::class);
+    Route::resource('respuestas2s', Respuestas2Controller::class);
+
+    Route::resource('cuestionario3s', Cuestionario3Controller::class);
+    Route::resource('preguntas3s', Preguntas3Controller::class);
+    Route::resource('respuestas3s', Respuestas3Controller::class);
+
+    Route::resource('asignacioncuestionarios', AsignacionCuestionarioController::class);
+
 
 });

@@ -35,7 +35,7 @@
                         <div class="col-6">
                             <div class="mb-3 position-relative">
                                 <label class="form-label" for="">Empresa :</label><br>
-                                <span>{{ $empresa->empresa }}</span>
+                                <span >{{ $empresa->empresa }}</span>
                             </div>
 
                         </div>
