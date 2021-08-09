@@ -23,9 +23,9 @@
                     <label class="form-label" for="">Seleccionar Sucursal *</label>
                     <select class="form-control" type="text" wire:model="sucursal_id" required>
                         <option value="">Seleccionar</option>
-                        @foreach ($sucursales as $sucursales)
-                            <option value="{{ $sucursales->id }}">
-                                {{ $sucursales->sucursal }}
+                        @foreach ($sucursales as $sucursale)
+                            <option value="{{ $sucursale->id }}">
+                                {{ $sucursale->sucursal }}
                             </option>
                         @endforeach
                     </select>
@@ -95,10 +95,10 @@
                                     <i class="fas fa-sort float-right mt-1"></i>
                                 @endif
                             </th>
-                            <th scope="col" wire:click="order('empresa')">
+                            <th scope="col" wire:click="order('empresa_id')">
                                 Empresa/Sucursal
                                 {{-- Sort --}}
-                                @if ($sort == 'empresa')
+                                @if ($sort == 'empresa_id')
                                     @if ($direction == 'asc')
                                         <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
                                     @else

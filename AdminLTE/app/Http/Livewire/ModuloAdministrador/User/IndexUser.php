@@ -11,8 +11,8 @@ use App\Models\Estados;
 use App\Models\ModuloAdministrador\Empresa;
 use App\Models\ModuloAdministrador\Sucursales;
 use Spatie\Permission\Models\Role;
-use DB;
-use Hash;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 
@@ -79,8 +79,8 @@ class IndexUser extends Component
 
     public function table($sucursal_id, $empresa_id)
     {
-        $this->sucursal_id = $sucursal;
-        $this->empresa_id = $empresa;
+        $this->sucursal_id = $sucursal_id;
+        $this->empresa_id = $empresa_id;
         $this->view = 'table';
     }
 

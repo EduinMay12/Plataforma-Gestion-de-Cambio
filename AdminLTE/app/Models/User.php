@@ -32,8 +32,8 @@ class User extends Authenticatable
         'd_asenta',
         'd_ciudad',
 
-        'sucursal',
-        'empresa',
+        'sucursal_id',
+        'empresa_id',
 
     ];
 
