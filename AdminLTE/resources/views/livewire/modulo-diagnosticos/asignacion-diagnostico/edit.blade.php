@@ -98,7 +98,7 @@
                     </div>
 
                     <div class="mt-4">
-                        <button class="btn btn-success" wire:click="save" wire:loading.attr="disabled" wire:target="save">Guardar</button>
+                        <button class="btn btn-success" wire:click="save" wire:loading.attr="disabled" wire:target="save">Actualizar</button>
                         <a href="{{ route('asignaciondiagnosticos.index') }}" class="btn btn-danger">Volver</a>
                     </div>
 

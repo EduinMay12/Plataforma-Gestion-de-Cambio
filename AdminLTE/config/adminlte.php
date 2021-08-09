@@ -332,22 +332,22 @@ return [
                           'submenu' => [
                               [
                                   'text' => 'Competencias',
-                                  'icon' => '',
+                                  'icon' => 'fas fa-network-wired',
                                   'route' => 'competencias.index'
                               ],
                               [
                                   'text' => ' Comp - Puestos',
-                                  'icon' => '',
+                                  'icon' => 'fab fa-gg-circle',
                                   'route' => 'puestos.index'
                               ],
                               [
                                   'text' => 'Roles Evaluación',
-                                  'icon' => '',
+                                  'icon' => 'fas fa-circle-notch',
                                   'route' => 'roldiagnosticos.index'
                               ],
                               [
                                   'text' => 'Asig - Diagnósticos',
-                                  'icon' => '',
+                                  'icon' => 'fas fa-check-circle',
                                   'route' => 'asignaciondiagnosticos.index'
                               ],
                           ]
@@ -415,8 +415,9 @@ return [
                         'icon' => 'fa-solid fa-pen-field',
                         'submenu' => [
                             [
-                                'text' => 'Preguntas',
-    
+                                'text' => 'Asig. pre. Verdader/Falso',
+                                'icon' => '',
+                                'route' => 'asignacioncuestionarios.index'
                             ],
  
                         ]
