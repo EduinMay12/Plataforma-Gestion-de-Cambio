@@ -70,18 +70,18 @@
             </div>
 
             <div class="row">
-                <div class="col-12">
+                <div class="col-6">
                     <div class="mb-3 position-relative">
                         <label class="form-label" for="">Descripción* :</label>
-                        <input rows="8" wire:model="descripcion" class="form-control" placeholder="Descripción" required>
+                        <textarea rows="8" wire:model="descripcion" class="form-control" placeholder="Descripción" required></textarea>
                         @error('descripcion') <span class="error badge badge-danger">{{ $message }}</span>@enderror
                     </div>
                 </div>
 
-                <div class="col-12">
+                <div class="col-6">
                     <div class="mb-3 position-relative">
                         <label class="form-label" for="">Dirigido* a :</label>
-                        <input rows="8" wire:model="dirigido" class="form-control" placeholder="Dirigido" required>
+                        <textarea rows="8" wire:model="dirigido" class="form-control" placeholder="Dirigido" required></textarea>
                         @error('dirigido') <span class="error badge badge-danger">{{ $message }}</span>@enderror
                     </div>
                 </div>
@@ -107,7 +107,7 @@
                     <div class="form-group">
                         <label for="">Estatus* :</label>
                         <select class="form-control" wire:model="status">
-                            <option value="">Seleccione...</option>
+                            <option value="">Seleccionar</option>
                             <option value="1">Activo</option>
                             <option value="0">Inactivo</option>
                         </select>

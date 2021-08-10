@@ -8,7 +8,7 @@
                     <select class="form-control" type="text" wire:model="empresa_id" required>
                         <option value="">Seleccione...</option>
                         @foreach ($empresas as $empresa)
-                            <option value="{{ $empresa->empresa }}">
+                            <option value="{{ $empresa->id }}">
                                 {{ $empresa->empresa }}
                             </option>
                         @endforeach
@@ -24,7 +24,7 @@
                     <select class="form-control" type="text" wire:model="sucursal_id" required>
                         <option value="">Seleccione...</option>
                         @foreach ($sucursales as $sucursales)
-                            <option value="{{ $sucursales->sucursal }}">
+                            <option value="{{ $sucursales->id }}">
                                 {{ $sucursales->sucursal }}
                             </option>
                         @endforeach

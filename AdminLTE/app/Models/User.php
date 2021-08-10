@@ -33,6 +33,7 @@ class User extends Authenticatable
 
         'd_asenta',
         'd_ciudad',
+        'tipo',
 
         'sucursal_id',
         'empresa_id',

@@ -24,8 +24,8 @@ class CreateEmpresasTable extends Migration
                   ->references('id')
                   ->on('users')
                   ->onDelete('cascade');
-            $table->boolean('estatus');
 
+            $table->boolean('estatus');
             $table->string('d_asenta');
             $table->string('d_ciudad');
             $table->string('d_codigo');
