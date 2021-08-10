@@ -14,8 +14,12 @@ class CreateEstadosTable extends Migration
     public function up()
     {
         Schema::create('estados', function (Blueprint $table) {
+<<<<<<< HEAD
             $table->id();
             $table->string('d_codigo');
+=======
+            $table->id('d_codigo');
+>>>>>>> parent of 0816fa7 (Actualizacion Sections)
             $table->string('d_asenta');
             $table->string('d_tipo_asenta');
             $table->string('d_mnpio');

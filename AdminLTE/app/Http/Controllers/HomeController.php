@@ -42,9 +42,13 @@ class HomeController extends Controller
         $empresa_count = Empresa::count();
         $sucursal_count = Sucursales::count();
         $estados_count = Estados::count();
+<<<<<<< HEAD
         $elementos_count = Elemento::count();
         $comunicacions_count = Comunicacion::count();
         return view('modulo-administrador.administrador.administrador',compact('empresa_count', 'sucursal_count', 'estados_count', 'users_count', 'elementos_count', 'comunicacions_count'));
+=======
+        return view('administrador',compact('estados_count', 'users_count'));
+>>>>>>> parent of 0816fa7 (Actualizacion Sections)
     }
 
 }
