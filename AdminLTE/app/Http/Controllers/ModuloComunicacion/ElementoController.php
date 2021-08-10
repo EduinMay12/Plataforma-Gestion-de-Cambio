@@ -5,6 +5,8 @@ namespace App\Http\Controllers\ModuloComunicacion;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ModuloComunicacion\Elemento;
+use App\Models\ModuloComunicacion\Comunicacion;
+use App\Models\User;
 
 
 class ElementoController extends Controller

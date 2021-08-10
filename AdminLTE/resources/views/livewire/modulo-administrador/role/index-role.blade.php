@@ -3,7 +3,7 @@
         <div class="card-body">
             @can('crear-etiqueta')
                 <center>
-                    <a href="{{ route('roles.create') }}" class="btn btn-primary btn-rounded" title="Agregar nuevo Puesto">Crear Etiqueta <i class="fa fa-plus"></i> </a>
+                    <a href="{{ route('roles.create') }}" class="btn btn-primary btn-rounded" title="Agregar nuevo Rol">Agregar Rol <i class="fa fa-plus"></i> </a>
                 </center>
             @endcan
             <div class="row mt-2">
@@ -31,7 +31,7 @@
                                 <tr class="table-primary">
                                     <th scope="col">No.</th>
                                     <th scope="col" wire:click="order('name')">
-                                        Etiqueta
+                                        Roles
                                         {{-- Sort --}}
                                         @if ($sort == 'name')
                                             @if ($direction == 'asc')
@@ -45,6 +45,7 @@
                                         @endif
 
                                     </th>
+                                    <th>Descripción</th>
                                     @can('ver-etiqueta')
                                     <th scope="col">Ver</th>
                                     @endcan
@@ -60,7 +61,8 @@
                             @foreach ($roles as $role)
                                 <tr>
                                 <td scope="row" >{{ $role->id }}</td>
-                                <td><center><span class="badge badge-pill badge-primary">{{ $role->name }}</span></center></td>
+                                <td><center><span style="background:{{ $role->color }}" class="badge badge-pill badge-primary">{{ $role->name }}</span></center></td>
+                                <td>{{ $role->description }}</td>
                                 @can('ver-etiqueta')
                                 <td width="50"><a class="btn btn-primary btn-sm" href="{{ route('roles.show',$role->id) }}"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
                                 @endcan

@@ -20,10 +20,11 @@
                 'success'
             )
         });
+
         livewire.on('deleteSucursal', sucursalId => {
             Swal.fire({
-                title: '¿Estas Segur@?',
-                text: "Esta Accion no se Podra Revertir",
+                title: '¿Estas segur@?',
+                text: "Esta accion no se podra revertir",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -36,7 +37,7 @@
 
                     Swal.fire(
                         'Eliminado!',
-                        'Esta Sucursal se Elimino con Exito',
+                        'Esta sucursal se elimino con exito',
                         'success'
                     )
                 }

@@ -5,6 +5,7 @@ namespace App\Http\Livewire\ModuloComunicacion\GestionElemento;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
+use DB;
 use Illuminate\Support\Facades\Storage;
 use App\Models\ModuloComunicacion\Elemento;
 use App\Models\User;
@@ -24,7 +25,8 @@ class Index extends Component
 
     public $name;
     public $elemento;
-    public $categoria_id;
+    public $elemento_id;
+    public $comunicacion_id;
     public $user_id;
     public $descripcion;
     public $dirigido;
@@ -52,7 +54,7 @@ class Index extends Component
     protected $rules =
     [
         'name' => 'required',
-        'categoria_id' => 'required',
+        'comunicacion_id' => 'required',
         'user_id' => 'required',
         'descripcion' => 'required',
         'dirigido' => 'required',
@@ -90,12 +92,31 @@ class Index extends Component
     public function render()
     {
         $users = User::all();
-        $comunicacion = Comunicacion::all();
+        $comunicacions = Comunicacion::where('status', '=', 1)->get();
         $elementos = Elemento::where('name', 'like' , '%' . $this->search . '%')
+                    ->orWhere('user_id', 'like' , '%' . $this->search . '%')
                     ->Where('descripcion', 'like' , '%' . $this->search . '%')
                     ->orderBy($this->sort, $this->direction)
                     ->paginate($this->cant);
-        return view('livewire.modulo-comunicacion.gestion-elemento.index', compact('elementos', 'users', 'comunicacion'));
+        return view('livewire.modulo-comunicacion.gestion-elemento.index', compact('elementos', 'comunicacions'))->with('users',$users);
+    }
+
+    public function table($elemento)
+    {
+        $this->elemento_id = $elemento;
+        $this->reset([
+            'name',
+            'dirigido',
+            'descripcion',
+            'contenido',
+            'url',
+            'user_id',
+            'comunicacion_id',
+            'imagen',
+            'status'
+        ]);
+        $this->identificar = rand();
+        $this->view = 'table';
     }
 
     public function create(Elemento $elemento)
@@ -106,13 +127,23 @@ class Index extends Component
 
     public function save()
     {
-        $this->validate();
+        $this->validate([
+            'user_id' => 'required',
+            'name' => 'required',
+            'comunicacion_id' => 'required',
+            'url' => 'required',
+            'imagen' => 'required',
+            'status' => 'required',
+            'dirigido' => 'required',
+            'contenido' => 'required',
+            'descripcion' => 'required'
+        ]);
 
         $imagen = $this->imagen->store('elemento');
 
         Elemento::create([
             'name' => $this->name,
-            'categoria_id' => $this->categoria_id,
+            'comunicacion_id' => $this->comunicacion_id,
             'user_id' => $this->user_id,
             'descripcion' => $this->descripcion,
             'dirigido' => $this->dirigido,
@@ -122,11 +153,21 @@ class Index extends Component
             'status' => $this->status
         ]);
 
-        $this->reset(['name', 'dirigido', 'descripcion','contenido', 'url', 'user_id', 'categoria_id', 'imagen', 'status']);
+        $this->reset([
+            'name',
+            'dirigido',
+            'descripcion',
+            'contenido',
+            'url',
+            'user_id',
+            'comunicacion_id',
+            'imagen',
+            'status'
+        ]);
 
         $this->identificador = rand();
 
-        $this->emit('alert', '!Se agregó la categoria con exito¡');
+        $this->emit('alert', '!Se agregó un elemento de comunicación con exito¡');
     }
 
     public function show(Elemento $elemento)
@@ -137,6 +178,48 @@ class Index extends Component
 
     public function delete(Elemento $elemento)
     {
+
         $elemento->delete();
+
+    }
+
+    public function edit( Comunicacion $comunicacion)
+    {
+        $this->comunicacion_id = $comunicacion->id;
+        $this->name = $comunicacion->name;
+        $this->imagen_comunicacion = $comunicacion->imagen;
+        $this->descripcion = $comunicacion->descripcion;
+        $this->status = $comunicacion->status;
+        $this->view = 'edit';
+    }
+
+    public function update()
+    {
+        $this->validate([
+            'name' => 'required',
+            'descripcion' => 'required',
+            'status' => 'required',
+            'comunicacion_id' => 'required'
+        ]);
+
+        if ($this->imagen) {
+            Storage::delete([$this->imagen_comunicacion]);
+            $this->imagen_comunicacion = $this->imagen->store('comunicacion');
+        }
+
+        $comunicacion = Comunicacion::find($this->comunicacion_id);
+
+        $comunicacion->update([
+
+            'name' => $this->name,
+            'imagen' => $this->imagen_comunicacion,
+            'descripcion' => $this->descripcion,
+            'status' => $this->status
+        ]);
+
+        $this->identificador = rand();
+
+        $this->emit('alert', '!Se actualizó la categoria de la comunicacion con exito¡');
+
     }
 }

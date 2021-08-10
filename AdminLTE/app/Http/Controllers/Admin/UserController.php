@@ -12,6 +12,8 @@ use Hash;
 use Illuminate\Support\Arr;
 use App\Models\ModuloAdministrador\Sucursales;
 use App\Models\Estados;
+use App\Models\ModuloDiagnosticos\RoleDiagnostico;
+use App\Models\ModuloDiagnosticos\Puesto;
 
 class UserController extends Controller
 {
@@ -25,7 +27,14 @@ class UserController extends Controller
     }
     public function index()
     {
-        return view('modulo-administrador.users.index');
+        $empresas = Empresa::all();
+        $sucursales = Sucursales::all();
+        $users = User::all();
+        $puestos = Puesto::all();
+        $estados = Estados::all();
+        $roles = Role::all();
+        $roldiagnosticos = RoleDiagnostico::all();
+        return view('modulo-administrador.users.index', compact('empresas','puestos', 'sucursales', 'estados', 'roldiagnosticos', 'users', 'roles'));
     }
 
     public function show($id)

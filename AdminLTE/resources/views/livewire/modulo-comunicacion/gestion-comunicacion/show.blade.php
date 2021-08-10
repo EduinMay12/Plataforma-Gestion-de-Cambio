@@ -16,8 +16,6 @@
 @elseif($comunicacion->status == 0)
 <span class="badge badge-pill badge-danger">Inactivo</span><br>
 @endif
-
-<br>
 <div class="mt-4">
     <a href="/comunicacion" class="btn btn-danger">Volver</a>
 </div>

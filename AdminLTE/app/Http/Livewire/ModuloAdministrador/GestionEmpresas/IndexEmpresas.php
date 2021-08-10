@@ -4,6 +4,7 @@ namespace App\Http\Livewire\ModuloAdministrador\GestionEmpresas;
 
 use Livewire\Component;
 use App\Models\ModuloAdministrador\Empresa;
+use DB;
 use App\Models\User;
 use App\Models\Estados;
 use Livewire\WithPagination;
@@ -11,12 +12,14 @@ use Livewire\WithPagination;
 class IndexEmpresas extends Component
 {
     use WithPagination;
+
     public $view = 'table';
     public $search = '';
     public $sort = 'id';
     public $direction = 'desc';
     public $cant = '10';
 
+    public $empresa_id;
     public $empresa;
     public $user_id;
     public $direccion;
@@ -85,7 +88,16 @@ class IndexEmpresas extends Component
 
     public function delete(Empresa $empresa)
     {
-        $empresa->delete();
+        $consulta = DB::table('sucursales')->where('empresa_id','=', $empresa->id)->get();
+        $contador = count($consulta);
+
+        if($contador > 0)
+        {
+            $this->emit('error', 'Esta empresa no se puede eliminar, contiene sucursales');
+        }else{
+            $empresa->delete();
+            $this->emit('alert', 'Empresa eliminado con exito!');
+        }
     }
 
     public function show(Empresa $empresa)
@@ -139,12 +151,12 @@ class IndexEmpresas extends Component
             'estatus'
         ]);
 
-        $this->emit('alert', '¡Se Agregó una Empresa con Exito!');
+        $this->emit('alert', '¡Se agregó una empresa con exito!');
     }
 
     public function edit(Empresa $empresa)
     {
-        $this->id = $empresa->id;
+        $this->empresa_id = $empresa->id;
         $this->empresa = $empresa->empresa;
         $this->user_id = $empresa->user_id;
         $this->direccion = $empresa->direccion;
@@ -168,16 +180,18 @@ class IndexEmpresas extends Component
             'd_ciudad' => 'required',
             'd_codigo' => 'required'
         ]);
-        $empresa = Empresa::find($this->id);
+
+        $empresa = Empresa::find($this->empresa_id);
+
         $empresa->update([
+            'empresa' => $this->empresa,
             'user_id' => $this->user_id,
             'direccion' => $this->direccion,
             'empleados' => $this->empleados,
             'd_asenta' => $this->d_asenta,
             'd_ciudad' => $this->d_ciudad,
             'd_codigo' => $this->d_codigo,
-            'estatus' => $this->estatus,
-            'empresa' => $this->empresa
+            'estatus' => $this->estatus
         ]);
         $this->identificador = rand();
         $this->emit('alert', '!Se actualizó el empresa con exito¡');

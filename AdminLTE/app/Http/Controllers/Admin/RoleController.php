@@ -55,11 +55,13 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|unique:roles,name',
-            'permission' => 'required',
+            'name' => 'required|unique:roles,name,color',
+            'color' => 'required',
+            'description' => 'required',
+            'permission' => 'required'
         ]);
 
-        $role = Role::create(['name' => $request->input('name')]);
+        $role = Role::create(['name' => $request->input('name'), 'color' => $request->input('color'), 'description' => $request->input('description')]);
         $role->syncPermissions($request->input('permission'));
 
         return redirect()->route('roles.index')
@@ -114,12 +116,13 @@ class RoleController extends Controller
 
         $role = Role::find($id);
         $role->name = $request->input('name');
+        $role->color = $request->input('color');
         $role->save();
 
         $role->syncPermissions($request->input('permission'));
 
         return redirect()->route('roles.index')
-                        ->with('success','Etiqueta Actulizada!');
+                        ->with('success','Rol actulizado!');
     }
     /**
      * Remove the specified resource from storage.
