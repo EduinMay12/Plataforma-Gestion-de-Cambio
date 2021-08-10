@@ -36,6 +36,12 @@ use App\Http\Controllers\ModuloDiagnosticos\Cuestionario2Controller;
 use App\Http\Controllers\ModuloDiagnosticos\Preguntas2Controller;
 use App\Http\Controllers\ModuloDiagnosticos\Respuestas2Controller;
 
+use App\Http\Controllers\ModuloDiagnosticos\Cuestionario3Controller;
+use App\Http\Controllers\ModuloDiagnosticos\Preguntas3Controller;
+use App\Http\Controllers\ModuloDiagnosticos\Respuestas3Controller;
+
+use App\Http\Controllers\ModuloDiagnosticos\AsignacionCuestionarioController;
+
 /*
 |--------------------------------------------------------------------------
 | Rutas vistas por el publico
@@ -44,22 +50,13 @@ use App\Http\Controllers\ModuloDiagnosticos\Respuestas2Controller;
 Route::get('/', function () {
     return view('welcome');
 });
-<<<<<<< HEAD
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-=======
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/administrador', [App\Http\Controllers\HomeController::class, 'administrador'])->name('administrador');
->>>>>>> parent of 0816fa7 (Actualizacion Sections)
 /*
 |--------------------------------------------------------------------------
 | Modulo de Administrador
 |--------------------------------------------------------------------------
 */
-<<<<<<< HEAD
 	Route::group(['middleware' => ['auth']], function() {
 	Route::get('modulo-administrador/administrador', [App\Http\Controllers\HomeController::class, 'administrador'])->name('administrador');
 	Route::resource('modulo-administrador/roles', RoleController::class)->parameters(['role' => 'role']);
@@ -70,26 +67,11 @@ Route::get('/administrador', [App\Http\Controllers\HomeController::class, 'admin
 	Route::get('perfil/edit', ['as' => 'perfil.edit', 'uses' => 'App\Http\Controllers\PerfilController@edit']);
 	Route::put('perfil/edit', ['as' => 'perfil.update', 'uses' => 'App\Http\Controllers\PerfilController@update']);
 	Route::put('perfil/password', ['as' => 'perfil.password', 'uses' => 'App\Http\Controllers\PerfilController@password']);
-=======
-    Route::group(['middleware' => ['auth']], function() {
-        Route::resource('gestionempleado', 'App\Http\Controllers\GestionempleadosController');
-        Route::resource('gestionsucursal', 'App\Http\Controllers\GestionsucursalController');
-        Route::resource('gestionempresa', 'App\Http\Controllers\GestionempresaController');
-        Route::post('perfil/edit', ['as' => 'perfil.edit', 'uses' => 'App\Http\Controllers\PerfilController@update_avatar']);
-        Route::get('perfil/edit', ['as' => 'perfil.edit', 'uses' => 'App\Http\Controllers\PerfilController@edit']);
-        Route::put('perfil/edit', ['as' => 'perfil.update', 'uses' => 'App\Http\Controllers\PerfilController@update']);
-        Route::put('perfil/password', ['as' => 'perfil.password', 'uses' => 'App\Http\Controllers\PerfilController@password']);
-        Route::resource('roles', App\Http\Controllers\RoleController::class);
-        Route::resource('users', App\Http\Controllers\UserController::class);
-        Route::resource('estados', App\Http\Controllers\EstadoController::class);
-    });
->>>>>>> parent of 0816fa7 (Actualizacion Sections)
 /*
 |--------------------------------------------------------------------------
 | Modulo de Capacitaciones
 |--------------------------------------------------------------------------
 */
-<<<<<<< HEAD
 Route::resource('categorias', CategoriaController::class)->parameters(['categorias' => 'categoria']);
 Route::resource('instructores', InstructoreController::class)->parameters(['instructores' => 'instructore']);
 Route::get('cursos', [CursoController::class, 'index'])->name('cursos.index');
@@ -124,15 +106,16 @@ Route::get('preguntas', [PreguntaController::class, 'index'])->name('preguntas.i
     Route::resource('cuestionario1s', Cuestionario1Controller::class);
     Route::resource('preguntas1s', Preguntas1Controller::class);
     Route::resource('respuestas1s', Respuestas1Controller::class);
+
     Route::resource('cuestionario2s', Cuestionario2Controller::class);
     Route::resource('preguntas2s', Preguntas2Controller::class);
     Route::resource('respuestas2s', Respuestas2Controller::class);
 
+    Route::resource('cuestionario3s', Cuestionario3Controller::class);
+    Route::resource('preguntas3s', Preguntas3Controller::class);
+    Route::resource('respuestas3s', Respuestas3Controller::class);
+
+    Route::resource('asignacioncuestionarios', AsignacionCuestionarioController::class);
+
 
 });
-=======
-
-Route::get('/home', function() {
-    return view('home');
-})->name('home')->middleware('auth');
->>>>>>> parent of 0816fa7 (Actualizacion Sections)
