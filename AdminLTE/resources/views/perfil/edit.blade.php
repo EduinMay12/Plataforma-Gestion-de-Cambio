@@ -1,66 +1,25 @@
 @extends('layouts.app')
 
 @section('header-gestion')
-<div class="container-fluid">
-    <div class="topnav">
-        <nav class="navbar navbar-light navbar-expand-lg topnav-menu">
-            <div class="collapse navbar-collapse" id="topnav-menu-content">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/home">
-                        <i class="uil-home-alt me-2"></i> Inicio </a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        @can('vista-administrador')
-                        <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-uielement" role="button">
-                            <i class="uil-flask me-2"></i> Super Usuario <div class="arrow-down"></div>
-                        </a>
-                        @endcan
+    <div class="container-fluid">
+        <div class="topnav">
+            <nav class="navbar navbar-light navbar-expand-lg topnav-menu">
+                <div class="collapse navbar-collapse" id="topnav-menu-content">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/home">
+                            <i class="uil-home-alt me-2"></i> Inicio </a>
+                        </li>
 
-                        <div class="dropdown-menu mega-dropdown-menu px-2 dropdown-mega-menu-xl"
-                            aria-labelledby="topnav-uielement">
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <div class="text-left">
-                                        <a href="/perfil/edit" class="dropdown-item">Perfil</a>
-                                        <a href="/administrador" class="dropdown-item">Panel del Administrador</a>
-                                        <a href="/roles" class="dropdown-item">Etiquetas</a>
-                                        <a href="/users" class="dropdown-item">Usuarios</a>
-                                        <a href="/gestionempresa" class="dropdown-item">Gestion de Empresas</a>
-                                        <a href="/gestionsucursal" class="dropdown-item">Gestion de Sucursales</a>
-                                        <a href="/gestionempleados" class="dropdown-item">Gestion de Empleados</a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div>
-                                        <a href="ui-lightbox" class="dropdown-item">Lightbox</a>
-                                        <a href="ui-modals" class="dropdown-item">Modals</a>
-                                        <a href="ui-rangeslider" class="dropdown-item">Range Slider</a>
-                                        <a href="ui-session-timeout" class="dropdown-item">Session Timeout</a>
-                                        <a href="ui-progressbars" class="dropdown-item">Progress Bars</a>
-                                        <a href="ui-sweet-alert" class="dropdown-item">Sweet-Alert</a>
-                                        <a href="ui-tabs-accordions" class="dropdown-item">Tabs & Accordions</a>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div>
-                                        <a href="ui-typography" class="dropdown-item">Typography</a>
-                                        <a href="ui-video" class="dropdown-item">Video</a>
-                                        <a href="/estados" class="dropdown-item">Estados</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/perfil/edit">
-                        <i class="uil-user-circle me-2"></i> Personalizar Perfil </a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/perfil/edit">
+                            <i class="uil uil-user-circle me-2"></i> Perfil </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
     </div>
-</div>
 @stop
 
 @section('content')
@@ -147,7 +106,7 @@
                                         <img src="../uploads/avatars/{{ auth()->user()->avatar }}" width="200" height="200" class="rounded-circle"><br><br>
                                         <input type="file" name="avatar">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <button type="submit" class="pull-right btn btn-primary">Guardar foto</button>
+                                        <button type="submit" class="pull-right btn btn-primary">Cambiar foto</button>
                                     </form>
                                 </div>
                                 <br>
@@ -166,7 +125,7 @@
                                         </div>
                                     </div><br>
                                     <div class="row">
-                                        <div class="col{{ $errors->has('apellido_paterno') ? ' has-danger' : '' }}">
+                                        <div class="col {{ $errors->has('apellido_paterno') ? ' has-danger' : '' }}">
                                             <label class="form-control-label" for="input-apellido_paterno">{{ __('Apellido Paterno*') }}</label>
                                             <input type="text" name="apellido_paterno" id="input-apellido_paterno" class="form-control form-control-alternative{{ $errors->has('apellido_paterno') ? ' is-invalid' : '' }}" placeholder="{{ __('Apellido Paterno') }}" value="{{ old('apellido_paterno', auth()->user()->apellido_paterno) }}" required >
                                             @if ($errors->has('apellido_paterno'))
@@ -175,7 +134,7 @@
                                                 </span>
                                             @endif
                                         </div>
-                                        <div class="col{{ $errors->has('apellido_materno') ? ' has-danger' : '' }}">
+                                        <div class="col {{ $errors->has('apellido_materno') ? ' has-danger' : '' }}">
                                             <label class="form-control-label" for="input-apellido_maternome">{{ __('Apellido Materno*') }}</label>
                                             <input type="text" name="apellido_materno" id="input-apellido_materno" class="form-control form-control-alternative{{ $errors->has('apellido_materno') ? ' is-invalid' : '' }}" placeholder="{{ __('Apellido Materno') }}" value="{{ old('apellido_materno', auth()->user()->apellido_materno) }}" required >
                                             @if ($errors->has('apellido_materno'))

@@ -87,7 +87,7 @@ return [
     'layout_boxed' => null,
     'layout_fixed_sidebar' => true,
     'layout_fixed_navbar' => true,
-    'layout_fixed_footer' => null,
+    'layout_fixed_footer' => true,
     'layout_dark_mode' => null,
 
     /*
@@ -189,7 +189,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'administrador',
+    'dashboard_url' => 'modulo-administrador/administrador',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -233,46 +233,184 @@ return [
             'topnav_right' => true,
         ],
 
-        // Sidebar items:
+        //Rustas del Modulo de administrador
 
-        ['header' => 'PUBLICO'],
+        ['header' => 'MÓDULO DE ADMINISTRADOR'],
         [
-            'text' => 'Inicio',
-            'url'  => '/home',
-            'icon' => 'fas fa-fw fa-home',
-        ],
-        [
-            'text' => 'Perfil',
-            'url'  => 'perfil/edit',
-            'icon' => 'fas fa-fw fa-user-circle',
+
+            'text' => 'Administrar Empresas',
+            'icon' => 'fas fa-fw fa-chart-line',
+            'submenu' => [
+                [
+                    'text'       => 'Gestionar Empleados',
+                    'icon' => 'fas fa-fw fa-portrait',
+                    'route'        => 'users.index',
+                ],
+                [
+                    'text'       => 'Gestionar Sucursales',
+                    'icon' => 'fas fa-fw fa-sitemap',
+                    'route'        => 'gestionsucursal.index',
+                ],
+                [
+                    'text'       => 'Gestion de Empresas',
+                    'icon' => 'fas fa-fw fa-building',
+                    'route'        => 'gestionempresa.index',
+                ],
+                [
+                    'text' => 'Roles',
+                    'route'  => 'roles.index',
+                    'icon' => 'fas fa-fw fa-project-diagram',
+                ],
+            ]
         ],
 
-        ['header' => 'CONFIGURACION DE PERMISOS'],
+        //Rutas del módulo capacitaciones
+
+        ['header' => 'MÓDULO DE CAPACITACIONES'],
         [
-            'text' => 'Asignaciónes de Etiqueta',
-            'url'  => 'users',
-            'icon' => 'fas fa-fw fa-users',
+            'text' => 'Módulo Capacitaciones',
+            'icon' => 'fas fa-fw fa-chalkboard-teacher',
+            'submenu' => [
+                [
+                    'text' => 'Gestionar Categorias',
+                    'icon' => 'fas fa-fw fa-layer-group',
+                    'route' => 'categorias.index'
+                ],
+                [
+                    'text' => 'Gestionar Cursos',
+                    'icon' => 'fas fa-fw fa-laptop',
+                    'route' => 'cursos.index'
+                ],
+                [
+                    'text' => 'Gestionar Instructores',
+                    'icon' => 'fas fa-fw fa-user-tie',
+                    'route' => 'instructores.index'
+                ],
+                [
+                    'text' => 'Gestionar Grupos',
+                    'icon' => 'fas fa-fw fa-users',
+                    'route' => 'grupos.index'
+                ],
+                [
+                    'text' => 'Gestionar matriculaciones',
+                    'icon' => 'fas fa-fw fa-address-card',
+                    'route' => 'grupos.matriculaciones'
+                ],
+                [
+                    'text' => 'Gestionar Lecciones',
+                    'icon' => 'fas fa-fw fa-book',
+                    'route' => 'lecciones.index'
+                ],
+                [
+                    'text' => 'Gestionar Recursos',
+                    'icon' => 'fas fa-fw fa-photo-video',
+                    'route' => 'recursos.index'
+                ],
+                [
+                    'text' => 'Gestionar Actividades',
+                    'icon' => 'fas fa-fw fa-file-alt',
+                    'route' => 'lecciones.actividades'
+                ],
+                [
+                    'text' => 'Gestionar Cuestionarios',
+                    'icon' => 'fas fa-fw fa-file-alt',
+                    'route' => 'cuestionarios.index'
+                ],
+                [
+                    'text' => 'Gestionar Preguntas',
+                    'icon' => 'fas fa-fw fa-question-circle',
+                    'route' => 'preguntas.index'
+                ]
+            ]
         ],
+                      //Rutas del módulo Diagnósticos
+
+                      ['header' => 'MÓDULO DE DIAGNÓSTICOS'],
+                      [
+                          'text' => 'Módulo Diagnósticos',
+                          'icon' => 'fas fa-arrow-alt-circle-down',
+                          'submenu' => [
+                              [
+                                  'text' => 'Competencias',
+                                  'icon' => '',
+                                  'route' => 'competencias.index'
+                              ],
+                              [
+                                  'text' => ' Comp - Puestos',
+                                  'icon' => '',
+                                  'route' => 'puestos.index'
+                              ],
+                              [
+                                  'text' => 'Roles Evaluación',
+                                  'icon' => '',
+                                  'route' => 'roldiagnosticos.index'
+                              ],
+                              [
+                                  'text' => 'Asig - Diagnósticos',
+                                  'icon' => '',
+                                  'route' => 'asignaciondiagnosticos.index'
+                              ],
+                              [
+                                  'text' => 'Cuestionario P-Abiertas',
+                                  'icon' => '',
+                                  'route' => 'cuestionario1s.index'
+                              ],
+                              [
+                                  'text' => 'Preguntas Abiertas',
+                                  'icon' => '',
+                                  'route' => 'preguntas1s.index' 
+                              ],
+                              [
+                                  'text' => 'Respuestas P-Abiertas',
+                                  'icon' => '',
+                                  'route' => 'respuestas1s.index'
+                              ],
+                              [
+                                  'text' => 'Cuestionario Verdadero/Falso',
+                                  'icon' => '',
+                                  'route' => 'cuestionario2s.index'
+                              ],
+                              [
+                                  'text' => 'Preguntas Verdadero/Falso',
+                                  'icon' => '',
+                                  'route' => 'preguntas2s.index'
+                              ],
+                              [
+                                  'text' => 'Respuestas Verdadero / Falso',
+                                  'icon' => '',
+                                  'route' => 'respuestas2s.index'
+                              ],
+                          ]
+                      ],
+
+        //Rutas del módulo comunicaciones
+
+        ['header' => 'MÓDULO DE COMUNICACIONES'],
         [
-            'text' => 'Etiquetas',
-            'url'  => 'roles',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
-        ['header' => 'PANEL DE ADMINISTRADOR'],
-        [
-            'text'       => 'Gestionar Empleados',
-            'icon' => 'fas fa-fw fa-portrait',
-            'url'        => 'gestionempleado',
-        ],
-        [
-            'text'       => 'Gestionar Sucursales',
-            'icon' => 'fas fa-fw fa-sitemap',
-            'url'        => 'gestionsucursal',
-        ],
-        [
-            'text'       => 'Gestion de Empresas',
-            'icon' => 'fas fa-fw fa-building',
-            'url'        => 'gestionempresa',
+            'text' => 'Comunicaciones',
+            'icon' => 'fas fa-fw fa-icons',
+            'submenu' => [
+                [
+                    'text' => 'Gestionar Comunicación',
+                    'icon' => 'fas fa-fw fa-indent',
+                    'route' => 'comunicacion.index'
+                ],
+                [
+                    'text' => 'Gestionar Elementos',
+                    'icon' => 'fas fa-fw fa-folder-open',
+                    'route' => 'elemento.index'
+                ],
+                [
+                    'text' => 'Gestionar Campaña',
+                    'icon' => 'fas fa-fw fa-grip-horizontal',
+                    'route' => 'campaña.index'
+                ],
+                [
+                    'text' => 'Vista Usuario Campaña',
+                    'icon' => 'fas fa-fw fa-digital-tachograph',
+                    'route' => 'home'
+                ],
+            ]
         ],
     ],
 
@@ -356,12 +494,12 @@ return [
             ],
         ],
         'Sweetalert2' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
                     'asset' => false,
-                    'location' => '//cdn.jsdelivr.net/npm/sweetalert2@8',
+                    'location' => '//cdn.jsdelivr.net/npm/sweetalert2@11',
                 ],
             ],
         ],
@@ -393,5 +531,5 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Other-Configuration
     */
 
-    'livewire' => false,
+    'livewire' => true,
 ];
