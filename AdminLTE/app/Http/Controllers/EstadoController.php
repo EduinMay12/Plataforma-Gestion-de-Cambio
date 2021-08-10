@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Estados;
 use Illuminate\Http\Request;
 use DB;
@@ -20,12 +19,12 @@ class EstadoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $estados = $request->get('buscarpor');
 
-        $estados = estados::where('d_mnpio','like',"%$estados%")->paginate(10000);
-        return view('modulo-administrador.estados.index',compact('estados'));
+            $estados = Estados::latest()->paginate(5000);
+            return view('estados.index',compact('estados'))
+                ->with('i', (request()->input('page', 1) - 1) * 5);
 
     }
 
@@ -36,7 +35,7 @@ class EstadoController extends Controller
      */
     public function create()
     {
-        return view('modulo-administrador.estados.create');
+        return view('estados.create');
     }
 
     /**

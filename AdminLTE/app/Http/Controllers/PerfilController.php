@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -15,7 +15,7 @@ class PerfilController extends Controller
 {
     public function index(User $model)
     {
-        return view('modulo-administrador.perfil.edit');
+        return view('perfil.edit');
     }
 
     public function update_avatar(Request $request){
@@ -31,13 +31,13 @@ class PerfilController extends Controller
             $user->save();
         }
 
-        return view('../perfil/edit', array('user' => Auth::user()) );
+        return view('./perfil/edit', array('user' => Auth::user()) );
 
     }
 
     public function edit()
     {
-        return view('modulo-administrador.perfil.edit');
+        return view('perfil.edit');
     }
 
     public function update(ProfileRequest $request)

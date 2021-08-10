@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -31,7 +31,7 @@ class RoleController extends Controller
     public function index(Request $request)
     {
         $roles = Role::orderBy('id','DESC')->paginate(5);
-        return view('modulo-administrador.roles.index',compact('roles'))
+        return view('roles.index',compact('roles'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
@@ -43,7 +43,7 @@ class RoleController extends Controller
     public function create()
     {
         $permission = Permission::get();
-        return view('modulo-administrador.roles.create',compact('permission'));
+        return view('roles.create',compact('permission'));
     }
 
     /**
@@ -55,17 +55,15 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|unique:roles,name,color',
-            'color' => 'required',
-            'description' => 'required',
-            'permission' => 'required'
+            'name' => 'required|unique:roles,name',
+            'permission' => 'required',
         ]);
 
-        $role = Role::create(['name' => $request->input('name'), 'color' => $request->input('color'), 'description' => $request->input('description')]);
+        $role = Role::create(['name' => $request->input('name')]);
         $role->syncPermissions($request->input('permission'));
 
         return redirect()->route('roles.index')
-                        ->with('success','Etiqueta Creada');
+                        ->with('success','Role created successfully');
     }
     /**
      * Display the specified resource.
@@ -80,7 +78,7 @@ class RoleController extends Controller
             ->where("role_has_permissions.role_id",$id)
             ->get();
 
-        return view('modulo-administrador.roles.show',compact('role','rolePermissions'));
+        return view('roles.show',compact('role','rolePermissions'));
     }
 
     /**
@@ -97,7 +95,7 @@ class RoleController extends Controller
             ->pluck('role_has_permissions.permission_id','role_has_permissions.permission_id')
             ->all();
 
-        return view('modulo-administrador.roles.edit',compact('role','permission','rolePermissions'));
+        return view('roles.edit',compact('role','permission','rolePermissions'));
     }
 
     /**
@@ -116,13 +114,12 @@ class RoleController extends Controller
 
         $role = Role::find($id);
         $role->name = $request->input('name');
-        $role->color = $request->input('color');
         $role->save();
 
         $role->syncPermissions($request->input('permission'));
 
         return redirect()->route('roles.index')
-                        ->with('success','Rol actulizado!');
+                        ->with('success','Role updated successfully');
     }
     /**
      * Remove the specified resource from storage.
@@ -134,6 +131,6 @@ class RoleController extends Controller
     {
         DB::table("roles")->where('id',$id)->delete();
         return redirect()->route('roles.index')
-                        ->with('success','Etiqueta Eliminada');
+                        ->with('success','Role deleted successfully');
     }
 }

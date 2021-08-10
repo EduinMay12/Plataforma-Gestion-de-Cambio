@@ -166,6 +166,16 @@
             </div>
         </div>
     </div>
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-6">
+                    <script>document.write(new Date().getFullYear())</script> © EDUMATICS
+                </div>
+
+            </div>
+        </div>
+    </footer>
 @stop
 
-@extends('layouts.footer')
+
