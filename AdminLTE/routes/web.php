@@ -41,6 +41,7 @@ use App\Http\Controllers\ModuloDiagnosticos\Preguntas3Controller;
 use App\Http\Controllers\ModuloDiagnosticos\Respuestas3Controller;
 
 use App\Http\Controllers\ModuloDiagnosticos\AsignacionCuestionarioController;
+use App\Http\Livewire\ModuloCapacitaciones\Matriculaciones\Index;
 
 /*
 |--------------------------------------------------------------------------
@@ -77,7 +78,9 @@ Route::resource('instructores', InstructoreController::class)->parameters(['inst
 Route::get('cursos', [CursoController::class, 'index'])->name('cursos.index');
 
 Route::get('grupos', [GrupoController::class, 'index'])->name('grupos.index');
+//Route::get('download-pdf', [GrupoController::class, 'downloadPDF'])->name('grupos.pdf');
 Route::get('matriculaciones', [GrupoController::class, 'matriculaciones'])->name('grupos.matriculaciones');
+Route::get('download-matriculaciones/{grupo}', [Index::class, 'livewirePDF'])->name('matriculaciones.pdf');
 Route::get('lecciones', [LeccioneController::class, 'index'])->name('lecciones.index');
 Route::get('actividades', [LeccioneController::class, 'actividades'])->name('lecciones.actividades');
 Route::get('recursos', [RecursoController::class, 'index'])->name('recursos.index');

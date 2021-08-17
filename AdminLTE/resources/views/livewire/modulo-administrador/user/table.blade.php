@@ -147,7 +147,7 @@
                             <td><img src="../uploads/avatars/{{ $user->avatar }}" width="30" height="30" class="rounded-circle"></td>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->apellido }}</td>
-                            <td> <span class="badge badge-pill badge-light">{{ $user->empresa_id }}</span>/<span class="badge badge-pill badge-light">{{ $user->sucursal_id }} </span> </td>
+                            <td> <span class="badge badge-pill badge-light">{{ $user->empresa }}</span>/<span class="badge badge-pill badge-light">{{ $user->sucursal }} </span> </td>
                             <td>
                                 @if(!empty($user->getRoleNames()))
                                     @foreach($user->getRoleNames() as $role)

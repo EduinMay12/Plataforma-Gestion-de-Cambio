@@ -5,6 +5,7 @@ namespace App\Http\Livewire\ModuloCapacitaciones\Instructores;
 use Livewire\Component;
 use App\Models\ModuloCapacitaciones\Instructore;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class Create extends Component
 {
@@ -35,7 +36,12 @@ class Create extends Component
 
     public function render()
     {
-        $users = User::all();
+        $users = DB::table(DB::raw('model_has_roles m'))
+            ->select('u.id','u.name','u.apellido')
+            ->join(DB::raw('users u'),'m.model_id','=','u.id')
+            ->where('role_id','=',4)
+            ->get();
+
         return view('livewire.modulo-capacitaciones.instructores.create', compact('users'));
     }
 }

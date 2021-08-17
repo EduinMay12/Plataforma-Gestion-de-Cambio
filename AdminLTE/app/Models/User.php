@@ -8,7 +8,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 use App\Models\ModuloAdministrador\Empresa;
-use App\Models\ModuloComunicacion\Comunicacion;
 
 class User extends Authenticatable
 {
@@ -29,7 +28,6 @@ class User extends Authenticatable
 
         'puesto_actual_id',
         'puesto_futuro_id',
-        'tipo',
 
         'd_asenta',
         'd_ciudad',
@@ -69,18 +67,30 @@ class User extends Authenticatable
         return 'Hola Bienvenido a Gestion de Cambio';
     }
 
+
     public function empresa()
     {
-         return $this->hasMany('App\Models\ModuloAdministrador\Empresa');
+         return $this->belongsTo('App\Models\ModuloAdministrador\Empresa');
     }
 
-    public function sucursales()
+    public function sucursal()
     {
-         return $this->hasMany('App\Models\ModuloAdministrador\Sucursales');
+         return $this->belongsTo('App\Models\ModuloAdministrador\Sucursales');
+    }
+    
+    //Relacion muchos a muchos con grupo
+    public function grupos()
+    {
+        return $this->belongsToMany('App\Models\ModuloCapacitaciones\Grupo');
     }
 
-    public function asignaciondiagnosticos()
+    //Relacion uno a uno con instructores
+    public function instructor()
     {
+        return $this->hasOne('App\Models\ModuloCapacitaciones\Instructore');
+    }
+
+    public function asignaciondiagnosticos(){
         return $this->hasMany('App\Models\ModuloDiagnosticos\AsignacionDiagnostico');
     }
 
