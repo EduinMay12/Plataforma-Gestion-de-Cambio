@@ -21,7 +21,7 @@
 
     <div class="col-4">
         <label for="">Seleccionar sucursal</label>
-        <select wire:model="sucursal_id" class="form-control">
+        <select wire:model="sucursalId" class="form-control">
             <option value="">Seleccione...</option>
             @foreach ($sucursales as $sucursal)
                 <option value="{{ $sucursal->id }}">{{ $sucursal->sucursal }}</option>
@@ -31,7 +31,7 @@
 
     <div class="col-4">
         <label for="">Seleccionar perfil</label>
-        <select wire:model="role_id" class="form-control">
+        <select wire:model="roleId" class="form-control">
             <option value="">Seleccione...</option>
             @foreach ($roles as $role)
                 <option value="{{ $role->id }}">{{ $role->name }}</option>

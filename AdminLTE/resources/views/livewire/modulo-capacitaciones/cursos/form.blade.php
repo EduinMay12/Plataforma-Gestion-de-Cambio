@@ -5,7 +5,7 @@
 
 <div class="form-group">
     <label for="">Nombre:*</label>
-    <input wire:model="nombre" type="text" class="form-control">
+    <input wire:model.defer="nombre" type="text" class="form-control">
 
     @error('nombre')
         <small class="text-danger">{{ $message }}</small>
@@ -35,7 +35,7 @@
 
 <div class="form-group">
     <label for="">Descripción corta:*</label>
-    <input wire:model="descorta" type="text" class="form-control">
+    <input wire:model.defer="descorta" type="text" class="form-control">
 
     @error('descorta')
         <small class="text-danger">{{ $message }}</small>
@@ -44,7 +44,7 @@
 
 <div class="form-group">
     <label for="">Descripción larga</label>
-    <textarea wire:model="deslarga" class="form-control" rows="8"></textarea>
+    <textarea wire:model.defer="deslarga" class="form-control" rows="8"></textarea>
 
     @error('deslarga')
         <small class="text-danger">{{ $message }}</small>
@@ -53,7 +53,7 @@
 
 <div class="form-group">
     <label for="">Requisitos:*</label>
-    <textarea wire:model="requisitos" class="form-control" rows="8"></textarea>
+    <textarea wire:model.defer="requisitos" class="form-control" rows="8"></textarea>
 
     @error('requisitos')
         <small class="text-danger">{{ $message }}</small>
@@ -62,7 +62,7 @@
 
 <div class="form-group">
     <label for="">Horas:*</label>
-    <input wire:model="horas" class="form-control" type="number">
+    <input wire:model.defer="horas" class="form-control" type="number">
 
     @error('horas')
         <small class="text-danger">{{ $message }}</small>

@@ -11,17 +11,20 @@ use Spatie\Permission\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Livewire\WithPagination;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class Index extends Component
 {
     use WithPagination;
 
     //variables para filtro
-    public $view = 'table';
     public $search = '';
     public $sort = 'id';
     public $direction = 'desc';
     public $cant = '5';
+
+    //variable para vista
+    public $view = 'table';
 
     public $categoria;
     public $curso;
@@ -30,12 +33,12 @@ class Index extends Component
     public $curso_id;
     public $grupo_id;
 
-    public $role_id;
-    public $sucursal_id;
+    public $roleId;
+    public $sucursalId;
 
+    public $identificador;
     //seleccionar todos
     public $selectAll = false;
-    public $identificador;
     //Arreglo de ids
     public $usersId = [];
 
@@ -55,24 +58,59 @@ class Index extends Component
         $categorias = Categoria::where('status', '=', 1)->get();
         //obtener cursos segun categoria y status
         $cursos = Curso::where('categoria_id', '=', $this->categoria_id)
-                        ->where('status', '=', 1)->get();
+            ->where('status', '=', 1)->get();
         //obtener grupos segun curso y status
         $grupos = Grupo::where('curso_id', '=', $this->curso_id)
-                        ->where('status', '=', 1)->get();
+            ->where('status', '=', 1)->get();
         //obtener sucursales segun status
         $sucursales = Sucursales::where('estatus', '=', 1)->get();
         //obtener todos los roles
         $roles = Role::all();
+
         //obtener los usuarios matriculados
         $matriculaciones = DB::table('grupo_user')
-                            ->select('grupo_user.id','users.name','users.apellido','grupo_user.user_id')
-                            ->join('users','grupo_user.user_id','=','users.id')
-                            ->where('grupo_user.grupo_id','=', $this->grupo_id)
-                            ->get();
+            ->select('grupo_user.id', 'users.name', 'users.apellido', 'grupo_user.user_id')
+            ->join('users', 'grupo_user.user_id', '=', 'users.id')
+            ->where('grupo_user.grupo_id', '=', $this->grupo_id)
+            ->get();
+        
         //consulta de usuarios
         $participantes = $this->users;
 
-        return view('livewire.modulo-capacitaciones.matriculaciones.index', compact('categorias', 'cursos', 'grupos', 'sucursales', 'roles','matriculaciones','participantes'));
+        return view('livewire.modulo-capacitaciones.matriculaciones.index', compact('categorias', 'cursos', 'grupos', 'sucursales', 'roles', 'matriculaciones', 'participantes'));
+    }
+
+    public function getUsersProperty()
+    {
+        return User::select('users.name', 'users.apellido', 'users.id')
+            ->join('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
+            ->where('users.sucursal_id', '=', $this->sucursalId)
+            ->where('model_has_roles.role_id', '=', $this->roleId)
+            ->get();
+    }
+
+    public function updatedSelectAll($value)
+    {
+        if ($value) {
+            $this->usersId = $this->users->pluck('id')->map(fn ($item) => (string) $item);
+        } else {
+            $this->usersId = [];
+        }
+    }
+
+    public function updatedUsersId()
+    {
+        $this->selectAll = false;  
+    }
+
+    public function updatedRoleId()
+    {
+        $this->usersId = [];
+    }
+
+    public function updatedSucursalId()
+    {
+        $this->usersId = [];
     }
 
     public function table($categoria, $curso, $grupo)
@@ -80,8 +118,8 @@ class Index extends Component
         $this->categoria_id = $categoria;
         $this->curso_id = $curso;
         $this->grupo_id = $grupo;
-        $this->sucursal_id = '';
-        $this->role_id = '';
+        $this->sucursalId = '';
+        $this->roleId = '';
         $this->usersId = [];
         $this->view = 'table';
     }
@@ -96,7 +134,7 @@ class Index extends Component
         //         $this->usersId[] = $user_id["user_id"];
         //     }
         // }
-        
+
         // json_encode($this->users_id);
         //$arreglo = [];
 
@@ -115,16 +153,16 @@ class Index extends Component
         $this->view = 'create';
     }
 
-    public function store(){
+    public function store()
+    {
         $contador  = count($this->usersId);
-        
-        if($contador == 0){
-            $this->emit('error', 'Debes al menos seleccionar un usuario');
 
-        }else{
+        if ($contador == 0) {
+            $this->emit('error', 'Debes seleccionar al menos un usuario');
+        } else {
             $grupo = Grupo::find($this->grupo_id);
 
-            $grupo->users()->attach($this->usersId);
+            $grupo->users()->attach($this->usersId)->withPivot('participante', 'sucursal');
 
             $this->selectAll = false;
 
@@ -141,27 +179,16 @@ class Index extends Component
         $this->emit('alert', '¡Matriculacion eliminada con exito!');
     }
 
-    public function getUsersProperty()
+    //descargar reporte
+    public function livewirePDF($grupo)
     {
-        return User::select('users.name', 'users.apellido', 'users.id')
-                    ->join('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
-                    ->where('users.sucursal_id', '=', $this->sucursal_id)
-                    ->where('model_has_roles.role_id', '=', $this->role_id)
-                    ->get();
+        $matriculaciones = DB::table('grupo_user')
+            ->select('grupo_user.id', 'users.name', 'users.apellido', 'grupo_user.user_id')
+            ->join('users', 'grupo_user.user_id', '=', 'users.id')
+            ->where('grupo_user.grupo_id', '=', $grupo)
+            ->get();
+        
+        $pdf = PDF::loadView('livewire.modulo-capacitaciones.matriculaciones.pdf', compact('matriculaciones'));
+        return $pdf->download('Matriculaciones.pdf');
     }
-
-    public function updatedSelectAll($value)
-    {
-        if($value){
-            $this->usersId = $this->users->pluck('id')->map(fn($item) => (string) $item);
-        }else{
-            $this->usersId = [];
-        }
-    }
-
-    public function updatedUsersId()
-    {
-        $this->selectAll = false;
-    }
-
 }

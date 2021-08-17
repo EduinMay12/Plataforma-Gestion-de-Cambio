@@ -59,7 +59,7 @@
                                         <i class="fas fa-sort float-right mt-1"></i>
                                     @endif
                                 </th>
-                                <th wire:click="order('status')" class="col-2">
+                                <th wire:click="order('status')" class="col-3">
                                     Estado
                                     {{-- Sort --}}
                                     @if ($sort == 'status')

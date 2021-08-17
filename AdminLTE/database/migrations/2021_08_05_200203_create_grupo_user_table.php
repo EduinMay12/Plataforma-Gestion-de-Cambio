@@ -17,6 +17,8 @@ class CreateGrupoUserTable extends Migration
             $table->id();
             $table->unsignedBigInteger('grupo_id');
             $table->unsignedBigInteger('user_id');
+            $table->string('rol');
+            $table->string('sucursal');
             
             $table->foreign('grupo_id')
                   ->references('id')
