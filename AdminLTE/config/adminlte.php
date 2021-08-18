@@ -189,7 +189,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'administrador',
+    'dashboard_url' => 'modulo-administrador/administrador',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -237,7 +237,6 @@ return [
 
         ['header' => 'MÓDULO DE ADMINISTRADOR'],
         [
-<<<<<<< HEAD
 
             'text' => 'Administrar Empresas',
             'icon' => 'fas fa-fw fa-chart-line',
@@ -263,41 +262,12 @@ return [
                     'icon' => 'fas fa-fw fa-project-diagram',
                 ],
             ]
-=======
-            'text' => 'Inicio',
-            'url'  => '/home',
-            'icon' => 'fas fa-fw fa-home',
-        ],
-        [
-            'text' => 'Perfil',
-            'url'  => 'perfil/edit',
-            'icon' => 'fas fa-fw fa-user-circle',
-        ],
-
-        ['header' => 'CONFIGURACION DE PERMISOS'],
-        [
-            'text' => 'Asignaciónes de Etiqueta',
-            'url'  => 'users',
-            'icon' => 'fas fa-fw fa-users',
-        ],
-        [
-            'text' => 'Etiquetas',
-            'url'  => 'roles',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
-        ['header' => 'PANEL DE ADMINISTRADOR'],
-        [
-            'text'       => 'Gestionar Empleados',
-            'icon' => 'fas fa-fw fa-portrait',
-            'url'        => 'gestionempleado',
->>>>>>> parent of 0816fa7 (Actualizacion Sections)
         ],
 
         //Rutas del módulo capacitaciones
 
         ['header' => 'MÓDULO DE CAPACITACIONES'],
         [
-<<<<<<< HEAD
             'text' => 'Módulo Capacitaciones',
             'icon' => 'fas fa-fw fa-chalkboard-teacher',
             'submenu' => [
@@ -352,11 +322,6 @@ return [
                     'route' => 'preguntas.index'
                 ]
             ]
-=======
-            'text'       => 'Gestionar Sucursales',
-            'icon' => 'fas fa-fw fa-sitemap',
-            'url'        => 'gestionsucursal',
->>>>>>> parent of 0816fa7 (Actualizacion Sections)
         ],
                       //Rutas del módulo Diagnósticos
 
@@ -367,62 +332,102 @@ return [
                           'submenu' => [
                               [
                                   'text' => 'Competencias',
-                                  'icon' => '',
+                                  'icon' => 'fas fa-network-wired',
                                   'route' => 'competencias.index'
                               ],
                               [
                                   'text' => ' Comp - Puestos',
-                                  'icon' => '',
+                                  'icon' => 'fab fa-gg-circle',
                                   'route' => 'puestos.index'
                               ],
                               [
                                   'text' => 'Roles Evaluación',
-                                  'icon' => '',
+                                  'icon' => 'fas fa-circle-notch',
                                   'route' => 'roldiagnosticos.index'
                               ],
                               [
                                   'text' => 'Asig - Diagnósticos',
-                                  'icon' => '',
+                                  'icon' => 'fas fa-check-circle',
                                   'route' => 'asignaciondiagnosticos.index'
-                              ],
-                              [
-                                  'text' => 'Cuestionario P-Abiertas',
-                                  'icon' => '',
-                                  'route' => 'cuestionario1s.index'
-                              ],
-                              [
-                                  'text' => 'Preguntas Abiertas',
-                                  'icon' => '',
-                                  'route' => 'preguntas1s.index' 
-                              ],
-                              [
-                                  'text' => 'Respuestas P-Abiertas',
-                                  'icon' => '',
-                                  'route' => 'respuestas1s.index'
-                              ],
-                              [
-                                  'text' => 'Cuestionario Verdadero/Falso',
-                                  'icon' => '',
-                                  'route' => 'cuestionario2s.index'
-                              ],
-                              [
-                                  'text' => 'Preguntas Verdadero/Falso',
-                                  'icon' => '',
-                                  'route' => 'preguntas2s.index'
-                              ],
-                              [
-                                  'text' => 'Respuestas Verdadero / Falso',
-                                  'icon' => '',
-                                  'route' => 'respuestas2s.index'
                               ],
                           ]
                       ],
+
+                      [
+                        'text' => 'Cuestionarios',
+                        'icon' => 'fas fa-chalkboard',
+                        'submenu' => [
+                            [
+                                'text' => 'Cue. Preguntas-Abiertas',
+                                'icon' => 'fas fa-address-book',
+                                'route' => 'cuestionario1s.index'
+                            ],
+                            [
+                                'text' => 'Cue. Verdadero / Falso',
+                                'icon' => 'fas fa-address-book',
+                                'route' => 'cuestionario2s.index'
+                            ],
+                            [
+                                'text' => 'Cue. Opciones - Múltiple',
+                                'icon' => 'fas fa-address-book',
+                                'route' => 'cuestionario3s.index'
+                              ],
+                        ]
+                    ],
+                    [
+                        'text' => 'Preguntas_Respuestas',
+                        'icon' => 'fas fa-paste',
+                        'submenu' => [
+                            [
+                                'text' => 'Preguntas - Abiertas',
+                                'icon' => 'fas fa-fw fa-question-circle',
+                                'route' => 'preguntas1s.index' 
+                            ],
+                            [
+                                'text' => 'Res. Preguntas - Abiertas',
+                                'icon' => 'fas fa-check-double',
+                                'route' => 'respuestas1s.index'
+                            ],
+                            [
+                                'text' => 'Preguntas Verdadero / Falso',
+                                'icon' => 'fas fa-fw fa-question-circle',
+                                'route' => 'preguntas2s.index'
+                            ],
+                            [
+                                'text' => 'Res. Verdadero / Falso',
+                                'icon' => 'fas fa-check-double',
+                                'route' => 'respuestas2s.index'
+                            ],
+                            [
+                                'text' => 'Preguntas Opciones - Múltiples',
+                                'icon' => 'fas fa-fw fa-question-circle',
+                                'route' => 'preguntas3s.index'
+                            ],
+                            [
+                                'text' => 'Res. Opciones - Múltiples',
+                                'icon' => 'fas fa-check-double',
+                                'route' => 'respuestas3s.index'
+                            ]
+                        ]
+                    ],
+                    [
+                        'text' => 'Asig. de Cuestionarios',
+                        'icon' => 'fa-solid fa-pen-field',
+                        'submenu' => [
+                            [
+                                'text' => 'Asig. pre. Verdader/Falso',
+                                'icon' => '',
+                                'route' => 'asignacioncuestionarios.index'
+                            ],
+ 
+                        ]
+                    ],
+
 
         //Rutas del módulo comunicaciones
 
         ['header' => 'MÓDULO DE COMUNICACIONES'],
         [
-<<<<<<< HEAD
             'text' => 'Comunicaciones',
             'icon' => 'fas fa-fw fa-icons',
             'submenu' => [
@@ -447,11 +452,6 @@ return [
                     'route' => 'home'
                 ],
             ]
-=======
-            'text'       => 'Gestion de Empresas',
-            'icon' => 'fas fa-fw fa-building',
-            'url'        => 'gestionempresa',
->>>>>>> parent of 0816fa7 (Actualizacion Sections)
         ],
     ],
 

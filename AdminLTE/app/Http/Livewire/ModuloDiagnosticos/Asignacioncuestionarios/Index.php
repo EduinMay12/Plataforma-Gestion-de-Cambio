@@ -86,6 +86,13 @@ class Index extends Component
 
     public function table(){
 
+        $this->validate([
+            'participante_id' => '',
+            'fecha_asignada' => '',
+            'fecha_limite' => '',
+            'cuestionario_id' => ''
+        ]);
+
         $this->reset([
             'participante_id',
             'fecha_asignada',
@@ -114,8 +121,10 @@ class Index extends Component
         ]);
 
         $this->reset([
+            'participante_id',
             'fecha_asignada',
-            'fecha_limite'
+            'fecha_limite',
+            'cuestionario_id'
         ]);
 
         $this->emit('reset');
@@ -131,8 +140,6 @@ class Index extends Component
     }
 
     public function edit(Asignacioncuestionario $asignacioncuestionario){
-    
-
 
         $this->asignacion_id = $asignacioncuestionario->id;
         $this->participante_id = $asignacioncuestionario->participante_id;

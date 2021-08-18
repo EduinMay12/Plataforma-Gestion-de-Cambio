@@ -41,6 +41,10 @@
                             <option value="2">Inactivo</option>
                         </select>
 
+                    @error('estatus')
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
+
                         <div class="mt-4">
                             <button class="btn btn-success" wire:click="save">Guardar</button>
                             <a href="{{ route('puestos.index') }}" class="btn btn-danger">Volver</a>
