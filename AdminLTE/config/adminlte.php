@@ -376,36 +376,36 @@ return [
                     ],
                     [
                         'text' => 'Preguntas_Respuestas',
-                        'icon' => 'oi oi-check',
+                        'icon' => 'fas fa-paste',
                         'submenu' => [
                             [
                                 'text' => 'Preguntas - Abiertas',
-                                'icon' => '',
+                                'icon' => 'fas fa-fw fa-question-circle',
                                 'route' => 'preguntas1s.index' 
                             ],
                             [
                                 'text' => 'Res. Preguntas - Abiertas',
-                                'icon' => '',
+                                'icon' => 'fas fa-check-double',
                                 'route' => 'respuestas1s.index'
                             ],
                             [
                                 'text' => 'Preguntas Verdadero / Falso',
-                                'icon' => '',
+                                'icon' => 'fas fa-fw fa-question-circle',
                                 'route' => 'preguntas2s.index'
                             ],
                             [
                                 'text' => 'Res. Verdadero / Falso',
-                                'icon' => '',
+                                'icon' => 'fas fa-check-double',
                                 'route' => 'respuestas2s.index'
                             ],
                             [
                                 'text' => 'Preguntas Opciones - Múltiples',
-                                'icon' => '',
+                                'icon' => 'fas fa-fw fa-question-circle',
                                 'route' => 'preguntas3s.index'
                             ],
                             [
                                 'text' => 'Res. Opciones - Múltiples',
-                                'icon' => '',
+                                'icon' => 'fas fa-check-double',
                                 'route' => 'respuestas3s.index'
                             ]
                         ]

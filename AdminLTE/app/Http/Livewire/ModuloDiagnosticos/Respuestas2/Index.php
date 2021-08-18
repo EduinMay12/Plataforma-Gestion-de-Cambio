@@ -63,6 +63,10 @@ class Index extends Component
     public function table($pregunta){
         $this->pregunta_id = $pregunta;
 
+        $this->validate([
+            'textRespuesta' => ''
+        ]);
+
         $this->reset([
             'textRespuesta'
         ]);

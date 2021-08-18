@@ -3,7 +3,7 @@
     @include('livewire.modulo-diagnosticos.preguntas2.form')
 
     <div class="mt-4">
-        <button wire:click="update" wire:loading.attr="disabled" wire:target="update" class="btn btn-success">Guardar</button>
+        <button wire:click="update" wire:loading.attr="disabled" wire:target="update" class="btn btn-success">Actualizar</button>
         
     </div><br>
     

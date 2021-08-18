@@ -1,5 +1,5 @@
 <div class="col-4 mb-4">
-    <label for="">Seleccionar cuestionario</label>
+    <label for="">Seleccionar cuestionario de preguntas abiertas</label>
     <select wire:model="cuestionario_id" class="form-select form-control">
         <option value="">Seleccione...</option>
         @foreach ($cuestionarios as $cuestionario)

@@ -2,7 +2,7 @@
 <label for="">Cuestionario: </label>
 <span>{{ $pregunta->cuestionario->nombre }}</span><br>
 
-<label for="">Descripción corta: </label>
+<label for="">Pregunta: </label>
 <span>{{ $pregunta->textPregunta }}</span><br>
 
 <label for="">Descripción corta: </label>
