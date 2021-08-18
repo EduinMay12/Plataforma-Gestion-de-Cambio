@@ -11,8 +11,7 @@
 
             <div class="form-group">
                 <label for="">Descripcion* :</label>
-                <input type="text" class="form-control" wire:model="descripcion">
-
+                <textarea type="text" class="form-control" wire:model="descripcion"></textarea>
                 @error('descripcion') <span class="error badge badge-danger">{{ $message }}</span>@enderror
             </div>
 
@@ -20,8 +19,7 @@
 
                 <label for="">Agregar imagen* :</label>
                 <br>
-                <input type="file" accept="image/*" wire:model="imagen"
-                    id="{{ $identificador }}">
+                <input type="file" accept="image/*" wire:model="imagen" id="{{ $identificador }}">
                     <br>
                 @error('imagen') <span class="error badge badge-danger">{{ $message }}</span>@enderror
             </div>
@@ -32,7 +30,6 @@
                     <option value="1">Activo</option>
                     <option value="0">Inactivo</option>
                 </select>
-
                 @error('status') <span class="error badge badge-danger">{{ $message }}</span>@enderror
             </div>
             <div class="mt-4">
@@ -44,6 +41,7 @@
             <div class="card">
                 <div class="card-body btn btn-secondary">
                     @if ($imagen)
+                    <img class="col-6" src="{{ Storage::url($comunicacion->imagen) }}">
                     <img width="200" height="400" src="{{ $imagen->temporaryUrl() }}" class="card-img-top col-auto" alt="...">
                     @endif
                     <br>

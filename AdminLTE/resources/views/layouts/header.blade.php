@@ -17,7 +17,7 @@
                             <div class="dropdown-menu mega-dropdown-menu px-2 dropdown-mega-menu-xl"
                                 aria-labelledby="topnav-uielement">
                                 <div class="row">
-                                    <div class="col-lg-3">
+                                    <div class="col-lg-4">
                                         <div>
                                             <a href="/modulo-administrador/administrador" class="dropdown-item">Dashboard</a>
                                             <a href="/perfil/edit" class="dropdown-item">Perfil</a>
@@ -25,9 +25,12 @@
                                             <a href="/modulo-administrador/gestionempresa" class="dropdown-item">Empresas</a>
                                             <a href="/modulo-administrador/gestionsucursal" class="dropdown-item">Sucursales</a>
                                             <a href="/modulo-administrador/roles" class="dropdown-item">Etiqueta</a>
+                                            <a href="/comunicacion" class="dropdown-item">Comunicación</a>
+                                            <a href="/elemento" class="dropdown-item">Elemento</a>
+                                            <a href="/campaña" class="dropdown-item">Campaña</a>
                                         </div>
                                     </div>
-                                    <div class="col-lg-3">
+                                    <div class="col-lg-4">
                                         <div>
                                             <a href="#" class="dropdown-item">Categoria</a>
                                             <a href="#" class="dropdown-item">Cursos</a>
@@ -41,18 +44,13 @@
                                             <a href="#" class="dropdown-item">Preguntas</a>
                                         </div>
                                     </div>
-                                    <div class="col-lg-2">
+                                    <div class="col-lg-4">
                                         <div>
-                                            <a href="#" class="dropdown-item">********</a>
-                                            <a href="#" class="dropdown-item">********</a>
-                                            <a href="#" class="dropdown-item">********</a>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3">
-                                        <div>
-                                            <a href="/comunicacion" class="dropdown-item">Comunicación</a>
-                                            <a href="/elemento" class="dropdown-item">Elemento</a>
-                                            <a href="#" class="dropdown-item">Campaña</a>
+                                            <a href="#" class="dropdown-item">Competencia</a>
+                                            <a href="#" class="dropdown-item">Puestos</a>
+                                            <a href="#" class="dropdown-item">Roles evaluación</a>
+                                            <a href="#" class="dropdown-item">Diagnóstico</a>
+                                            <a href="#" class="dropdown-item">Cuestionarios</a>
                                         </div>
                                     </div>
                                 </div>

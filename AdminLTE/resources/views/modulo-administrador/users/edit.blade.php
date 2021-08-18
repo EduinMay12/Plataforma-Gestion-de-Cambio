@@ -52,7 +52,7 @@
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
-                        <stron>Contraseña :</strong>
+                        <strong>Contraseña :</strong>
                         {!! Form::password('password', array('placeholder' => 'Contraseña','class' => 'form-control')) !!}
                     </div>
                 </div>

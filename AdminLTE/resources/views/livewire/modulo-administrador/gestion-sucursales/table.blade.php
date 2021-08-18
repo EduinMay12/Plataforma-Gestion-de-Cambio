@@ -16,7 +16,7 @@
     <center>
         @if ($empresa_id)
         <div class="col-4">
-            <button wire:click="create({{ $empresa_id }})" class="btn btn-primary">Crear Sucursal <i class="fas fa-plus"></i></button>
+            <button wire:click="create({{ $empresa_id }})" class="btn btn-primary">Agregar Sucursal <i class="fas fa-plus"></i></button>
         </div>
         @endif
     </center>
@@ -41,8 +41,8 @@
 
     <div class="row">
         <div class="col">
-            <div class="table-responsive mb-4"><br>
-                <table class="table table-striped table-bordered datatable dt-responsive nowrap table-card-list" style="border-collapse: collapse; border-spacing: 0 12px; width: 100%;">
+            <div class="table-responsive mb-5"><br>
+                <table class="table table-striped table-bordered datatable dt-responsive nowrap table-card-list" style="border-collapse: collapse; border-spacing: 0 12px; width: 150%;">
                     @if ($sucursales->count())
                     <thead>
                         <tr class="table-primary">
@@ -62,6 +62,7 @@
                                 @endif
 
                             </th>
+                            <th>Foto</th>
                             <th scope="col" wire:click="order('user_id')">
                                 Resposable
                                 {{-- Sort --}}
@@ -110,7 +111,8 @@
                         <tr>
                             <td scope="row" >{{ $sucursal->id }}</td>
                             <td>{{ $sucursal->sucursal }}</td>
-                            <td>{{ $sucursal->user->name  }}</td>
+                            <td><center><img src="../uploads/avatars/{{ $sucursal->user->avatar }}" width="30" height="30" class="rounded-circle"></center></td>
+                            <td>{{ $sucursal->user->name  }}  {{ $sucursal->user->apellido }}</td>
                             <td>{{ $sucursal->empleados }}</td>
 
                                 @if ($sucursal->tamaño == 0)
@@ -118,7 +120,7 @@
                                 @elseif($sucursal->tamaño == 1)
                             <td><center><span class="badge badge-pill badge-warning"> Mediano </span></center></td>
                                 @elseif($sucursal->tamaño == 2)
-                            <td><center><span class="badge badge-pill badge-light"> Chico </span></center></td>
+                            <td><center><span class="badge badge-pill badge-dark"> Chico </span></center></td>
                                 @endif
 
                             <td>{{ $sucursal->d_ciudad }}</td>

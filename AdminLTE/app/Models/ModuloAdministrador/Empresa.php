@@ -11,20 +11,13 @@ class Empresa extends Model
 
     protected $guarded = [];
 
-    //Relacion uno a uno
-
-    public function user()
+    public function users()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->hasMany('App\Models\User');
     }
-       //Relacion uno a muchos
+
     public function estados()
     {
         return $this->hasMany('App\Models\Estados');
-    }
-
-     public function empresas()
-    {
-        return $this->hasMany('App\Models\ModuloAdministrador\Empresa');
     }
 }

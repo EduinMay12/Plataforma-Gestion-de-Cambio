@@ -31,9 +31,10 @@ class User extends Authenticatable
 
         'd_asenta',
         'd_ciudad',
+        'tipo',
 
-        'sucursal',
-        'empresa',
+        'sucursal_id',
+        'empresa_id',
 
     ];
 
@@ -67,14 +68,14 @@ class User extends Authenticatable
     }
 
 
-    public function empresas()
+    public function empresa()
     {
-         return $this->hasMany('App\Models\ModuloAdministrador\Empresa');
+         return $this->belongsTo('App\Models\ModuloAdministrador\Empresa');
     }
 
-    public function sucursales()
+    public function sucursal()
     {
-         return $this->hasMany('App\Models\ModuloAdministrador\Sucursales');
+         return $this->belongsTo('App\Models\ModuloAdministrador\Sucursales');
     }
     
     //Relacion muchos a muchos con grupo

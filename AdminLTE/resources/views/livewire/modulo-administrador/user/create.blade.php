@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-6">
                     <div class="mb-3 position-relative">
-                        <label class="form-group" for="">Nombre* (s):</label>
+                        <label class="form-group" for="">Nombre* (s): {{$sucursal_id}}</label>
                         <input type="text" wire:model="name" class="form-control" placeholder="Nombre (s)" required>
                         @error('name') <span class="error badge badge-danger">{{ $message }}</span>@enderror
                     </div>
@@ -20,7 +20,7 @@
                     <div class="mb-3 position-relative">
                         <div class="form-group">
                             <label>Correo Electronico* :</label>
-                            <input type="text" wire:model="email" class="form-control">
+                            <input type="text" wire:model="email" placeholder="ejemplo@ejemplo.com" class="form-control">
                             @error('email') <span class="error badge badge-danger">{{ $message }}</span>@enderror
                         </div>
 
@@ -50,19 +50,29 @@
                         <div class="col-md-6">
                             <div class="mb-3 position-relative">
                                 <label class="form-label" for="">Puesto Actual* :</label>
-                                <select class="form-control" required>
+                                <select wire:model="puesto_actual_id" class="form-control" required>
                                     <option value="">Seleccione...</option>
-                                        <option value=""></option>
+                                    @foreach ($puestos as $puesto)
+                                        <option value="{{ $puesto->nombre }}">
+                                            {{ $puesto->nombre }}
+                                        </option>
+                                    @endforeach
                                 </select>
+                                @error('puesto_actual_id') <span class="error badge badge-danger">{{ $message }}</span>@enderror
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="mb-3 position-relative">
                                 <label class="form-label" for="">Puesto Futuro* :</label>
-                                <select class="form-control" required>
+                                <select wire:model="puesto_futuro_id" class="form-control" required>
                                     <option value="">Seleccione...</option>
-                                        <option value=""></option>
+                                    @foreach ($puestos as $puesto)
+                                        <option value="{{ $puesto->nombre }}">
+                                            {{ $puesto->nombre }}
+                                        </option>
+                                    @endforeach
                                 </select>
+                                @error('puesto_futuro_id') <span class="error badge badge-danger">{{ $message }}</span>@enderror
                             </div>
                         </div>
                     </div>
@@ -76,7 +86,7 @@
             <div class="mb-3 position-relative">
                 <div class="form-group">
                     <label>Contraseña* :</label>
-                    <input type="text" wire:model="password" class="form-control">
+                    <input type="password" wire:model="password" placeholder="Contraseña" class="form-control">
                     @error('password') <span class="error badge badge-danger">{{ $message }}</span>@enderror
                 </div>
             </div>
@@ -85,10 +95,15 @@
         <div class="col-md-6">
             <div class="mb-3 position-relative">
                 <label class="form-label" for="">Tipo* :</label>
-                <select class="form-control" required>
+                <select wire:model="tipo" class="form-control" required>
                     <option value="">Seleccione...</option>
-                        <option value=""></option>
+                    @foreach ($roldiagnosticos as $roldiagnostico)
+                        <option value="{{ $roldiagnostico->nombre }}">
+                            {{ $roldiagnostico->nombre }}
+                        </option>
+                    @endforeach
                 </select>
+                @error('tipo') <span class="error badge badge-danger">{{ $message }}</span>@enderror
             </div>
         </div>
     </div>
@@ -104,7 +119,7 @@
         <div class="col-md-3">
             <div class="mb-3 position-relative">
                 <label class="form-group" for="">Ciudad* :</label>
-                <select wire:model="d_ciudad"class="form-control" required>
+                <select wire:model="d_ciudad" class="form-control" required>
                     <option value="">Seleccione...</option>
                     @foreach ($estados as $estado)
                         <option value="{{ $estado->d_ciudad }}">

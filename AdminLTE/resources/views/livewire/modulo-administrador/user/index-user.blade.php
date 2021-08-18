@@ -20,6 +20,15 @@
                 'success'
             )
         });
+
+        livewire.on('error', function(message) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: message,
+            })
+        });
+
         livewire.on('deleteUsers', usersId => {
             Swal.fire({
                 title: '¿Estas segur@?',
@@ -31,14 +40,7 @@
                 confirmButtonText: 'Eliminar'
             }).then((result) => {
                 if (result.isConfirmed) {
-
                     livewire.emitTo('modulo-administrador.user.index-user', 'delete', usersId);
-
-                    Swal.fire(
-                        'Eliminado!',
-                        'Usuario eliminado con exito',
-                        'success'
-                    )
                 }
             })
         })

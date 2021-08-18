@@ -5,6 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 class CreateOpciones1sTable extends Migration
+
 {
     /**
      * Run the migrations.
@@ -23,8 +24,7 @@ class CreateOpciones1sTable extends Migration
 
             $table->foreign('pregunta_id')
                 ->references('id')
-                ->on('preguntas2s')
-                ->onDelete('cascade');
+                ->on('preguntas2s');
                 
             $table->timestamps();
         });

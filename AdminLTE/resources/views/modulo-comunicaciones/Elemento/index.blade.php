@@ -24,33 +24,5 @@
 
     @livewire('modulo-comunicacion.gestion-elemento.index')
 
-    @livewireScripts
-
-    <script src="sweetalert2.all.min.js"></script>
-    <script>
-        livewire.on('deleteElemento', elemento => {
-            Swal.fire({
-                title: '¿Estas segur@?',
-                text: "Esta accion no se podra revertir",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Eliminar'
-            }).then((result) => {
-                if (result.isConfirmed) {
-
-                    livewire.emitTo('modulo-comunicacion.gestion-elemento.index', 'delete',
-                    elemento);
-
-                    Swal.fire(
-                        'Eliminado!',
-                        'Elemento de comunicación eliminado con exito',
-                        'success'
-                    )
-                }
-            })
-        })
-    </script>
 @endsection
 

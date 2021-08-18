@@ -10,9 +10,13 @@ use App\Models\User;
 use App\Models\Estados;
 use App\Models\ModuloAdministrador\Empresa;
 use App\Models\ModuloAdministrador\Sucursales;
+use App\Models\ModuloComunicacion\Elemento;
+use App\Models\ModuloComunicacion\Comunicacion;
+use App\Models\ModuloDiagnosticos\RoleDiagnostico;
+use App\Models\ModuloDiagnosticos\Puesto;
 use Spatie\Permission\Models\Role;
-use DB;
-use Hash;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +36,7 @@ class IndexUser extends Component
     public $name;
     public $sucursal_id;
     public $empresa_id;
+    public $elemento_id;
     public $user;
     public $email = '';
     public $password = '';
@@ -45,6 +50,7 @@ class IndexUser extends Component
 
     public $puesto_actual_id;
     public $puesto_futuro_id;
+    public $tipo;
 
     public function updatingSearch()
     {
@@ -64,23 +70,28 @@ class IndexUser extends Component
 
     public function render()
     {
-        $empresas = Empresa::all();
+        $empresas = Empresa::where('estatus', '=', 1)->get();
+        $sucursales = Sucursales::where('empresa_id','=', $this->empresa_id)->where('estatus', '=', 1)->get();
         $users = User::all();
+        $puestos = Puesto::all();
         $estados = Estados::all();
-        $roles = Role::pluck('name','name')->all();
-        $sucursales = Sucursales::where('empresa_id','=', $this->empresa_id)->get();
+        $roles = Role::all();
+        $roldiagnosticos = RoleDiagnostico::all();
         $users = User::where('name', 'like' , '%' . $this->search . '%')
                     ->orWhere('email', 'like' , '%' . $this->search . '%')
+                    ->orWhere('empresa_id', 'like' , '%' . $this->search . '%')
+                    ->orWhere('sucursal_id', 'like' , '%' . $this->search . '%')
+                    ->orWhere('puesto_actual_id', 'like' , '%' . $this->search . '%')
+                    ->orWhere('estatus', 'like' , '%' . $this->search . '%')
                     ->orderBy($this->sort, $this->direction)
                     ->paginate($this->cant);
-
-        return view('livewire.modulo-administrador.user.index-user', compact('empresas', 'sucursales', 'estados', 'users', 'roles'));
+        return view('livewire.modulo-administrador.user.index-user', compact('empresas','puestos', 'sucursales', 'estados', 'roldiagnosticos', 'users', 'roles'));
     }
 
     public function table($sucursal_id, $empresa_id)
     {
-        $this->sucursal_id = $sucursal;
-        $this->empresa_id = $empresa;
+        $this->sucursal_id = $sucursal_id;
+        $this->empresa_id = $empresa_id;
         $this->view = 'table';
     }
 
@@ -88,8 +99,8 @@ class IndexUser extends Component
     {
         $this->empresa = $empresa;
         $this->sucursal = $sucursal;
-        $this->empresa_id = $empresa->id;
-        $this->sucursal_id = $sucursal->id;
+        $this->empresa_id = $empresa->empresa;
+        $this->sucursal_id = $sucursal->sucursal;
         $this->view = 'create';
     }
 
@@ -104,6 +115,13 @@ class IndexUser extends Component
 
             'd_asenta' => 'required',
             'd_ciudad' => 'required',
+
+            'puesto_actual_id' => 'required',
+            'puesto_futuro_id' => 'required',
+            'tipo' => 'required',
+
+            'empresa_id' => 'required',
+            'sucursal_id' => 'required',
             'estatus' => 'required'
         ]);
 
@@ -121,6 +139,11 @@ class IndexUser extends Component
             'd_ciudad' => $this->d_ciudad,
 
             'estatus' => $this->estatus,
+
+            'puesto_actual_id' => $this->puesto_actual_id,
+            'puesto_futuro_id' => $this->puesto_futuro_id,
+            'tipo' => $this->tipo,
+
             'empresa_id' => $this->empresa_id,
             'sucursal_id' => $this->sucursal_id
 
@@ -137,12 +160,16 @@ class IndexUser extends Component
             'd_asenta',
             'd_ciudad',
 
+            'puesto_actual_id',
+            'puesto_actual_id',
+            'tipo',
+
             'empresa_id',
             'sucursal_id',
             'estatus'
         ]);
 
-        $this->emit('alert', '!Se Agregó un Empleado con Exito¡');
+        $this->emit('alert', '!Se agregó un empleado con exito¡');
 
     }
 
@@ -163,6 +190,15 @@ class IndexUser extends Component
 
     public function delete(User $users)
     {
-        $users->delete();
+        $consulta = DB::table('empresas')->where('user_id','=', $users->id)->get();
+        $contador = count($consulta);
+
+        if($contador > 0)
+        {
+            $this->emit('error', 'Este usuario no se puede eliminar, contiene empresas y sucursales');
+        }else{
+            $users->delete();
+            $this->emit('alert', 'Usuario eliminado con exito!');
+        }
     }
 }

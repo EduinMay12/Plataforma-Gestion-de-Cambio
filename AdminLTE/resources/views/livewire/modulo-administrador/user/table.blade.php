@@ -6,9 +6,9 @@
                 <div class="mb-3 position-relative">
                     <label class="form-label" for="">Seleccionar Empresa *</label>
                     <select class="form-control" type="text" wire:model="empresa_id" required>
-                        <option value="">Seleccionar</option>
+                        <option value="">Seleccione...</option>
                         @foreach ($empresas as $empresa)
-                            <option value="{{ $empresa->empresa }}">
+                            <option value="{{ $empresa->id }}">
                                 {{ $empresa->empresa }}
                             </option>
                         @endforeach
@@ -22,9 +22,9 @@
                 <div class="mb-3 position-relative">
                     <label class="form-label" for="">Seleccionar Sucursal *</label>
                     <select class="form-control" type="text" wire:model="sucursal_id" required>
-                        <option value="">Seleccionar</option>
+                        <option value="">Seleccione...</option>
                         @foreach ($sucursales as $sucursales)
-                            <option value="{{ $sucursales->sucursal }}">
+                            <option value="{{ $sucursales->id }}">
                                 {{ $sucursales->sucursal }}
                             </option>
                         @endforeach
@@ -38,7 +38,7 @@
         @if ($sucursal_id )
         <center>
             <div class="col-4">
-                <Button wire:click="create({{$empresa_id}},{{$sucursal_id}})" class="btn btn-primary btn-rounded">Crear Personal <i class="fas fa-plus"></i></Button>
+                <Button wire:click="create({{$empresa_id}},{{$sucursal_id}})" class="btn btn-primary btn-rounded">Agregar Personal <i class="fas fa-plus"></i></Button>
             </div>
         </center>
         @endif
@@ -61,7 +61,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="table-responsive mb-4"><br>
-                <table class="table table-striped table-bordered datatable dt-responsive nowrap table-card-list" style="border-collapse: collapse; border-spacing: 0 12px; width: 100%;">
+                <table class="table table-striped table-bordered datatable dt-responsive nowrap table-card-list" style="border-collapse: collapse; border-spacing: 0 12px; width: 170%;">
                     @if ($users->count())
                     <thead>
                         <tr class="table-primary">
@@ -86,9 +86,9 @@
                                 {{-- Sort --}}
                                 @if ($sort == 'apellido')
                                     @if ($direction == 'asc')
-                                        <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
+                                    <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
                                     @else
-                                        <i class="fas fa-sort-alpha-down-alt float-right mt-1"></i>
+                                    <i class="fas fa-sort-alpha-down-alt float-right mt-1"></i>
                                     @endif
 
                                 @else
@@ -100,19 +100,20 @@
                                 {{-- Sort --}}
                                 @if ($sort == 'empresa')
                                     @if ($direction == 'asc')
-                                        <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
+                                    <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
                                     @else
-                                        <i class="fas fa-sort-alpha-down-alt float-right mt-1"></i>
+                                    <i class="fas fa-sort-alpha-down-alt float-right mt-1"></i>
                                     @endif
 
                                 @else
                                     <i class="fas fa-sort float-right mt-1"></i>
                                 @endif
                             </th>
+                            <th scope="col">Role</th>
                             <th scope="col">Tipo</th>
                             <th scope="col">Puesto</th>
-                            <th scope="col">Guia 1</th>
-                            <th scope="col">Guia 2</th>
+                            <th scope="col">Guia. 1</th>
+                            <th scope="col">Guia. 2</th>
                             <th scope="col" wire:click="order('estatus')">
                                 Estado
                                 {{-- Sort --}}
@@ -146,36 +147,48 @@
                             <td><img src="../uploads/avatars/{{ $user->avatar }}" width="30" height="30" class="rounded-circle"></td>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->apellido }}</td>
-                            <td>{{ $user->empresa_id }}/{{ $user->sucursal_id }}</td>
+                            <td> <span class="badge badge-pill badge-light">{{ $user->empresa }}</span>/<span class="badge badge-pill badge-light">{{ $user->sucursal }} </span> </td>
                             <td>
                                 @if(!empty($user->getRoleNames()))
-                                    @foreach($user->getRoleNames() as $v)
-                                        <center><span class="badge badge-pill badge-primary">{{ $v }}</span></center>
+                                    @foreach($user->getRoleNames() as $role)
+                                        <center><span class="badge badge-pill badge-primary">{{ $role }}</span></center>
                                     @endforeach
                                 @endif
                             </td>
-                            <td></td>
-                            <td></td>
+                            <td>{{ $user->tipo }}</td>
+                            <td>{{ $user->puesto_actual_id }}</td>
+                            <td><center><span class="badge badge-pill badge-success"> Finalizar </span></center></td>
+                            <td><center><span class="badge badge-pill badge-warning"> Pendiente </span></center></td>
                             <td>
                                 @if ($user->estatus == 0)
-                                <td><center><span class="badge badge-pill badge-danger"> Necesita Ayuda </span></center></td>
+                                <span><center><span class="badge badge-pill badge-danger"> Necesita Ayuda </span></center></span>
                                     @elseif($user->estatus == 1)
-                                <td><center><span class="badge badge-pill badge-warning"> Pendiente </span></center></td>
+                                <span><center><span class="badge badge-pill badge-warning"> Pendiente </span></center></span>
                                     @elseif($user->estatus == 2)
-                                <td><center><span class="badge badge-pill badge-info"> Evaluado </span></center></td>
-                                    @endif
-                            </>
+                                <span><center><span class="badge badge-pill badge-info"> Evaluado </span></center></span>
+                                    @elseif($user->estatus == 3)
+                                <span><center><span class="badge badge-pill badge-secondary"> Eres Administrador </span></center></span>
+                                @endif
+                            </td>
                             @can('ver-usuarios')
-                            <td width="50"><a class="btn btn-primary btn-sm" href="{{ route('users.show',$user->id) }}"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
+                            <td width="50">
+                                <a class="btn btn-primary btn-sm" href="{{ route('users.show',$user->id) }}">
+                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                                </a>
+                            </td>
                             @endcan
                             @can('editar-usuarios')
-                            <td width="50"><a class="btn btn-primary btn-sm" href="{{ route('users.edit',$user->id) }}"><i class="fa fa-edit" aria-hidden="true"></i></a></td>
+                            <td width="50">
+                                <a class="btn btn-primary btn-sm" href="{{ route('users.edit',$user->id) }}">
+                                    <i class="fa fa-edit" aria-hidden="true"></i>
+                                </a>
+                            </td>
                             @endcan
                             @can('eliminar-usuarios')
                             <td width="50">
-                                <button class="btn btn-danger btn-sm" wire:click="$emit('deleteUsers', {{ $user }})">
+                                <a class="btn btn-danger btn-sm" wire:click="$emit('deleteUsers', {{ $user }})">
                                     <i class="fas fa-trash-alt"></i>
-                                </button>
+                                </a>
                             </td>
                             @endcan
                         </tr>

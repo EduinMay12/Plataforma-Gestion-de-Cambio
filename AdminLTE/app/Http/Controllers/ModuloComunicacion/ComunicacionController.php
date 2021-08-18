@@ -18,6 +18,7 @@ class ComunicacionController extends Controller
             $this->middleware('permission:editar-comunicacion', ['only' => ['edit','update']]);
             $this->middleware('permission:eliminar-comunicacion', ['only' => ['destroy']]);
         }
+
         return view('modulo-comunicaciones.comunicacion.index');
     }
 }

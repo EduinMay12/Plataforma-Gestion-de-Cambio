@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMatriculacionesTable extends Migration
+class CreateGrupoUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,21 @@ class CreateMatriculacionesTable extends Migration
      */
     public function up()
     {
-        Schema::create('matriculaciones', function (Blueprint $table) {
+        Schema::create('grupo_user', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('grupo_id');
-
-            $table->foreign('user_id')
-                  ->references('id')
-                  ->on('users')
-                  ->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
+            $table->string('rol');
+            $table->string('sucursal');
             
             $table->foreign('grupo_id')
                   ->references('id')
                   ->on('grupos')
+                  ->onDelete('cascade');
+
+            $table->foreign('user_id')
+                  ->references('id')
+                  ->on('users')
                   ->onDelete('cascade');
                   
             $table->timestamps();
@@ -39,6 +41,6 @@ class CreateMatriculacionesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('matriculaciones');
+        Schema::dropIfExists('grupo_user');
     }
 }

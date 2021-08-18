@@ -11,7 +11,7 @@
 
             <div class="form-group">
                 <label for="">Descripcion* :</label>
-                <input type="text" class="form-control" wire:model="descripcion">
+                <textarea type="text" class="form-control" wire:model="descripcion"></textarea>
 
                 @error('descripcion') <span class="error badge badge-danger">{{ $message }}</span>@enderror
             </div>
@@ -28,7 +28,7 @@
             <div class="form-group">
                 <label for="">Estatus* :</label>
                 <select class="form-control" wire:model="status">
-                    <option value="">Seleccione...</option>
+                    <option value="">Seleccionar</option>
                     <option value="1">Activo</option>
                     <option value="0">Inactivo</option>
                 </select>
