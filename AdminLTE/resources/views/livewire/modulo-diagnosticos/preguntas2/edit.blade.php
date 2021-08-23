@@ -107,7 +107,7 @@
     
 
     <div class="mt-4">
-        <button wire:click="update1" wire:loading.attr="disabled" wire:target="update" class="btn btn-success">Guardar</button>
+        <button wire:click="update1" wire:loading.attr="disabled" wire:target="update1" class="btn btn-success">Guardar</button>
         <button wire:click="table({{ $cuestionario2->id }})" class="btn btn-danger">Volver</button>
         
     </div>

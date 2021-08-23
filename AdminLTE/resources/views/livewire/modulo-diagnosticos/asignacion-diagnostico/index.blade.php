@@ -46,7 +46,7 @@
                                 </th>
 
                                 <th wire:click="order('user_id')" class="col-1">
-                                    User
+                                    Participante
                                     {{-- Sort --}}
                                     @if ($sort == 'user_id')
                                         @if ($direction == 'asc')
@@ -110,7 +110,7 @@
                                 </th>
 
                                 <th wire:click="order('rol_diagnostico_id')" class="col-1">
-                                    Rol diagnóstico
+                                    Rol Evaluación
                                     {{-- Sort --}}
                                     @if ($sort == 'rol_diagnostico_id')
                                         @if ($direction == 'asc')

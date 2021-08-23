@@ -32,7 +32,7 @@
                 <label for="">Puesto evaluador:</label>
                 <span>{{ $asignaciondiagnostico->evaluador }}</span><br>
 
-                <label for="">Rol diagnóstico:</label>
+                <label for="">Rol Evaluación:</label>
                 <span>{{ $asignaciondiagnostico->rol_diagnostico }}</span><br>
 
                 <label for="">Reporta a:</label>

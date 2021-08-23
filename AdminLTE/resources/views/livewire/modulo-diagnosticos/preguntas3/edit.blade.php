@@ -2,6 +2,19 @@
 
     @include('livewire.modulo-diagnosticos.preguntas3.form')
 
+    <div class="mt-4">
+        <button wire:click="update" wire:loading.attr="disabled" wire:target="update" class="btn btn-success">Actualizar</button>
+        
+    </div><br>
+
+    <div class="row">
+        <div class="col-8">
+            <div class="alert alert-info" role="alert">
+                Nota: la opción correcta debe tener un valor del 100
+            </div>
+        </div>
+    </div>
+
 
     <div class="row">
         <div class="col-4">
@@ -200,7 +213,7 @@
     
 
     <div class="mt-4">
-        <button wire:click="update" wire:loading.attr="disabled" wire:target="update" class="btn btn-success">Guardar</button>
+        <button wire:click="update1" wire:loading.attr="disabled" wire:target="update1" class="btn btn-success">Guardar</button>
         <button wire:click="table({{ $cuestionario3->id }})" class="btn btn-danger">Volver</button>
         
     </div>

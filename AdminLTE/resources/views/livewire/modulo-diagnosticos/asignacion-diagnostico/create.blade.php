@@ -69,7 +69,7 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
-                            <label for="">Rol Diagnóstico:</label>
+                            <label for="">Rol Evaluación:</label>
                             <select wire:model="rol_diagnostico" class="form-control">
                                 <option value="">Seleccione ...</option>
                                 @foreach($rolesdiagnosticos as $item)
@@ -86,7 +86,7 @@
                             <label for="">Reporta a:</label>
                             <select wire:model="reporta_a" class="form-control">
                                 <option value="">Seleccione ...</option>
-                                @foreach($rolesdiagnosticos as $item)
+                                @foreach($puestos as $item)
                                 <option value="{{ $item->nombre }}">{{ $item->nombre }}</option>
                                 @endforeach
                             </select>

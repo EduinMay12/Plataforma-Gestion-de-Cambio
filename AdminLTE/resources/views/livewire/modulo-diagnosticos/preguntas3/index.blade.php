@@ -22,6 +22,17 @@
         });
     </script>
 
+<script>
+    livewire.on('error', function(message) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: message,
+            footer: ''
+        })
+    });
+</script>
+
     <script src="sweetalert2.all.min.js"></script>
 
     <script>

@@ -57,6 +57,10 @@
                           {{ $competencia->accionCorta3_ex }} <br>
                           {{ $competencia->accionLarga3_ex }} </td>
                       </tr>
+                      <tr>
+                          <th>Estatus:</th>
+                          <td>{{ $competencia->estatus }}</td>
+                      </tr>
    
                     </tbody>
                 </table><br>
