@@ -37,12 +37,12 @@ class Index extends Component
     //public $opc;
     
     public $opcion;
-    public $valor;
+    public $valor = 0;
     public $explicacion;
     public $respuesta;
 
     public $opcion1;
-    public $valor1;
+    public $valor1 = 0;
     public $explicacion1;
     public $respuesta1;
 
@@ -177,48 +177,60 @@ class Index extends Component
             'pregunta_id' => 'required'
         ]);
 
-        $pregunta = Preguntas2::find($this->pregunta_id);
+        $valores = [$this->valor, $this->valor1];
 
-        $pregunta->update([
-            'textPregunta' => $this->textPregunta,
-            'descripcion' => $this->descripcion,
-            'cuestionario_id' => $this->cuestionario_id
-        ]);
+        $contador1 = 0;
+        $contador2 = 0;
 
-        Opciones1::create([
-            'opcion' => $this->opcion,
-            'valor' => $this->valor,
-            'explicacion' => $this->explicacion,
-            'respuesta' => $this->respuesta,
-            'pregunta_id' => $this->pregunta_id
-        ]);
+        for($i = 0; $i < count($valores); $i++){
+            if($valores[$i] == 100){
+                $contador1++;
+            }elseif($valores[$i] != 0 && $valores[$i] != 100){
+                $contador2++;
+            }
+        }
 
-        Opciones1::create([
-            'opcion' => $this->opcion1,
-            'valor' => $this->valor1,
-            'explicacion' => $this->explicacion1,
-            'respuesta' => $this->respuesta1,
-            'pregunta_id' => $this->pregunta_id
-        ]);
+        if($contador2 > 0){
+            $this->emit('error', 'Las preguntas solo pueden tener el valor de 0 y 100');
+        }elseif($contador1 == 0){
+            $this->emit('error', 'La respuesta correcta debe tener un valor de 100');
+        }elseif($contador1 == 1){
+            Opciones1::create([
+                'opcion' => $this->opcion,
+                'valor' => $this->valor,
+                'explicacion' => $this->explicacion,
+                'respuesta' => $this->respuesta,
+                'pregunta_id' => $this->pregunta_id
+            ]);
+    
+            Opciones1::create([
+                'opcion' => $this->opcion1,
+                'valor' => $this->valor1,
+                'explicacion' => $this->explicacion1,
+                'respuesta' => $this->respuesta1,
+                'pregunta_id' => $this->pregunta_id
+            ]);
+
+    
+            $this->reset([
+                'opcion',
+                'valor',
+                'explicacion',
+                'respuesta',
+                'opcion1',
+                'valor1',
+                'explicacion1',
+                'respuesta1'
+            ]);
+    
+            $this->emit('alert', '¡Se agregarón las opciones con exito!');
+    
+        }elseif($contador1 > 1){
+            $this->emit('error', 'Solo se puede agregar a una opción el valor de 100');
+        }
 
         $this->opciones = Opciones1::where('pregunta_id', '=', $this->pregunta_id)->get();
-
-
-        $this->reset([
-            'opcion',
-            'valor',
-            'explicacion',
-            'respuesta',
-            'opcion1',
-            'valor1',
-            'explicacion1',
-            'respuesta1'
-        ]);
-
-        $this->emit('reset');
-
-        $this->emit('alert', '¡Se actualizó la pregunta con exito!');
-
+    
     }
 
     public function destroy(Preguntas2 $pregunta){

@@ -38,27 +38,27 @@ class Index extends Component
     //public $opc;
     
     public $opcion;
-    public $valor;
+    public $valor = 0;
     public $explicacion;
     public $respuesta;
 
     public $opcion1;
-    public $valor1;
+    public $valor1 = 0;
     public $explicacion1;
     public $respuesta1;
 
     public $opcion2;
-    public $valor2;
+    public $valor2 = 0;
     public $explicacion2;
     public $respuesta2;
 
     public $opcion3;
-    public $valor3;
+    public $valor3 = 0;
     public $explicacion3;
     public $respuesta3;
 
     public $opcion4;
-    public $valor4;
+    public $valor4 = 0;
     public $explicacion4;
     public $respuesta4;
 
@@ -166,12 +166,7 @@ class Index extends Component
         $this->validate([
             'textPregunta' => 'required',
             'descripcion' => 'required',
-            'cuestionario_id' => 'required',
-            'opcion' => 'required',
-            'valor' => 'required',
-            'explicacion' => 'required',
-            'respuesta' => 'required',
-            'pregunta_id' => 'required'
+            'cuestionario_id' => 'required'
         ]);
 
         $pregunta = Preguntas3::find($this->pregunta_id);
@@ -182,75 +177,128 @@ class Index extends Component
             'cuestionario_id' => $this->cuestionario_id
         ]);
 
-        Opciones2::create([
-            'opcion' => $this->opcion,
-            'valor' => $this->valor,
-            'explicacion' => $this->explicacion,
-            'respuesta' => $this->respuesta,
-            'pregunta_id' => $this->pregunta_id
+        $this->emit('alert', '¡Se actualizó la pregunta con exito!');
+        
+    }
+
+    public function update1(){
+        $this->validate([
+            'opcion' => 'required',
+            'valor' => 'required',
+            'explicacion' => 'required',
+            'respuesta' => 'required',
+
+            'opcion1' => 'required',
+            'valor1' => 'required',
+            'explicacion1' => 'required',
+            'respuesta1' => 'required',
+
+            'opcion2' => 'required',
+            'valor2' => 'required',
+            'explicacion2' => 'required',
+            'respuesta2' => 'required',
+
+            'opcion3' => 'required',
+            'valor3' => 'required',
+            'explicacion3' => 'required',
+            'respuesta3' => 'required',
+
+            'opcion4' => 'required',
+            'valor4' => 'required',
+            'explicacion4' => 'required',
+            'respuesta4' => 'required',
         ]);
 
-        Opciones2::create([
-            'opcion' => $this->opcion1,
-            'valor' => $this->valor1,
-            'explicacion' => $this->explicacion1,
-            'respuesta' => $this->respuesta1,
-            'pregunta_id' => $this->pregunta_id
-        ]);
+        $valores = [$this->valor, $this->valor1, $this->valor2,
+                    $this->valor3, $this->valor4];
+                
+        $contador1 = 0;
+        $contador2 = 0;
 
-        Opciones2::create([
-            'opcion' => $this->opcion2,
-            'valor' => $this->valor2,
-            'explicacion' => $this->explicacion2,
-            'respuesta' => $this->respuesta2,
-            'pregunta_id' => $this->pregunta_id
-        ]);
+        for($i=0; $i < count($valores); $i++){
+            if($valores[$i] == 100){
+                $contador1++;
+            }elseif($valores[$i] != 0 && $valores[$i] != 100){
+                $contador2++;
+            }
+        }
 
-        Opciones2::create([
-            'opcion' => $this->opcion3,
-            'valor' => $this->valor3,
-            'explicacion' => $this->explicacion3,
-            'respuesta' => $this->respuesta3,
-            'pregunta_id' => $this->pregunta_id
-        ]);
+        if($contador2 > 0){
+            $this->emit('error', 'Las preguntas solo pueden tener el valor 0 y 100');
+        }elseif($contador1 == 0){
+            $this->emit('error', 'La respuesta correcta debe tener un valor de 100');
+        }elseif($contador1 == 1){
+            Opciones2::create([
+                'opcion' => $this->opcion,
+                'valor' => $this->valor,
+                'explicacion' => $this->explicacion,
+                'respuesta' => $this->respuesta,
+                'pregunta_id' => $this->pregunta_id
+            ]);
+    
+            
+            Opciones2::create([
+                'opcion' => $this->opcion1,
+                'valor' => $this->valor1,
+                'explicacion' => $this->explicacion1,
+                'respuesta' => $this->respuesta1,
+                'pregunta_id' => $this->pregunta_id
+            ]);
+    
+            Opciones2::create([
+                'opcion' => $this->opcion2,
+                'valor' => $this->valor2,
+                'explicacion' => $this->explicacion2,
+                'respuesta' => $this->respuesta2,
+                'pregunta_id' => $this->pregunta_id
+            ]);
+    
+            Opciones2::create([
+                'opcion' => $this->opcion3,
+                'valor' => $this->valor3,
+                'explicacion' => $this->explicacion3,
+                'respuesta' => $this->respuesta3,
+                'pregunta_id' => $this->pregunta_id
+            ]);
+    
+            Opciones2::create([
+                'opcion' => $this->opcion4,
+                'valor' => $this->valor4,
+                'explicacion' => $this->explicacion4,
+                'respuesta' => $this->respuesta4,
+                'pregunta_id' => $this->pregunta_id
+            ]);
 
-        Opciones2::create([
-            'opcion' => $this->opcion4,
-            'valor' => $this->valor4,
-            'explicacion' => $this->explicacion4,
-            'respuesta' => $this->respuesta4,
-            'pregunta_id' => $this->pregunta_id
-        ]);
+            $this->reset([
+                'opcion',
+                'valor',
+                'explicacion',
+                'respuesta',
+                'opcion1',
+                'valor1',
+                'explicacion1',
+                'respuesta1',
+                'opcion2',
+                'valor2',
+                'explicacion2',
+                'respuesta2',
+                'opcion3',
+                'valor3',
+                'explicacion3',
+                'respuesta3',
+                'opcion4',
+                'valor4',
+                'explicacion4',
+                'respuesta4'
+            ]);
+
+            $this->emit('alert', '¡Se agregarón las opciones con exito!');
+    
+        }elseif($contador1 > 1){
+            $this->emit('error', 'Solo puedes asignar un valor de 100');
+        }
 
         $this->opciones = Opciones2::where('pregunta_id', '=', $this->pregunta_id)->get();
-
-
-        $this->reset([
-            'opcion',
-            'valor',
-            'explicacion',
-            'respuesta',
-            'opcion1',
-            'valor1',
-            'explicacion1',
-            'respuesta1',
-            'opcion2',
-            'valor2',
-            'explicacion2',
-            'respuesta2',
-            'opcion3',
-            'valor3',
-            'explicacion3',
-            'respuesta3',
-            'opcion4',
-            'valor4',
-            'explicacion4',
-            'respuesta4'
-        ]);
-
-        $this->emit('reset');
-
-        $this->emit('alert', '¡Se actualizó la pregunta con exito!');
 
     }
 
