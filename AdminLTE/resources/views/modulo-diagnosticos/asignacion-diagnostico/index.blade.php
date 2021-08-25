@@ -23,6 +23,17 @@
     @livewireScripts
 
     <script src="sweetalert2.all.min.js"></script>
+
+    <script>
+        livewire.on('alert', function(message) {
+            Swal.fire(
+                'Good job!',
+                message,
+                'success'
+            )
+        });
+    </script>
+    
     <script>
         livewire.on('deleteAsignaciondiagnostico', asignaciondiagnosticoId => {
             Swal.fire({
@@ -39,11 +50,6 @@
                     livewire.emitTo('modulo-diagnosticos.asignacion-diagnostico.index', 'delete',
                         asignaciondiagnosticoId);
 
-                    Swal.fire(
-                        'Eliminado!',
-                        'Asignación diagnóstico eliminado con exito',
-                        'success'
-                    )
                 }
             })
         })

@@ -27,8 +27,13 @@
                 <span>{{ $cuestionario2->descripcion }}</span><br>
 
                 <label for="">Estatus:</label>
-                <span>{{ $cuestionario2->estatus }}</span><br>
+                @if($cuestionario2->estatus == 2)
+                <span>Inactivo</span>
+                @elseif($cuestionario2->estatus == 1)
+                <span>Activo</span>
+                @endif                
 
+                <br>
 
                 <div class="mt-4">
                     <a href="{{ route('cuestionario2s.index') }}" class="btn btn-danger">

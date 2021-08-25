@@ -23,6 +23,28 @@
     @livewireScripts
 
     <script src="sweetalert2.all.min.js"></script>
+
+    <script>
+        livewire.on('alert', function(message) {
+            Swal.fire(
+                'Good job!',
+                message,
+                'success'
+            )
+        });
+    </script>
+
+<script>
+    livewire.on('error', function(message) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: message,
+            footer: '',
+        })
+    });
+</script>
+
     <script>
         livewire.on('deletePuesto', puestoId => {
             Swal.fire({
@@ -39,11 +61,6 @@
                     livewire.emitTo('modulo-diagnosticos.puestos.index', 'delete',
                         puestoId);
 
-                    Swal.fire(
-                        'Eliminado!',
-                        'Puesto eliminado con exito',
-                        'success'
-                    )
                 }
             })
         })

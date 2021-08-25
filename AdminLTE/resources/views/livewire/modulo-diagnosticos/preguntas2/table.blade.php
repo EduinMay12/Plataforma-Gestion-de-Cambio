@@ -143,7 +143,6 @@
                                 class="btn btn-primary btn-sm">
                                 <i class="fas fa-edit"></i>
                             </button>
-
                         </td>
                         <td>
                             <button wire:click="$emit('deletePregunta', {{ $pregunta->id }})"

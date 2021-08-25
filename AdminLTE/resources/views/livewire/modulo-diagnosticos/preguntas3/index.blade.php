@@ -50,15 +50,37 @@
 
                     livewire.emitTo('modulo-diagnosticos.preguntas3.index', 'destroy', preguntaId);
 
-                    Swal.fire(
-                        'Eliminado!',
-                        'Pregunta eliminada con exito',
-                        'success'
-                    )
+
                 }
             })
         })
     </script>
+
+
+<script>
+    livewire.on('deleteOpcion', opcionId => {
+        Swal.fire({
+            title: '¿Estas segur@?',
+            text: "Por seguridad las opciones no deben ser eliminados",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Eliminar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                livewire.emitTo('modulo-diagnosticos.preguntas3.index', 'borrar', opcionId);
+
+                Swal.fire(
+                    'Eliminado!',
+                    'Pregunta eliminada con exito',
+                    'success'
+                )
+            }
+        })
+    })
+</script>
 
 </div>
 

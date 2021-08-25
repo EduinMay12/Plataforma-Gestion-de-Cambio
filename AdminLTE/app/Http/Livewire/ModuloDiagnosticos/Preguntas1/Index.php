@@ -48,7 +48,7 @@ class Index extends Component
     public function render()
     {
 
-        $cuestionarios = Cuestionario1::all();
+        $cuestionarios = Cuestionario1::all()->where('estatus', '=', '1');
 
         $preguntas = Preguntas1::where('cuestionario_id', '=', $this->cuestionario_id)
                                 ->where('textPregunta', 'like', '%' . $this->search . '%')
@@ -142,7 +142,13 @@ class Index extends Component
     }
 
     public function destroy(Preguntas1 $pregunta){
-        $pregunta->delete();
+
+        $this->pregunta = $pregunta;
+        $this->pregunta_id = $pregunta->id;
+
+        $pregunta->delete($this->pregunta_id);
+
+        $this->emit('alert', '¡La pregunta se ha eliminado con exito!');
     }
 
     public function order($sort)

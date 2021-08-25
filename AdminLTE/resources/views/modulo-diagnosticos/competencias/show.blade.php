@@ -58,8 +58,12 @@
                           {{ $competencia->accionLarga3_ex }} </td>
                       </tr>
                       <tr>
-                          <th>Estatus:</th>
-                          <td>{{ $competencia->estatus }}</td>
+                        <th>Estatus:</th>
+                        @if ($competencia->estatus == 2)
+                            <td>Inactivo</td>
+                        @elseif($competencia->estatus == 1)
+                            <td>Activo</td>
+                        @endif
                       </tr>
    
                     </tbody>

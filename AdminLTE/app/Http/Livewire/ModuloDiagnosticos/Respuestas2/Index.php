@@ -5,6 +5,8 @@ namespace App\Http\Livewire\ModuloDiagnosticos\Respuestas2;
 use Livewire\Component;
 use Livewire\WithPagination;
 
+use Illuminate\Support\Facades\DB;
+
 use App\Models\ModuloDiagnosticos\Respuestas2;
 use App\Models\ModuloDiagnosticos\Preguntas2;
 use App\Models\ModuloDiagnosticos\Opciones1;
@@ -51,7 +53,12 @@ class Index extends Component
     public function render()
     {
 
-        $preguntas = Preguntas2::all();
+        $preguntas = DB::table(DB::raw('preguntas2s p'))
+                        ->join(DB::raw('cuestionario2s c'),
+                        function($join){
+                            $join->on('p.cuestionario_id', '=', 'c.id')
+                            ->where('c.estatus', '=', 1);
+                        })->get();
 
         $respuestas = Respuestas2::where('pregunta_id', '=', $this->pregunta_id)
                                 ->where('textRespuesta', 'like', '%' . $this->search . '%')
@@ -139,7 +146,13 @@ class Index extends Component
     }
 
     public function destroy(Respuestas2 $respuesta){
-        $respuesta->delete();
+
+        $this->respuesta = $respuesta;
+        $this->respuesta_id = $respuesta->id;
+
+        $respuesta->delete($this->respuesta_id);
+
+        $this->emit('alert', '¡La respuesta se ha eliminado con exito!');
     }
 
     public function order($sort)

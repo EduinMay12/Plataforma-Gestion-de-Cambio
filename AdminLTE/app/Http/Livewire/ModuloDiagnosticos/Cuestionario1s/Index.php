@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Livewire\ModuloDiagnosticos\Cuestionario3s;
+namespace App\Http\Livewire\ModuloDiagnosticos\Cuestionario1s;
 
 use Livewire\Component;
 
-use App\Models\ModuloDiagnosticos\Cuestionario3;
+use App\Models\ModuloDiagnosticos\Cuestionario1;
 use Livewire\WithPagination;
 
 class Index extends Component
@@ -12,8 +12,8 @@ class Index extends Component
 
     use WithPagination;
 
-    public $cuestionario3;
-    public $cuestionario3_id;
+    public $cuestionario1;
+    public $cuestionario1_id;
 
     public $search = '';
     public $sort = 'id';
@@ -37,15 +37,14 @@ class Index extends Component
     public function render()
     {
 
-        $cuestionario3s = Cuestionario3::where('nombre', 'like', '%' . $this->search . '%')
+        $cuestionario1s = Cuestionario1::Where('nombre', 'like', '%' . $this->search . '%')
                                         ->orWhere('descripcion', 'like', '%' . $this->search . '%')
                                         ->orWhere('estatus', 'like', '%' . $this->search . '%')
                                         ->orderBy($this->sort, $this->direction)
                                         ->paginate($this->cant);
 
-        return view('livewire.modulo-diagnosticos.cuestionario3s.index', compact('cuestionario3s'));
+        return view('livewire.modulo-diagnosticos.cuestionario1s.index', compact('cuestionario1s'));
     }
-
 
     public function order($sort)
     {
@@ -61,12 +60,11 @@ class Index extends Component
         }
     }
 
-    public function delete(Cuestionario3 $cuestionario3){
-        
-        $this->cuestionario3 = $cuestionario3;
-        $this->cuestionario3_id = $cuestionario3->id;
+    public function delete(Cuestionario1 $cuestionario1){
+        $this->cuestionario1 = $cuestionario1;
+        $this->cuestionario1_id = $cuestionario1->id;
 
-        $cuestionario3->delete($this->cuestionario3_id);
+        $cuestionario1->delete($this->cuestionario1_id);
 
         $this->emit('alert', '¡El cuestionario se ha eliminado con exito!');
     }

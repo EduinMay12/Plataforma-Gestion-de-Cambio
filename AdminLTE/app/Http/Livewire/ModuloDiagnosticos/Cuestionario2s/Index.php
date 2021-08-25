@@ -12,6 +12,9 @@ class Index extends Component
 
     use WithPagination;
 
+    public $cuestionario2;
+    public $cuestionario2_id;
+
     public $search = '';
     public $sort = 'id';
     public $direction = 'desc';
@@ -59,6 +62,12 @@ class Index extends Component
     }
 
     public function delete(Cuestionario2 $cuestionario2){
-        $cuestionario2->delete();
+
+        $this->cuestionario2 = $cuestionario2;
+        $this->cuestionario2_id = $cuestionario2->id;
+
+        $cuestionario2->delete($this->cuestionario2_id);
+
+        $this->emit('alert', '¡El cuestionario se ha eliminado con exito!');
     }
 }

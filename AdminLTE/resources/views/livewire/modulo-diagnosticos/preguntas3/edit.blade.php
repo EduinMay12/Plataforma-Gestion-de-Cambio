@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-8">
             <div class="alert alert-info" role="alert">
-                Nota: la opción correcta debe tener un valor del 100
+                Nota: la opción correcta debe tener un valor de 100
             </div>
         </div>
     </div>
@@ -19,7 +19,7 @@
     <div class="row">
         <div class="col-4">
                 <label for="">Opción 1: </label>
-            <input placeholder="opcion" wire:model.defer="opcion" type="text" class="form-control">
+            <input placeholder="opción" wire:model.defer="opcion" type="text" class="form-control">
     
             @error('opcion')
                 <small class="text-danger">{{ $message }}</small>
@@ -37,7 +37,7 @@
     
         <div class="col-6">
             <label for="">Explicación: </label>
-            <textarea wire:model.defer="explicacion" placeholder="explicacion" rows="2" class="form-control"></textarea>
+            <textarea wire:model.defer="explicacion" placeholder="explicación" rows="2" class="form-control"></textarea>
     
             @error('explicacion')
                 <small class="text-danger">{{ $message }}</small>
@@ -48,7 +48,12 @@
 
     <div class="col-4">
         <label for="">Respuesta: </label>
-        <input placeholder="respuesta" wire:model.defer="respuesta" type="text" class="form-control">
+        <select wire:model.defer="respuesta" class="form-control">
+            <option value="">Seleccionar ...</option>
+            <option value="Correcto">Correcto</option>
+            <option value="Incorrecto">Incorrecto</option>   
+        </select>
+        {{--<input placeholder="respuesta" wire:model.defer="respuesta" type="text" class="form-control">--}}
 
         @error('respuesta')
             <small class="text-danger">{{ $message }}</small>
@@ -58,7 +63,7 @@
     <div class="row">
         <div class="col-4">
             <label for="">Opción 2: </label>
-            <input placeholder="opcion1" wire:model.defer="opcion1" type="text" class="form-control">
+            <input placeholder="opción" wire:model.defer="opcion1" type="text" class="form-control">
     
             @error('opcion1')
                 <small class="text-danger">{{ $message }}</small>
@@ -76,7 +81,7 @@
     
         <div class="col-6">
             <label for="">Explicación: </label>
-            <textarea wire:model.defer="explicacion1" placeholder="explicacion1" rows="2" class="form-control"></textarea>
+            <textarea wire:model.defer="explicacion1" placeholder="explicación" rows="2" class="form-control"></textarea>
     
             @error('explicacion1')
                 <small class="text-danger">{{ $message }}</small>
@@ -87,7 +92,12 @@
 
     <div class="col-4">
         <label for="">Respuesta: </label>
-        <input placeholder="respuesta1" wire:model.defer="respuesta1" type="text" class="form-control">
+        <select wire:model.defer="respuesta1" class="form-control">
+            <option value="">Seleccionar ...</option>
+            <option value="Correcto">Correcto</option>
+            <option value="Incorrecto">Incorrecto</option>   
+        </select>
+        {{--<input placeholder="respuesta1" wire:model.defer="respuesta1" type="text" class="form-control">--}}
 
         @error('respuesta1')
             <small class="text-danger">{{ $message }}</small>
@@ -97,7 +107,7 @@
     <div class="row">
         <div class="col-4">
             <label for="">Opción 3: </label>
-            <input placeholder="opcion2" wire:model.defer="opcion2" type="text" class="form-control">
+            <input placeholder="opción" wire:model.defer="opcion2" type="text" class="form-control">
     
             @error('opcion2')
                 <small class="text-danger">{{ $message }}</small>
@@ -115,7 +125,7 @@
     
         <div class="col-6">
             <label for="">Explicación: </label>
-            <textarea wire:model.defer="explicacion2" placeholder="explicacion2" rows="2" class="form-control"></textarea>
+            <textarea wire:model.defer="explicacion2" placeholder="explicación" rows="2" class="form-control"></textarea>
     
             @error('explicacion2')
                 <small class="text-danger">{{ $message }}</small>
@@ -126,7 +136,12 @@
 
     <div class="col-4">
         <label for="">Respuesta: </label>
-        <input placeholder="respuesta2" wire:model.defer="respuesta2" type="text" class="form-control">
+        <select wire:model.defer="respuesta2" class="form-control">
+            <option value="">Seleccionar ...</option>
+            <option value="Correcto">Correcto</option>
+            <option value="Incorrecto">Incorrecto</option>   
+        </select>
+        {{--<input placeholder="respuesta2" wire:model.defer="respuesta2" type="text" class="form-control">--}}
 
         @error('respuesta2')
             <small class="text-danger">{{ $message }}</small>
@@ -136,7 +151,7 @@
     <div class="row">
         <div class="col-4">
             <label for="">Opción 4: </label>
-            <input placeholder="opcion3" wire:model.defer="opcion3" type="text" class="form-control">
+            <input placeholder="opción" wire:model.defer="opcion3" type="text" class="form-control">
     
             @error('opcion3')
                 <small class="text-danger">{{ $message }}</small>
@@ -154,7 +169,7 @@
     
         <div class="col-6">
             <label for="">Explicación: </label>
-            <textarea wire:model.defer="explicacion3" placeholder="explicacion3" rows="2" class="form-control"></textarea>
+            <textarea wire:model.defer="explicacion3" placeholder="explicación" rows="2" class="form-control"></textarea>
     
             @error('explicacion3')
                 <small class="text-danger">{{ $message }}</small>
@@ -165,7 +180,12 @@
 
     <div class="col-4">
         <label for="">Respuesta: </label>
-        <input placeholder="respuesta3" wire:model.defer="respuesta3" type="text" class="form-control">
+        <select wire:model.defer="respuesta3" class="form-control">
+            <option value="">Seleccionar ...</option>
+            <option value="Correcto">Correcto</option>
+            <option value="Incorrecto">Incorrecto</option>   
+        </select>
+        {{--<input placeholder="respuesta3" wire:model.defer="respuesta3" type="text" class="form-control">--}}
 
         @error('respuesta3')
             <small class="text-danger">{{ $message }}</small>
@@ -175,7 +195,7 @@
     <div class="row">
         <div class="col-4">
             <label for="">Opción 5: </label>
-            <input placeholder="opcion4" wire:model.defer="opcion4" type="text" class="form-control">
+            <input placeholder="opción" wire:model.defer="opcion4" type="text" class="form-control">
     
             @error('opcion4')
                 <small class="text-danger">{{ $message }}</small>
@@ -193,7 +213,7 @@
     
         <div class="col-6">
             <label for="">Explicación: </label>
-            <textarea wire:model.defer="explicacion4" placeholder="explicacion4" rows="2" class="form-control"></textarea>
+            <textarea wire:model.defer="explicacion4" placeholder="explicación" rows="2" class="form-control"></textarea>
     
             @error('explicacion4')
                 <small class="text-danger">{{ $message }}</small>
@@ -204,7 +224,12 @@
 
     <div class="col-4">
         <label for="">Respuesta: </label>
-        <input placeholder="respuesta4" wire:model.defer="respuesta4" type="text" class="form-control">
+        <select wire:model.defer="respuesta4" class="form-control">
+            <option value="">Seleccionar ...</option>
+            <option value="Correcto">Correcto</option>
+            <option value="Incorrecto">Incorrecto</option>   
+        </select>
+        {{--<input placeholder="respuesta4" wire:model.defer="respuesta4" type="text" class="form-control">--}}
 
         @error('respuesta4')
             <small class="text-danger">{{ $message }}</small>
@@ -227,16 +252,28 @@
 
                         <th>Opciones</th>
                         <th>Valor</th>
+                        <th>Explicaicón</th>
+                        <th>Respuesta</th>
+                        <th>Editar</th>
                         <th>Eliminar</th>
                     </tr>
                 </thead>
                 <tbody>
-                @foreach($opciones as $item) 
+                @foreach($opciones as $opcione) 
                     <tr>
-                        <td>{{ $item->opcion }}</td>
-                        <td>{{ $item->valor }}</td>
+                        <td>{{ $opcione->opcion }}</td>
+                        <td>{{ $opcione->valor }}</td>
+                        <td>{{ $opcione->explicacion }}</td>
+                        <td>{{ $opcione->respuesta }}</td>
+
                         <td>
-                            <button wire:click="borrar({{ $item->id }})"
+                            <button wire:click="editOpcion({{ $opcione->id }})"
+                                class="btn btn-primary btn-sm">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </td>
+                        <td>
+                            <button wire:click="$emit('deleteOpcion', {{ $opcione->id }})"
                                 class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
                         </td>
                     </tr>

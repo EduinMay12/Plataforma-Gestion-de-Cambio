@@ -165,9 +165,11 @@
                                     @elseif($user->estatus == 1)
                                 <span><center><span class="badge badge-pill badge-warning"> Pendiente </span></center></span>
                                     @elseif($user->estatus == 2)
-                                <span><center><span class="badge badge-pill badge-info"> Evaluado </span></center></span>
+                                <span><center><span class="badge badge-pill badge-info"> Evaluador </span></center></span>
                                     @elseif($user->estatus == 3)
                                 <span><center><span class="badge badge-pill badge-secondary"> Eres Administrador </span></center></span>
+                                    @elseif($user->estatus == 4)
+                                <span><center><span class="badge badge-pill badge-info"> Participante </span></center></span>
                                 @endif
                             </td>
                             @can('ver-usuarios')
