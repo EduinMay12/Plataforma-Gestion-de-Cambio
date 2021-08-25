@@ -23,6 +23,17 @@
     @livewireScripts
 
     <script src="sweetalert2.all.min.js"></script>
+
+    <script>
+        livewire.on('alert', function(message) {
+            Swal.fire(
+                'Good job!',
+                message,
+                'success'
+            )
+        });
+    </script>
+
     <script>
         livewire.on('deleteCuestionario1', cuestionario1Id => {
             Swal.fire({
@@ -39,11 +50,6 @@
                     livewire.emitTo('modulo-diagnosticos.cuestionario1s.index', 'delete',
                         cuestionario1Id);
 
-                    Swal.fire(
-                        'Eliminado!',
-                        'El cuestionario se a eliminado con exito',
-                        'success'
-                    )
                 }
             })
         })

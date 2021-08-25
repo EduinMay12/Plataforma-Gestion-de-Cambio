@@ -11,10 +11,15 @@ class Index extends Component
 {
     use WithPagination;
 
+    public $competencia;
+    public $competencia_id;
+    
     public $search = '';
     public $sort = 'id';
     public $direction = 'desc';
     public $cant = '5';
+
+    public $estado = 1;
     
     protected $paginationTheme = 'bootstrap';
 
@@ -59,6 +64,9 @@ class Index extends Component
     }
 
     public function delete(Competencia $competencia){
-        $competencia->delete();
+        $this->competencia = $competencia;
+        $this->competencia_id = $competencia->id;
+        $competencia->delete($this->competencia_id);
+        $this->emit('alert', '¡La competencia se ha eliminado con exito!');
     }
 }

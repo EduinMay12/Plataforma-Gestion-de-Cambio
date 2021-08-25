@@ -27,10 +27,13 @@
                 <span>{{ $roldiagnostico->descripcion }}</span><br>
 
                 <label for="">Estatus:</label>
-                <span>{{ $roldiagnostico->estatus }}</span><br>
+                @if($roldiagnostico->estatus == 2)
+                <span>Inactivo</span>
+                @elseif($roldiagnostico == 1)
+                <span>Activo</span>
+                @endif
 
-
-
+                <br>
                 <div class="mt-4">
                     <a href="{{ route('roldiagnosticos.index') }}" class="btn btn-danger">
                         Vover

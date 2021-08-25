@@ -39,5 +39,53 @@ class CreateAdminUserSeeder extends Seeder
         $role->syncPermissions($permissions);
 
         $user->assignRole([$role->id]);
+        //-------------------------------------------------------
+        $user = User::create([
+            'avatar' => 'participante.png',
+            'name' => 'José Ricardo Cauich Mis',
+            'apellido' => '',
+            'tipo' => 'Participante',
+            'puesto_actual_id' => 'Participante',
+            'email' => 'participante@participante.com',
+            'estatus' => '4',
+            'password' => bcrypt('participante')
+        ]);
+
+        $role = Role::create([
+            'name' => 'Participante',
+            'color' => '#14DD5A',
+            'description' => 'Participante para evaluar'
+        ]);
+
+        $permissions = Permission::pluck('id','id')->all();
+
+        $role->syncPermissions($permissions);
+
+        $user->assignRole([$role->id]);
+
+                //-------------------------------------------------------
+                $user = User::create([
+                    'avatar' => 'evaluador.png',
+                    'name' => 'José Rodrigo Mendez Herrera',
+                    'apellido' => '',
+                    'tipo' => 'Evaluador',
+                    'puesto_actual_id' => 'Evaluador',
+                    'email' => 'evaluador@evaluador.com',
+                    'estatus' => '2',
+                    'password' => bcrypt('evaluador')
+                ]);
+        
+                $role = Role::create([
+                    'name' => 'Evaluador',
+                    'color' => '#14DD5A',
+                    'description' => 'Evaluador de participantes'
+                ]);
+        
+                $permissions = Permission::pluck('id','id')->all();
+        
+                $role->syncPermissions($permissions);
+        
+                $user->assignRole([$role->id]);
+
     }
 }

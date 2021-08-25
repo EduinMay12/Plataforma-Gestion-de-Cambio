@@ -45,7 +45,7 @@ class DatabaseSeeder extends Seeder
         Storage::makeDirectory('cursos');
         Storage::makeDirectory('grupos');
 
-        \App\Models\User::factory(100)->create();
+        \App\Models\User::factory(50)->create();
         $this->call(PermissionTableSeeder::class);
         $this->call(CreateAdminUserSeeder::class);
         Categoria::factory(20)->create();

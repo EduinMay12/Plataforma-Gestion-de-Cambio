@@ -39,11 +39,6 @@
 
                     livewire.emitTo('modulo-diagnosticos.preguntas1.index', 'destroy', preguntaId);
 
-                    Swal.fire(
-                        'Eliminado!',
-                        'Pregunta eliminada con exito',
-                        'success'
-                    )
                 }
             })
         })

@@ -4,6 +4,8 @@ namespace App\Http\Livewire\ModuloDiagnosticos\Puestos;
 
 use Livewire\Component;
 
+use Illuminate\Support\Facades\DB;
+
 use App\Models\ModuloDiagnosticos\Puesto;
 use Livewire\WithPagination;
 
@@ -11,6 +13,9 @@ class Index extends Component
 {
     
     use WithPagination;
+
+    public $puesto;
+    public $puesto_id;
 
     public $search = '';
     public $sort = 'id';
@@ -57,6 +62,18 @@ class Index extends Component
     }
 
     public function delete(Puesto $puesto){
-        $puesto->delete();
+        $this->puesto = $puesto;
+        $this->puesto_id = $puesto->id;
+
+        $consulta = DB::table('competencia_puesto')->where('puesto_id', '=', $puesto->id)->get();
+        $contador = count($consulta);
+
+        if($contador > 0){
+            $this->emit('error', 'El puesto ya tiene sus competencias, por lo tanto, no se puede eliminar');
+        }else{
+            $puesto->delete($this->puesto_id);
+
+            $this->emit('alert', '¡El puesto se ha eliminado con exito!');
+        } 
     }
 }

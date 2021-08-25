@@ -22,6 +22,11 @@
 
                 <p><strong>Descripción: </strong>{{ $puesto->descripcion }}</p>
                 <p><strong>Reporta a: </strong>{{ $puesto->reporta_a }}</p>
+                @if($puesto->estatus == 2)
+                <p><strong>Estatus: </strong>Inactivo</p>
+                @elseif($puesto->estatus == 1)
+                <p><strong>Estatus: </strong>Activo</p>
+                @endif
                 <table class="table table-bordered">
                     <thead>
                         <tr class="th-color">

@@ -39,11 +39,6 @@
 
                     livewire.emitTo('modulo-diagnosticos.asignacioncuestionarios.index', 'destroy', asignacioncuestionarioId);
 
-                    Swal.fire(
-                        'Eliminado!',
-                        'Asignación cuestionario eliminada con exito',
-                        'success'
-                    )
                 }
             })
         })

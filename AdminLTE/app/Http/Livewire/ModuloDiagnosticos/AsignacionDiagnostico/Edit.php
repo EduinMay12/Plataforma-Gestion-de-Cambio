@@ -38,9 +38,10 @@ class Edit extends Component
 
     public function render()
     {
-        $users = User::all();
-        $puestos = Puesto::all();
-        $rolesdiagnosticos = RoleDiagnostico::all();
-        return view('livewire.modulo-diagnosticos.asignacion-diagnostico.edit', compact('users', 'puestos', 'rolesdiagnosticos'));
+        $users = User::all()->where('estatus', '=', '4');
+        $users1 = User::all()->where('estatus', '=', '2');
+        $puestos = Puesto::all()->where('estatus', '=', '1');
+        $rolesdiagnosticos = RoleDiagnostico::all()->where('estatus', '=', '1');
+        return view('livewire.modulo-diagnosticos.asignacion-diagnostico.edit', compact('users', 'puestos', 'rolesdiagnosticos', 'users1'));
     }
 }

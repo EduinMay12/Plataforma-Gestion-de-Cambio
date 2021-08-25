@@ -132,9 +132,9 @@
                                     <td>{{ $competencia->accionCorta1_ca }} <br> {{ $competencia->accionCorta2_ca }} <br> {{ $competencia->accionCorta3_ca }}</td>
                                     <td>{{ $competencia->accionCorta1_ex }} <br> {{ $competencia->accionCorta2_ex }} <br> {{ $competencia->accionCorta3_ex }}</td>
                                     @if ($competencia->estatus == 2)
-                                        <td>Inactivo</td>
+                                        <td><b><p style="color: red;">Inactivo</p></b></td>
                                     @elseif($competencia->estatus == 1)
-                                        <td>Activo</td>
+                                        <td><b><p style="color: rgb(32, 187, 79);">Activo</p></b></td>
                                     @endif
                                     <td>
                                         <a href="{{ route('competencias.show', $competencia) }}"

@@ -11,6 +11,9 @@ class Index extends Component
 {
     use WithPagination;
 
+    public $roldiagnostico;
+    public $roldiagnostico_id;
+
     public $search = '', $sort = 'id', 
         $direction = 'desc', $cant = '5';
 
@@ -55,6 +58,12 @@ class Index extends Component
     }
 
     public function delete(RoleDiagnostico $roldiagnostico){
-        $roldiagnostico->delete();
+
+        $this->roldiagnostico = $roldiagnostico;
+        $this->roldiagnostico_id = $roldiagnostico->id;
+
+        $roldiagnostico->delete($this->roldiagnostico_id);
+
+        $this->emit('alert', '¡El rol evaluación se ha eliminado con exito!');
     }
 }

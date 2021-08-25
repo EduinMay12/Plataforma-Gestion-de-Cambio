@@ -23,6 +23,16 @@
     @livewireScripts
 
     <script src="sweetalert2.all.min.js"></script>
+
+    <script>
+        livewire.on('alert', function(message) {
+            Swal.fire(
+                'Good job!',
+                message,
+                'success'
+            )
+        });
+    </script>
     <script>
         livewire.on('deleteCompetencia', competenciaId => {
             Swal.fire({
@@ -39,11 +49,6 @@
                     livewire.emitTo('modulo-diagnosticos.competencias.index', 'delete',
                         competenciaId);
 
-                    Swal.fire(
-                        'Eliminado!',
-                        'Competencia eliminado con exito',
-                        'success'
-                    )
                 }
             })
         })

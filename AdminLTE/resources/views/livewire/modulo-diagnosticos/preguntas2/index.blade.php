@@ -28,14 +28,14 @@
             icon: 'error',
             title: 'Oops...',
             text: message,
-            footer: ''
+            footer: '',
         })
     });
 </script>
 
     <script src="sweetalert2.all.min.js"></script>
 
-    <script>
+   <script>
         livewire.on('deletePregunta', preguntaId => {
             Swal.fire({
                 title: '¿Estas segur@?',
@@ -50,15 +50,12 @@
 
                     livewire.emitTo('modulo-diagnosticos.preguntas2.index', 'destroy', preguntaId);
 
-                    Swal.fire(
-                        'Eliminado!',
-                        'Pregunta eliminada con exito',
-                        'success'
-                    )
+
                 }
             })
         })
     </script>
+
 
 </div>
 

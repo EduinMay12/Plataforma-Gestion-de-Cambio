@@ -55,7 +55,7 @@
                             <label for="">Persona evaluador:</label>
                             <select wire:model="evaluador" class="form-control">
                                 <option value="">Seleccione ...</option>
-                                @foreach($users as $item)
+                                @foreach($users1 as $item)
                                 <option value="{{ $item->name }}">{{ $item->name }}</option>
                                 @endforeach
                             </select>

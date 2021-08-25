@@ -9,17 +9,17 @@
 
 
     <div class="form-group">
-        <label for="">Preguntas del cuestionario Verdader / Falso: </label><br>
-        @foreach($preguntas as $item)
-        <div class="form-check form-check-inline position-bottom">
+        <P><b>PREGUNTAS DEL CUESTIONARIO VERDADERO / FALSO:</b></P>
+        <div class="checkbox" class="form-control">
+            <label>
+                @foreach ($preguntas as $item)
+                {{ $item->textPregunta }}
+                <input type="checkbox" name="preguntas[]" value="{{ $item->textPregunta }}"><br><br>
+                @endforeach
+            </label>
+          </div>
 
-                    <label class="form-check-label" for="inlineRadio1">{{ $item->textPregunta }}</label>
-
-           
-        </div><br><br>
-        @endforeach
-
-        @error('textRespuesta')
+        @error('textPregunta')
             <small class="text-danger">{{ $message }}</small>
         @enderror
     </div>

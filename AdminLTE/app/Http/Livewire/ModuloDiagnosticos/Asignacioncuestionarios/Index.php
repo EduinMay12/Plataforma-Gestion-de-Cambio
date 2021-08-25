@@ -40,6 +40,7 @@ class Index extends Component
     public $cuestionario_id;
 
     public $asignacioncuestionario;
+    public $asignacioncuestionario_id;
     
 
     protected $paginationTheme = 'bootstrap';
@@ -66,19 +67,14 @@ class Index extends Component
             ->orderBy($this->sort, $this->direction)
             ->paginate($this->cant);
 
-       /*$asignacioncuestionarios = Asignacioncuestionario::where('evaluador', 'like', '%' . $this->search . '%')
-        ->where('fecha_asignada', 'like', '%' . $this->search . '%')
-        ->where('participante_id', 'like', '%' . $this->search . '%')
-        ->where('fecha_limite', 'like', '%' . $this->search . '%')
-        ->orderBy($this->sort, $this->direction)
-        ->paginate($this->cant);*/
         return view('livewire.modulo-diagnosticos.asignacioncuestionarios.index', compact('asignacioncuestionarios'));
     }
 
     public function create(){
 
-        $this->users = User::all();
-        $this->cuestionarios = Cuestionario2::all();
+        $this->users = User::all()->where('estatus', '=', '4');
+        //$this->users1 = User::all()->where('estatus', '=', '4');
+        $this->cuestionarios = Cuestionario2::all()->where('estatus', '=', '1');
 
         $this->view = 'create';
 
@@ -146,8 +142,8 @@ class Index extends Component
         $this->fecha_asignada = $asignacioncuestionario->fecha_asignada;
         $this->fecha_limite = $asignacioncuestionario->fecha_limite;
         $this->cuestionario_id = $asignacioncuestionario->cuestionario_id;
-        $this->users = User::all();
-        $this->cuestionarios = Cuestionario2::all();
+        $this->users = User::all()->where('estatus', '=', '4');
+        $this->cuestionarios = Cuestionario2::all()->where('estatus', '=', '1');
 
         $this->preguntas = Preguntas2::where('cuestionario_id', '=', $this->cuestionario_id)->get();
         $this->view = 'edit';
@@ -177,7 +173,13 @@ class Index extends Component
 
 
     public function destroy(Asignacioncuestionario $asignacioncuestionario){
-        $asignacioncuestionario->delete();
+
+        $this->asignacioncuestionario = $asignacioncuestionario;
+        $this->asignacioncuestionario_id = $asignacioncuestionario->id;
+
+        $asignacioncuestionario->delete($this->asignacioncuestionario_id);
+
+        $this->emit('alert', '¡La asignación se ha eliminado con exito!');
     }
 
     public function order($sort)

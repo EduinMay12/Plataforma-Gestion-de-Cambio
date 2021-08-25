@@ -14,6 +14,9 @@ class Index extends Component
 
     use WithPagination;
 
+    public $asignaciondiagnostico;
+    public $asignaciondiagnostico_id;
+
     public $search = '', $sort = 'id', $direction = 'desc',
             $cant = '5';
 
@@ -60,6 +63,11 @@ class Index extends Component
     }
 
     public function delete(AsignacionDiagnostico $asignaciondiagnostico){
-        $asignaciondiagnostico->delete();
+        $this->asignaciondiagnostico = $asignaciondiagnostico;
+        $this->asignaciondiagnostico_id = $asignaciondiagnostico->id;
+
+        $asignaciondiagnostico->delete($this->asignaciondiagnostico_id);
+
+        $this->emit('alert', '¡La asignación se ha eliminado con exito!');
     }
 }

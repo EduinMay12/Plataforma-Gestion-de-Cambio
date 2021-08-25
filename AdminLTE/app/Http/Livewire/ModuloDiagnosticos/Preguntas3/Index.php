@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\ModuloDiagnosticos\Preguntas3;
 
 use Livewire\Component;
+
 use Illuminate\Support\Facades\DB;
 
 use App\Models\ModuloDiagnosticos\Preguntas3;
@@ -36,6 +37,13 @@ class Index extends Component
     public $opcion_id;
     public $opciones;
     //public $opc;
+
+    public $opcione;
+
+    public $opcion9;
+    public $valor9;
+    public $explicacion9;
+    public $respuesta9;
     
     public $opcion;
     public $valor = 0;
@@ -71,7 +79,7 @@ class Index extends Component
         'cant' => ['except' => '5']
     ]; 
 
-    protected $listeners = ['destroy'];
+    protected $listeners = ['destroy', 'borrar'];
 
     public function updatingSearch(){
         $this->resetPage();
@@ -80,7 +88,7 @@ class Index extends Component
     public function render()
     {
 
-        $cuestionarios = Cuestionario3::all();
+        $cuestionarios = Cuestionario3::all()->where('estatus', '=', '1');
 
         $preguntas = Preguntas3::where('cuestionario_id', '=', $this->cuestionario_id)
                                 ->where('textPregunta', 'like', '%' . $this->search . '%')
@@ -160,6 +168,13 @@ class Index extends Component
         $this->opciones = Opciones2::where('pregunta_id', '=', $this->pregunta_id)->get();
 
         $this->view = 'edit';
+    }
+
+    public function table1(Preguntas3 $pregunta){
+        $this->pregunta = $pregunta;
+        $this->pregunta_id = $pregunta->id;
+
+        return $this->view = 'edit';
     }
 
     public function update(){
@@ -302,25 +317,63 @@ class Index extends Component
 
     }
 
-    public function destroy(Preguntas3 $pregunta){
-        $pregunta->delete();
+    public function editOpcion(Opciones2 $opcione, Preguntas3 $pregunta){
+        $this->pregunta = $pregunta;
+        $this->pregunta_id = $pregunta->id;
+
+        $this->opcione = $opcione;
+        $this->opcion_id = $opcione->id;
+        $this->opcion9 = $opcione->opcion;
+        $this->valor9 = $opcione->valor;
+        $this->explicacion9 = $opcione->explicacion;
+        $this->respuesta9 = $opcione->respuesta;
+
+        return $this->view = 'opc';
     }
 
-    /*public function borrar(Opciones1 $opc, Preguntas1 $pregunta){
-        $this->opcion = $opc;
-        $this->opcion_id = $opcion->id;
+    public function update2(){
+        $this->validate([
+            'opcion9' => 'required',
+            'valor9' => 'required',
+            'explicacion9' => 'required',
+            'respuesta9' => 'required',
+            //'pregunta_id' => 'required'
+        ]);
+
+        $opcione = Opciones2::find($this->opcion_id);
+
+        $opcione->update([
+            'opcion' => $this->opcion9,
+            'valor' => $this->valor9,
+            'explicacion' => $this->explicacion9,
+            'respuesta' => $this->respuesta9,
+            //'pregunta_id' => $this->pregunta_id
+        ]);
+
+        $this->emit('reset');
+
+        $this->emit('alert', '¡La opción se actualizó con exito!');
+    }
+
+    public function destroy(Preguntas3 $pregunta){
 
         $this->pregunta = $pregunta;
         $this->pregunta_id = $pregunta->id;
 
-    }*/
+        $consulta = DB::table('opciones2s')->where('pregunta_id', '=', $pregunta->id)->get();
+        $contador = count($consulta);
 
-    public function borrar(Opciones2 $opc){
+        if($contador > 0){
+            $this->emit('error', 'Se han generado las opciones de la pregunta, por lo tanto, no se puede eliminar');
+        }else{
+            $pregunta->delete($this->pregunta_id);
+            $this->emit('alert', '¡La pregunta se ha eliminado con exito!');
+        }
 
-        $opc->delete();
+    }
 
-        $this->emit('alert', '¡La opción se borro con exito!');
-
+    public function borrar(Opciones2 $opcion){
+        $opcion->delete();
     }
 
     public function order($sort)
