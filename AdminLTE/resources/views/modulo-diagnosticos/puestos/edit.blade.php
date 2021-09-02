@@ -11,7 +11,7 @@
             </div>
         </div>
     </div>
-
+@include('sweetalert::alert')
 @stop
 
 @section('content')

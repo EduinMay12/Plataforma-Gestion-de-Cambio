@@ -6,29 +6,29 @@
 
                     <div class="form-group">
                         <label for="">Nombre</label>
-                        <input type="text" class="form-control" wire:model="cuestionario1.nombre">
+                        <input type="text" class="form-control" wire:model="nombre">
 
-                        @error('cuestionario1.nombre')
+                        @error('nombre')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>
 
                     <div class="form-group">
                         <label for="">Descripción</label>
-                        <input type="text" class="form-control" wire:model="cuestionario1.descripcion">
+                        <input type="text" class="form-control" wire:model="descripcion">
 
-                        @error('cuestionario1.descripcion')
+                        @error('descripcion')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>
 
                     <label for="estatus">Estatus:</label>
-                    <select wire:model="cuestionario1.estatus" class="form-control col-md-4">
+                    <select wire:model="estatus" class="form-control col-md-4">
                         <option value="">Seleccione...</option>
                         <option value="1">Activo</option>
                         <option value="2">Inactivo</option>
                     </select>
-                    @error('cuestionario1.estatus')
+                    @error('estatus')
                         <small class="text-danger">{{ $message }}</small>
                     @enderror
 

@@ -90,18 +90,17 @@ class Index extends Component
             'pregunta_id' => 'required'
         ]);
 
-        Respuestas1::create([
-            'textRespuesta' => $this->textRespuesta,
-            'pregunta_id' => $this->pregunta_id
-        ]);
-
-        $this->reset([
-            'textRespuesta'
-        ]);
-
-        $this->emit('reset');
-
-        $this->emit('alert', '¡Se agregó la respuesta con exito!');
+            Respuestas1::create([
+                'textRespuesta' => $this->textRespuesta,
+                'pregunta_id' => $this->pregunta_id
+            ]);
+            $this->reset([
+                'textRespuesta'
+            ]);
+    
+            $this->emit('reset');
+    
+            $this->emit('alert', '¡Se agregó la respuesta con exito!');
     }
 
     public function show(Respuestas1 $respuesta){

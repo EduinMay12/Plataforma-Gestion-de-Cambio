@@ -16,7 +16,7 @@
         </div>
 
         <div class="form-group">
-            <label for="">Descripcion:* </label>
+            <label for="">Descripción:* </label>
             <input wire:model="descripcion" type="text" class="form-control">
         
             @error('descripcion')

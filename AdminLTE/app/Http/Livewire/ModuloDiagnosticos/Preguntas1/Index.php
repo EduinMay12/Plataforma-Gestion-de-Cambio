@@ -7,6 +7,8 @@ use Livewire\Component;
 use App\Models\ModuloDiagnosticos\Preguntas1;
 use App\Models\ModuloDiagnosticos\Cuestionario1;
 
+use Illuminate\Support\Facades\DB;
+
 use Livewire\WithPagination;
 
 class Index extends Component
@@ -24,7 +26,7 @@ class Index extends Component
     public $sort = 'id';
     public $direction = 'desc';
     public $cant = '5';
-    public $opciones = [1,2,3,4,5];
+    //public $opciones = [1,2,3,4,5];
 
     public $pregunta_id;
     public $textPregunta;
@@ -89,20 +91,29 @@ class Index extends Component
             'cuestionario_id' => 'required'
         ]);
 
-        Preguntas1::create([
-            'textPregunta' => $this->textPregunta,
-            'descripcion' => $this->descripcion,
-            'cuestionario_id' => $this->cuestionario_id
-        ]);
+        $consulta = DB::table('preguntas1s')
+                    ->where('textPregunta', '=', $this->textPregunta)
+                    ->where('cuestionario_id', '=', $this->cuestionario1->id)->get();
+        $contador = count($consulta);
 
-        $this->reset([
-            'textPregunta',
-            'descripcion',
-        ]);
-
-        $this->emit('reset');
-
-        $this->emit('alert', '¡Se agregó la pregunta con exito!');
+        if($contador > 0){
+            $this->emit('error', 'La pregunta que desea registrar, ¡Ya existe!');
+        }else{
+            Preguntas1::create([
+                'textPregunta' => $this->textPregunta,
+                'descripcion' => $this->descripcion,
+                'cuestionario_id' => $this->cuestionario_id
+            ]);
+    
+            $this->reset([
+                'textPregunta',
+                'descripcion',
+            ]);
+    
+            $this->emit('reset');
+    
+            $this->emit('alert', '¡Se agregó la pregunta con exito!');
+        }
 
     }
 

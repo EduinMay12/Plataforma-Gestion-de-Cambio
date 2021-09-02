@@ -115,7 +115,7 @@
             <table class="table table-bordered">
                 <thead>
                     <tr class="th-color">
-
+                        <th>No.</th>
                         <th>Opciones</th>
                         <th>Valor</th>
                         <th>Explicación</th>
@@ -127,6 +127,7 @@
                 <tbody>
                 @foreach($opciones as $opcione) 
                     <tr>
+                        <td>{{ $loop->iteration }}</td>
                         <td>{{ $opcione->opcion }}</td>
                         <td>{{ $opcione->valor }}</td>
                         <td>{{ $opcione->explicacion }}</td>

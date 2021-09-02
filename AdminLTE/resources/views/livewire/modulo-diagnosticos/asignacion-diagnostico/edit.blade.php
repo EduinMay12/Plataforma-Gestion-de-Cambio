@@ -8,13 +8,13 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="">Persona evaluada:</label>
-                                <select wire:model="asignaciondiagnostico.user_id" class="form-control">
+                                <select wire:model="user_id" class="form-control">
                                     <option value="">Seleccione ...</option>
                                     @foreach($users as $item)
                                     <option value="{{ $item->id }}">{{ $item->name }}</option>
                                     @endforeach
                                 </select>
-                                @error('asignaciondiagnostico.user_id')
+                                @error('user_id')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
@@ -22,13 +22,13 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="">Puesto actual:</label>
-                                <select wire:model="asignaciondiagnostico.puesto_actual" class="form-control">
-                                    
+                                <select wire:model="puesto_actual" class="form-control">
+                                    <option value="">Seleccione ...</option>
                                     @foreach($puestos as $item)
                                     <option value="{{ $item->nombre }}">{{ $item->nombre }}</option>
                                     @endforeach
                                 </select>
-                                @error('asignaciondiagnostico.puesto_actual')
+                                @error('puesto_actual')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
@@ -39,13 +39,13 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="">Puesto futuro:</label>
-                                <select wire:model="asignaciondiagnostico.puesto_futuro" class="form-control">
-                                    
+                                <select wire:model="puesto_futuro" class="form-control">
+                                    <option value="">Seleccione ...</option>
                                     @foreach($puestos as $item)
                                     <option value="{{ $item->nombre }}">{{ $item->nombre }}</option>
                                     @endforeach
                                 </select>
-                                @error('asignaciondiagnostico.puesto_futuro')
+                                @error('puesto_futuro')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
@@ -53,12 +53,13 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="">Persona evaluador:</label>
-                                <select wire:model="asignaciondiagnostico.evaluador" class="form-control">
+                                <select wire:model="evaluador" class="form-control">
+                                    <option value="">Seleccione ...</option>
                                     @foreach($users1 as $item)
                                     <option value="{{ $item->name }}">{{ $item->name }}</option>
                                     @endforeach
                                 </select>
-                                @error('asignaciondiagnostico.evaluador')
+                                @error('evaluador')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
@@ -69,13 +70,13 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="">Rol Evaluación:</label>
-                                <select wire:model="asignaciondiagnostico.rol_diagnostico" class="form-control">
-
+                                <select wire:model="rol_diagnostico" class="form-control">
+                                    <option value="">Seleccione ...</option>
                                     @foreach($rolesdiagnosticos as $item)
-                                    <option value="{{ $item->id }}">{{ $item->nombre }}</option>
+                                    <option value="{{ $item->nombre }}">{{ $item->nombre }}</option>
                                     @endforeach
                                 </select>
-                                @error('asignaciondiagnostico.rol_diagnostico')
+                                @error('rol_diagnostico')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
@@ -83,12 +84,13 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="">Reporta_a:</label>
-                                <select wire:model="asignaciondiagnostico.reporta_a" class="form-control">
+                                <select wire:model="reporta_a" class="form-control">
+                                    <option value="">Seleccione ...</option>
                                     @foreach($puestos as $item)
                                     <option value="{{ $item->nombre }}">{{ $item->nombre }}</option>
                                     @endforeach
                                 </select>
-                                @error('asignaciondiagnostico.reporta_a')
+                                @error('reporta_a')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>

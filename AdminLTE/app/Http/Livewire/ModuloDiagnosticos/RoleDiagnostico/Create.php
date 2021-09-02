@@ -6,6 +6,8 @@ use Livewire\Component;
 
 use App\Models\ModuloDiagnosticos\RoleDiagnostico;
 
+use Illuminate\Support\Facades\DB;
+
 class Create extends Component
 {
 
@@ -20,15 +22,22 @@ class Create extends Component
     public function save(){
         $this->validate();
 
-        RoleDiagnostico::create([
-            'nombre' => $this->nombre,
-            'descripcion' => $this->descripcion,
-            'estatus' => $this->estatus
-        ]);
+        $consulta = DB::table('role_diagnosticos')->where('nombre', '=', $this->nombre)->get();
+        $contador = count($consulta);
 
-        $this->reset(['nombre', 'descripcion', 'estatus']);
-
-        $this->emit('alert', '¡Se agregó el rol evaluación con exito!');
+        if($contador > 0){
+            $this->emit('error', 'El nombre del rol evaluación que desea registrar, ¡Ya existe!');
+        }else{
+            RoleDiagnostico::create([
+                'nombre' => $this->nombre,
+                'descripcion' => $this->descripcion,
+                'estatus' => $this->estatus
+            ]);
+    
+            $this->reset(['nombre', 'descripcion', 'estatus']);
+    
+            $this->emit('alert', '¡Se agregó el rol evaluación con exito!');
+        }
     }
     public function render()
     {

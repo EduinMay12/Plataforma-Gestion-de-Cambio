@@ -33,6 +33,7 @@
             )
         });
     </script>
+
     <script>
         livewire.on('deleteCompetencia', competenciaId => {
             Swal.fire({

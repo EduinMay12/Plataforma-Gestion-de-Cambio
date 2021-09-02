@@ -73,7 +73,6 @@ class Index extends Component
     public function create(){
 
         $this->users = User::all()->where('estatus', '=', '4');
-        //$this->users1 = User::all()->where('estatus', '=', '4');
         $this->cuestionarios = Cuestionario2::all()->where('estatus', '=', '1');
 
         $this->view = 'create';
@@ -102,12 +101,20 @@ class Index extends Component
     }
 
     public function store(){
-        $this->validate([
-            'participante_id' => 'required',
-            'fecha_asignada' => 'required',
-            'fecha_limite' => 'required',
-            'cuestionario_id' => 'required'
-        ]);
+        $this->validate(
+            [
+                'participante_id' => 'required',
+                'fecha_asignada' => 'required',
+                'fecha_limite' => 'required',
+                'cuestionario_id' => 'required'
+            ],
+            [
+                'participante_id.required' => 'El campo participante es requerido',
+                'fecha_asignada.required' => 'El campo fecha inicio es requerido',
+                'fecha_limite.required' => 'El campo fecha limite es requerido',
+                'cuestionario_id.required' => 'El campo cuestionario es requerido'
+            ],
+        );
 
         Asignacioncuestionario::create([
             'participante_id' => $this->participante_id,
@@ -150,12 +157,20 @@ class Index extends Component
     }
 
     public function update(){
-        $this->validate([
-            'participante_id' => 'required',
-            'fecha_asignada' => 'required',
-            'fecha_limite' => 'required',
-            'cuestionario_id' => 'required'
-        ]);
+        $this->validate(
+            [
+                'participante_id' => 'required',
+                'fecha_asignada' => 'required',
+                'fecha_limite' => 'required',
+                'cuestionario_id' => 'required'
+            ],
+            [
+                'participante_id.required' => 'El campo participante es requerido',
+                'fecha_asignada.required' => 'El campo fecha inicio es requerido',
+                'fecha_limite.required' => 'El campo fecha limite es requerido',
+                'cuestionario_id.required' => 'El campo cuestionario es requerido'
+            ],
+        );
 
         $this->asignacion = Asignacioncuestionario::find($this->asignacion_id);
 

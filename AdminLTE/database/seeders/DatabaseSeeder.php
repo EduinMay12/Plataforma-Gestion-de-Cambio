@@ -24,6 +24,12 @@ use App\Models\ModuloDiagnosticos\Respuestas1;
 use App\Models\ModuloDiagnosticos\Cuestionario2;
 use App\Models\ModuloDiagnosticos\Preguntas2;
 
+use App\Models\ModuloDiagnosticos\Cuestionario3;
+use App\Models\ModuloDiagnosticos\Preguntas3;
+
+use App\Models\ModuloDiagnosticos\Alumno;
+use App\Models\ModuloDiagnosticos\Profesor;
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -61,5 +67,10 @@ class DatabaseSeeder extends Seeder
         Respuestas1::factory(10)->create();
         Cuestionario2::factory(6)->create();
         Preguntas2::factory(10)->create();
+        Cuestionario3::factory(6)->create();
+        Preguntas3::factory(10)->create();
+        //practica
+        Alumno::factory(10)->create();
+        Profesor::factory(10)->create();
     }
 }

@@ -117,21 +117,29 @@ class Index extends Component
             //'opcion' => 'required'
         ]);
 
-        Preguntas2::create([
-            'textPregunta' => $this->textPregunta,
-            'descripcion' => $this->descripcion,
-            'cuestionario_id' => $this->cuestionario_id
-        ]);
+        $consulta = DB::table('preguntas2s')
+                    ->where('textPregunta', '=', $this->textPregunta)
+                    ->where('cuestionario_id', '=', $this->cuestionario2->id)->get();
+        $contador = count($consulta);
 
-
-        $this->reset([
-            'textPregunta',
-            'descripcion',
-        ]);
-
-        $this->emit('reset');
-
-        $this->emit('alert', '¡Se agregó la pregunta con exito!');
+        if($contador > 0){
+            $this->emit('error', 'La pregunta que desea registrar, ¡Ya existe!');
+        }else{
+            Preguntas2::create([
+                'textPregunta' => $this->textPregunta,
+                'descripcion' => $this->descripcion,
+                'cuestionario_id' => $this->cuestionario_id
+            ]);
+            
+            $this->reset([
+                'textPregunta',
+                'descripcion',
+            ]);
+    
+            $this->emit('reset');
+    
+            $this->emit('alert', '¡Se agregó la pregunta con exito!');
+        }
 
     }
 
@@ -182,8 +190,6 @@ class Index extends Component
 
     public function update1(){
         $this->validate([
-            'textPregunta' => 'required',
-            'descripcion' => 'required',
             'cuestionario_id' => 'required',
             'opci' => 'required',
             'valor' => 'required',
@@ -194,7 +200,18 @@ class Index extends Component
             'explicacion1' => 'required',
             'respuesta1' => 'required',
             'pregunta_id' => 'required'
-        ]);
+        ],
+        [
+            'explicacion.required' => 'El campo explicación es requerido',
+            'respuesta.required' => 'El campo respuesta es requerido',
+            'explicacion1.required' => 'El campo explicación es requerido',
+            'respuesta1.required' => 'El campo respuesta es requerido',
+        ]
+    );
+
+        $contadorOpcion = DB::table('opciones1s')
+                ->where('pregunta_id','=', $this->pregunta->id)
+                ->count('pregunta_id');
 
         $valores = [$this->valor, $this->valor1];
 
@@ -213,6 +230,18 @@ class Index extends Component
             $this->emit('error', 'Las preguntas solo pueden tener el valor de 0 y 100');
         }elseif($contador1 == 0){
             $this->emit('error', 'La respuesta correcta debe tener un valor de 100');
+        }elseif($contadorOpcion == 2) {
+            $this->emit('error', 'Las 2 opciones de la pregunta, ¡Ya existen!');
+            $this->reset([
+                'opci',
+                'valor',
+                'explicacion',
+                'respuesta',
+                'opcion1',
+                'valor1',
+                'explicacion1',
+                'respuesta1'
+            ]);
         }elseif($contador1 == 1){
             Opciones1::create([
                 'opcion' => $this->opci,
@@ -230,7 +259,6 @@ class Index extends Component
                 'pregunta_id' => $this->pregunta_id
             ]);
 
-    
             $this->reset([
                 'opci',
                 'valor',
@@ -241,8 +269,6 @@ class Index extends Component
                 'explicacion1',
                 'respuesta1'
             ]);
-
-            $this->emit('reset');
     
             $this->emit('alert', '¡Se agregarón las opciones con exito!');
     
