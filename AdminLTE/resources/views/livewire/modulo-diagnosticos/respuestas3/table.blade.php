@@ -1,9 +1,9 @@
-<div class="col-4 mb-4">
+<div class="col-6 mb-4">
     <label for="">Seleccionar Pregunta Opción Múltiple</label>
     <select wire:model="pregunta_id" class="form-select form-control">
         <option value="">Seleccione...</option>
         @foreach ($preguntas as $pregunta)
-            <option value="{{ $pregunta->id }}">{{ $pregunta->textPregunta }}</option>
+            <option value="{{ $pregunta->id }}">{{ $pregunta->textPregunta }} Cuestionario: {{ $pregunta->nombre }}</option>
         @endforeach
     </select>
 </div>

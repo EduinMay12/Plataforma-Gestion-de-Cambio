@@ -14,17 +14,25 @@ class Create extends Component
 {
     public $user_id, $puesto_actual, $puesto_futuro, $evaluador, $rol_diagnostico, $reporta_a;
 
-    protected $rules = [
-        'user_id' => 'required',
-        'puesto_actual' => 'required',
-        'puesto_futuro' => 'required',
-        'evaluador' => 'required',
-        'rol_diagnostico' => 'required',
-        'reporta_a' => 'required'
-    ];
-
     public function save(){
-        $this->validate();
+        $this->validate(
+            [
+                'user_id' => 'required',
+                'puesto_actual' => 'required',
+                'puesto_futuro' => 'required',
+                'evaluador' => 'required',
+                'rol_diagnostico' => 'required',
+                'reporta_a' => 'required'
+            ],
+            [
+                'user_id.required' => 'El campo persona participante es requerido',
+                'puesto_actual.required' => 'El campo puesto actual es requerido',
+                'puesto_futuro.required' => 'El campo puesto futuro es requerido',
+                'evaluador.required' => 'El campo persona evaluador es requerido',
+                'rol_diagnostico.required' => 'El campo rol dignóstico es requerido',
+                'reporta_a.required' => 'El campo reporta_a es requerido'
+            ]
+        );
 
         AsignacionDiagnostico::create([
             'user_id' => $this->user_id,

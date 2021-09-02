@@ -4,6 +4,7 @@
             <div class="card-body">
                 <div class="row mt-2">
                     <div class="col-4">
+
                         <span>Mostrar</span>
                         <select wire:model="cant" class="form-select" aria-label="Default select example">
                             <option value="5">5</option>

@@ -11,7 +11,6 @@
             </div>
         </div>
     </div>
-
 @stop
 
 @section('content')
@@ -30,5 +29,16 @@
             )
         });
     </script>
+
+<script>
+    livewire.on('error', function(message) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: message,
+            footer: ''
+        })
+    });
+</script>
 
 @endsection

@@ -10,19 +10,37 @@ class Edit extends Component
 {
 
     public $cuestionario1;
+    public $nombre;
+    public $descripcion;
+    public $estatus;
 
     public function mount(Cuestionario1 $cuestionario1){
         $this->cuestionario1 = $cuestionario1;
+        $this->nombre = $cuestionario1->nombre;
+        $this->descripcion = $cuestionario1->descripcion;
+        $this->estatus = $cuestionario1->estatus;
     }
 
+    /*
     protected $rules = [
         'cuestionario1.nombre' => 'required',
         'cuestionario1.descripcion' => 'required',
         'cuestionario1.estatus' => 'required'
-    ];
+    ];*/
 
     public function save(){
-        $this->validate();
+        $this->validate(
+            [
+                'nombre' => 'required',
+                'descripcion' => 'required',
+                'estatus' => 'required'
+            ],
+            [
+                'nombre.required' => 'El campo nombre es obligatorio',
+                'descripcion.required' => 'El campo descripción es obligatorio',
+                'estatus.required' => 'El campo estatus es obligatorio'
+            ]
+        );
 
         $this->cuestionario1->save();
 

@@ -43,6 +43,11 @@ use App\Http\Controllers\ModuloDiagnosticos\Respuestas3Controller;
 use App\Http\Controllers\ModuloDiagnosticos\AsignacionCuestionarioController;
 use App\Http\Livewire\ModuloCapacitaciones\Matriculaciones\Index;
 
+//Practica
+use App\Http\Controllers\ModuloDiagnosticos\AlumnoController;
+use App\Http\Controllers\ModuloDiagnosticos\ProfesorController;
+use App\Http\Controllers\ModuloDiagnosticos\ArticuloController;
+
 /*
 |--------------------------------------------------------------------------
 | Rutas vistas por el publico
@@ -103,7 +108,12 @@ Route::get('preguntas', [PreguntaController::class, 'index'])->name('preguntas.i
     Route::resource('competencias', CompetenciaController::class)->parameters(['competencias' => 'competencia']);
     Route::resource('puestos', PuestoController::class);
     Route::post('competencia-puesto/{puesto}', [PuestoController::class, 'recuperar'])->name('competencia-puesto.recuperar');
-    Route::delete('competencia-puesto/{puesto}', [PuestoController::class, 'borrar'])->name('competencia-puesto.borrar');
+    //Route::delete('competencia-puesto/{pro}', [PuestoController::class, 'borrar'])->name('competencia-puesto.borrar');
+    
+    Route::delete('competencia-puesto/{pro}/{puesto}', [
+        PuestoController::class, 'borrar'
+    ]);
+
     Route::resource('roldiagnosticos', RoleDiagnosticoController::class);
     Route::resource('asignaciondiagnosticos', AsignacionDiagnosticoController::class);
     Route::resource('cuestionario1s', Cuestionario1Controller::class);
@@ -120,5 +130,10 @@ Route::get('preguntas', [PreguntaController::class, 'index'])->name('preguntas.i
 
     Route::resource('asignacioncuestionarios', AsignacionCuestionarioController::class);
 
+    Route::resource('alumnos', AlumnoController::class);
+    Route::resource('profesores', ProfesorController::class);
+
+    //Práctica
+    Route::resource('articulos', ArticuloController::class);
 
 });

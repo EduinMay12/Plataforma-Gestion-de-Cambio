@@ -53,12 +53,21 @@ class Index extends Component
     public function render()
     {
 
+        //$preguntas = Preguntas3::all();
+        /*$preguntas = DB::table('preguntas3s')
+        ->select('preguntas3s.id','preguntas3s.textPregunta')
+        ->join('cuestionario3s',function($join){
+            $join->on('preguntas3s.cuestionario_id','=','cuestionario3s.id')
+                ->where('cuestionario3s.estatus','=',1); 
+            })->get();*/
         $preguntas = DB::table(DB::raw('preguntas3s p'))
-                        ->join(DB::raw('cuestionario3s c'),
-                        function($join){
-                            $join->on('p.cuestionario_id', '=', 'c.id')
-                            ->where('c.estatus', '=', 1);
-                        })->get();
+        ->distinct()
+        ->select('p.id','p.textPregunta','c.nombre')
+        ->join(DB::raw('opciones2s o'),'o.pregunta_id','=','p.id')
+        ->join(DB::raw('cuestionario3s c'),function($join) {$join->on('p.cuestionario_id','=','c.id')
+        ->where('c.estatus','=',1); })
+        ->orderBy('c.nombre','ASC')
+        ->get();
 
         $respuestas = Respuestas3::where('pregunta_id', '=', $this->pregunta_id)
                                 ->where('textRespuesta', 'like', '%' . $this->search . '%')

@@ -12,9 +12,11 @@ class Edit extends Component
 {
 
     public $puesto;
+    public $puesto_id;
 
     public function mount(Puesto $puesto){
         $this->puesto = $puesto;
+        $this->puesto_id = $puesto->id;
     }
 
     protected $rules = [
@@ -34,9 +36,11 @@ class Edit extends Component
     }
     public function render()
     {
-        $puestos = Puesto::all();
-        $competencias = Competencia::all();
+        $puestos = Puesto::all()->where('estatus', '=', '1');
+        $competencias = Competencia::all()->where('estatus', '=', '1');
         $niveles = Nivel::all();
+
         return view('livewire.modulo-diagnosticos.puestos.edit', compact('puestos', 'competencias', 'niveles'));
     }
+
 }

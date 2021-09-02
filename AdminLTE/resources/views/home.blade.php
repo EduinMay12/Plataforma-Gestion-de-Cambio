@@ -8,3 +8,4 @@
 @extends('layouts.menu')
 
 @extends('layouts.footer')
+

@@ -17,6 +17,7 @@
         "laravel/ui": "^3.3",
         "laravelcollective/html": "^6.2",
         "livewire/livewire": "^2.5",
+        "realrashid/sweet-alert": "^4.0",
         "spatie/laravel-permission": "^4.2"
     },
     "require-dev": {

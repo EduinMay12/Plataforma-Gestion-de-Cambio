@@ -6,6 +6,8 @@ use Livewire\Component;
 
 use App\Models\ModuloDiagnosticos\Cuestionario3;
 
+use Illuminate\Support\Facades\DB;
+
 class Create extends Component
 {
 
@@ -20,15 +22,23 @@ class Create extends Component
     public function save(){
         $this->validate();
 
-        Cuestionario3::create([
-            'nombre' => $this->nombre,
-            'descripcion' => $this->descripcion,
-            'estatus' => $this->estatus
-        ]);
+        $consulta = DB::table('cuestionario3s')
+                ->where('nombre', '=', $this->nombre)->get();
+        $contador = count($consulta);
 
-        $this->reset(['nombre', 'descripcion', 'estatus']);
-
-        $this->emit('alert', '¡Se agregó el cuestionario con exito!');
+        if($contador > 0){
+            $this->emit('error', 'El nombre del cuestionario que desea registrar, ¡Ya existe!');
+        }else{
+            Cuestionario3::create([
+                'nombre' => $this->nombre,
+                'descripcion' => $this->descripcion,
+                'estatus' => $this->estatus
+            ]);
+    
+            $this->reset(['nombre', 'descripcion', 'estatus']);
+    
+            $this->emit('alert', '¡Se agregó el cuestionario con exito!');
+        }
     }
     public function render()
     {

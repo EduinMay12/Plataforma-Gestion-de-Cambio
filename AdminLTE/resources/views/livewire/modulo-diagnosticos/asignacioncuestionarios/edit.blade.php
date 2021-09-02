@@ -4,6 +4,7 @@
 
     <div class="mt-4">
         <button wire:click="update" wire:loading.attr="disabled" wire:target="update" class="btn btn-success">Actualizar</button>
+        <button wire:click="table" class="btn btn-danger">Volver</button>
     </div>
     <br>
 
@@ -23,10 +24,6 @@
             <small class="text-danger">{{ $message }}</small>
         @enderror
     </div>
- 
 
-    <div class="mt-4">
-        <button wire:click="table" class="btn btn-danger">Volver</button>
-    </div>
 
 </div>

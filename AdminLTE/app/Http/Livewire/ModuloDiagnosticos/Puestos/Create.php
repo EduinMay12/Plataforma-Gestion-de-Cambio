@@ -6,6 +6,8 @@ use Livewire\Component;
 
 use App\Models\ModuloDiagnosticos\Puesto;
 
+use Illuminate\Support\Facades\DB;
+
 class Create extends Component
 {
     public $nombre, $descripcion, $estatus;
@@ -22,16 +24,23 @@ class Create extends Component
     public function save(){
         $this->validate();
 
-        Puesto::create([
-            'nombre' => $this->nombre,
-            'descripcion' => $this->descripcion,
-            'reporta_a' => $this->reporta_a,
-            'estatus' => $this->estatus
-        ]);
+        $consulta = DB::table('puestos')->where('nombre', '=', $this->nombre)->get();
+        $contador = count($consulta);
 
-        $this->reset(['nombre', 'descripcion', 'estatus', 'reporta_a']);
-
-        $this->emit('alert', '¡Se agregó el puesto con exito!');
+        if($contador > 0){
+            $this->emit('error', 'El nombre del puesto que sea desea registrar, ¡Ya existe!');
+        }else{
+            Puesto::create([
+                'nombre' => $this->nombre,
+                'descripcion' => $this->descripcion,
+                'reporta_a' => $this->reporta_a,
+                'estatus' => $this->estatus
+            ]);
+    
+            $this->reset(['nombre', 'descripcion', 'estatus', 'reporta_a']);
+    
+            $this->emit('alert', '¡Se agregó el puesto con exito!');
+        }
     }
     public function render()
     {

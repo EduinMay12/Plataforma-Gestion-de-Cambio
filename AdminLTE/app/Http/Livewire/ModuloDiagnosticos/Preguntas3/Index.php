@@ -133,21 +133,30 @@ class Index extends Component
             //'opcion' => 'required'
         ]);
 
-        Preguntas3::create([
-            'textPregunta' => $this->textPregunta,
-            'descripcion' => $this->descripcion,
-            'cuestionario_id' => $this->cuestionario_id
-        ]);
+        $consulta = DB::table('preguntas3s')
+                        ->where('textPregunta', '=', $this->textPregunta)
+                        ->where('cuestionario_id', '=', $this->cuestionario3->id)->get();
+        $contador = count($consulta);
 
-
-        $this->reset([
-            'textPregunta',
-            'descripcion',
-        ]);
-
-        $this->emit('reset');
-
-        $this->emit('alert', '¡Se agregó la pregunta con exito!');
+        if($contador > 0){
+            $this->emit('error', 'La pregunta que desea registrar, ¡Ya existe!');
+        }else{
+            Preguntas3::create([
+                'textPregunta' => $this->textPregunta,
+                'descripcion' => $this->descripcion,
+                'cuestionario_id' => $this->cuestionario_id
+            ]);
+    
+    
+            $this->reset([
+                'textPregunta',
+                'descripcion',
+            ]);
+    
+            $this->emit('reset');
+    
+            $this->emit('alert', '¡Se agregó la pregunta con exito!');
+        }
 
     }
 
@@ -224,6 +233,10 @@ class Index extends Component
             'respuesta4' => 'required',
         ]);
 
+        $contadorOpcion = DB::table('opciones2s')
+                ->where('pregunta_id','=', $this->pregunta->id)
+                ->count('pregunta_id');
+
         $valores = [$this->valor, $this->valor1, $this->valor2,
                     $this->valor3, $this->valor4];
                 
@@ -242,6 +255,31 @@ class Index extends Component
             $this->emit('error', 'Las preguntas solo pueden tener el valor 0 y 100');
         }elseif($contador1 == 0){
             $this->emit('error', 'La respuesta correcta debe tener un valor de 100');
+        }elseif($contadorOpcion == 5){
+            $this->emit('error', 'Las 5 opciones de la preguna, ¡Ya existen!');
+            $this->reset([
+                'opcion',
+                'valor',
+                'explicacion',
+                'respuesta',
+                'opcion1',
+                'valor1',
+                'explicacion1',
+                'respuesta1',
+                'opcion2',
+                'valor2',
+                'explicacion2',
+                'respuesta2',
+                'opcion3',
+                'valor3',
+                'explicacion3',
+                'respuesta3',
+                'opcion4',
+                'valor4',
+                'explicacion4',
+                'respuesta4'
+            ]);
+
         }elseif($contador1 == 1){
             Opciones2::create([
                 'opcion' => $this->opcion,

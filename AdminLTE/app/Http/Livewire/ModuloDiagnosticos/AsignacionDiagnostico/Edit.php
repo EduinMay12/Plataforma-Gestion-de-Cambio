@@ -14,23 +14,38 @@ class Edit extends Component
 {
 
     public $asignaciondiagnostico;
+    public $user_id, $puesto_actual, $puesto_futuro, $evaluador, $rol_diagnostico, $reporta_a;
+
 
     public function mount(AsignacionDiagnostico $asignaciondiagnostico){
         $this->asignaciondiagnostico = $asignaciondiagnostico;
+        $this->user_id = $asignaciondiagnostico->user_id;
+        $this->puesto_actual = $asignaciondiagnostico->puesto_actual;
+        $this->puesto_futuro = $asignaciondiagnostico->puesto_futuro;
+        $this->evaluador = $asignaciondiagnostico->evaluador;
+        $this->rol_diagnostico = $asignaciondiagnostico->rol_diagnostico;
+        $this->reporta_a = $asignaciondiagnostico->reporta_a;
     }
 
-    protected $rules = [
-        'asignaciondiagnostico.user_id' => 'required',
-        'asignaciondiagnostico.puesto_actual' => 'required',
-        'asignaciondiagnostico.puesto_futuro' => 'required',
-        'asignaciondiagnostico.evaluador' => 'required',
-        'asignaciondiagnostico.rol_diagnostico' => 'required',
-        'asignaciondiagnostico.reporta_a' => 'required'
-    ];
-
     public function save(){
-        $this->validate();
-
+        $this->validate(
+            [
+                'user_id' => 'required',
+                'puesto_actual' => 'required',
+                'puesto_futuro' => 'required',
+                'evaluador' => 'required',
+                'rol_diagnostico' => 'required',
+                'reporta_a' => 'required'
+            ],
+            [
+                'user_id.required' => 'El campo persona participante es requerido',
+                'puesto_actual.required' => 'El campo puesto actual es requerido',
+                'puesto_futuro.required' => 'El campo puesto futuro es requerido',
+                'evaluador.required' => 'El campo persona evaluador es requerido',
+                'rol_diagnostico.required' => 'El campo rol dignóstico es requerido',
+                'reporta_a.required' => 'El campo reporta_a es requerido'
+            ]
+        );
         $this->asignaciondiagnostico->save();
 
         $this->emit('alert', '¡La asignación diagnóstico se actualizó con exito!');

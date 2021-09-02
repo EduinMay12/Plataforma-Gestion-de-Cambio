@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\ModuloDiagnosticos\Respuestas2;
 use App\Models\ModuloDiagnosticos\Preguntas2;
 use App\Models\ModuloDiagnosticos\Opciones1;
+use App\Models\ModuloDiagnosticos\Cuestionario2;
 
 class Index extends Component
 {
@@ -53,12 +54,26 @@ class Index extends Component
     public function render()
     {
 
+
+        //$preguntas = Preguntas2::all();
+        /*$preguntas = DB::table('preguntas2s')
+        ->select('preguntas2s.id','preguntas2s.textPregunta')
+        ->join('cuestionario2s',function($join){
+            $join->on('preguntas2s.cuestionario_id','=','cuestionario2s.id')
+                ->where('cuestionario2s.estatus','=',1);
+            })->get();*/
+
         $preguntas = DB::table(DB::raw('preguntas2s p'))
-                        ->join(DB::raw('cuestionario2s c'),
-                        function($join){
-                            $join->on('p.cuestionario_id', '=', 'c.id')
-                            ->where('c.estatus', '=', 1);
-                        })->get();
+        ->distinct()
+        ->select('p.id','p.textPregunta','c.nombre')
+        ->join(DB::raw('opciones1s o'),'o.pregunta_id','=','p.id')
+        ->join(DB::raw('cuestionario2s c'),function($join) {$join->on('p.cuestionario_id','=','c.id')
+        
+        ->where('c.estatus','=',1)
+        ; })
+        ->orderBy('c.nombre','ASC')
+        ->get();
+
 
         $respuestas = Respuestas2::where('pregunta_id', '=', $this->pregunta_id)
                                 ->where('textRespuesta', 'like', '%' . $this->search . '%')
@@ -86,7 +101,7 @@ class Index extends Component
     public function create(Preguntas2 $pregunta){
         $this->pregunta = $pregunta;
 
-        $this->opciones = Opciones1::where('pregunta_id', '=', $this->pregunta_id)->get();
+        $this->opciones = Opciones1::where('pregunta_id', '=', $this->pregunta->id)->get();
 
         $this->view = 'create';
     }
@@ -97,18 +112,18 @@ class Index extends Component
             'pregunta_id' => 'required'
         ]);
 
-        Respuestas2::create([
-            'textRespuesta' => $this->textRespuesta,
-            'pregunta_id' => $this->pregunta_id
-        ]);
-
-        $this->reset([
-            'textRespuesta'
-        ]);
-
-        $this->emit('reset');
-
-        $this->emit('alert', '¡Se agregó la respuesta con exito!');
+            Respuestas2::create([
+                'textRespuesta' => $this->textRespuesta,
+                'pregunta_id' => $this->pregunta_id
+            ]);
+    
+            $this->reset([
+                'textRespuesta'
+            ]);
+    
+            $this->emit('reset');
+    
+            $this->emit('alert', '¡Se agregó la respuesta con exito!');
     }
 
     public function show(Respuestas2 $respuesta){
