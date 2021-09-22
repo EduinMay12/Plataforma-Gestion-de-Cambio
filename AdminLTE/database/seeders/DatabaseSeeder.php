@@ -59,18 +59,18 @@ class DatabaseSeeder extends Seeder
         Cuestionario::factory(20)->create();
 
         $this->call(NivelSeeder::class);
-        Competencia::factory(10)->create();
-        Puesto::factory(6)->create();
-        RoleDiagnostico::factory(10)->create();
-        Cuestionario1::factory(6)->create();
-        Preguntas1::factory(10)->create();
-        Respuestas1::factory(10)->create();
-        Cuestionario2::factory(6)->create();
-        Preguntas2::factory(10)->create();
-        Cuestionario3::factory(6)->create();
-        Preguntas3::factory(10)->create();
+        //Competencia::factory(10)->create();
+        //Puesto::factory(6)->create();
+        //RoleDiagnostico::factory(10)->create();
+        //Cuestionario1::factory(6)->create();
+        //Preguntas1::factory(10)->create();
+        //Respuestas1::factory(10)->create();
+        //Cuestionario2::factory(6)->create();
+        //Preguntas2::factory(10)->create();
+        //Cuestionario3::factory(6)->create();
+        //Preguntas3::factory(10)->create();
         //practica
-        Alumno::factory(10)->create();
-        Profesor::factory(10)->create();
+        //Alumno::factory(10)->create();
+        //Profesor::factory(10)->create();
     }
 }

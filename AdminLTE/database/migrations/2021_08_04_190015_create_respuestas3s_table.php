@@ -17,10 +17,16 @@ class CreateRespuestas3sTable extends Migration
             $table->id();
             $table->string('textRespuesta');
             $table->unsignedBigInteger('pregunta_id');
+            $table->unsignedBigInteger('user_id');
 
             $table->foreign('pregunta_id')
                 ->references('id')->on('preguntas3s')
                 ->onDelete('cascade');
+
+            $table->foreing('user_id')
+                ->references('id')->on('users')
+                ->onDelete('cascade');
+
             $table->timestamps();
         });
     }

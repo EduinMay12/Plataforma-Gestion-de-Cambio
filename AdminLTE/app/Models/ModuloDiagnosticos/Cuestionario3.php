@@ -15,4 +15,9 @@ class Cuestionario3 extends Model
     {
         return $this->hasMany('App\Models\ModuloDiagnosticos\Preguntas3');
     }
+
+    public function asignacioncuestionarios()
+    {
+        return $this->hasMany('App\Models\ModuloDiagnosticos\Asignacioncuestionario1');
+    }
 }

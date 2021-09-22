@@ -27,7 +27,7 @@
 
                     <label for="">Puesto a quien reporta:</label>
                     <select wire:model="puesto.reporta_a" class="form-control col-md-4">
-                        <option value="">{{ $puesto->reporta_a }}</option>
+                        <option value="">Seleccione...</option>
                         @foreach($puestos as $item)
                         <option value="{{ $item->nombre }}">{{ $item->nombre }}</option>
                         @endforeach

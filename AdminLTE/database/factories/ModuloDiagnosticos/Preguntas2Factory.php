@@ -23,7 +23,7 @@ class Preguntas2Factory extends Factory
     public function definition()
     {
         return [
-            'textPregunta' => $this->faker->sentence(),
+            'textPregunta' => $this->faker->unique()->sentence(),
             'descripcion' => $this->faker->sentence(),
             'cuestionario_id' => Cuestionario2::all()->random()->id
         ];

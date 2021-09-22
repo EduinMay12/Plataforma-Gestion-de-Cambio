@@ -20,7 +20,7 @@ class Index extends Component
     //Filtrar por pregunta id
     public $view = 'table';
     public $pregunta_id;
-
+    public $user_id;
 
     public $pregunta;
     public $respuesta;
@@ -75,10 +75,17 @@ class Index extends Component
         ->get();
 
 
-        $respuestas = Respuestas2::where('pregunta_id', '=', $this->pregunta_id)
-                                ->where('textRespuesta', 'like', '%' . $this->search . '%')
-                                ->orderBy($this->sort, $this->direction)
-                                ->paginate($this->cant);
+        $respuestas = DB::table(DB::raw('respuestas2s r'))
+        ->select('r.id','r.textRespuesta','p.textPregunta','u.name')
+        ->join(DB::raw('preguntas2s p'),function($join) {
+            $join->on('p.id','=','r.pregunta_id')
+        ->where('r.pregunta_id','=',$this->pregunta_id);
+        })->where(function($query){
+            $query->where('textRespuesta', 'like', '%' . $this->search . '%');
+        })
+        ->join(DB::raw('users u'),'r.user_id','=','u.id')
+        ->orderBy($this->sort, $this->direction)
+        ->paginate($this->cant);
         return view('livewire.modulo-diagnosticos.respuestas2.index', compact('preguntas', 'respuestas'));
     }
 
@@ -99,6 +106,7 @@ class Index extends Component
     }
 
     public function create(Preguntas2 $pregunta){
+        $this->user_id = auth()->user()->id;
         $this->pregunta = $pregunta;
 
         $this->opciones = Opciones1::where('pregunta_id', '=', $this->pregunta->id)->get();
@@ -114,7 +122,8 @@ class Index extends Component
 
             Respuestas2::create([
                 'textRespuesta' => $this->textRespuesta,
-                'pregunta_id' => $this->pregunta_id
+                'pregunta_id' => $this->pregunta_id,
+                'user_id' => $this->user_id
             ]);
     
             $this->reset([

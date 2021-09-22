@@ -13,7 +13,7 @@ class Puesto extends Model
 
     public function competencias(){
         //return $this->belongsToMany('App\Models\Competencia');
-        return $this->belongsToMany('App\Models\ModuloDiagnosticos\Competencia')->withPivot('nivel_id');
+        return $this->belongsToMany('App\Models\ModuloDiagnosticos\Competencia', 'competencia_puesto', 'puesto_id', 'competencia_id')->withPivot('nivel_id');
     }
 }
 

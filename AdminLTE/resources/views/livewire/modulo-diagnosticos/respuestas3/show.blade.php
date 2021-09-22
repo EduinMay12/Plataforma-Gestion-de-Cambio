@@ -1,5 +1,8 @@
 
 <label for="">Pregunta: </label>
+<span>{{ auth()->user()->name }}</span><br>
+
+<label for="">Pregunta: </label>
 <span>{{ $respuesta->pregunta->textPregunta }}</span><br>
 
 <label for="">Respuesta: </label>

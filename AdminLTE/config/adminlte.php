@@ -415,9 +415,19 @@ return [
                         'icon' => 'fa-solid fa-pen-field',
                         'submenu' => [
                             [
+                                'text' => 'Asig. pre. Abiertas',
+                                'icon' => '',
+                                'route' => 'asignacioncuestionario-abierto.index'
+                            ],
+                            [
                                 'text' => 'Asig. pre. Verdader/Falso',
                                 'icon' => '',
                                 'route' => 'asignacioncuestionarios.index'
+                            ],
+                            [
+                                'text' => 'Asig. pre. Opción Múltiple',
+                                'icon' => '',
+                                'route' => 'asignacioncuestionario1s.index'
                             ],
  
                         ]

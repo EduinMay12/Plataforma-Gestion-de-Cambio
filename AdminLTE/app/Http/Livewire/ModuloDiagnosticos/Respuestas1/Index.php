@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 use App\Models\ModuloDiagnosticos\Respuestas1;
 use App\Models\ModuloDiagnosticos\Preguntas1;
+use App\Models\User;
 
 class Index extends Component
 {
@@ -19,6 +20,7 @@ class Index extends Component
     public $view = 'table';
     public $pregunta_id;
 
+    public $user_id;
 
     public $pregunta;
     public $respuesta;
@@ -50,16 +52,27 @@ class Index extends Component
     {
 
         $preguntas = DB::table(DB::raw('preguntas1s p'))
-                        ->join(DB::raw('cuestionario1s c'),
-                        function($join){
-                            $join->on('p.cuestionario_id','=','c.id')
-                                ->where('c.estatus','=',1);
-                        })->get();
+        ->select('p.id','p.textPregunta')
+        ->join(DB::raw('cuestionario1s c'),function($join) {
+            $join->on('p.cuestionario_id','=','c.id')
+        ->where('c.estatus','=',1);
+        })
+        ->get();
 
-        $respuestas = Respuestas1::where('pregunta_id', '=', $this->pregunta_id)
-                                ->where('textRespuesta', 'like', '%' . $this->search . '%')
-                                ->orderBy($this->sort, $this->direction)
-                                ->paginate($this->cant);
+        
+        $respuestas = DB::table(DB::raw('respuestas1s r'))
+        ->select('r.id','r.textRespuesta','p.textPregunta','u.name')
+        ->join(DB::raw('preguntas1s p'),function($join) {
+            $join->on('p.id','=','r.pregunta_id')
+        ->where('r.pregunta_id','=',$this->pregunta_id);
+        })->where(function($query){
+            $query->where('textRespuesta', 'like', '%' . $this->search . '%');
+        })
+        ->join(DB::raw('users u'),'r.user_id','=','u.id')
+        ->orderBy($this->sort, $this->direction)
+        ->paginate($this->cant);
+
+    
         return view('livewire.modulo-diagnosticos.respuestas1.index', compact('preguntas', 'respuestas'));
     }
 
@@ -85,6 +98,7 @@ class Index extends Component
     }
 
     public function store(){
+        $this->user_id = auth()->user()->id;
         $this->validate([
             'textRespuesta' => 'required',
             'pregunta_id' => 'required'
@@ -92,7 +106,8 @@ class Index extends Component
 
             Respuestas1::create([
                 'textRespuesta' => $this->textRespuesta,
-                'pregunta_id' => $this->pregunta_id
+                'pregunta_id' => $this->pregunta_id,
+                'user_id' => $this->user_id
             ]);
             $this->reset([
                 'textRespuesta'

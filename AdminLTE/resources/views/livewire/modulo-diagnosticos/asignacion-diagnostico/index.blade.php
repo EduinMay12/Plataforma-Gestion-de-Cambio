@@ -23,6 +23,12 @@
                         <input class="form-control me-2" type="search" placeholder="Buscar" type="text"
                             aria-label="Search" wire:model="search">
                     </div>
+                    <div class="col-4">
+                        <a target="_blank" class="btn btn-info" href="{{ route('asignaciondiagnosticos.pdf')}}">
+                            Descargar reporte general
+                            <i class="fas fa-file-download"></i>
+                        </a>
+                    </div>
                 </div>
                 @if ($asignaciondiagnosticos->count())
 
