@@ -2,6 +2,11 @@
     <div class="col-8">
 
         <div class="form-group">
+            <label for="">Usuario: </label>
+            <span>{{ auth()->user()->name }}</span>
+        </div>
+
+        <div class="form-group">
             <label for="">Pregunta: </label>
             <span>{{ $pregunta->textPregunta }}</span>
         </div>

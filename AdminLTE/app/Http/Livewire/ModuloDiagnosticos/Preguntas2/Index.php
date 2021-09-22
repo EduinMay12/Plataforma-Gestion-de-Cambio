@@ -337,7 +337,6 @@ class Index extends Component
     }
 
     public function borrar(Opciones1 $opcione){
-
         $opcione->delete();
     }
 

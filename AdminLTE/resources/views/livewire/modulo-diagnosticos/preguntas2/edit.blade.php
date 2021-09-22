@@ -140,7 +140,7 @@
                             </button>
                         </td>
                         <td>
-                            <button name="click" wire:click="$emit('deleteOpcione', {{ $opcione->id }})"
+                            <button wire:click="$emit('deleteOpcion', {{ $opcione->id }})"
                                 class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
                         </td>
                     </tr>

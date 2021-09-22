@@ -14,8 +14,9 @@ class Edit extends Component
 {
 
     public $asignaciondiagnostico;
-    public $user_id, $puesto_actual, $puesto_futuro, $evaluador, $rol_diagnostico, $reporta_a;
+    public $user_id, $puesto_actual, $puesto_futuro, $rol_diagnostico, $reporta_a;
 
+    public $evaluador;
 
     public function mount(AsignacionDiagnostico $asignaciondiagnostico){
         $this->asignaciondiagnostico = $asignaciondiagnostico;
@@ -27,8 +28,23 @@ class Edit extends Component
         $this->reporta_a = $asignaciondiagnostico->reporta_a;
     }
 
-    public function save(){
-        $this->validate(
+    public function save(AsignacionDiagnostico $asignacion){
+        //$this->emit('alert', 'El id es: ' . $asignacion->id);
+
+        $actualizar = AsignacionDiagnostico::find($asignacion->id);
+
+
+            $actualizar->user_id = $this->user_id;
+            $actualizar->puesto_actual = $this->puesto_actual;
+            $actualizar->puesto_futuro = $this->puesto_futuro;
+            $actualizar->evaluador = $this->evaluador;
+            $actualizar->rol_diagnostico = $this->rol_diagnostico;
+            $actualizar->reporta_a = $this->reporta_a;
+            $actualizar->save();
+        
+
+
+        /*$this->validate(
             [
                 'user_id' => 'required',
                 'puesto_actual' => 'required',
@@ -45,8 +61,9 @@ class Edit extends Component
                 'rol_diagnostico.required' => 'El campo rol dignóstico es requerido',
                 'reporta_a.required' => 'El campo reporta_a es requerido'
             ]
-        );
-        $this->asignaciondiagnostico->save();
+        );*/
+
+        //$this->asignaciondiagnostico->save();
 
         $this->emit('alert', '¡La asignación diagnóstico se actualizó con exito!');
     }

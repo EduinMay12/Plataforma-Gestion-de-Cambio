@@ -54,10 +54,14 @@
                             <div class="form-group">
                                 <label for="">Persona evaluador:</label>
                                 <select wire:model="evaluador" class="form-control">
-                                    <option value="">Seleccione ...</option>
-                                    @foreach($users1 as $item)
-                                    <option value="{{ $item->name }}">{{ $item->name }}</option>
-                                    @endforeach
+                                    <option value="">Seleccione...</option>
+                                    @if ($rol_diagnostico == "Auto-evaluación")
+                                        <option value="null">Campo nulo</option>
+                                    @elseif($rol_diagnostico == 'Evaluador')
+                                        @foreach($users1 as $item)
+                                            <option value="{{ $item->name }}">{{ $item->name }}</option>
+                                        @endforeach
+                                    @endif
                                 </select>
                                 @error('evaluador')
                                     <small class="text-danger">{{ $message }}</small>
@@ -95,10 +99,10 @@
                                 @enderror
                             </div>
                         </div>
-                    </div>
+                    </div> 
 
                     <div class="mt-4">
-                        <button class="btn btn-success" wire:click="save" wire:loading.attr="disabled" wire:target="save">Actualizar</button>
+                        <button class="btn btn-success" wire:click="save({{ $asignaciondiagnostico->id }})" wire:loading.attr="disabled" wire:target="save">Actualizar</button>
                         <a href="{{ route('asignaciondiagnosticos.index') }}" class="btn btn-danger">Volver</a>
                     </div>
 

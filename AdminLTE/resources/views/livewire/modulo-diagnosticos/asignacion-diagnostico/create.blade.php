@@ -53,12 +53,18 @@
                     <div class="col-sm-6">
                         <div class="form-group">
                             <label for="">Persona evaluador:</label>
-                            <select wire:model="evaluador" class="form-control">
-                                <option value="">Seleccione ...</option>
-                                @foreach($users1 as $item)
-                                <option value="{{ $item->name }}">{{ $item->name }}</option>
-                                @endforeach
-                            </select>
+
+                                <select wire:model="evaluador" class="form-control">
+                                    <option value="">Seleccione...</option>
+                                    @if ($rol_diagnostico == "Auto-evaluación")
+                                        <option value="null">Campo nulo</option>
+                                    @elseif($rol_diagnostico == 'Evaluador')
+                                        @foreach($users1 as $item)
+                                            <option value="{{ $item->name }}">{{ $item->name }}</option>
+                                        @endforeach
+                                    @endif
+                                </select>
+                    
                             @error('evaluador')
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror

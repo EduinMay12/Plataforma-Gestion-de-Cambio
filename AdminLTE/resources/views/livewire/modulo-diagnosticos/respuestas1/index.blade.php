@@ -2,9 +2,9 @@
     <div class="container">
         <div class="card">
             <div class="card-body">
-
-                @include("livewire.modulo-diagnosticos.respuestas1.$view")
-
+                <div class="col-12">
+                    @include("livewire.modulo-diagnosticos.respuestas1.$view")
+                </div>
             </div>
         </div>
     </div>

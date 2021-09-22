@@ -23,6 +23,13 @@
                 wire:model="search">
         </div>
 
+        <div class="col-4">
+            <a target="_blank" class="btn btn-info" href="{{ route('preguntas-booleanos.pdf')}}">
+                Descargar reporte general
+                <i class="fas fa-file-download"></i>
+            </a>
+        </div>
+
     </div>
 
     @if ($asignacioncuestionarios->count())
@@ -60,7 +67,7 @@
                         @endif
                     </th>
                     <th wire:click="order('cuestionario_id')">
-                        Cuestionario
+                        Cuestionario V / F
                         {{-- Sort --}}
                         @if ($sort == 'cuestionario_id')
                             @if ($direction == 'asc')

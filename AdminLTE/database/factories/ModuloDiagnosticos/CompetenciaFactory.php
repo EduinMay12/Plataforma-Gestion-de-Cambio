@@ -24,7 +24,7 @@ class CompetenciaFactory extends Factory
 
         $texto = $this->faker->word(10);
         return [
-            'nombre' => $this->faker->word(),
+            'nombre' => $this->faker->unique()->word(),
             'descripcion' => $this->faker->sentence(),
             'accionCorta1_ba' => $texto,
             'accionCorta2_ba' => $texto,

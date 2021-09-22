@@ -1,11 +1,22 @@
-<div class="col-4 mb-4">
-    <label for="">Seleccionar Pregunta Abierta:</label>
-    <select wire:model="pregunta_id" class="form-select form-control">
-        <option value="">Seleccione...</option>
-        @foreach ($preguntas as $pregunta)
-            <option value="{{ $pregunta->id }}">{{ $pregunta->textPregunta }}</option>
-        @endforeach
-    </select>
+
+<div class="row">
+    <div class="col-sm-4">
+        <div class="form-group">
+                <label for="">Seleccionar Pregunta Abierta:</label>
+                <select wire:model="pregunta_id" class="form-control">
+                    <option value="">Seleccione...</option>
+                    @foreach ($preguntas as $pregunta)
+                        <option value="{{ $pregunta->id }}">{{ $pregunta->textPregunta }}</option>
+                    @endforeach
+                </select>
+        </div>
+    </div>
+    <div class="col-sm-4 card-body d-flex justify-content-between align-items-center">
+        <a target="_blank" class="btn btn-info" href="{{ route('respuestas-abiertas.pdf')}}">
+            Descargar reporte general
+            <i class="fas fa-file-download"></i>
+        </a>
+    </div>
 </div>
 
 @if ($pregunta_id)
@@ -57,7 +68,7 @@
 
                     </th>
                     <th wire:click="order('pregunta_id')" class="col-2">
-                        Pregunta
+                        Preguntas
                         {{-- Sort --}}
                         @if ($sort == 'pregunta_id')
                             @if ($direction == 'asc')
@@ -84,6 +95,20 @@
                             <i class="fas fa-sort float-right mt-1"></i>
                         @endif
                     </th>
+                    <th wire:click="order('name')" class="col-2">
+                        Usuario
+                        {{-- Sort --}}
+                        @if ($sort == 'name')
+                            @if ($direction == 'asc')
+                                <i class="fas fa-sort-alpha-up-alt float-right mt-1"></i>
+                            @else
+                                <i class="fas fa-sort-alpha-down-alt float-right mt-1"></i>
+                            @endif
+
+                        @else
+                            <i class="fas fa-sort float-right mt-1"></i>
+                        @endif
+                    </th>
 
 
                     <th>Ver</th>
@@ -96,9 +121,9 @@
 
                     <tr>
                         <td>{{ $respuesta->id }}</td>
-                        <td>{{ $respuesta->pregunta->textPregunta }}</td>
+                        <td>{{ $respuesta->textPregunta }}</td>
                         <td>{{ $respuesta->textRespuesta }}</td>
-
+                        <td>{{ $respuesta->name }}</td>
 
                         <td>
                             <button wire:click="show({{ $respuesta->id }})" class="btn btn-primary btn-sm">

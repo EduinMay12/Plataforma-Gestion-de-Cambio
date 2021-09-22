@@ -28,6 +28,7 @@ use App\Http\Controllers\ModuloDiagnosticos\PuestoController;
 use App\Http\Controllers\ModuloDiagnosticos\RoleDiagnosticoController;
 use App\Http\Controllers\ModuloDiagnosticos\AsignacionDiagnosticoController;
 
+
 use App\Http\Controllers\ModuloDiagnosticos\Cuestionario1Controller;
 use App\Http\Controllers\ModuloDiagnosticos\Preguntas1Controller;
 use App\Http\Controllers\ModuloDiagnosticos\Respuestas1Controller;
@@ -40,13 +41,26 @@ use App\Http\Controllers\ModuloDiagnosticos\Cuestionario3Controller;
 use App\Http\Controllers\ModuloDiagnosticos\Preguntas3Controller;
 use App\Http\Controllers\ModuloDiagnosticos\Respuestas3Controller;
 
+use App\Http\Controllers\ModuloDiagnosticos\AsignacionCuestionarioAbiertoController;
 use App\Http\Controllers\ModuloDiagnosticos\AsignacionCuestionarioController;
+use App\Http\Controllers\ModuloDiagnosticos\AsignacionCuestionario1Controller;
+
 use App\Http\Livewire\ModuloCapacitaciones\Matriculaciones\Index;
 
-//Practica
+//Reportes PDF
+use App\Http\Livewire\ModuloDiagnosticos\AsignacionDiagnostico\Reporte;
+use App\Http\Livewire\ModuloDiagnosticos\Puestos\Reporte1;
+use App\Http\Livewire\ModuloDiagnosticos\Asignacioncuestionarioabierto\Reporte2;
+use App\Http\Livewire\ModuloDiagnosticos\Asignacioncuestionarios\Reporte3;
+use App\Http\Livewire\ModuloDiagnosticos\Asignacioncuestionario1s\Reporte4;
+use App\Http\Livewire\ModuloDiagnosticos\Respuestas1\Reporte5;
+use App\Http\Livewire\ModuloDiagnosticos\Respuestas2\Reporte6;
+use App\Http\Livewire\ModuloDiagnosticos\Respuestas3\Reporte7;
+
+/*Practica
 use App\Http\Controllers\ModuloDiagnosticos\AlumnoController;
 use App\Http\Controllers\ModuloDiagnosticos\ProfesorController;
-use App\Http\Controllers\ModuloDiagnosticos\ArticuloController;
+use App\Http\Controllers\ModuloDiagnosticos\ArticuloController;*/
 
 /*
 |--------------------------------------------------------------------------
@@ -108,14 +122,12 @@ Route::get('preguntas', [PreguntaController::class, 'index'])->name('preguntas.i
     Route::resource('competencias', CompetenciaController::class)->parameters(['competencias' => 'competencia']);
     Route::resource('puestos', PuestoController::class);
     Route::post('competencia-puesto/{puesto}', [PuestoController::class, 'recuperar'])->name('competencia-puesto.recuperar');
-    //Route::delete('competencia-puesto/{pro}', [PuestoController::class, 'borrar'])->name('competencia-puesto.borrar');
-    
     Route::delete('competencia-puesto/{pro}/{puesto}', [
         PuestoController::class, 'borrar'
     ]);
-
     Route::resource('roldiagnosticos', RoleDiagnosticoController::class);
     Route::resource('asignaciondiagnosticos', AsignacionDiagnosticoController::class);
+    
     Route::resource('cuestionario1s', Cuestionario1Controller::class);
     Route::resource('preguntas1s', Preguntas1Controller::class);
     Route::resource('respuestas1s', Respuestas1Controller::class);
@@ -128,12 +140,24 @@ Route::get('preguntas', [PreguntaController::class, 'index'])->name('preguntas.i
     Route::resource('preguntas3s', Preguntas3Controller::class);
     Route::resource('respuestas3s', Respuestas3Controller::class);
 
+    Route::resource('asignacioncuestionario-abierto', AsignacionCuestionarioAbiertoController::class);
     Route::resource('asignacioncuestionarios', AsignacionCuestionarioController::class);
+    Route::resource('asignacioncuestionario1s', AsignacionCuestionario1Controller::class);
 
+    //Reportes PDF
+    Route::get('download-asignaciondiagnosticos', [Reporte::class, 'asignacionPDF'])->name('asignaciondiagnosticos.pdf');
+    Route::get('download-puestos-competencias', [Reporte1::class, 'puestoCompetenciasPDF'])->name('puestos-competencias.pdf');
+
+    Route::get('download-asig_preg-abiertas', [Reporte2::class, 'asigPreguntasAbiertasPDF'])->name('preguntas-abiertas.pdf');
+    Route::get('download-asig_preg-booleanos', [Reporte3::class, 'asigPreguntasBooleanosPDF'])->name('preguntas-booleanos.pdf');
+    Route::get('download-asig_preg-multiples', [Reporte4::class, 'asigPreguntasMultiplesPDF'])->name('preguntas-multiples.pdf');
+    
+    Route::get('download-resp_preg-abiertas', [Reporte5::class, 'respuestasAbiertasPDF'])->name('respuestas-abiertas.pdf');
+    Route::get('download-resp_preg-booleanos', [Reporte6::class, 'respuestasbooleanosPDF'])->name('respuestas-booleanos.pdf');
+    Route::get('download-resp_preg-multiples', [Reporte7::class, 'respuestasMultiplesPDF'])->name('respuestas-multiples.pdf');
+    /*Práctica
     Route::resource('alumnos', AlumnoController::class);
     Route::resource('profesores', ProfesorController::class);
-
-    //Práctica
-    Route::resource('articulos', ArticuloController::class);
+    Route::resource('articulos', ArticuloController::class);*/
 
 });

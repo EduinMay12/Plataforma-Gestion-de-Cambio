@@ -22,7 +22,7 @@ class Cuestionario1Factory extends Factory
     public function definition()
     {
         return [
-            'nombre' => $this->faker->word(),
+            'nombre' => $this->faker->unique()->word(),
             'descripcion' => $this->faker->sentence(),
             'estatus' => $this->faker->randomElement([1,2])
         ];

@@ -29,7 +29,7 @@
                 <label for="">Estatus:</label>
                 @if($roldiagnostico->estatus == 2)
                 <span>Inactivo</span>
-                @elseif($roldiagnostico == 1)
+                @elseif($roldiagnostico->estatus == 1)
                 <span>Activo</span>
                 @endif
 

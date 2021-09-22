@@ -36,7 +36,7 @@ class Edit extends Component
     }
     public function render()
     {
-        $puestos = Puesto::all()->where('estatus', '=', '1');
+        $puestos = Puesto::all()->where('estatus', '=', 1);
         $competencias = Competencia::all()->where('estatus', '=', '1');
         $niveles = Nivel::all();
 

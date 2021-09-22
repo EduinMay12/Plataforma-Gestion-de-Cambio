@@ -22,7 +22,7 @@ class PuestoFactory extends Factory
     public function definition()
     {
         return [
-            'nombre' => $this->faker->word(),
+            'nombre' => $this->faker->unique()->word(),
             'descripcion' => $this->faker->sentence(),
             'reporta_a' => $this->faker->word(),
             'estatus' => $this->faker->randomElement([1,2])
